@@ -1,0 +1,232 @@
+# diffLog ver 0.3 charset=SJIS
+# 2004/12/12 10:41:42 1.0
+## before saved by ViVi
+56c56
+< 											翁の評価点(%)</div>
+---
+> 											翁の評価点</div>
+70c70
+< 											<?php echo $samplerows[$i]?></div>
+---
+> 											<?php echo $samplerows[$i]?>個</div>
+74c74
+< 											<?php echo $points[$i]?></div>
+---
+> 											<?php echo $points[$i]?>％</div>
+# 2004/12/12 10:41:42 1.1
+42c42
+< 								<li type="disc"><?php echo $birthday?>ご出産(予定)
+---
+> 								<li type="disc"><?php echo $birthmonth . "月" . $birthday . "日"?>ご出産(予定)
+# 2005/01/29 08:52:16 1.2
+106a107
+> 								<input type="hidden" name="birthmonth" value="<?php echo $birthmonth?>">
+# 2005/01/29 08:56:14 1.3
+# latest
+<html lang="ja">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=x-sjis">
+		<meta name="generator" content="Adobe GoLive 4">
+		<title>ご注文フォーム</title>
+	</head>
+
+	<body bgcolor="white" background="../image/wall.jpg" onload="scll()">
+		<script language="JavaScript"><!--
+var cnt = -2;//文字位置
+var speed = 500;//動かすスピード(1/1000秒単位)
+var msg = "               送信される前にもう一度、記入内容をご確認下さい！　送信されるまで時間が掛かる場合がありますので、ボタンを1回クリックしてから暫くお待ち下さい。"; //メッセージ内容
+timeID=setTimeout('',1); //IE対策なにもしない;タイマーセット
+
+//　文字を移動させる
+function scll()
+{
+ status = msg.substring(cnt=cnt+2,msg.length+2);//日本語は2文字づつ動かす
+ if (cnt>msg.length){cnt=-2};
+ clearTimeout(timeID);//タイマーをクリア
+ timeID = setTimeout('scll()',speed);
+  }
+// -->
+		</script>
+		<p><embed src="../midi/hol30xg.mid" pluginspage="http://www.yamaha.co.jp/xg/midplug/top.html" width="8" height="8" type="audio/midi" autostart="TRUE" repeat="TRUE" save="TRUE"></p>
+		<p>
+		<form action="./baby.php" method="POST">
+		</p>
+		<p>
+		<table border="0" width="640">
+				<tr>
+					<td width="640">
+						<center>
+							<font size="6"><u><b>お名前候補の検索結果</b></u></font></center>
+						<p><img src="../image/line_a1.gif" height="3" width="100%" align="bottom"></p>
+						<blockquote>
+							山本翁の命名データベースからの検索条件
+							<ul>
+								<li type="disc"><?php echo $sei?>さま
+								<li type="disc"><?php if ($sex == "M") { echo "男児"; } else { echo "女児"; }?>
+								<li type="disc"><?php echo $birthmonth . "月" . $birthday . "日"?>ご出産(予定)
+							</ul>
+							<p>翁のお薦めできるお名前候補が<?php echo $samplerows[1] + $samplerows[2] + $samplerows[3] + $samplerows[4]?>個ございます。<br>
+								候補の左横にあるラジオボタン(○の部分)を一つだけ選択し、下段にある「決定」ボタンを押してください。<br>
+							</p>
+							<table width="90%" border="1" cellspacing="2" cellpadding="0">
+								<tr>
+									<td width="25%"></td>
+									<td width="25%">
+										<div align="center">
+											お名前の具体例数</div>
+									</td>
+									<td width="25%">
+										<div align="center">
+											翁の評価点</div>
+									</td>
+									<td>
+										<div align="center">
+											選名料金</div>
+									</td>
+								</tr>
+<?php
+	for ($i = 1; $i <= 4; $i++) {
+		if ($samplerows[$i] > 0) {?>
+								<tr>
+									<td width="25%"><input type="radio" name="select" value="<?php echo $i?>"<?php if ($i == 1) { echo " checked";}?>>第<?php echo $i?>候補</td>
+									<td width="25%">
+										<div align="right">
+											<?php echo $samplerows[$i]?>個</div>
+									</td>
+									<td width="25%">
+										<div align="right">
+											<?php echo $points[$i]?>％</div>
+									</td>
+									<td>
+										<div align="right">
+											<?php echo $price[$i]?>円</div>
+									</td>
+									<input type="hidden" name="samplerows<?php echo $i?>" value="<?php echo $samplerows[$i]?>">
+									<input type="hidden" name="points<?php echo $i?>" value="<?php echo $points[$i]?>">
+									<input type="hidden" name="price<?php echo $i?>" value="<?php echo $price[$i]?>">
+<?php
+		}
+	}
+?>
+								</tr>
+							</table>
+						</blockquote>
+						<p><img src="../image/line_a1.gif" height="3" width="100%" align="bottom"></p>
+						<blockquote>
+							<p>選名結果をメールでもお知らせするために、お客様のメールアドレスをご入力ください。なお、文字数が多い時や画数の多い漢字をお知らせする場合があり、パソコンのメールソフト以外での受信（フリーメールやWebメール、携帯電話メールなど）では結果を正しく受信できない事があります。</p>
+							<p><u><b>お客様のメールアドレス<br>
+									</b></u><b>→</b>(記入例：xxx@xxx.ne.jp ご注意：必ず半角で記入願います。)<font color="red"><b>(必須)</b></font><u><br>
+								</u><input type="text" name="mail" size="80"><br>
+								<font size="-1" color="red">ご注意;<u>メールアドレスのご記載がない場合には、ご注文はお受け出来ません。</u></font><font size="-1"><br>
+									(特に、「.」(点)を「,」(カンマ)と誤打されたり、全角文字を使われたり、「or.jp」(旧アドレス)を使用されたりしてエラーとなるケースが散見されます。落ちついて正しく入力してください。)　</font></p>
+							<p>確認のため、もう一度、<b><u>お客様のメールアドレス</u></b>をご入力ください。<font color="red"><b>(必須)</b></font><br>
+								<input type="text" name="mailconf" size="80"><br>
+							</p>
+							<div align="center">
+								<p><b>内容をご確認の上、「決定」ボタンを</b><font color="#cc0000"><b>1回だけ</b></font><b>クリックして下さい。<br>
+											送信完了後、「ご注文の確認」の画面が表示されます。</b></p>
+							</div>
+							<center>
+								<input type="hidden" name="sei" value="<?php echo $sei?>">
+								<input type="hidden" name="birthmonth" value="<?php echo $birthmonth?>">
+								<input type="hidden" name="birthday" value="<?php echo $birthday?>">
+								<input type="hidden" name="sex" value="<?php echo $sex?>">
+								<input type="hidden" name="password" value="<?php echo $password?>">
+								<input type="hidden" name="mode" value="kakunin">
+								<p><b><input type="submit" name="送信" value="決定"></b></p>
+							</center>
+						</blockquote>
+						<p><font color="#cc3333"><img src="../image/line_a1.gif" width="640" height="3" align="bottom"></font></p>
+					</td>
+				</tr>
+				<tr>
+					<td width="640">
+						<blockquote>
+							<p>ご参考</p>
+						</blockquote>
+						<ol>
+							<blockquote>
+								<li type="1">お名前の具体例数とは、同じ候補内で幾つの具体的なお名前があるかを示します。この中の具体例からどれを選んで頂いても、鑑定結果は同じになります。<br>
+									例.「正浩=まさひろ、弘章=ひろあき、永英=のりひで、充茂=みつしげ、由悠=よしひさ、由英=よしひで、永章=ひさあき、巨敏=まさとし」と言う具体例がある場合には、具体例数は「８」と表示されます。
+								
+								<li type="1">評価点とは、主運・基礎運・対人運・晩年運の数理の吉凶を5段階評価し、健康運を3段階で評価して独自の計算式で算出したものです。100-10点で評価されます。運勢の善し悪しの総合評価とお考えください。<br>
+									ただし、この評価点と翁のお薦め度は必ずしも一致はしません。幾ら評価点が高くともお名前として付け難い画数の組み合わせがあるからです。
+								
+								<li type="1">選名料金はお名前の具体例数によって決まります。<br>
+									具体例数が５未満の場合は、1,000円<br>
+									具体例数が５-19の場合は、3,000円<br>
+									具体例数が20以上の場合は、5,000円となります。
+							</blockquote>
+						</ol>
+						<p> <img src="../image/line_a2.gif" width="640" height="3" align="bottom"></p>
+						<p></p>
+					</td>
+				</tr>
+			</table>
+		</form>
+		</p>
+		<table border="0" width="640">
+			<tr>
+				<td width="636">
+					<center>
+						　
+						<table border="1" width="100%">
+							<tr>
+								<td>
+									<center>
+										<a href="index.html" target="_self">トップページ</a></center>
+								</td>
+								<td>
+									<center>
+										<a href="input.html" target="_self">姓名鑑定のコーナー</a></center>
+								</td>
+								<td>
+									<center>
+										<a href="book.html" target="_self">著書のコーナー</a></center>
+								</td>
+								<td>
+									<center>
+										<a href="baby.html" target="_self">命名のコーナー</a></center>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<center>
+										<a href="consul.html">ご相談のコーナー</a></center>
+								</td>
+								<td>
+									<center>
+										<a href="info.html">翁からのお知らせ</a></center>
+								</td>
+								<td>
+									<center>
+										<a href="link.html">「占い直行便」</a></center>
+								</td>
+								<td></td>
+							</tr>
+						</table>
+						</p>
+						<p><img src="../image/line_a2.gif" width="640" height="3" align="bottom"></center>
+				</td>
+			</tr>
+			<tr>
+				<td width="636">
+					<center>
+						　
+						<p>お聞きの曲 「strauss 」については、<a href="info.html#midi">こちら</a>をご覧下さい。</p>
+					</center>
+					<p><img src="../image/line_a1.gif" width="640" height="3" align="bottom"></td>
+			</tr>
+			<tr>
+				<td width="636">
+					<center>
+						　
+						<p><font size="1" face="中ゴシック体">このページを見てのご意見やご感想をお聞かせ下さい。　<img src="../image/mail_a2.gif" width="24" height="19" align="bottom"></font><a href="mailto:yamakazu@skyblue.ocn.ne.jp"><font size="1" face="中ゴシック体">okina@e-mail.ne.jp</font></a><font size="1" face="中ゴシック体"><i><br>
+						</i>リンクは歓迎しますが、必ず</font><a href="index.html" target="_self"><font size="1" face="中ゴシック体">TOPページ</font></a><font size="1" face="中ゴシック体">にお願いします。<br>
+						</font><font size="1" face="中ゴシック体" color="black"><i>CopyRight . K.yamamoto</i></font></center>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

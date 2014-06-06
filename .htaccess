@@ -1,0 +1,16 @@
+AddHandler cgi-script .cgi .pl
+AddType text/html .shtml
+AddHandler server-parsed .shtml
+AddType application/x-httpd-cgi .cgi
+AddType application/x-httpd-cgi .cgi/
+AddType application/x-httpd-cgi .pl
+AddType application/x-httpd-cgi .pl/
+
+# This may also be "None", "All", or any combination of "Indexes",
+# "Includes", "FollowSymLinks", "ExecCGI", or "MultiViews".
+#
+# Note that "MultiViews" must be named *explicitly* --- "Options All"
+# doesn't give it to you.
+#
+#Options Indexes Includes FollowSymLinks ExecCGI MultiViews
+Options FollowSymLinks Includes ExecCGI MultiViews

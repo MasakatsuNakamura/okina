@@ -1,0 +1,10 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<!--#exec cgi="./dclick_ssi.cgi"-->
+‚à‚µ‚­‚Í
+<!--#include file="./dclick_ssi.cgi"-->
+</BODY>
+</HTML>

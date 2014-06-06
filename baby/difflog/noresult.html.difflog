@@ -1,0 +1,146 @@
+# diffLog ver 0.3 charset=SJIS
+# 2005/01/29 08:52:43 1.0
+## before saved by ViVi
+44c44
+< 								<li type="disc"><?php echo $birthday?>のご出産(予定)
+---
+> 								<li type="disc"><?php echo $birthmonth . "月" . $birthday . "日"?>のご出産(予定)
+# 2005/01/29 08:52:43 1.1
+# latest
+<html lang="ja">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=x-sjis">
+		<meta name="generator" content="Adobe GoLive 4">
+		<title>ご注文フォーム</title>
+	</head>
+
+	<body bgcolor="white" background="../image/wall.jpg" onload="scll()">
+		<script language="JavaScript"><!--
+var cnt = -2;//文字位置
+var speed = 500;//動かすスピード(1/1000秒単位)
+var msg = "               送信される前にもう一度、記入内容をご確認下さい！　送信されるまで時間が掛かる場合がありますので、ボタンを1回クリックしてから暫くお待ち下さい。"; //メッセージ内容
+timeID=setTimeout('',1); //IE対策なにもしない;タイマーセット
+
+//　文字を移動させる
+function scll()
+{
+ status = msg.substring(cnt=cnt+2,msg.length+2);//日本語は2文字づつ動かす
+ if (cnt>msg.length){cnt=-2};
+ clearTimeout(timeID);//タイマーをクリア
+ timeID = setTimeout('scll()',speed);
+  }
+// -->
+		</script>
+		<p><embed src="../midi/hol30xg.mid" pluginspage="http://www.yamaha.co.jp/xg/midplug/top.html" width="8" height="8" type="audio/midi" autostart="TRUE" repeat="TRUE" save="TRUE"></p>
+		<p>
+		<form action="../cgi_bin2/check.cgi" method="POST">
+		</p>
+		<p>
+		<table border="0" width="640">
+			<tr>
+				<td>
+					<center>
+							<font size="6"><u><b>検索結果の表示</b></u></font></center>
+						<p><img src="../image/line_a1.gif" width="640" height="3" align="bottom"></p>
+						<blockquote>
+							<p>検索条件</p>
+						</blockquote>
+						<ul>
+							<blockquote>
+								<li type="disc"><?php echo $sei?>さま
+								<li type="disc"><?php if ($sex == 'M') {echo "男児";} else {echo "女児";}?>
+								<li type="disc"><?php echo $birthmonth . "月" . $birthday . "日"?>のご出産(予定)
+							</blockquote>
+						</ul>
+						<blockquote>
+							<p>大変残念ですが、ただいま翁のデータベースには適切なお名前候補が登録されておりません。<br>
+							</p>
+						</blockquote>
+					</td>
+			</tr>
+				<tr>
+				<td>
+						<blockquote>
+							<p>お手数ですが、ハンドメイド(手作業)のコーナーにて選名のご注文をお願い致します。お急ぎの方は誠に申し訳御座いませんが、諦めてください。</p>
+							<div align="center">
+								<p><font size="+1"><a href="handmade.html" target="_self">ハンドメイドの選名コーナーはこちらからどうぞ</a></font></p>
+							</div>
+						</blockquote>
+						<center>
+							<p><img src="../image/line_a1.gif" width="640" height="3" align="bottom"></p>
+						</center>
+						<blockquote>
+							</p></blockquote>
+					</td>
+			</tr>
+			</table>
+		</form>
+		</p>
+		<p>
+		<table border="0" width="640">
+			<tr>
+				<td width="636">
+					<center>
+						　
+
+						<table border="1" width="632">
+							<tr>
+								<td>
+									<center>
+										<a href="index.html" target="_self">トップページ</a></center>
+								</td>
+								<td>
+									<center>
+										<a href="input.html" target="_self">姓名鑑定のコーナー</a></center>
+								</td>
+								<td>
+									<center>
+										<a href="book.html" target="_self">著書のコーナー</a></center>
+								</td>
+								<td>
+									<center>
+										<a href="baby.html" target="_self">命名のコーナー</a></center>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<center>
+										<a href="consul.html">ご相談のコーナー</a></center>
+								</td>
+								<td>
+									<center>
+										<a href="info.html">翁からのお知らせ</a></center>
+								</td>
+								<td>
+									<center>
+										<a href="link.html">「占い直行便」</a></center>
+								</td>
+								<td></td>
+							</tr>
+						</table>
+						</p>
+						<p><img src="../image/line_a2.gif" width="640" height="3" align="bottom"></center>
+				</td>
+			</tr>
+			<tr>
+				<td width="636">
+					<center>
+						　
+						<p>お聞きの曲「strauss」については、<a href="info.html#midi">こちら</a>をご覧下さい。</p>
+					</center>
+					<p><img src="../image/line_a1.gif" width="640" height="3" align="bottom"></td>
+			</tr>
+			<tr>
+				<td width="636">
+					<center>
+						　
+						<p><font size="1" face="中ゴシック体">このページを見てのご意見やご感想をお聞かせ下さい。　<img src="../image/mail_a2.gif" width="24" height="19" align="bottom"></font><a href="mailto:yamakazu@skyblue.ocn.ne.jp"><font size="1" face="中ゴシック体">okina@e-mail.ne.jp</font></a><font size="1" face="中ゴシック体"><i><br>
+						</i>リンクは歓迎しますが、必ず</font><a href="index.html" target="_self"><font size="1" face="中ゴシック体">TOPページ</font></a><font size="1" face="中ゴシック体">にお願いします。<br>
+						</font><font size="1" face="中ゴシック体" color="black"><i>CopyRight . K.yamamoto</i></font></center>
+				</td>
+			</tr>
+		</table>
+	</body>
+
+</html>
