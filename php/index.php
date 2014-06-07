@@ -11,13 +11,20 @@
 	
 	$seimei->kakusu('中村', '昌克');
 
-	echo $seimei->sei . ' ' . $seimei->mei . 'さんへのアドバイス<br />\n';
-	echo "天画:" . $seimei->tenkaku . "<br />\n" . $reii->mongon[$seimei->tenkaku] . "<br />\n";
-	echo "人画:" . $seimei->jinkaku . "<br />\n" . $reii->mongon[$seimei->jinkaku] . "<br />\n";
-	echo "地画:" . $seimei->chikaku . "<br />\n" . $reii->mongon[$seimei->chikaku] . "<br />\n";
-	echo "外画:" . $seimei->gaikaku . "<br />\n" . $reii->mongon[$seimei->gaikaku] . "<br />\n";
-	echo "総画:" . $seimei->soukaku . "<br />\n" . $reii->mongon[$seimei->soukaku] . "<br />\n";
-	echo "性格:" . $seimei->seikaku . "<br />\n" . $seikaku->mongon[$seimei->seikaku] . "<br />\n";
-	echo "健康:" . $seimei->kenkou . "<br />\n" . $kenkou->mongon[$seimei->kenkou] . "<br />\n";
-	echo "エラー漢字:" . implode(",", $seimei->error);
 ?>
+<html>
+	<head>
+		<title>	<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> さんへのアドバイス</title>
+	</head>
+	<body>
+		<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> さんへのアドバイス<br />
+		天画: <?php echo $seimei->tenkaku ?><br /><?php echo $reii->mongon[$seimei->tenkaku] ?><br />
+		人画: <?php echo $seimei->jinkaku ?><br /><?php echo $reii->mongon[$seimei->jinkaku] ?><br />
+		地画: <?php echo $seimei->chikaku ?><br /><?php echo $reii->mongon[$seimei->chikaku] ?><br />
+		外画: <?php echo $seimei->gaikaku ?><br /><?php echo $reii->mongon[$seimei->gaikaku] ?><br />
+		総画: <?php echo $seimei->soukaku ?><br /><?php echo $reii->mongon[$seimei->soukaku] ?><br />
+		性格: <?php echo $seimei->seikaku ?><br /><?php echo $seikaku->mongon[$seimei->seikaku] ?><br />
+		健康: <?php echo $seimei->kenkou ?><br /><?php echo $kenkou->mongon[$seimei->kenkou] ?><br />
+		エラー漢字: <?php echo implode(",", $seimei->error); ?>
+	</body>
+</html>
