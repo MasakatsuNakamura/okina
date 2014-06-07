@@ -17,7 +17,7 @@ class Seimei {
 	
 	function Seimei() {
 		$this->kakusu = Array();
-		fopen($kanji, "./kanji.dat");
+		$kanji = fopen("./kanji.dat");
 		
 		$i = 1;
 		while (!feof($kanji)) {
