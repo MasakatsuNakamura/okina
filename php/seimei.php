@@ -28,11 +28,11 @@ class Seimei {
 			}
 			$line = fgets($in);
 			for ($j = 0; $j < mb_strlen($line); $j++) {
-				$c = mb_substr($line, $j, 1);
+				$c = mb_substr($line, $j, 1, "utf-8");
 				$this->kanji[$c] = $i;
 			}
 		}
-		fclose($kanji);
+		fclose($in);
 	}
 	
 	function kakusu ($sei, $mei) {
@@ -52,8 +52,8 @@ class Seimei {
 		$error = Array();
 		
 		// 天画の算出
-		for ($i = 0; $i < mb_strlen($sei); $i++) {
-			$c = mb_substr($sei, $i, 1);
+		for ($i = 0; $i < mb_strlen($sei, "uft-8"); $i++) {
+			$c = mb_substr($sei, $i, 1, "utf-8");
 			$k = $this->kanji[$c];
 			if ($k == 0) {
 				push($error, $c);
@@ -70,11 +70,11 @@ class Seimei {
 		}
 		
 		# 人画の算出
-		$this->jinkaku = $this->kanji[mb_substr($sei, mb_strlen($sei)-1, 1)] + $this->kanji[mb_substr(mei, 0, 1)];
+		$this->jinkaku = $this->kanji[mb_substr($sei, mb_strlen($sei, "utf-8")-1, 1, "utf-8")] + $this->kanji[mb_substr(mei, 0, 1, "utf-8")];
 		
 		# 地画の算出
-		for ($i = 0; $i < mb_strlen($mei); $i++) {
-			$c = mb_substr($sei, $i, 1);
+		for ($i = 0; $i < mb_strlen($mei, "utf-8"); $i++) {
+			$c = mb_substr($sei, $i, 1, "utf-8");
 			$k = $this->kanji[$c];
 			if ($k == 0) {
 				push($error, $c);
