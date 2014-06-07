@@ -8,7 +8,6 @@
 	$reii = New Reii();
 	$kenkou = New Kenkou();
 	$seikaku = New Seikaku();
-	print_r($seimei->kanji);
 	
 	$seimei->kakusu('中村', '昌克');
 
