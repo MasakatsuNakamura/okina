@@ -16,7 +16,7 @@ class Seimei {
 	private $chishimo;
 	
 	function Seimei() {
-		$this->kakusu = Array();
+		$this->kanji = Array();
 		$kanji = fopen("./kanji.dat", "r");
 		
 		$i = 1;
@@ -24,7 +24,7 @@ class Seimei {
 			$line = fgets($kanji);
 			for ($j = 0; $j < mb_strlen($line); $j++) {
 				$c = mb_substr($line, $j, 1);
-				$this->kakusu[$c] = $i;
+				$this->kanji[$c] = $i;
 			}
 			$i++;
 			if ($i > 31) {
