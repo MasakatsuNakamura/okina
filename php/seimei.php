@@ -131,7 +131,7 @@ class Seimei {
 	
 	private function f($i) {
 		$i += $i % 2;
-		$i /= 2;
+		$i = (int)($i / 2);
 		if ($i == 0) {
 			$i = 5;
 		}
