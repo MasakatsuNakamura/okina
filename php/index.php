@@ -16,6 +16,7 @@
 	echo '天画:' . $seimei->tenkaku . '<br />' . $reii->mongon[$seimei->tenkaku] . '<br />\n';
 	echo '人画:' . $seimei->jinkaku . '<br />' . $reii->mongon[$seimei->jinkaku] . '<br />\n';
 	echo '地画:' . $seimei->chikaku . '<br />' . $reii->mongon[$seimei->chikaku] . '<br />\n';
+	echo '外画:' . $seimei->gaikaku . '<br />' . $reii->mongon[$seimei->gaikaku] . '<br />\n';
 	echo '総画:' . $seimei->soukaku . '<br />' . $reii->mongon[$seimei->soukaku] . '<br />\n';
 	echo '性格:' . $seimei->seikaku . '<br />' . $seikaku->mongon[$seimei->seikaku] . '<br />\n';
 	echo '健康:' . $seimei->kenkou . '<br />' . $kenkou->mongon[$seimei->kenkou] . '<br />\n';

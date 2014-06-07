@@ -5,13 +5,15 @@ class Seimei {
 	public $mei;
 
 	public $tenkaku;
+	public $jinkaku;
 	public $chikaku;
 	public $gaikaku;
 	public $soukaku;
+
 	public $seikaku;
 	public $kenkou;
 	
-	public $kanji;
+	private $kanji;
 	
 	private $tenshimo;
 	private $jinshimo;
@@ -27,7 +29,7 @@ class Seimei {
 				$i = 1;
 			}
 			$line = fgets($in);
-			for ($j = 0; $j < mb_strlen($line); $j++) {
+			for ($j = 0; $j < mb_strlen($line, "utf-8"); $j++) {
 				$c = mb_substr($line, $j, 1, "utf-8");
 				$this->kanji[$c] = $i;
 			}
@@ -46,6 +48,7 @@ class Seimei {
 
 		// 天画・人画・地画・外画・総画の算出(結構ややこしい)
 		$this->tenkaku = 0;
+		$this->jinkaku = 0;
 		$this->chikaku = 0;
 		$this->gaikaku = 0;
 		$this->soukaku = 0;
@@ -97,6 +100,9 @@ class Seimei {
 		// オーバーフロー処理 - ちなみに > 81は間違いではない。
 		if ($this->tenkaku > 81) {
 			$this->tenkaku %= 80;
+		}
+		if ($this->jinkaku > 81) {
+			$this->jinkaku %= 80;
 		}
 		if ($this->chikaku > 81) {
 			$this->chikaku %= 80;
