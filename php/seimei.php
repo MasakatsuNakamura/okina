@@ -57,7 +57,7 @@ class Seimei {
 		$this->error = Array();
 		
 		// 天画の算出
-		for ($i = 0; $i < mb_strlen($sei, "uft-8"); $i++) {
+		for ($i = 0; $i < mb_strlen($sei, "utf-8"); $i++) {
 			$c = mb_substr($sei, $i, 1, "utf-8");
 			$k = $this->kanji[$c];
 			if ($k == 0) {
@@ -75,7 +75,8 @@ class Seimei {
 		}
 		
 		// 人画の算出
-		$this->jinkaku = $this->kanji[mb_substr($sei, mb_strlen($sei, "utf-8")-1, 1, "utf-8")] + $this->kanji[mb_substr(mei, 0, 1, "utf-8")];
+		$this->jinkaku = $this->kanji[mb_substr($sei, mb_strlen($sei, "utf-8")-1, 1, "utf-8")]
+						 + $this->kanji[mb_substr($mei, 0, 1, "utf-8")];
 		
 		// 地画の算出
 		for ($i = 0; $i < mb_strlen($mei, "utf-8"); $i++) {
