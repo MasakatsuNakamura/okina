@@ -12,10 +12,10 @@
 	$seimei->kakusu('中村', '昌克');
 
 	echo $seimei->sei . ' ' . $seimei->mei . 'さんへのアドバイス<br />';
-	echo $seimei->tenkaku . '<br />' . $reii->mongon[$seimei->tenkaku];
-	echo $seimei->jinkaku . '<br />' . $reii->mongon[$seimei->jinkaku];
-	echo $seimei->chikaku . '<br />' . $reii->mongon[$seimei->chikaku];
-	echo $seimei->soukaku . '<br />' . $reii->mongon[$seimei->soukaku];
-	echo $seimei->seikaku . '<br />' . $seikaku->mongon[$seimei->seikaku];
-	echo $seimei->kenkou . '<br />' . $kenkou->mongon[$seimei->kenkou];
+	echo '天画:' . $seimei->tenkaku . '<br />' . $reii->mongon[$seimei->tenkaku] . '<br />';
+	echo '人画:' . $seimei->jinkaku . '<br />' . $reii->mongon[$seimei->jinkaku] . '<br />';
+	echo '地画:' . $seimei->chikaku . '<br />' . $reii->mongon[$seimei->chikaku] . '<br />';
+	echo '総画:' . $seimei->soukaku . '<br />' . $reii->mongon[$seimei->soukaku] . '<br />';
+	echo '性格:' . $seimei->seikaku . '<br />' . $seikaku->mongon[$seimei->seikaku] . '<br />';
+	echo '健康:' . $seimei->kenkou . '<br />' . $kenkou->mongon[$seimei->kenkou] . '<br />';
 ?>
