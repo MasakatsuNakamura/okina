@@ -134,7 +134,8 @@ Class Seimei {
 	}
 	
 	public function mongon ($category) {
-	// 占い結果(文言)の出力
+		mb_regex_encoding("UTF-8");
+		// 占い結果(文言)の出力
 		$reii = New Reii();
 		$kenkou = New Kenkou();
 		$seikaku = New Seikaku();
@@ -150,36 +151,36 @@ Class Seimei {
 			default:
 		}
 		if ($this->sex != "female") {
-			$mongon = mb_preg_replace("/\+w.*-w/g", "", $mongon);
+			$mongon = preg_replace("/\+w.*-w/ug", "", $mongon);
 		}
 		if ($this->sex != "male") {
-			$mongon = mb_preg_replace("/\+m.*-m/g", "", $mongon);
+			$mongon = preg_replace("/\+m.*-m/ug", "", $mongon);
 		}
 		if ($this->marry != "yes") {
-			$mongon = mb_preg_replace("/\+k.*-k/g");
+			$mongon = preg_replace("/\+k.*-k/ug", "", $mongon);
 		}
 		if ($this->marry != "no") {
-			$mongon = mb_preg_replace("/\+u.*-u/g");
+			$mongon = preg_replace("/\+u.*-u/ug", "", $mongon);
 		}
 		if ($category != "jinkaku") {
-			$mongon = mb_preg_replace("/\+j.*-j/g");
+			$mongon = preg_replace("/\+j.*-j/ug", "", $mongon);
 		}
 		if ($category != "soukaku") {
-			$mongon = mb_preg_replace("/\+s.*-s/g");
+			$mongon = preg_replace("/\+s.*-s/ug", "", $mongon);
 		}
 		if ($category != "gaikaku") {
-			$mongon = mb_preg_replace("/\+o.*-o/g");
+			$mongon = preg_replace("/\+o.*-o/ug", "", $mongon);
 		}
 		if ($this->chikaku != 11) {
-			$mongon = mb_preg_replace("/\+e.*-e/g");
+			$mongon = preg_replace("/\+e.*-e/ug", "", $mongon);
 		}
 		if ($this->jinkaku != 26) {
-			$mongon = mb_preg_replace("/\+t.*-t/g");
+			$mongon = preg_replace("/\+t.*-t/ug", "", $mongon);
 		}
 		if ($this->jinkaku != 10 && $this->jinkaku != 20) {
-			$mongon = mb_preg_replace("/\+g.*-g/g");
+			$mongon = preg_replace("/\+g.*-g/ug", "", $mongon);
 		}
-		$mongon = mb_preg_replace("/[\-\+][a-z]/g", "", $mongon);
+		$mongon = preg_replace("/[\-\+][a-z]/ug", "", $mongon);
 		
 		return($mongon);
 	}
