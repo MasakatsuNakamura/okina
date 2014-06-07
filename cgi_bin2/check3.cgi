@@ -29,7 +29,7 @@ $sex4 = $in{'sex4'};
 $trade4 = $in{'trade4'};
 $sei = $in{'sei'};
 $request3 = $in{'request3'};
-######���ϥǡ�������������######
+######入力データの整形処理######
 if ($familyname1 ne "") {
 	$familyname1 =~ s/\s*//g;
 }
@@ -59,141 +59,141 @@ if ($birthday4 ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#���ѱѿ����򤹤٤�Ⱦ�ѱѿ����ˤ��롣
+	#全角英数字をすべて半角英数字にする。
 	$email = &zen2han($email);
 }
-#####���ϥ��顼�Υ����å�#####
+#####入力エラーのチェック#####
 if ($name =~ /^\s*$/){
-	&CgiError("̾���ε���������ޤ���",
-	"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("名前の記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("�᡼�륢�ɥ쥹�ε���������ޤ���",
-	"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("メールアドレスの記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("���ϥ��顼",
-		"�᡼�륢�ɥ쥹�ν������ְ�äƤ��ޤ���",$email,
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("入力エラー",
+		"メールアドレスの書き方が間違っています。",$email,
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if (($order4 eq "" ) and ($order6 eq "") )  {
-	&CgiError("���ϥ��顼",
-		"��������ब����ؼ�����Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("入力エラー",
+		"ご依頼事項が何も指示されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if ($order4 ne "") {
 	if ($familyname1 eq "") {
-		&CgiError("�������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($firstname1 eq "") {
-		&CgiError("̾�����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($birthday1 eq "") {
-		&CgiError("��ǯ���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("生年月日が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
     elsif ($sex1 eq "") {
-		&CgiError("���̤����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("性別が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
     elsif ($trade1 eq "") {
-		&CgiError("�ȼ�����Ȥ����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("業種・ご職業が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($request1 eq "") {
-		&CgiError("���������Ƥξܺ٤����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("ご依頼内容の詳細が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
 if ($order6 ne "") {
 	if ($familyname3 eq "") {
-		&CgiError("�����¦���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("依頼者側の姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($firstname3 eq "") {
-		&CgiError("�����¦��̾�����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("依頼者側の名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($birthday3 eq "") {
-		&CgiError("�����¦����ǯ���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("依頼者側の生年月日が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($sex3 eq "") {
-		&CgiError("�����¦�����̤����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("依頼者側の性別が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($trade3 eq "") {
-		&CgiError("�����¦�Τ����Ȥ����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("依頼者側のご職業が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($familyname4 eq "") {
-		&CgiError("���¦���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("相手側の姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($firstname4 eq "") {
-		&CgiError("���¦��̾�����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("相手側の名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($birthday4 eq "") {
-		&CgiError("���¦����ǯ���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("相手側の生年月日が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($sex4 eq "") {
-		&CgiError("���¦�����̤����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("相手側の性別が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($trade4 eq "") {
-		&CgiError("���¦�Τ����Ȥ����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("相手側のご職業が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($sei eq "") {
-		&CgiError("���뺧����������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ρ�Back�ץܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("ご結婚後の姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
-######������������Ѥ������������ɽ������######
+######ここから引き継ぎ情報の生成と表示画面######
 $msg = <<"ORDER";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>���ؤΤ��������Ƥγ�ǧ</TITLE>
+   <TITLE>翁へのご相談内容の確認</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>���������ƤΤ���ǧ</U></B></FONT></CENTER>
-         <BLOCKQUOTE>���β��̤ϡ����������Ƥ򤴳�ǧĺ������Τ�ΤǤ������Ƥ˸��꤬������ϡ��֥饦���Ρ����ץܥ���򲡤��ơ����ϥե�����פ��齤�����Ʋ�����������ǵ�������Сְ���ץܥ���򲡤��Ʋ�������</BLOCKQUOTE>
-         <CENTER><B>����������</B><BR>
+         <CENTER><FONT SIZE="+3"><B><U>ご依頼内容のご確認</U></B></FONT></CENTER>
+         <BLOCKQUOTE>この画面は、ご依頼内容をご確認頂くためのものです。内容に誤りがある場合は、ブラウザの「戻る」ボタンを押して「入力フォーム」から修正して下さい。これで宜しければ「依頼」ボタンを押して下さい。</BLOCKQUOTE>
+         <CENTER><B>ご依頼内容</B><BR>
 <TABLE BORDER=1 WIDTH="90%">
    <TR>
       <TD WIDTH=148>
-         <P>�������(����)�Τ�̾��</P>
+         <P>ご依頼者(貴方)のお名前</P>
       </TD>
       <TD>
          <P>\$name</P>
@@ -201,7 +201,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>������ԤΥ᡼�륢�ɥ쥹</P>
+         <P>ご依頼者のメールアドレス</P>
       </TD>
       <TD>
          <P>\$email</P>
@@ -209,10 +209,10 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148 HEIGHT=6>
-         <CENTER>�����������</CENTER>
+         <CENTER>ご依頼の内容</CENTER>
       </TD>
       <TD HEIGHT=6>
-         <CENTER>���������Ƥ˴ؤ���ܺٹ���</CENTER>
+         <CENTER>ご依頼内容に関する詳細項目</CENTER>
       </TD>
    </TR>
    <TR>
@@ -220,11 +220,11 @@ Content-type: text/html
          <P>\$order4</P>
       </TD>
       <TD>
-         <P>��̾����̾������������ξ���<BR>
+         <P>改名や選名を受けられる方の情報<BR>
          <TABLE BORDER=1>
             <TR>
                <TD WIDTH=105>
-                  <P>��(�Ļ�)</P>
+                  <P>姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$familyname1</P>
@@ -232,7 +232,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>���ߤ�̾</P>
+                  <P>現在の名</P>
                </TD>
                <TD>
                   <P>\$firstname1</P>
@@ -240,7 +240,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>��ǯ����</P>
+                  <P>生年月日</P>
                </TD>
                <TD>
                   <P>\$birthday1</P>
@@ -248,7 +248,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>����</P>
+                  <P>性別</P>
                </TD>
                <TD>
                   <P>\$sex1</P>
@@ -256,7 +256,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>������(�ȼ�)</P>
+                  <P>ご職業(業種)</P>
                </TD>
                <TD>
                   <P>\$trade1</P>
@@ -264,8 +264,8 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>����˾����<BR>
-                  (��̾���)</P>
+                  <P>ご要望事項<BR>
+                  (選名条件)</P>
                </TD>
                <TD>
                   <P>\$request1</P>
@@ -280,11 +280,11 @@ Content-type: text/html
          <P>\$order6</P>
       </TD>
       <TD>
-         <P>�뺧����뤪��ͤξ���<BR>
+         <P>結婚されるお二人の情報<BR>
          <TABLE BORDER=1>
             <TR>
                <TD WIDTH=105>
-                  <P>����Ԥ���(�Ļ�)</P>
+                  <P>依頼者の姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$familyname3</P>
@@ -292,7 +292,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>����Ԥ�̾</P>
+                  <P>依頼者の名</P>
                </TD>
                <TD>
                   <P>\$firstname3</P>
@@ -300,7 +300,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>����Ԥ���ǯ����</P>
+                  <P>依頼者の生年月日</P>
                </TD>
                <TD>
                   <P>\$birthday3</P>
@@ -308,7 +308,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>����Ԥ�����</P>
+                  <P>依頼者の性別</P>
                </TD>
                <TD>
                   <P>\$sex3</P>
@@ -316,7 +316,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>����ԤΤ�����</P>
+                  <P>依頼者のご職業</P>
                </TD>
                <TD>
                   <P>\$trade3</P>
@@ -324,7 +324,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>���������(�Ļ�)</P>
+                  <P>相手方の姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$familyname4</P>
@@ -332,7 +332,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>�������̾</P>
+                  <P>相手方の名</P>
                </TD>
                <TD>
                   <P>\$firstname4</P>
@@ -340,7 +340,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>���������ǯ����</P>
+                  <P>相手方の生年月日</P>
                </TD>
                <TD>
                   <P>\$birthday4</P>
@@ -348,7 +348,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>�����������</P>
+                  <P>相手方の性別</P>
                </TD>
                <TD>
                   <P>\$sex4</P>
@@ -356,7 +356,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>������Τ�����</P>
+                  <P>相手方のご職業</P>
                </TD>
                <TD>
                   <P>\$trade4</P>
@@ -364,7 +364,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>�뺧�����(�Ļ�)</P>
+                  <P>結婚後の姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$sei</P>
@@ -372,7 +372,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>����˾����</P>
+                  <P>ご要望事項</P>
                </TD>
                <TD>
                   <P>\$request3</P>
@@ -385,9 +385,9 @@ Content-type: text/html
 </TABLE>
 </CENTER>
          <BLOCKQUOTE>
-            <B>����ǧ���Ѥߤޤ�����</B><FONT COLOR="#FF0000"><B>��������ʸ�ץܥ����1����������Ƥ�ȯ��</B></FONT><B>����������<BR>
-            �ʤ������ʤ����ʾ塢����ʹߤΤ���ʸ�μ��ä������ʤϰ��ڽ���ޤ���Τ�ͽ�ᤴλ����������(ˬ������ˡ�Υ�����󥰥��դ�Ŭ�Ѥ���ޤ���)</B></BLOCKQUOTE>
-         <CENTER>����ʸ�������ϡ��֥饦���Ρ����פǡ����ϥե�����פ�����ľ���Ʋ�������</CENTER>
+            <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「注文」ボタンを1回だけ押してご発注</B></FONT><B>ください。<BR>
+            なお、商品の性格上、これ以降のご注文の取り消しや返品は一切出来ませんので予めご了承下さい。(訪問販売法のクーリングオフは適用されません。)</B></BLOCKQUOTE>
+         <CENTER>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</CENTER>
          <P><FORM ACTION="/~kazu-y/cgi_bin2/nn_mail3.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
             <INPUT TYPE="hidden" NAME="email" VALUE="\$email">
@@ -423,7 +423,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="sex5" VALUE="">
             <INPUT TYPE="hidden" NAME="trade5" VALUE="">
             <INPUT TYPE="hidden" NAME="request5" VALUE="">
-            <CENTER><INPUT TYPE=submit NAME="����" VALUE="����"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="依頼"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>

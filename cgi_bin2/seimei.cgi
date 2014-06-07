@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 require "jcode.pl";
 require "cgi-lib.pl";
 require "kakusu.pl";
@@ -6,17 +6,17 @@ require "reii.pl";
 require "seikaku.pl";
 require "kenkou.pl";
 
-# ��ҴĶ��ƥ�����
+# 会社環境テスト用
 #$root = "/~nakamura/test/seimei2/public_html";
 #$cgipath = "/~nakamura/test/seimei2/cgi_bin";
 #$baseurl = "http://ppd.sf.nara.sharp.co.jp";
 
-# ����Ķ���
+# 山一環境用
 $root = "/~kazu-y";
 $cgipath = "/~kazu-y/cgi_bin2";
 $baseurl = "http://www2.mahoroba.ne.jp";
 
-# CGI�ѿ���ꤳ��
+# CGI変数取りこみ
 &ReadParse();
 $sei = $in{'sei'};
 $mei = $in{'mei'};
@@ -44,26 +44,26 @@ if ($sei eq "" || $mei eq "") {
 $sei1 = $sei;
 $mei1 = $mei;
 
-# ���ν���
+# 々の処理
 $sei1 =~ s/(..)\x81\x58/$1$1/;
 $mei1 =~ s/(..)\x81\x58/$1$1/;
 
-# ���ν���
+# ゝの処理
 $sei1 =~ s/(..)\x81\x54/$1$1/;
 $mei1 =~ s/(..)\x81\x54/$1$1/;
 
-# ���ν���
+# 仝の処理
 $sei1 =~ s/(..)\x81\x57/$1$1/;
 $mei1 =~ s/(..)\x81\x57/$1$1/;
 
-# ŷ�衦�Ͳ衦�ϲ衦���衦����λ���(�빽��䤳����)
+# 天画・人画・地画・外画・総画の算出(結構ややこしい)
 $kakusu{'tenkaku'} = 0;
 $kakusu{'chikaku'} = 0;
 $kakusu{'gaikaku'} = 0;
 $kakusu{'soukaku'} = 0;
 @error = ();
 
-# ŷ��λ���
+# 天画の算出
 for ($i = 0; $i<length($sei1); $i+=2) {
 	$kanji = substr($sei1, $i, 2);
 	$kakusu = &kakusu($kanji);
@@ -73,17 +73,17 @@ for ($i = 0; $i<length($sei1); $i+=2) {
 	$kakusu{'tenkaku'} += $kakusu;
 }
 
-# ��ʸ�����ν���
+# 一文字姓の処理
 if (length($sei1) == 2) {
-	$kakusu{'tenkaku'}++; # ���ڤ��
+	$kakusu{'tenkaku'}++; # 一画借りる
 	$kakusu{'gaikaku'}++;
-	$kakusu{'soukaku'}--; # ����֤�
+	$kakusu{'soukaku'}--; # 一画返す
 }
 
-# �Ͳ�λ���
+# 人画の算出
 $kakusu{'jinkaku'} = &kakusu(substr($sei1, length($sei1)-2, 2)) + &kakusu(substr($mei1, 0, 2));
 
-# �ϲ�λ���
+# 地画の算出
 for ($i = 0; $i<length($mei1); $i+=2) {
 	$kanji = substr($mei1, $i, 2);
 	$kakusu = &kakusu($kanji);
@@ -93,34 +93,34 @@ for ($i = 0; $i<length($mei1); $i+=2) {
 	$kakusu{'chikaku'} += $kakusu;
 }
 
-# ��ʸ��̾�ν���
+# 一文字名の処理
 if (length($mei1) == 2) {
-	$kakusu{'chikaku'}++; # ���ڤ��
+	$kakusu{'chikaku'}++; # 一画借りる
 	$kakusu{'gaikaku'}++;
-	$kakusu{'soukaku'}--; # ����֤�
+	$kakusu{'soukaku'}--; # 一画返す
 }
 
-# ���衦����λ���
+# 総画・外画の算出
 $kakusu{'soukaku'} += $kakusu{'tenkaku'} + $kakusu{'chikaku'};
 $kakusu{'gaikaku'} += $kakusu{'soukaku'} - $kakusu{'jinkaku'};
 
-# �����С��ե������� - ���ʤߤ� > 81�ϴְ㤤�ǤϤʤ���
+# オーバーフロー処理 - ちなみに > 81は間違いではない。
 foreach (keys %kakusu) {
 	$kakusu{$_} %= 80 if ($kakusu{$_} > 81);
 }
 
-# ŷ�衦�Ͳ衦�ϲ�β����λ���(10�ǳ�ä�;��������)
+# 天画・人画・地画の下一桁の算出(10で割った余りを取るだけ)
 $tenshimo = $kakusu{'tenkaku'} % 10;
 $jinshimo = $kakusu{'jinkaku'} % 10;
 $chishimo = $kakusu{'chikaku'} % 10;
 
-# ���ʿ��Ǥν���
+# 性格診断の準備
 $kakusu{'seikaku'} = $jinshimo;
 
-# ���۸޹ԤΥ��ꥢ���ֹ�λ���(�ܤ�����kenkou.pl�򻲾�)
+# 陰陽五行のシリアル番号の算出(詳しくはkenkou.plを参照)
 $kakusu{'kenkou'} = &f($tenshimo)*25 + &f($jinshimo) *5 + &f($chishimo);
 
-# ��̾����
+# 曲名決定
 $kyoku = $jinshimo;
 $kyoku = 10 if ($kyoku == 0);
 $kyoku -= 1;
@@ -128,7 +128,7 @@ $kyoku -= $kyoku % 2;
 $kyoku /= 2;
 $kyoku++;
 
-# �ꤤ��̤���������
+# 占い結果の整形処理
 foreach (keys %kakusu) {
 	if ($_ eq "kenkou") {
 		$res{$_} = $kenkou[$kakusu{$_}];
@@ -153,27 +153,27 @@ foreach (keys %kakusu) {
 }
 
 if ($#error >= 0) {
-	# ���顼��������ʸ���Ǥ⤢��Х��顼ɽ��
+	# エラー漢字が一文字でもあればエラー表示
 	$msg = <<"EOK";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>���顼��å�����</TITLE>
+   <TITLE>エラーメッセージ</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="$root/image/wall.jpg">
-<P><HTML><HEAD><TITLE>���顼��å�����</TITLE></HEAD></P>
+<P><HTML><HEAD><TITLE>エラーメッセージ</TITLE></HEAD></P>
 
 <P><TABLE BORDER=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B>���Ϥ��줿���� ��\$error��
-         ��Ƚ�̤Ǥ��ޤ���</B></FONT>
+         <CENTER><FONT SIZE="+3"><B>入力された漢字 「\$error」
+         が判別できません。</B></FONT>
          
-         <P>���˶�������ޤ�����<A HREF="#form" TARGET="_self"><B>�����Υե�����</B></A>�Τˤ������ξ塢�����ܥ���򲡤��Ƥ���������<BR>
-         �����ǡ����١����ν�������λ���ޤ����顢������Υ᡼�륢�ɥ쥹�ޤǤ�Ϣ�������夲�ޤ����ޤ����������Ҥ餫�ʡ��������ʰʳ��α�ʸ������������ʸ��������ʤɤϻ��ܼ���̾Ƚ�ǤǤϰ��äƤ���ޤ���Τǡ�Ϣ�������פǤ��������Ρ֤⤦���ٴ��ꤹ��פ򲡤��Ʋ�������</P></CENTER>
+         <P>誠に恐れ入りますが、<A HREF="#form" TARGET="_self"><B>下記のフォーム</B></A>のにご記入の上、送信ボタンを押してください。<BR>
+         漢字データベースの修正が完了しましたら、ご指定のメールアドレスまでご連絡差し上げます。また、漢字・ひらかな・カタカナ以外の英文字・数字・絵文字・記号などは山本式姓名判断では扱っておりませんので、連絡は不要です。下記の「もう一度鑑定する」を押して下さい。</P></CENTER>
          
          <P>
          
@@ -184,20 +184,20 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B>������Τ��ͤ�</B></FONT></CENTER>
+         <CENTER><FONT SIZE="+3"><B>翁からのお詫び</B></FONT></CENTER>
          
-         <P><U>ʸ���β���ǡ����١����ˤĤ���</U></P>
+         <P><U>文字の画数データベースについて</U></P>
          
-         <P>���ߡ�̾�����Ѥ���������ϡ����Ѵ����ȿ�̾�����Ǥ�������ʳ��ˤ�ºݤ˻Ȥ��Ƥ�����̾�ˤϤ���˳������ʤ���Τ����Ĥ⤢��ޤ������ߡ��������椫��4580ʸ��(2003.9����)��ǡ����١�������Ͽ���Ƥ���ޤ��������ϡ����ܲ��δ�����50ǯ�ηи��˴�Ť���ΤǤ����������ʤ��顢�ޤ����Ƥ���Ͽ����Ƥ���Ȥϸ����񤯡��ޤ���Ͽϳ�줬�ʤ��Ȥ�¤�ޤ���</P>
+         <P>現在、名前に用いられる漢字は、当用漢字と人名漢字です。これ以外にも実際に使われている姓名にはこれに該当しないものが幾つもあります。現在、これらの中から4580文字(2003.9現在)をデータベースに登録しております。これらは、山本翁の鑑定歴50年の経験に基づくものです。しかしながら、まだ全てが登録されているとは言い難く、また登録漏れがないとも限りません。</P>
          
-         <P>����Ϥ������ä����ʥ������Ǥ���Ȼפ��ޤ������ˤ�����Ǥ����������Υե�����ˤ�����ĺ���ޤ����顢�������������̤�Ϣ�������Ƥ��������ޤ�������Υǡ����١�����ȿ�Ǥ�����ĺ�������ȹͤ��ޤ��Τǡ������ϵ��������ꤤ�����夲�ޤ���<BR>
-         ���ꤤ����̤Τ��Τ餻��ɬ�פǤʤ����ϡ��᡼�륢�ɥ쥹�����Τޤ��������������ְ�ä����ɥ쥹��������ޤ���¾�����˸����Ǥ�������ޤ���</P>
+         <P>今回はそう言った稀なケースであると思われます。誠にお手数ですが、下記のフォームにご記入頂きましたら、後日こちらより結果をご連絡させていただきます。今後のデータベースに反映させて頂きたいと考えますので、ご協力宜しくお願い申し上げます。<BR>
+         お願い：結果のお知らせが必要でない方は、メールアドレスを空白のまま送信下さい。間違ったアドレスを記入されますと他の方に御迷惑がかかります。</P>
          
          <CENTER><FORM ACTION="$cgipath/n_mail2.cgi" METHOD=POST>
             <BLOCKQUOTE><BLOCKQUOTE><CENTER><A NAME=form></A><TABLE BORDER=0 CELLSPACING=10 CELLPADDING=0>
                      <TR>
                         <TD>
-                           <P ALIGN=right>���顼�ˤʤä�����</P>
+                           <P ALIGN=right>エラーになった漢字</P>
                         </TD>
                         <TD>
                            <P><INPUT TYPE=hidden NAME=kanji VALUE="\$error" size=10 maxlength=10>\$error</P>
@@ -205,7 +205,7 @@ Content-type: text/html
                      </TR>
                      <TR>
                         <TD>
-                           <P ALIGN=right>��̾��</P>
+                           <P ALIGN=right>お名前</P>
                         </TD>
                         <TD>
                            <P><INPUT TYPE=text NAME=name2 VALUE="\$seimei" SIZE=20 MAXLENGTH=10></P>
@@ -213,7 +213,7 @@ Content-type: text/html
                      </TR>
                      <TR>
                         <TD>
-                           <P ALIGN=right>�᡼�륢�ɥ쥹</P>
+                           <P ALIGN=right>メールアドレス</P>
                         </TD>
                         <TD>
                            <P><INPUT TYPE=text NAME=email2 VALUE="" SIZE=40></P>
@@ -224,7 +224,7 @@ Content-type: text/html
                            <P></P>
                         </TD>
                         <TD>
-                           <P><INPUT TYPE=submit NAME="����" VALUE="����"><INPUT TYPE=reset VALUE="���ä�"></P>
+                           <P><INPUT TYPE=submit NAME="送信" VALUE="送信"><INPUT TYPE=reset VALUE="取り消し"></P>
                         </TD>
                      </TR>
                   </TABLE>
@@ -235,7 +235,7 @@ Content-type: text/html
          
          <HR>
          
-         </FONT><A HREF="$root/input.html" TARGET="_self"><FONT SIZE="+1">�⤦���ٴ��ꤹ��</FONT></A></P></CENTER>
+         </FONT><A HREF="$root/input.html" TARGET="_self"><FONT SIZE="+1">もう一度鑑定する</FONT></A></P></CENTER>
          
          <P>
          
@@ -249,24 +249,24 @@ Content-type: text/html
          <P><TABLE BORDER=0 WIDTH=640>
             <TR>
                <TD>
-                  <CENTER><A HREF="$root/index.html" TARGET="_self">�ȥåץڡ���</A></CENTER>
+                  <CENTER><A HREF="$root/index.html" TARGET="_self">トップページ</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="$root/book.html" TARGET="_self">����Υ����ʡ�</A></CENTER>
+                  <CENTER><A HREF="$root/book.html" TARGET="_self">著書のコーナー</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="$root/baby.html" TARGET="_self">̿̾�Υ����ʡ�</A></CENTER>
+                  <CENTER><A HREF="$root/baby.html" TARGET="_self">命名のコーナー</A></CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <CENTER><A HREF="$root/consul.html">�����̤Υ����ʡ�</A></CENTER>
+                  <CENTER><A HREF="$root/consul.html">ご相談のコーナー</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="$root/info.html">������Τ��Τ餻</A></CENTER>
+                  <CENTER><A HREF="$root/info.html">翁からのお知らせ</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="$root/link.html">���ꤤľ���ء�</A></CENTER>
+                  <CENTER><A HREF="$root/link.html">「占い直行便」</A></CENTER>
                </TD>
             </TR>
          </TABLE>
@@ -278,9 +278,9 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER>����
-         <FONT SIZE="-2">��󥯤ϴ��ޤ��ޤ�����ɬ��</FONT><A HREF="$root/index.html" TARGET="_self"><FONT SIZE="-2"><I>TOP�ڡ���</I></FONT></A><FONT SIZE="-2">�ؤ��ꤤ���ޤ���<BR>
-         ���Υ���ƥ�Ĥξ������Ѥʤ�Ӥ�̵��ž�ܤϤ��Ǥ��פ��ޤ���<BR>
+         <CENTER>　　
+         <FONT SIZE="-2">リンクは歓迎しますが、必ず</FONT><A HREF="$root/index.html" TARGET="_self"><FONT SIZE="-2"><I>TOPページ</I></FONT></A><FONT SIZE="-2">へお願いします。<BR>
+         このコンテンツの商用利用ならびに無断転載はお断り致します。<BR>
          <I>CopyRight. K.Yamamoto.1998.9.1</I></FONT></CENTER>
       </TD>
    </TR>
@@ -295,32 +295,32 @@ EOK
 	$msg =~ s/\$error/@error/g;
 	print $msg;
 } else {
-	# Ƚ����ɽ��
+	# 判定結果表示
 	$msg = <<"EOM";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>���ܲ��δ�����</TITLE>
+   <TITLE>山本翁の鑑定結果</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="$root/image/wall.jpg" onload="scll()">
-<P><SCRIPT LANGUAGE=JavaScript>var cnt = -2;//ʸ������
-var speed = 500;//ư�������ԡ���(1/1000��ñ��)
-var msg = "              Web�ǽ��ơ� �����̤ˤ�äƲ��ڤ�5�̤���Ѳ����ޤ�������κ������������ɤ���������ˡ�ˤĤ��Ƥϡ�����������������������̤���ܤ����Τꤿ��������̾���˾������������뺧��ͽ��Τ������ϡ�ͭ���Τ����̥����ʡ��Ⳬ�ߤ��Ƥ���ޤ��Τǡ������Ѳ��������ޤ����ѡ��ȥʡ���õ�������ϡ����Υڡ����ι���򤴻��Ȳ�������"; //��å���������
-timeID=setTimeout('',1); //IE�к��ʤˤ⤷�ʤ�;�����ޡ����å�
+<P><SCRIPT LANGUAGE=JavaScript>var cnt = -2;//文字位置
+var speed = 500;//動かすスピード(1/1000秒単位)
+var msg = "              Webで初めて！ 鑑定結果によって音楽が5通りに変化します。鑑定の根拠や人生をより良く生きる方法については、私の著書をご覧ください。結果をより詳しく知りたい方、改名を希望される方、ご結婚の予定のある方は、有料のご相談コーナーも開設しておりますので、ご利用下さい。また、パートナーをお探しの方は、このページの広告をご参照下さい。"; //メッセージ内容
+timeID=setTimeout('',1); //IE対策なにもしない;タイマーセット
 
-//��ʸ�����ư������
+//　文字を移動させる
 function scll()
 {
- status = msg.substring(cnt=cnt+2,msg.length+2);//���ܸ��2ʸ���Ť�ư����
+ status = msg.substring(cnt=cnt+2,msg.length+2);//日本語は2文字づつ動かす
  if (cnt>msg.length){cnt=-2};
- clearTimeout(timeID);//�����ޡ��򥯥ꥢ
+ clearTimeout(timeID);//タイマーをクリア
  timeID = setTimeout('scll()',speed);
   }</SCRIPT></P>
 
-<P><HTML><HEAD><TITLE>���ܲ��δ�����</TITLE></HEAD></P>
+<P><HTML><HEAD><TITLE>山本翁の鑑定結果</TITLE></HEAD></P>
 
 <CENTER><TABLE BORDER=0 CELLSPACING=0 WIDTH=640>
    <TR>
@@ -331,16 +331,16 @@ function scll()
                   <CENTER><FONT SIZE="+2" COLOR="#0033FF"><B><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=320 HEIGHT=240>
                      <TR>
                         <TD VALIGN=bottom BACKGROUND="$root/image/result.jpg">
-                           <CENTER><FONT SIZE="+2" COLOR="#9933FF"><B>\$seimei����ؤν���</B></FONT></CENTER>
+                           <CENTER><FONT SIZE="+2" COLOR="#9933FF"><B>\$seimeiさんへの助言</B></FONT></CENTER>
                         </TD>
                      </TR>
                   </TABLE>
                    </B></FONT></CENTER>
                </TD>
                <TD VALIGN=top WIDTH=320 HEIGHT=240 BGCOLOR="#CCCC99">
-                  <CENTER><B><U>���ܲ����</U></B></CENTER>
+                  <CENTER><B><U>山本翁より</U></B></CENTER>
                   
-                  <P>���籿���пͱ������ñ�����ǯ���Ȱ츫̷�⤹��褦�ʷ�̤򼨤����Ȥ⤢��ޤ�������Ͽʹ֤Ȥ�����Τϡ��������ܿ����㤦�Τ��Ǥ������������Ȥ���������Ȥ������Ȥǡ������̤ˤ⤽��ϸ���Ƥ��Ƥ���Ȥ����򲼤��������äơ��ޤ����������Τ�į���ĺ�������˸ġ�����ʬ�ˤĤ��Ƽ�ʬ�ʤ��ʬ�Ϥ���Ƥߤ�������ᤷ�ޤ����ʤ��������δ���Ȥ����Τϡ����ҤΤ褦�ʿͤ��줾��ζ�������δĶ�������Ū�˲�̣����Ƚ�Ǥ���ΤǤ��������󥿡��ͥåȤǤϤ����ޤǤλ�������ޤ���Τǡ��������餺��λ����������</P>
+                  <P>　主運・対人運・基礎運・晩年運と一見矛盾するような結果を示すこともあります。これは人間というものは、外見と本心が違うのも常ですし、人生も波あり風ありということで、鑑定結果にもそれは現れてきているとご理解下さい。従って、まず鑑定結果全体を眺めて頂き、次に個々の部分について自分なりに分析されてみる事をお薦めします。なお、本当の鑑定というのは、前述のような人それぞれの境遇や回りの環境を総合的に加味して判断するのですが、インターネットではそこまでの事が出来ませんので、悪しからずご了承下さい。</P>
                </TD>
             </TR>
          </TABLE>
@@ -356,34 +356,34 @@ function scll()
          <P><TABLE BORDER=3 CELLSPACING=10 WIDTH="100%">
             <TR>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#B30000"><B><U>�籿</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#B30000">�����ͤΰ������濴��ʤ�ޤ����뺧�ˤ�������Ѥ��ȼ籿���Ѥ��ޤ�������ǯ�ʹߤ˶�������ޤ���</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#B30000"><B><U>主運</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#B30000">；当人の一生の中心を司ります。結婚により姓が変わると主運も変わりますが、中年以降に強く現れます。</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'jinkaku'}�衧$res{'jinkaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'jinkaku'}画：$res{'jinkaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#1D00B3"><B><U>�пͱ����Ҹ�</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#1D00B3">���пʹط����²�����شط���ͧã�ط��˸���Ƥ��ޤ���</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#1D00B3"><B><U>対人運・社交運</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#1D00B3">；対人関係や家族・夫婦関係、友達関係に現れてきます。</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'gaikaku'}�衧$res{'gaikaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'gaikaku'}画：$res{'gaikaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
             </TR>
             <TR>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#007F1F"><B><U>�򹯱�(��Ĵ������)</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#007F1F">���㤨�ȿ�·������̾�Ǥ��äƤ⡢�򹯤˷äޤ�ʤ���г褫�����ޤ��󡣡ʢ���ñ�ȤǤ�Ƚ�Ǥ��񤷤���</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#007F1F"><B><U>健康運(体調・精神)</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#007F1F">；例え吉数揃いの姓名であっても、健康に恵まれなければ活かさせません。（△は単独での判断が難しい）</FONT></P>
                   
                   <BLOCKQUOTE>$res{'kenkou'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#B35900"><B><U>����</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#B35900">�����ͤγ���Ū�����ʤ򸽤��ޤ�����ʬ��¾�ͤ���ɤ������Ƥ���Τ����ͤˤʤ�ޤ���</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#B35900"><B><U>性格</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#B35900">；当人の外面的な性格を現します。自分が他人からどう見えているのか参考になります。</FONT></P>
                   
                   <BLOCKQUOTE>$res{'seikaku'}</BLOCKQUOTE>
                   
@@ -392,18 +392,18 @@ function scll()
             </TR>
             <TR>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#7F0260"><B><U>���ñ�</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#7F0260">���ľ�ǯ���α����εȶ�����ۤ�����ǯ���ޤǺǤ⶯�����Ѥ��ޤ���(��ǯ�Ԥ�Ƚ�ǤϤ����餬ͭ��)</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#7F0260"><B><U>基礎運</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#7F0260">；幼少年期の運勢の吉凶を支配し、青年期まで最も強く作用します。(若年者の判断はこちらが有効)</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'chikaku'}�衧$res{'chikaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'chikaku'}画：$res{'chikaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#B30068"><B><U>��ǯ��</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#B30068">��50�����夫�鶯������Ƥ��ޤ������������籿�ȴ��ñ��˺�������ޤ��Τ����դ��Ʋ�������</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#B30068"><B><U>晩年運</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#B30068">；50歳前後から強く現れてきます。ただし、主運と基礎運に左右されますので注意して下さい。</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'soukaku'}�衧$res{'soukaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'soukaku'}画：$res{'soukaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
@@ -412,25 +412,25 @@ function scll()
          <BR>
          <IMG SRC="../../image/line_a1.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></P>
          
-         <P>����̤�ǡ���Ǥ��礦���������ܲ��Ǥ��͡���<FONT COLOR="#FF0000">ͭ�������ӥ�</FONT>��»ܤ��Ƥ���ޤ��Τǡ����������Ф�����⤴���Ѳ��������ޤ�������Ū���ɤ�ʹ����뤴����ˤĤ���<A HREF="$root/info.html">�����Τ餻�����ʡ���</A>��Ż��Ƥ��ޤ��Τǡ�ʻ���Ƥ�����������</P>
+         <P>　結果は如何でしょうか？　山本翁では様々な<FONT COLOR="#FF0000">有料サービス</FONT>も実施しておりますので、よろしければそちらもご利用下さい。また、一般的に良く聞かれるご質問について<A HREF="$root/info.html">「お知らせコーナー」</A>に纏めていますので、併せてご覧下さい。</P>
          
          <CENTER><IMG SRC="$root/image/line_a2.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom>
          
          <P><TABLE BORDER=0 WIDTH="61%">
             <TR>
                <TD COLSPAN=5>
-                  <CENTER><B>¾�Υڡ����⤼�Ҹ��˹ԤäƤ���������</B></CENTER>
+                  <CENTER><B>他のページもぜひ見に行ってください。</B></CENTER>
                </TD>
             </TR>
             <TR>
                <TD WIDTH=68>
-                  <CENTER><A HREF="$root/input.html" TARGET="_self"><FONT SIZE="+1" FACE="�楴���å���"><IMG SRC="$root/image/seimei.gif" WIDTH=57 HEIGHT=71 BORDER=3 ALIGN=bottom></FONT></A></CENTER>
+                  <CENTER><A HREF="$root/input.html" TARGET="_self"><FONT SIZE="+1" FACE="中ゴシック体"><IMG SRC="$root/image/seimei.gif" WIDTH=57 HEIGHT=71 BORDER=3 ALIGN=bottom></FONT></A></CENTER>
                </TD>
                <TD WIDTH=70>
-                  <CENTER><A HREF="$root/book.html" TARGET="_self"><FONT SIZE="+1" FACE="�楴���å���"><IMG SRC="$root/image/chosyo.gif" WIDTH=57 HEIGHT=71 BORDER=3 ALIGN=bottom></FONT></A></CENTER>
+                  <CENTER><A HREF="$root/book.html" TARGET="_self"><FONT SIZE="+1" FACE="中ゴシック体"><IMG SRC="$root/image/chosyo.gif" WIDTH=57 HEIGHT=71 BORDER=3 ALIGN=bottom></FONT></A></CENTER>
                </TD>
                <TD WIDTH=73>
-                  <CENTER><A HREF="$root/baby.html" TARGET="_self"><FONT SIZE="+1" FACE="�楴���å���"><IMG SRC="$root/image/baby-name.gif" WIDTH=57 HEIGHT=71 BORDER=3 ALIGN=bottom></FONT></A></CENTER>
+                  <CENTER><A HREF="$root/baby.html" TARGET="_self"><FONT SIZE="+1" FACE="中ゴシック体"><IMG SRC="$root/image/baby-name.gif" WIDTH=57 HEIGHT=71 BORDER=3 ALIGN=bottom></FONT></A></CENTER>
                </TD>
                <TD WIDTH=72>
                   <CENTER><A HREF="$root/consul.html"><IMG SRC="$root/image/consul.gif" WIDTH=57 HEIGHT=71 BORDER=3 ALIGN=bottom></A></CENTER>
@@ -444,9 +444,9 @@ function scll()
          
          <P><IMG SRC=".$root/image/line_a2.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></P>
          
-         <P><B><U>��������ϡ�����Ǥ���</U></B></P>
+         <P><B><U>ここからは、広告です。</U></B></P>
          
-         <P>���ʤ��ο����Υѡ��ȥʡ��Ϥ⤦���Ĥ���ޤ������������餷���в񤤤򸫤Ĥ��Ʋ�������<BR>
+         <P>あなたの人生のパートナーはもう見つかりましたか？素晴らしい出会いを見つけて下さい。<BR>
          <A HREF="http://love.nozze-deai.com/guest/SZX00101/" TARGET="_blank"><IMG SRC="$root/image/nozze3.gif" WIDTH=468 HEIGHT=60 BORDER=0 ALIGN=bottom></A></P>
 
          <P><CENTER>
@@ -460,7 +460,7 @@ function scll()
 </TABLE>
 </CENTER></P>
 
-         <P>��ʳ��ǥ��ڵ��Ѥ�ͥ��Ƥ����ɾȽ�γƥ���˥å��ͤǤ���<A HREF="http://cgi.din.or.jp/~toa-ad/tsw021a/jump.cgi?053102" TARGET="_blank"><IMG SRC="$root/image/sasamoto.gif" WIDTH=380 HEIGHT=30 BORDER=0 ALIGN=bottom></A>
+         <P>医科界でオペ技術の優れていると評判の各クリニック様です。<A HREF="http://cgi.din.or.jp/~toa-ad/tsw021a/jump.cgi?053102" TARGET="_blank"><IMG SRC="$root/image/sasamoto.gif" WIDTH=380 HEIGHT=30 BORDER=0 ALIGN=bottom></A>
          <A HREF="http://cgi.din.or.jp/~toa-ad/tsir99c/jump.cgi?053102">
          </A><A HREF="http://cgi.din.or.jp/~toa-ad/tsir99c/jump.cgi?053102" TARGET="_blank"><IMG SRC="$root/image/airu.gif" WIDTH=380 HEIGHT=30 BORDER=0 ALIGN=bottom></A>
          <A HREF="http://cgi.din.or.jp/~toa-ad/taka/seisin/lucky/jump.cgi?053102">
@@ -487,29 +487,29 @@ function scll()
    </TR>
    <TR>
       <TD>
-         <CENTER>��
+         <CENTER>　
          
          <P><TABLE BORDER=1 WIDTH="100%">
             <TR>
                <TD>
-                  <CENTER><A HREF="$root/index.html" TARGET="_self">�ȥåץڡ���</A></CENTER>
+                  <CENTER><A HREF="$root/index.html" TARGET="_self">トップページ</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="$root/book.html" TARGET="_self">����Υ����ʡ�</A></CENTER>
+                  <CENTER><A HREF="$root/book.html" TARGET="_self">著書のコーナー</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="$root/baby.html" TARGET="_self">̿̾�Υ����ʡ�</A></CENTER>
+                  <CENTER><A HREF="$root/baby.html" TARGET="_self">命名のコーナー</A></CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <CENTER><A HREF="$root/consul.html">�֤����̥����ʡ���</A></CENTER>
+                  <CENTER><A HREF="$root/consul.html">「ご相談コーナー」</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="$root/info.html" TARGET="_self">������Τ��Τ餻</A></CENTER>
+                  <CENTER><A HREF="$root/info.html" TARGET="_self">翁からのお知らせ</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="$root/link.html">���ꤤľ���ء�</A></CENTER>
+                  <CENTER><A HREF="$root/link.html">「占い直行便」</A></CENTER>
                </TD>
             </TR>
          </TABLE>
@@ -520,31 +520,31 @@ function scll()
    </TR>
    <TR>
       <TD>
-         <CENTER>��
+         <CENTER>　
          
-         <P>��ʹ���ζʤˤĤ��Ƥϡ�<A HREF="$root/info.html#midi">������</A>������������</P>
+         <P>お聞きの曲については、<A HREF="$root/info.html#midi">こちら</A>をご覧下さい。</P>
          
          <P><IMG SRC="$root/image/line_a1.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></P></CENTER>
       </TD>
    </TR>
    <TR>
       <TD>
-         <CENTER>��
+         <CENTER>　
          
-         <P><FONT SIZE="-2">���η�̤򸫤ƤΤ��ո��䤴���ۤ�ʹ��������������<IMG SRC="$root/image/mail_a2.gif" WIDTH=20 HEIGHT=18 ALIGN=bottom></FONT><A HREF="mailto:okina\@e-mail.ne.jp"><FONT SIZE="-2">okina\@e-mail.ne.jp</FONT></A><FONT SIZE="-2"><I><BR>
-         </I>��󥯤ϴ��ޤ��ޤ�����ɬ��</FONT><A HREF="$root/index.html" TARGET="_self"><FONT SIZE="-2">TOP�ڡ���</FONT></A><FONT SIZE="-2">�ؤ��ꤤ���ޤ���<BR>
-         ���Υ���ƥ�Ĥξ������Ѥʤ�Ӥ�̵��ž�ܤϤ��Ǥꤤ�����ޤ������δ����̵���Ǥ���<BR>
+         <P><FONT SIZE="-2">この結果を見てのご意見やご感想をお聞かせ下さい。　<IMG SRC="$root/image/mail_a2.gif" WIDTH=20 HEIGHT=18 ALIGN=bottom></FONT><A HREF="mailto:okina\@e-mail.ne.jp"><FONT SIZE="-2">okina\@e-mail.ne.jp</FONT></A><FONT SIZE="-2"><I><BR>
+         </I>リンクは歓迎しますが、必ず</FONT><A HREF="$root/index.html" TARGET="_self"><FONT SIZE="-2">TOPページ</FONT></A><FONT SIZE="-2">へお願いします。<BR>
+         このコンテンツの商用利用ならびに無断転載はお断りいたします。この鑑定は無料です。<BR>
          <I>CopyRight. K.Yamamoto. 1998.9.1</I></FONT></P></CENTER>
       </TD>
    </TR>
 </TABLE>
 </CENTER>
 
-<P>��</P>
+<P>　</P>
 
-<P><FONT SIZE="-1">��</FONT></P>
+<P><FONT SIZE="-1">　</FONT></P>
 
-<CENTER>������ ������</CENTER>
+<CENTER>　　　 　　　</CENTER>
 </BODY>
 </HTML>
 

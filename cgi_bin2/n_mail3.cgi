@@ -44,7 +44,7 @@ $birthday5= $in{'birthday5'};
 $sex5 = $in{'sex5'};
 $trade5 = $in{'trade5'};
 $request5 = $in{'request5'};
-######���ϥǡ�������������######
+######入力データの整形処理######
 if ($familyname1 ne "") {
 	$familyname1 =~ s/\s*//g;
 }
@@ -89,255 +89,255 @@ if ($birthday5 ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#���ѱѿ����򤹤٤�Ⱦ�ѱѿ����ˤ��롣
+	#全角英数字をすべて半角英数字にする。
 	$email = &zen2han($email);
 } 
-#####���ϥ��顼�Υ����å�#####
+#####入力エラーのチェック#####
 if ($name =~ /^\s*$/){
-	&CgiError("̾���ε���������ޤ���",
-	"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("名前の記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("�᡼�륢�ɥ쥹�ε���������ޤ���",
-	"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("メールアドレスの記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("���ϥ��顼",
-		"�᡼�륢�ɥ쥹�ν������ְ�äƤ��ޤ���",$email,
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("入力エラー",
+		"メールアドレスの書き方が間違っています。",$email,
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if (($order4 eq "" ) and ($order5 eq "" ) and ($order6 eq "") and ($order7 eq ""))  {
-	&CgiError("���ϥ��顼",
-		"��������ब����ؼ�����Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("入力エラー",
+		"ご依頼事項が何も指示されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }	
 if ($order4 ne "") {
 	if ($familyname1 eq "") {
-		&CgiError("�������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($firstname1 eq "") {
-		&CgiError("̾�����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}	
 	elsif ($birthday1 eq "") {
-		&CgiError("��ǯ���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("生年月日が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
     elsif ($sex1 eq "") {
-		&CgiError("���̤����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("性別が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
     elsif ($trade1 eq "") {
-		&CgiError("�ȼ�����Ȥ����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("業種・ご職業が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($request1 eq "") {
-		&CgiError("���������Ƥξܺ٤����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("ご依頼内容の詳細が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
 if ($order5 ne "") {
 	if ($familyname2 eq "") {
-		&CgiError("�������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($firstname2 eq "") {
-		&CgiError("̾�����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}	
 }
 if ($order6 ne "") {
 	if ($familyname3 eq "") {
-		&CgiError("�����¦���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("依頼者側の姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($firstname3 eq "") {
-		&CgiError("�����¦��̾�����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("依頼者側の名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($birthday3 eq "") {
-		&CgiError("�����¦����ǯ���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("依頼者側の生年月日が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($sex3 eq "") {
-		&CgiError("�����¦�����̤����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("依頼者側の性別が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($trade3 eq "") {
-		&CgiError("�����¦�Τ����Ȥ����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("依頼者側のご職業が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($familyname4 eq "") {
-		&CgiError("���¦���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("相手側の姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($firstname4 eq "") {
-		&CgiError("���¦��̾�����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("相手側の名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($birthday4 eq "") {
-		&CgiError("���¦����ǯ���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("相手側の生年月日が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($sex4 eq "") {
-		&CgiError("���¦�����̤����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("相手側の性別が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($trade4 eq "") {
-		&CgiError("���¦�Τ����Ȥ����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("相手側のご職業が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($sei eq "") {
-		&CgiError("���뺧����������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("ご結婚後の姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
 if ($order7 ne "") {
 	if ($familyname5 eq "") {
-		&CgiError("�������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($firstname5 eq "") {
-		&CgiError("̾�����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($birthday5 eq "") {
-		&CgiError("��ǯ���������Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("生年月日が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($sex5 eq "") {
-		&CgiError("���̤����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("性別が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($trade5 eq "") {
-		&CgiError("�����Ȥ����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("ご職業が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($request5 eq "") {
-		&CgiError("���������Ƥ����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("ご相談内容が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
-#####��������Base64�᡼��#####
-##### �ܥǥ�����ʸ��������######
+#####ここからBase64メール#####
+##### ボディ基本文字列の定義######
 @body = (
 	"=====================================",
-    "���ܲ����ޤء��ʲ��Τ����̤��פ�������",
+    "山本翁さまへ、以下のご相談を致したく。",
     "",
-    "�������ͤλ�̾��",
+    "申込人様の氏名：",
     "",
-    "�������ͤ�E�᡼�륢�ɥ쥹��",
+    "申込人様のEメールアドレス：",
     "",
     "",
-    "���������ơ�",
+    "ご依頼内容：",
     "", 
-    "����",
+    "姓：",
     "",
-    "̾��",
+    "名：",
     "",
-    "��ǯ������",
+    "生年月日：",
     "",
-    "���̡�",
+    "性別：",
     "",
-    "�ȼ���ȡ�",
+    "業種・職業：",
     "",
-    "����˾���ࡧ",
+    "ご要望事項：",
     "", 
     "",
-    "���������ơ�",
+    "ご依頼内容：",
     "",
-    "����",
+    "姓：",
     "",
-    "̾��",
+    "名：",
     "",
-    "����²�Τ�̾����³������",
+    "ご家族のお名前と続き柄：",
     "", 
-    "����˾���ࡧ",
+    "ご要望事項：",
     "",
     "",
-    "���������ơ�",
+    "ご依頼内容：",
     "",
-    "�����¦������",
+    "依頼者側の姓：",
     "",
-    "�����¦��̾��",
+    "依頼者側の名：",
     "",
-    "�����¦����ǯ������",
+    "依頼者側の生年月日：",
     "",
-    "�����¦�����̡�",
+    "依頼者側の姓別：",
     "",
-    "�����¦�Τ����ȡ�",
+    "依頼者側のご職業：",
     "",
-    "���¦������",
+    "相手側の姓：",
     "",
-    "���¦��̾��",
+    "相手側の名：",
     "",
-    "���¦����ǯ������",
+    "相手側の生年月日：",
     "",
-    "���¦�����̡�",
+    "相手側の性別：",
     "",
-    "���¦�Τ����ȡ�",
+    "相手側のご職業：",
     "",
-    "�뺧�������",
+    "結婚後の姓：",
     "",
-    "����˾���ࡧ",
+    "ご要望事項：",
     "",
     "",
-    "��������ࡧ",
+    "ご依頼事項：",
     "",
-    "����",
+    "姓：",
     "",
-    "̾��",
+    "名：",
     "", 
-    "��ǯ������",
+    "生年月日：",
     "",
-    "���̡�",
+    "性別：",
     "",
-    "�����ȡ�",
+    "ご職業：",
     "", 
-    "��������ࡧ",
+    "ご依頼事項：",
     "", 
     "====================================="
 );
 foreach(@body) {
 	&jcode'convert(*_, "sjis", "euc");
 }
-#######Sub������(Base64���󥳡���)#######
-$subject = "���ؤΤ�����(Ver.3)";
+#######Subの生成(Base64エンコード)#######
+$subject = "翁へのご相談(Ver.3)";
 &jcode'convert(*subject, 'jis', 'euc');
 $subject = encode_base64($subject);
 chop($subject);
-$subject = "=?iso-2022-jp?B?" . $subject . "?=";
-####### �إå������#########
+$subject = " . $subject . "?=";
+####### ヘッダの定義#########
 $mail_header = <<"EOM3";
 From: $email
 To: $okina_email
@@ -347,7 +347,7 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: base64
 Subject: $subject
 EOM3
-####### ��å������ܥǥ�������########
+####### メッセージボディの生成########
 $body[4] .= $name;
 $body[6] .= $email;
 $body[9] .= $order4;
@@ -384,26 +384,26 @@ $body[72] .= $trade5;
 $body[74] .= $request5;
 $mailbody = join("\r\n", @body);
 $encoded = encode_base64($mailbody);
-######## �᡼������#########
+######## メール送信#########
 open(MAIL, "|$sendmail $okina_email");
 print MAIL $mail_header;
 for ($i = 0; $i < length($encoded); $i += 76) {
 	print MAIL substr($encoded, $i, 76);
 }
 close(MAIL);
-#####�ʾ夬Base64�᡼��#####
+#####以上がBase64メール#####
 print "Content-type: text/html\n\n";
 print "<html>\n";
 print "<head>\n";
-#������URL�ϡ����ʤ��Υ��ݥСݤˤ��碌�Ʋ�������
+#下記のURLは、あなたのサ−バ−にあわせて下さい。
 print "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"5;URL=/~kazu-y/index.html\">\n";
-print "<title>�����̼��մ�λ</title></head>\n";
+print "<title>ご相談受付完了</title></head>\n";
 print "<body bgcolor=\"ffffff\" TEXT=\"000000\" link=\"fb02ee\" vlink=\"fb02ee\">\n";
 print "<p>\n";
 print "<br>\n";
 print "<br>\n";
 print "<center>\n";
-print "<font size=\"6\" color=\"000000\"><b>���꤬�Ȥ��������ޤ�����</b></font><br>\n";
+print "<font size=\"6\" color=\"000000\"><b>ありがとうございました。</b></font><br>\n";
 print "</center>\n";
 print "</body>\n";
 print "</html>\n";

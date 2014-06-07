@@ -13,43 +13,43 @@ use MIME::Base64;
 $kanji = $in{'kanji'};
 $name2 = $in{'name2'};
 $email2 = $in{'email2'};
-#####¥Ç¡¼¥¿¤ÎÀ°·Á½èÍı#####
+#####ãƒ‡ãƒ¼ã‚¿ã®æ•´å½¢å‡¦ç†#####
 if ($email2 ne "") {
 	$email2 =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#å…¨è§’è‹±æ•°å­—ã‚’ã™ã¹ã¦åŠè§’è‹±æ•°å­—ã«ã™ã‚‹ã€‚
 	$email2 = &zen2han($email2);
 } 
-#####´Á»ú¥³¡¼¥É¤ÎÀ¸À®#####
+#####æ¼¢å­—ã‚³ãƒ¼ãƒ‰ã®ç”Ÿæˆ#####
 $kanjicode = $kanji;
 $kanjicode =~ s/ //g;
 $kanjicode =~ s/(.)/sprintf("%02X",unpack("c",$1) >= 0 ? unpack("c",$1)
 : 256 + unpack("c",$1))/eg;
 $kanjicode =~ s/(....)/$1 /g;
-#####¤³¤³¤«¤éBase64¥á¡¼¥ë#####
-##### ¥Ü¥Ç¥£´ğËÜÊ¸»úÎó¤ÎÄêµÁ######
+#####ã“ã“ã‹ã‚‰Base64ãƒ¡ãƒ¼ãƒ«#####
+##### ãƒœãƒ‡ã‚£åŸºæœ¬æ–‡å­—åˆ—ã®å®šç¾©######
 @body = (
 	"=====================================", 
-	"´ÕÄê¤Ç¤­¤Ê¤¤´Á»ú¥³¡¼¥É(SJIS)¡§", 
+	"é‘‘å®šã§ããªã„æ¼¢å­—ã‚³ãƒ¼ãƒ‰(SJIS)ï¼š", 
 	"", 
-	"Ï¢Íí¿Í¤ÎE¥á¡¼¥ë¥¢¥É¥ì¥¹¡§", 
+	"é€£çµ¡äººã®Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼š", 
 	"", 
-	"Ï¢Íí¿Í¤Î»áÌ¾(»²¹Í)¡§", 
+	"é€£çµ¡äººã®æ°å(å‚è€ƒ)ï¼š", 
 	"", 
-	"¥¨¥é¡¼´Á»ú(»²¹Í)¡§",
+	"ã‚¨ãƒ©ãƒ¼æ¼¢å­—(å‚è€ƒ)ï¼š",
 	"",
-	"»²¹Í¡§¥¨¥é¡¼¤¬È¯À¸¤¹¤ë²ÄÇ½À­¤¬¹â¤¤¡£", 
+	"å‚è€ƒï¼šã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ãŒé«˜ã„ã€‚", 
 	"====================================="
 );
 foreach(@body) {
 	&jcode'convert(*_, "sjis", "euc");
 }
-#######Sub¤ÎÀ¸À®(Base64¥¨¥ó¥³¡¼¥É)#######
-$subject = "È½Äê½ĞÍè¤Ê¤¤´Á»ú(Ver.4)";
+#######Subã®ç”Ÿæˆ(Base64ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰)#######
+$subject = "åˆ¤å®šå‡ºæ¥ãªã„æ¼¢å­—(Ver.4)";
 &jcode'convert(*subject, 'jis', 'euc');
 $subject = encode_base64($subject);
 chop($subject);
-$subject = "=?iso-2022-jp?B?" . $subject . "?=";
-####### ¥Ø¥Ã¥À¤ÎÄêµÁ#########
+$subject = " . $subject . "?=";
+####### ãƒ˜ãƒƒãƒ€ã®å®šç¾©#########
 $mail_header = <<"EOM2";
 From: $email2
 To: $youraddress
@@ -59,33 +59,33 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: base64
 Subject: $subject
 EOM2
-####### ¥á¥Ã¥»¡¼¥¸¥Ü¥Ç¥£¤ÎÀ¸À®########
+####### ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒ‡ã‚£ã®ç”Ÿæˆ########
 $body[2] .= $kanjicode;
 $body[4] .= $email2;
 $body[6] .= $name2;
 $body[8] .= $kanji;
 $mailbody = join("\r\n", @body);
 $encoded = encode_base64($mailbody);
-######## ¥á¡¼¥ëÁ÷¿®#########
+######## ãƒ¡ãƒ¼ãƒ«é€ä¿¡#########
 open(MAIL, "|$sendmail $youraddress");
 print MAIL $mail_header;
 for ($i = 0; $i < length($encoded); $i += 76) {
 	print MAIL substr($encoded, $i, 76);
 }
 close(MAIL);
-#####°Ê¾å¤¬Base64¥á¡¼¥ë#####
+#####ä»¥ä¸ŠãŒBase64ãƒ¡ãƒ¼ãƒ«#####
 print "Content-type: text/html\n\n";
 print "<html>\n";
 print "<head>\n";
-#²¼µ­¤ÎURL¤Ï¡¢¤¢¤Ê¤¿¤Î¥µ¡İ¥Ğ¡İ¤Ë¤¢¤ï¤»¤Æ²¼¤µ¤¤¡£
+#ä¸‹è¨˜ã®URLã¯ã€ã‚ãªãŸã®ã‚µâˆ’ãƒâˆ’ã«ã‚ã‚ã›ã¦ä¸‹ã•ã„ã€‚
 print "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"5;URL=/~kazu-y/input.html\">\n";
-print "<title>Á÷¿®´°Î»</title></head>\n";
+print "<title>é€ä¿¡å®Œäº†</title></head>\n";
 print "<body bgcolor=\"ffffff\" TEXT=\"000000\" link=\"fb02ee\" vlink=\"fb02ee\">\n";
 print "<p>\n";
 print "<br>\n";
 print "<br>\n";
 print "<center>\n";
-print "<font size=\"6\" color=\"000000\"><b>¤´¶¨ÎÏ¤¢¤ê¤¬¤È¤¦¤´¤¶¤¤¤Ş¤·¤¿¡£</b></font><br>\n";
+print "<font size=\"6\" color=\"000000\"><b>ã”å”åŠ›ã‚ã‚ŠãŒã¨ã†ã”ã–ã„ã¾ã—ãŸã€‚</b></font><br>\n";
 print "</center>\n";
 print "</body>\n";
 print "</html>\n";

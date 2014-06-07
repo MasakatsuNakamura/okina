@@ -17,19 +17,19 @@ case "meimei" :
 	$sei = HANtoZEN($sei, 2);
 
 	if (strstr($confirm, "no")) {
-		echo "<body>—˜—p‹K–ñ‚É‚²“¯ˆÓ‚¢‚½‚¾‚¯‚È‚¢ê‡A‚²—˜—p‚Í‚²‰“—¶‚¢‚½‚¾‚¢‚Ä‚¨‚è‚Ü‚·B<br>";
-		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=ƒtƒH[ƒ€‚É–ß‚é></form></body>";
+		echo "<body>åˆ©ç”¨è¦ç´„ã«ã”åŒæ„ã„ãŸã ã‘ãªã„å ´åˆã€ã”åˆ©ç”¨ã¯ã”é æ…®ã„ãŸã ã„ã¦ãŠã‚Šã¾ã™ã€‚<br>";
+		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=ãƒ•ã‚©ãƒ¼ãƒ ã«æˆ»ã‚‹></form></body>";
 		exit();
 	}
 	if ($sei == "") {
-		echo "<body>©‚Ì—“‚ð‚²“ü—Í‚¢‚½‚¾‚¯‚È‚¢‚ÆA–½–¼‚ªo—ˆ‚Ü‚¹‚ñB<br>";
-		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=ƒtƒH[ƒ€‚É–ß‚é></form></body>";
+		echo "<body>å§“ã®æ¬„ã‚’ã”å…¥åŠ›ã„ãŸã ã‘ãªã„ã¨ã€å‘½åãŒå‡ºæ¥ã¾ã›ã‚“ã€‚<br>";
+		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=ãƒ•ã‚©ãƒ¼ãƒ ã«æˆ»ã‚‹></form></body>";
  		exit();
 	}
 	if ((($birthmonth == 4 or $birthmonth == 6 or $birthmonth == 9 or $birthmonth == 11) and 
 		$birthday == 31) or ($birthmonth == 2 and $birthday >29)) {
-		echo "<body>" . $birthmonth . "ŒŽ" . $birthday . "“úF³‚µ‚¢’a¶“ú‚ª“ü—Í‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB<br>";
-		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=ƒtƒH[ƒ€‚É–ß‚é></form></body>";
+		echo "<body>" . $birthmonth . "æœˆ" . $birthday . "æ—¥ï¼šæ­£ã—ã„èª•ç”Ÿæ—¥ãŒå…¥åŠ›ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚<br>";
+		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=ãƒ•ã‚©ãƒ¼ãƒ ã«æˆ»ã‚‹></form></body>";
 		exit();
 	}
 
@@ -63,8 +63,8 @@ case "meimei" :
 		}
 	}
 	if ($kakusu1[0] == 0 or $kakusu2[0] == 0) {
-		echo "<body>©‚ÉŽg—p‚³‚ê‚Ä‚¢‚éŠ¿Žš‚ªƒf[ƒ^ƒx[ƒX‚É‚ ‚è‚Ü‚¹‚ñB‚²“ü—Í“à—e‚ð‚²Šm”F‚ÌãAŠÔˆá‚¢‚ª‚È‚¯‚ê‚Îƒnƒ“ƒhƒƒCƒh‚Å‚Ì‚²ˆË—Š‚ð‚¨Šè‚¢‚¢‚½‚µ‚Ü‚·<br>";
-		echo "<a href=index.html>–ß‚é</a></body>";
+		echo "<body>å§“ã«ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹æ¼¢å­—ãŒãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã«ã‚ã‚Šã¾ã›ã‚“ã€‚ã”å…¥åŠ›å†…å®¹ã‚’ã”ç¢ºèªã®ä¸Šã€é–“é•ã„ãŒãªã‘ã‚Œã°ãƒãƒ³ãƒ‰ãƒ¡ã‚¤ãƒ‰ã§ã®ã”ä¾é ¼ã‚’ãŠé¡˜ã„ã„ãŸã—ã¾ã™<br>";
+		echo "<a href=index.html>æˆ»ã‚‹</a></body>";
 	}
 
 	$sei1kaku = $kakusu1[0];
@@ -140,7 +140,7 @@ case "kakunin" :
 	if (strstr($mail, $mailconf)) {
 		include("./kakunin.html");
 	} else {
-		echo "<body>ƒ[ƒ‹ƒAƒhƒŒƒX‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ</body>\n";
+		echo "<body>ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“</body>\n";
 	}
 	break;
 
@@ -166,14 +166,14 @@ case "form" :
 <html>
 <body>
 <meta http-equiv="Context-Type" content="text/html;charset=SJIS">
-<title>ƒpƒXƒ[ƒh“ü—Í</title></head>
+<title>ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å…¥åŠ›</title></head>
 <body bgcolor="white">
 
-ƒpƒXƒ[ƒh‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢
+ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„
 <form action="./baby.php" method="post">
 <input type=password name=password>
 <input type="hidden" name="mode" value="form">
-<input value= "ŽÀs" type="submit">
+<input value= "å®Ÿè¡Œ" type="submit">
 
 <br>
 </body>

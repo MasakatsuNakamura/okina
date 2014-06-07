@@ -173,15 +173,15 @@ function point($sei1,$sei2,$mei1,$mei2,$sex) {
 	$gogyou[2] = $chikaku % 10;
 	for ($i = 0; $i <= 2; $i++) {
 		if ($gogyou[$i] == 1 or $gogyou[$i] == 2) {
-			$gogyou[$i] = "–Ø";
+			$gogyou[$i] = "æœ¨";
 		} else if ($gogyou[$i] == 3 or $gogyou[$i] == 4) {
-			$gogyou[$i] = "‰Î";
+			$gogyou[$i] = "ç«";
 		} else if ($gogyou[$i] == 5 or $gogyou[$i] == 6) {
-			$gogyou[$i] = "“y";
+			$gogyou[$i] = "åœŸ";
 		} else if ($gogyou[$i] == 7 or $gogyou[$i] == 8) {
-			$gogyou[$i] = "‹à";
+			$gogyou[$i] = "é‡‘";
 		} else if ($gogyou[$i] == 7 or $gogyou[$i] == 8) {
-			$gogyou[$i] = "…";
+			$gogyou[$i] = "æ°´";
 		}
 		$gogyou[$i] = SJIStoEUC($gogyou[$i]);
 	}
@@ -192,13 +192,13 @@ function point($sei1,$sei2,$mei1,$mei2,$sex) {
 		$kenkou = pg_fetch_row($request, $i);
 	}
 	$kenkou = EUCtoSJIS($kenkou[0]);
-	if (strstr($kenkou,"")) {
+	if (strstr($kenkou,"â—Ž")) {
 		$kenkou = 1;
-	} else if (strstr($kenkou, "›")) {
+	} else if (strstr($kenkou, "â—‹")) {
 		$kenkou = 0.9;
-	} else if (strstr($kenkou, "¢")) {
+	} else if (strstr($kenkou, "â–³")) {
 		$kenkou = 0.7;
-	} else if (strstr($kenkou, "~")) {
+	} else if (strstr($kenkou, "Ã—")) {
 		$kenkou = 0.5;
 	}
 

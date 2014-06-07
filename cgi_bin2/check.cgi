@@ -22,15 +22,15 @@ $user = $in{'user'};
 $brother = $in{'brother'};
 $request = $in{'request'};
 $exp = $in{'exp'};
-######���ϥǡ�������������######
+######入力データの整形処理######
 if ($zipcord ne "") {
 	$zipcord =~ s/\s*//g;
-	#���ѱѿ����򤹤٤�Ⱦ�ѱѿ����ˤ��롣
+	#全角英数字をすべて半角英数字にする。
 	$zipcord = &zen2han($zipcord); 
 }
 if ($tel ne "") {
 	$tel =~ s/\s*//g;
-	#���ѱѿ����򤹤٤�Ⱦ�ѱѿ����ˤ��롣
+	#全角英数字をすべて半角英数字にする。
 	$tel = &zen2han($tel); 
 }
 if ($familyname ne "") {
@@ -41,84 +41,84 @@ if ($brthday ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#���ѱѿ����򤹤٤�Ⱦ�ѱѿ����ˤ��롣
+	#全角英数字をすべて半角英数字にする。
 	$email = &zen2han($email);
 } 
-#####���ϥ��顼�Υ����å�#####
+#####入力エラーのチェック#####
 if ($name =~ /^\s*$/){
-	&CgiError("̾���ε���������ޤ���",
-	"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("名前の記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("�᡼�륢�ɥ쥹�ε���������ޤ���",
-	"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("メールアドレスの記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("���ϥ��顼",
-		"�᡼�륢�ɥ쥹�ν������ְ�äƤ��ޤ���",$email,
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("入力エラー",
+		"メールアドレスの書き方が間違っています。",$email,
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if (($order1 eq "" ) and ($order2 eq "" ) and ($order3 eq ""))  {
-	&CgiError("���ϥ��顼",
-		"����ʸ������ؼ�����Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+	&CgiError("入力エラー",
+		"ご注文が何も指示されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }	
 if ($order2 ne "") {
 	if ($zipcord eq "") {
-		&CgiError("͹���ֹ椬���Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("郵便番号が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($address eq "") {
-		&CgiError("���꤬���Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("住所が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}	
 	elsif ($fullname eq "") {
-		&CgiError("����ͤ����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("受取人が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($tel eq "") {
-		&CgiError("�����ֹ椬���Ϥ���Ƥ��ޤ��󡣸������ä�̵�����˸¤�����ֹ�Ǥ�빽�Ǥ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("電話番号が入力されていません。固定電話が無い時に限り携帯番号でも結構です。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
 if ($order3 ne "") {
 	if ($familyname eq "") {
-		&CgiError("�Ļ�(��)�����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("苗字(姓)が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($brthday eq "") {
-		&CgiError("ͽ����(������)�����Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("予定日(誕生日)が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
 if ($exp ne "") {
 	if ($tel eq "") {
-		&CgiError("�����ֹ椬���Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("電話番号が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($zipcord eq "") {
-		&CgiError("͹���ֹ椬���Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("郵便番号が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
     elsif ($address eq "") {
-		&CgiError("���꤬���Ϥ���Ƥ��ޤ���",
-		"�֥饦���Ύ�Back���ܥ������äƺ����Ϥ��Ƥ���������");
+		&CgiError("住所が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}	
 }
-#####������η׻������å�#####
+#####合計代金の計算ロジック#####
 if (($order1 ne "") and ($order2 ne "") and ($order3 ne ""))  {
    if ($exp ne "") {
        $kgak ="16,810";
@@ -160,30 +160,30 @@ elsif ($order3 ne "")  {
        $kgak ="10,000";
   }
 }
-######������������Ѥ������������ɽ������######
-######�Ż��ܡ����ҡ�̿̾��3�Ĥ���ʸ#######
+######ここから引き継ぎ情報の生成と表示画面######
+######電子本、書籍、命名の3つを注文#######
 if (($order1 ne "") and ($order2 ne "") and ($order3 ne ""))  {
 	$msg = <<"ORDER123";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>�Ż��ܤȽ��ҤΤ���ʸ��̿̾�Τ�����</TITLE>
+   <TITLE>電子本と書籍のご注文・命名のご依頼</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>����ʸ���ƤΤ���ǧ</U></B></FONT></CENTER>
+         <CENTER><FONT SIZE="+3"><B><U>ご注文内容のご確認</U></B></FONT></CENTER>
          
-         <BLOCKQUOTE>���β��̤ϡ�����ʸ���Ƥ򤴳�ǧĺ������Τ�ΤǤ������Ƥ˸��꤬������ϡ��֥饦���Ρ����ץܥ���򲡤��Ǝ����ϥե����������齤�����Ʋ�����������ǵ�������С���ʸ�ץܥ���򲡤��Ʋ��������ʤ��Ż��ܤȽ��Ҥ�ξ������ʸ�ξ�硢500�ߤ����פ��ޤ���</BLOCKQUOTE>
+         <BLOCKQUOTE>この画面は、ご注文内容をご確認頂くためのものです。内容に誤りがある場合は、ブラウザの「戻る」ボタンを押して「入力フォーム」から修正して下さい。これで宜しければ「注文」ボタンを押して下さい。なお電子本と書籍の両方ご注文の場合、500円を割引致します。</BLOCKQUOTE>
          
-         <CENTER><B>����ʸ����</B><BR>
+         <CENTER><B>ご注文内容</B><BR>
 <TABLE BORDER=1 WIDTH="90%">
    <TR>
       <TD WIDTH=148>
-         <P>�������(����)�Τ�̾��</P>
+         <P>ご依頼者(貴方)のお名前</P>
       </TD>
       <TD>
          <P>\$name</P>
@@ -191,7 +191,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>������ԤΥ᡼�륢�ɥ쥹</P>
+         <P>ご依頼者のメールアドレス</P>
       </TD>
       <TD>
          <P>\$email</P>
@@ -199,21 +199,21 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>�����������</P>
+         <P>ご依頼の内容</P>
       </TD>
       <TD>
-         <P>���ܲ�������(�Ż��ܤȼ���)����ʸ����������̿̾����</P>
+         <P>山本翁の著書(電子本と実本)の注文、新生児の命名依頼</P>
       </TD>
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>���ҤΤ�������</P>
+         <P>書籍のご送付先</P>
       </TD>
       <TD>
          <P><TABLE BORDER=1>
             <TR>
                <TD WIDTH=55>
-                  <P>͹���ֹ�</P>
+                  <P>郵便番号</P>
                </TD>
                <TD>
                   <P>\$zipcord</P>
@@ -221,7 +221,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=55>
-                  <P>����</P>
+                  <P>住所</P>
                </TD>
                <TD>
                   <P>\$address</P>
@@ -229,7 +229,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=55>
-                  <P>�������</P>
+                  <P>お受取人</P>
                </TD>
                <TD>
                   <P>\$fullname</P>
@@ -241,7 +241,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��Ϣ���褪�����ֹ�</P>
+         <P>ご連絡先お電話番号</P>
       </TD>
       <TD>
          <P>\$tel</P>
@@ -249,13 +249,13 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��������̿̾����</P>
+         <P>新生児の命名依頼</P>
       </TD>
       <TD>
          <P><TABLE BORDER=1>
             <TR>
                <TD WIDTH=92>
-                  <P>��(�Ļ�)</P>
+                  <P>姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$familyname</P>
@@ -263,7 +263,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=92>
-                  <P>������(ͽ����)</P>
+                  <P>出生日(予定日)</P>
                </TD>
                <TD>
                   <P>\$brthday</P>
@@ -271,7 +271,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=92>
-                  <P>���Τ�����</P>
+                  <P>過去のご依頼</P>
                </TD>
                <TD>
                   <P>\$user</P>
@@ -279,7 +279,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=92>
-                  <P>������Τ�̾��</P>
+                  <P>ご兄弟のお名前</P>
                </TD>
                <TD>
                   <P>\$brother</P>
@@ -287,7 +287,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=92>
-                  <P>����˾����</P>
+                  <P>ご要望事項</P>
                </TD>
                <TD>
                   <P>\$request</P>
@@ -295,7 +295,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=92>
-                  <P>�õ�����</P>
+                  <P>特記事項</P>
                </TD>
                <TD>
                   <P>\$exp</P>
@@ -307,20 +307,20 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��פ���ʧ�����</P>
+         <P>合計お支払い金額</P>
       </TD>
       <TD>
-         <P>\$kgak ��</P>
+         <P>\$kgak 円</P>
       </TD>
    </TR>
 </TABLE>
 </CENTER>
          
          <BLOCKQUOTE>
-            <B>����ǧ���Ѥߤޤ�����</B><FONT COLOR="#FF0000"><B>��������ʸ���ܥ����1����������Ƥ�ȯ��</B></FONT><B>����������<BR>
-            �ʤ������ʤ����ʾ塢����ʹߤΤ���ʸ�μ��ä������ʤϰ��ڽ���ޤ���Τ�ͽ�ᤴλ����������(ˬ������ˡ�Υ�����󥰥��դ�Ŭ�Ѥ���ޤ��󡣡�</B></BLOCKQUOTE>
+            <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「注文」ボタンを1回だけ押してご発注</B></FONT><B>ください。<BR>
+            なお、商品の性格上、これ以降のご注文の取り消しや返品は一切出来ませんので予めご了承下さい。(訪問販売法のクーリングオフは適用されません。）</B></BLOCKQUOTE>
          
-         <CENTER>����ʸ�������ϡ��֥饦���Ύ���뎣�ǎ����ϥե�������������ľ���Ʋ�������</CENTER>
+         <CENTER>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</CENTER>
          
          <P><FORM ACTION="/~kazu-y/cgi_bin2/nn_mail.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
@@ -339,7 +339,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="request" VALUE="\$request">
             <INPUT TYPE="hidden" NAME="exp" VALUE="\$exp">
             <INPUT TYPE="hidden" NAME="kgak" VALUE="\$kgak">
-            <CENTER><INPUT TYPE=submit NAME="����" VALUE="��ʸ"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="注文"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -368,29 +368,29 @@ ORDER123
     $msg =~ s/\$kgak/$kgak/g;
 	print $msg;
 }
-#######�Ż��ܤȽ��Ҥ���ʸ##########
+#######電子本と書籍を注文##########
 elsif (($order1 ne "") and ($order2 ne ""))  {
 	$msg = <<"ORDER120";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>�Ż��ܤȽ��ҤΤ���ʸ</TITLE>
+   <TITLE>電子本と書籍のご注文</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-<CENTER><FONT SIZE="+3"><B><U>����ʸ���ƤΤ���ǧ</U></B></FONT></CENTER>
+<CENTER><FONT SIZE="+3"><B><U>ご注文内容のご確認</U></B></FONT></CENTER>
          
-         <BLOCKQUOTE>���β��̤ϡ�����ʸ���Ƥ򤴳�ǧĺ������Τ�ΤǤ������Ƥ˸��꤬������ϡ��֥饦���Ρ����ץܥ���򲡤��Ǝ����ϥե����������齤�����Ʋ�����������ǵ�������С���ʸ�ץܥ���򲡤��Ʋ��������ʤ��Ż��ܤȽ��Ҥ�ξ������ʸ�ξ�硢500�ߤ����פ��ޤ���</BLOCKQUOTE>
+         <BLOCKQUOTE>この画面は、ご注文内容をご確認頂くためのものです。内容に誤りがある場合は、ブラウザの「戻る」ボタンを押して「入力フォーム」から修正して下さい。これで宜しければ「注文」ボタンを押して下さい。なお電子本と書籍の両方ご注文の場合、500円を割引致します。</BLOCKQUOTE>
          
-         <CENTER><B>����ʸ����</B><BR>
+         <CENTER><B>ご注文内容</B><BR>
          <TABLE BORDER=1 WIDTH="90%">
  <TR>
       <TD WIDTH=148>
-         <P>�������(����)�Τ�̾��</P>
+         <P>ご依頼者(貴方)のお名前</P>
       </TD>
       <TD>
          <P>\$name</P>
@@ -398,7 +398,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>������ԤΥ᡼�륢�ɥ쥹</P>
+         <P>ご依頼者のメールアドレス</P>
       </TD>
       <TD>
          <P>\$email</P>
@@ -406,21 +406,21 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>�����������</P>
+         <P>ご依頼の内容</P>
       </TD>
       <TD>
-         <P>���ܲ�������(�Ż��ܤȼ���)����ʸ</P>
+         <P>山本翁の著書(電子本と実本)の注文</P>
       </TD>
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>���ҤΤ�������</P>
+         <P>書籍のご送付先</P>
       </TD>
       <TD>
          <P><TABLE BORDER=1>
             <TR>
                <TD WIDTH=55>
-                  <P>͹���ֹ�</P>
+                  <P>郵便番号</P>
                </TD>
                <TD>
                   <P>\$zipcord</P>
@@ -428,7 +428,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=55>
-                  <P>����</P>
+                  <P>住所</P>
                </TD>
                <TD>
                   <P>\$address</P>
@@ -436,7 +436,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=55>
-                  <P>�������</P>
+                  <P>お受取人</P>
                </TD>
                <TD>
                   <P>\$fullname</P>
@@ -448,7 +448,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��Ϣ���褪�����ֹ�</P>
+         <P>ご連絡先お電話番号</P>
       </TD>
       <TD>
          <P>\$tel</P>
@@ -456,20 +456,20 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��פ���ʧ�����</P>
+         <P>合計お支払い金額</P>
       </TD>
       <TD>
-         <P>\$kgak ��</P>
+         <P>\$kgak 円</P>
       </TD>
    </TR>
 </TABLE>
 </CENTER>
          
          <BLOCKQUOTE>
-            <B>����ǧ���Ѥߤޤ�����</B><FONT COLOR="#FF0000"><B>��������ʸ���ܥ����1����������Ƥ�ȯ��</B></FONT><B>����������<BR>
-            �ʤ������ʤ����ʾ塢����ʹߤΤ���ʸ�μ��ä������ʤϰ��ڽ���ޤ���Τ�ͽ�ᤴλ����������(ˬ������ˡ�Υ�����󥰥��դ�Ŭ�Ѥ���ޤ��󡣡�</B></BLOCKQUOTE>
+            <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「注文」ボタンを1回だけ押してご発注</B></FONT><B>ください。<BR>
+            なお、商品の性格上、これ以降のご注文の取り消しや返品は一切出来ませんので予めご了承下さい。(訪問販売法のクーリングオフは適用されません。）</B></BLOCKQUOTE>
          
-         <CENTER>����ʸ�������ϡ��֥饦���Ύ���뎣�ǎ����ϥե�������������ľ���Ʋ�������</CENTER>
+         <CENTER>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</CENTER>
          
          <P><FORM ACTION="/~kazu-y/cgi_bin2/nn_mail.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
@@ -488,7 +488,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="request" VALUE="">
             <INPUT TYPE="hidden" NAME="exp" VALUE="">
             <INPUT TYPE="hidden" NAME="kgak" VALUE="\$kgak">
-            <CENTER><INPUT TYPE=submit NAME="����" VALUE="��ʸ"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="注文"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -510,29 +510,29 @@ ORDER120
     $msg =~ s/\$kgak/$kgak/g;
 	print $msg;
 }
-########�Ż��ܤ���ʸ��̿̾�ΰ���###########
+########電子本の注文と命名の依頼###########
 elsif (($order1 ne "") and ($order3 ne ""))  {
 	$msg = <<"ORDER103";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>�Ż��ܤΤ���ʸ��̿̾�Τ�����</TITLE>
+   <TITLE>電子本のご注文・命名のご依頼</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>����ʸ���ƤΤ���ǧ</U></B></FONT></CENTER>
+         <CENTER><FONT SIZE="+3"><B><U>ご注文内容のご確認</U></B></FONT></CENTER>
          
-         <BLOCKQUOTE>���β��̤ϡ�����ʸ���Ƥ򤴳�ǧĺ������Τ�ΤǤ������Ƥ˸��꤬������ϡ��֥饦���Ρ����ץܥ���򲡤��Ǝ����ϥե����������齤�����Ʋ�����������ǵ�������С���ʸ�ץܥ���򲡤��Ʋ�������</BLOCKQUOTE>
+         <BLOCKQUOTE>この画面は、ご注文内容をご確認頂くためのものです。内容に誤りがある場合は、ブラウザの「戻る」ボタンを押して「入力フォーム」から修正して下さい。これで宜しければ「注文」ボタンを押して下さい。</BLOCKQUOTE>
          
-         <CENTER><B>����ʸ����</B><BR>
+         <CENTER><B>ご注文内容</B><BR>
          <TABLE BORDER=1 WIDTH="90%">
    <TR>
       <TD WIDTH=148>
-         <P>�������(����)�Τ�̾��</P>
+         <P>ご依頼者(貴方)のお名前</P>
       </TD>
       <TD>
          <P>\$name</P>
@@ -540,7 +540,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>������ԤΥ᡼�륢�ɥ쥹</P>
+         <P>ご依頼者のメールアドレス</P>
       </TD>
       <TD>
          <P>\$email</P>
@@ -548,22 +548,22 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>�����������</P>
+         <P>ご依頼の内容</P>
       </TD>
       <TD>
-         <P>���ܲ�������(�Ż���)����ʸ����������̿̾����</P>
+         <P>山本翁の著書(電子本)の注文、新生児の命名依頼</P>
       </TD>
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>������礵�ޤξ���<BR>
-         (���ޤ������Τ�)</P>
+         <P>ご依頼主さまの情報<BR>
+         (お急ぎの方のみ)</P>
       </TD>
       <TD>
          <P><TABLE BORDER=1>
             <TR>
                <TD WIDTH=64>
-                  <P>͹���ֹ�</P>
+                  <P>郵便番号</P>
                </TD>
                <TD>
                   <P>\$zipcord</P>
@@ -571,7 +571,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=64>
-                  <P>����</P>
+                  <P>住所</P>
                </TD>
                <TD>
                   <P>\$address</P>
@@ -579,7 +579,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=64>
-                  <P>�������ֹ�</P>
+                  <P>お電話番号</P>
                </TD>
                <TD>
                   <P>\$tel</P>
@@ -591,13 +591,13 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��������̿̾����</P>
+         <P>新生児の命名依頼</P>
       </TD>
       <TD>
          <P><TABLE BORDER=1>
             <TR>
                <TD WIDTH=90>
-                  <P>��(�Ļ�)</P>
+                  <P>姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$familyname</P>
@@ -605,7 +605,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=90>
-                  <P>������(ͽ����)</P>
+                  <P>出生日(予定日)</P>
                </TD>
                <TD>
                   <P>\$brthday</P>
@@ -613,7 +613,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=90>
-                  <P>���Τ�����</P>
+                  <P>過去のご依頼</P>
                </TD>
                <TD>
                   <P>\$user</P>
@@ -621,7 +621,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=90>
-                  <P>������Τ�̾��</P>
+                  <P>ご兄弟のお名前</P>
                </TD>
                <TD>
                   <P>\$brother</P>
@@ -629,7 +629,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=90>
-                  <P>����˾����</P>
+                  <P>ご要望事項</P>
                </TD>
                <TD>
                   <P>\$request</P>
@@ -637,7 +637,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=90>
-                  <P>�õ�����</P>
+                  <P>特記事項</P>
                </TD>
                <TD>
                   <P>\$exp</P>
@@ -649,20 +649,20 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��פ���ʧ�����</P>
+         <P>合計お支払い金額</P>
       </TD>
       <TD>
-         <P>\$kgak ��</P>
+         <P>\$kgak 円</P>
       </TD>
    </TR>
          </TABLE>
 </CENTER>
          
          <BLOCKQUOTE>
-            <B>����ǧ���Ѥߤޤ�����</B><FONT COLOR="#FF0000"><B>��������ʸ���ܥ����1����������Ƥ�ȯ��</B></FONT><B>�����������Ƕᡢ�᡼�륢�ɥ쥹�δְ㤤��¿���褦�Ǥ����᡼�륢�ɥ쥹��⤦���١�����ǧ��������<BR>
-            �ʤ������ʤ����ʾ塢����ʹߤΤ���ʸ�μ��ä������ʤϰ��ڽ���ޤ���Τ�ͽ�ᤴλ����������(ˬ������ˡ�Υ�����󥰥��դ�Ŭ�Ѥ���ޤ��󡣡�</B></BLOCKQUOTE>
+            <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「注文」ボタンを1回だけ押してご発注</B></FONT><B>ください。最近、メールアドレスの間違いが多いようです。メールアドレスをもう一度、ご確認下さい。<BR>
+            なお、商品の性格上、これ以降のご注文の取り消しや返品は一切出来ませんので予めご了承下さい。(訪問販売法のクーリングオフは適用されません。）</B></BLOCKQUOTE>
          
-         <CENTER>����ʸ�������ϡ��֥饦���Ύ���뎣�ǎ����ϥե�������������ľ���Ʋ�������</CENTER>
+         <CENTER>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</CENTER>
          
          <P><FORM ACTION="/~kazu-y/cgi_bin2/nn_mail.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
@@ -681,7 +681,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="request" VALUE="\$request">
             <INPUT TYPE="hidden" NAME="exp" VALUE="\$exp">
             <INPUT TYPE="hidden" NAME="kgak" VALUE="\$kgak">
-            <CENTER><INPUT TYPE=submit NAME="����" VALUE="��ʸ"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="注文"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -708,29 +708,29 @@ ORDER103
 	$msg =~ s/\$kgak/$kgak/g;
 	print $msg;
 }
-########���Ҥ���ʸ��̿̾�ΰ���###########
+########書籍の注文と命名の依頼###########
 elsif (($order2 ne "") and ($order3 ne ""))  {
 	$msg = <<"ORDER023";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>���ҤΤ���ʸ��̿̾�Τ�����</TITLE>
+   <TITLE>書籍のご注文・命名のご依頼</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>����ʸ���ƤΤ���ǧ</U></B></FONT></CENTER>
+         <CENTER><FONT SIZE="+3"><B><U>ご注文内容のご確認</U></B></FONT></CENTER>
          
-         <BLOCKQUOTE>���β��̤ϡ�����ʸ���Ƥ򤴳�ǧĺ������Τ�ΤǤ������Ƥ˸��꤬������ϡ��֥饦���Ρ����ץܥ���򲡤��Ǝ����ϥե����������齤�����Ʋ�����������ǵ�������С���ʸ�ץܥ���򲡤��Ʋ�������</BLOCKQUOTE>
+         <BLOCKQUOTE>この画面は、ご注文内容をご確認頂くためのものです。内容に誤りがある場合は、ブラウザの「戻る」ボタンを押して「入力フォーム」から修正して下さい。これで宜しければ「注文」ボタンを押して下さい。</BLOCKQUOTE>
          
-         <CENTER><B>����ʸ����</B><BR>
+         <CENTER><B>ご注文内容</B><BR>
          <TABLE BORDER=1 WIDTH="80%">
   <TR>
       <TD WIDTH=148>
-         <P>�������(����)�Τ�̾��</P>
+         <P>ご依頼者(貴方)のお名前</P>
       </TD>
       <TD>
          <P>\$name</P>
@@ -738,7 +738,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>������ԤΥ᡼�륢�ɥ쥹</P>
+         <P>ご依頼者のメールアドレス</P>
       </TD>
       <TD>
          <P>\$email</P>
@@ -746,21 +746,21 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>�����������</P>
+         <P>ご依頼の内容</P>
       </TD>
       <TD>
-         <P>���ܲ�������(����)����ʸ����������̿̾����</P>
+         <P>山本翁の著書(実本)の注文、新生児の命名依頼</P>
       </TD>
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>���ҤΤ�������</P>
+         <P>書籍のご送付先</P>
       </TD>
       <TD>
          <P><TABLE BORDER=1>
             <TR>
                <TD WIDTH=55>
-                  <P>͹���ֹ�</P>
+                  <P>郵便番号</P>
                </TD>
                <TD>
                   <P>\$zipcord</P>
@@ -768,7 +768,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=55>
-                  <P>����</P>
+                  <P>住所</P>
                </TD>
                <TD>
                   <P>\$address</P>
@@ -776,7 +776,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=55>
-                  <P>�������</P>
+                  <P>お受取人</P>
                </TD>
                <TD>
                   <P>\$fullname</P>
@@ -788,7 +788,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��Ϣ���褪�����ֹ�</P>
+         <P>ご連絡先お電話番号</P>
       </TD>
       <TD>
          <P>\$tel</P>
@@ -796,13 +796,13 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��������̿̾����</P>
+         <P>新生児の命名依頼</P>
       </TD>
       <TD>
          <P><TABLE BORDER=1>
             <TR>
                <TD WIDTH=92>
-                  <P>��(�Ļ�)</P>
+                  <P>姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$familyname</P>
@@ -810,7 +810,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=92>
-                  <P>������(ͽ����)</P>
+                  <P>出生日(予定日)</P>
                </TD>
                <TD>
                   <P>\$brthday</P>
@@ -818,7 +818,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=92>
-                  <P>���Τ�����</P>
+                  <P>過去のご依頼</P>
                </TD>
                <TD>
                   <P>\$user</P>
@@ -826,7 +826,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=92>
-                  <P>������Τ�̾��</P>
+                  <P>ご兄弟のお名前</P>
                </TD>
                <TD>
                   <P>\$brother</P>
@@ -834,7 +834,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=92>
-                  <P>����˾����</P>
+                  <P>ご要望事項</P>
                </TD>
                <TD>
                   <P>\$request</P>
@@ -842,7 +842,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=92>
-                  <P>�õ�����</P>
+                  <P>特記事項</P>
                </TD>
                <TD>
                   <P>\$exp</P>
@@ -854,20 +854,20 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��פ���ʧ�����</P>
+         <P>合計お支払い金額</P>
       </TD>
       <TD>
-         <P>\$kgak ��</P>
+         <P>\$kgak 円</P>
       </TD>
    </TR>
          </TABLE>
         </CENTER>
          
          <BLOCKQUOTE>
-            <B>����ǧ���Ѥߤޤ�����</B><FONT COLOR="#FF0000"><B>��������ʸ���ܥ����1����������Ƥ�ȯ��</B></FONT><B>����������<BR>
-            �ʤ������ʤ����ʾ塢����ʹߤΤ���ʸ�μ��ä������ʤϰ��ڽ���ޤ���Τ�ͽ�ᤴλ����������(ˬ������ˡ�Υ�����󥰥��դ�Ŭ�Ѥ���ޤ��󡣡�</B></BLOCKQUOTE>
+            <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「注文」ボタンを1回だけ押してご発注</B></FONT><B>ください。<BR>
+            なお、商品の性格上、これ以降のご注文の取り消しや返品は一切出来ませんので予めご了承下さい。(訪問販売法のクーリングオフは適用されません。）</B></BLOCKQUOTE>
          
-         <CENTER>����ʸ�������ϡ��֥饦���Ύ���뎣�ǎ����ϥե�������������ľ���Ʋ�������</CENTER>
+         <CENTER>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</CENTER>
          
          <P><FORM ACTION="/~kazu-y/cgi_bin2/nn_mail.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
@@ -886,7 +886,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="request" VALUE="\$request">
             <INPUT TYPE="hidden" NAME="exp" VALUE="\$exp">
             <INPUT TYPE="hidden" NAME="kgak" VALUE="\$kgak">
-            <CENTER><INPUT TYPE=submit NAME="����" VALUE="��ʸ"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="注文"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -914,29 +914,29 @@ ORDER023
 	$msg =~ s/\$kgak/$kgak/g;
 	print $msg;
 }
-############�Ż��ܤΤ���ʸ###########
+############電子本のみ注文###########
 elsif ($order1 ne "")  {
 	$msg = <<"ORDER100";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>�Ż��ܤΤ���ʸ</TITLE>
+   <TITLE>電子本のご注文</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-<CENTER><FONT SIZE="+3"><B><U>����ʸ���ƤΤ���ǧ</U></B></FONT></CENTER>
+<CENTER><FONT SIZE="+3"><B><U>ご注文内容のご確認</U></B></FONT></CENTER>
          
-         <BLOCKQUOTE>���β��̤ϡ�����ʸ���Ƥ򤴳�ǧĺ������Τ�ΤǤ������Ƥ˸��꤬������ϡ��֥饦���Ρ����ץܥ���򲡤��Ǝ����ϥե����������齤�����Ʋ�����������ǵ�������С���ʸ�ץܥ���򲡤��Ʋ�������</BLOCKQUOTE>
+         <BLOCKQUOTE>この画面は、ご注文内容をご確認頂くためのものです。内容に誤りがある場合は、ブラウザの「戻る」ボタンを押して「入力フォーム」から修正して下さい。これで宜しければ「注文」ボタンを押して下さい。</BLOCKQUOTE>
          
-         <CENTER><B>����ʸ����</B><BR>
+         <CENTER><B>ご注文内容</B><BR>
          <TABLE BORDER=1 WIDTH="90%">
    <TR>
       <TD WIDTH=148>
-         <P>�������(����)�Τ�̾��</P>
+         <P>ご依頼者(貴方)のお名前</P>
       </TD>
       <TD>
          <P>\$name</P>
@@ -944,7 +944,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>������ԤΥ᡼�륢�ɥ쥹</P>
+         <P>ご依頼者のメールアドレス</P>
       </TD>
       <TD>
          <P>\$email</P>
@@ -952,28 +952,28 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>�����������</P>
+         <P>ご依頼の内容</P>
       </TD>
       <TD>
-         <P>���ܲ�������(�Ż���)����ʸ</P>
+         <P>山本翁の著書(電子本)の注文</P>
       </TD>
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��פ���ʧ�����</P>
+         <P>合計お支払い金額</P>
       </TD>
       <TD>
-         <P>\$kgak ��</P>
+         <P>\$kgak 円</P>
       </TD>
    </TR>
          </TABLE>
 </CENTER>
          
          <BLOCKQUOTE>
-            <B>����ǧ���Ѥߤޤ�����</B><FONT COLOR="#FF0000"><B>��������ʸ���ܥ����1����������Ƥ�ȯ��</B></FONT><B>�����������Ƕᡢ�᡼�륢�ɥ쥹�δְ㤤��¿���褦�Ǥ����᡼�륢�ɥ쥹��⤦���١�����ǧ��������<BR>
-            �ʤ������ʤ����ʾ塢����ʹߤΤ���ʸ�μ��ä������ʤϰ��ڽ���ޤ���Τ�ͽ�ᤴλ����������(ˬ������ˡ�Υ�����󥰥��դ�Ŭ�Ѥ���ޤ��󡣡�</B></BLOCKQUOTE>
+            <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「注文」ボタンを1回だけ押してご発注</B></FONT><B>ください。最近、メールアドレスの間違いが多いようです。メールアドレスをもう一度、ご確認下さい。<BR>
+            なお、商品の性格上、これ以降のご注文の取り消しや返品は一切出来ませんので予めご了承下さい。(訪問販売法のクーリングオフは適用されません。）</B></BLOCKQUOTE>
          
-         <CENTER>����ʸ�������ϡ��֥饦���Ύ���뎣�ǎ����ϥե�������������ľ���Ʋ�������</CENTER>
+         <CENTER>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</CENTER>
          
          <P><FORM ACTION="/~kazu-y/cgi_bin2/nn_mail.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
@@ -992,7 +992,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="request" VALUE="">
             <INPUT TYPE="hidden" NAME="exp" VALUE="">
             <INPUT TYPE="hidden" NAME="kgak" VALUE="\$kgak">
-            <CENTER><INPUT TYPE=submit NAME="����" VALUE="��ʸ"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="注文"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -1009,29 +1009,29 @@ ORDER100
 	$msg =~ s/\$kgak/$kgak/g;
 	print $msg;
 }
-#########���ҤΤ���ʸ##########
+#########書籍のみ注文##########
 elsif ($order2 ne "")  {
 	$msg = <<"ORDER020";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>���ҤΤ���ʸ</TITLE>
+   <TITLE>書籍のご注文</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
- <CENTER><FONT SIZE="+3"><B><U>����ʸ���ƤΤ���ǧ</U></B></FONT></CENTER>
+ <CENTER><FONT SIZE="+3"><B><U>ご注文内容のご確認</U></B></FONT></CENTER>
          
-         <BLOCKQUOTE>���β��̤ϡ�����ʸ���Ƥ򤴳�ǧĺ������Τ�ΤǤ������Ƥ˸��꤬������ϡ��֥饦���Ρ����ץܥ���򲡤��Ǝ����ϥե����������齤�����Ʋ�����������ǵ�������С���ʸ�ץܥ���򲡤��Ʋ�������</BLOCKQUOTE>
+         <BLOCKQUOTE>この画面は、ご注文内容をご確認頂くためのものです。内容に誤りがある場合は、ブラウザの「戻る」ボタンを押して「入力フォーム」から修正して下さい。これで宜しければ「注文」ボタンを押して下さい。</BLOCKQUOTE>
          
-         <CENTER><B>����ʸ����</B><BR>
+         <CENTER><B>ご注文内容</B><BR>
          <TABLE BORDER=1 WIDTH="90%">
    <TR>
       <TD WIDTH=148>
-         <P>�������(����)�Τ�̾��</P>
+         <P>ご依頼者(貴方)のお名前</P>
       </TD>
       <TD>
          <P>\$name</P>
@@ -1039,7 +1039,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>������ԤΥ᡼�륢�ɥ쥹</P>
+         <P>ご依頼者のメールアドレス</P>
       </TD>
       <TD>
          <P>\$email</P>
@@ -1047,21 +1047,21 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>�����������</P>
+         <P>ご依頼の内容</P>
       </TD>
       <TD>
-         <P>���ܲ�������(����)����ʸ</P>
+         <P>山本翁の著書(実本)の注文</P>
       </TD>
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>���ҤΤ�������</P>
+         <P>書籍のご送付先</P>
       </TD>
       <TD>
          <P><TABLE BORDER=1>
             <TR>
                <TD WIDTH=55>
-                  <P>͹���ֹ�</P>
+                  <P>郵便番号</P>
                </TD>
                <TD>
                   <P>\$zipcord</P>
@@ -1069,7 +1069,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=55>
-                  <P>����</P>
+                  <P>住所</P>
                </TD>
                <TD>
                   <P>\$address</P>
@@ -1077,7 +1077,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=55>
-                  <P>�������</P>
+                  <P>お受取人</P>
                </TD>
                <TD>
                   <P>\$fullname</P>
@@ -1089,7 +1089,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��Ϣ���褪�����ֹ�</P>
+         <P>ご連絡先お電話番号</P>
       </TD>
       <TD>
          <P>\$tel</P>
@@ -1097,20 +1097,20 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��פ���ʧ�����</P>
+         <P>合計お支払い金額</P>
       </TD>
       <TD>
-         <P>\$kgak ��</P>
+         <P>\$kgak 円</P>
       </TD>
    </TR>
          </TABLE>
 </CENTER>
          
          <BLOCKQUOTE>
-            <B>����ǧ���Ѥߤޤ�����</B><FONT COLOR="#FF0000"><B>��������ʸ���ܥ����1����������Ƥ�ȯ��</B></FONT><B>����������<BR>
-            �ʤ������ʤ����ʾ塢����ʹߤΤ���ʸ�μ��ä������ʤϰ��ڽ���ޤ���Τ�ͽ�ᤴλ����������(ˬ������ˡ�Υ�����󥰥��դ�Ŭ�Ѥ���ޤ��󡣡�</B></BLOCKQUOTE>
+            <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「注文」ボタンを1回だけ押してご発注</B></FONT><B>ください。<BR>
+            なお、商品の性格上、これ以降のご注文の取り消しや返品は一切出来ませんので予めご了承下さい。(訪問販売法のクーリングオフは適用されません。）</B></BLOCKQUOTE>
          
-         <CENTER>����ʸ�������ϡ��֥饦���Ύ���뎣�ǎ����ϥե�������������ľ���Ʋ�������</CENTER>
+         <CENTER>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</CENTER>
          
          <P><FORM ACTION="/~kazu-y/cgi_bin2/nn_mail.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
@@ -1129,7 +1129,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="request" VALUE="">
             <INPUT TYPE="hidden" NAME="exp" VALUE="">
             <INPUT TYPE="hidden" NAME="kgak" VALUE="\$kgak">
-            <CENTER><INPUT TYPE=submit NAME="����" VALUE="��ʸ"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="注文"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -1150,29 +1150,29 @@ ORDER020
     $msg =~ s/\$kgak/$kgak/g;
 	print $msg;
 }
-###########̿̾�Τ߰���############
+###########命名のみ依頼############
 elsif ($order3 ne "")  {
 	$msg = <<"ORDER003";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>̿̾�Τ�����</TITLE>
+   <TITLE>命名のご依頼</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-        <CENTER><FONT SIZE="+3"><B><U>����ʸ���ƤΤ���ǧ</U></B></FONT></CENTER>
+        <CENTER><FONT SIZE="+3"><B><U>ご注文内容のご確認</U></B></FONT></CENTER>
          
-         <BLOCKQUOTE>���β��̤ϡ�����ʸ���Ƥ򤴳�ǧĺ������Τ�ΤǤ������Ƥ˸��꤬������ϡ��֥饦���Ρ����ץܥ���򲡤��Ǝ����ϥե����������齤�����Ʋ�����������ǵ�������С���ʸ�ץܥ���򲡤��Ʋ�������</BLOCKQUOTE>
+         <BLOCKQUOTE>この画面は、ご注文内容をご確認頂くためのものです。内容に誤りがある場合は、ブラウザの「戻る」ボタンを押して「入力フォーム」から修正して下さい。これで宜しければ「注文」ボタンを押して下さい。</BLOCKQUOTE>
          
-         <CENTER><B>����ʸ����</B><BR>
+         <CENTER><B>ご注文内容</B><BR>
          <TABLE BORDER=1 WIDTH="90%">
    <TR>
       <TD WIDTH=148>
-         <P>�������(����)�Τ�̾��</P>
+         <P>ご依頼者(貴方)のお名前</P>
       </TD>
       <TD>
          <P>\$name</P>
@@ -1180,7 +1180,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>������ԤΥ᡼�륢�ɥ쥹</P>
+         <P>ご依頼者のメールアドレス</P>
       </TD>
       <TD>
          <P>\$email</P>
@@ -1188,22 +1188,22 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>�����������</P>
+         <P>ご依頼の内容</P>
       </TD>
       <TD>
-         <P>��������̿̾����</P>
+         <P>新生児の命名依頼</P>
       </TD>
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>������礵�ޤξ���<BR>
-         (���ޤ������Τ�)</P>
+         <P>ご依頼主さまの情報<BR>
+         (お急ぎの方のみ)</P>
       </TD>
       <TD>
          <P><TABLE BORDER=1>
             <TR>
                <TD WIDTH=64>
-                  <P>͹���ֹ�</P>
+                  <P>郵便番号</P>
                </TD>
                <TD>
                   <P>\$zipcord</P>
@@ -1211,7 +1211,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=64>
-                  <P>����</P>
+                  <P>住所</P>
                </TD>
                <TD>
                   <P>\$address</P>
@@ -1219,7 +1219,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=64>
-                  <P>�������ֹ�</P>
+                  <P>お電話番号</P>
                </TD>
                <TD>
                   <P>\$tel</P>
@@ -1231,13 +1231,13 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��������̿̾����</P>
+         <P>新生児の命名依頼</P>
       </TD>
       <TD>
          <P><TABLE BORDER=1>
             <TR>
                <TD WIDTH=90>
-                  <P>��(�Ļ�)</P>
+                  <P>姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$familyname</P>
@@ -1245,7 +1245,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=90>
-                  <P>������(ͽ����)</P>
+                  <P>出生日(予定日)</P>
                </TD>
                <TD>
                   <P>\$brthday</P>
@@ -1253,7 +1253,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=90>
-                  <P>���Τ�����</P>
+                  <P>過去のご依頼</P>
                </TD>
                <TD>
                   <P>\$user</P>
@@ -1261,7 +1261,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=90>
-                  <P>������Τ�̾��</P>
+                  <P>ご兄弟のお名前</P>
                </TD>
                <TD>
                   <P>\$brother</P>
@@ -1269,7 +1269,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=90>
-                  <P>����˾����</P>
+                  <P>ご要望事項</P>
                </TD>
                <TD>
                   <P>\$request</P>
@@ -1277,7 +1277,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=90>
-                  <P>�õ�����</P>
+                  <P>特記事項</P>
                </TD>
                <TD>
                   <P>\$exp</P>
@@ -1289,20 +1289,20 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>��פ���ʧ�����</P>
+         <P>合計お支払い金額</P>
       </TD>
       <TD>
-         <P>\$kgak ��</P>
+         <P>\$kgak 円</P>
       </TD>
    </TR>
          </TABLE>
 </CENTER>
          
          <BLOCKQUOTE>
-            <B>����ǧ���Ѥߤޤ�����</B><FONT COLOR="#FF0000"><B>��������ʸ���ܥ����1����������Ƥ�ȯ��</B></FONT><B>�����������Ƕᡢ�᡼�륢�ɥ쥹�δְ㤤��¿���褦�Ǥ����᡼�륢�ɥ쥹��⤦���١�����ǧ��������<BR>
-            �ʤ������ʤ����ʾ塢����ʹߤΤ���ʸ�μ��ä������ʤϰ��ڽ���ޤ���Τ�ͽ�ᤴλ����������(ˬ������ˡ�Υ�����󥰥��դ�Ŭ�Ѥ���ޤ��󡣡�</B></BLOCKQUOTE>
+            <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「注文」ボタンを1回だけ押してご発注</B></FONT><B>ください。最近、メールアドレスの間違いが多いようです。メールアドレスをもう一度、ご確認下さい。<BR>
+            なお、商品の性格上、これ以降のご注文の取り消しや返品は一切出来ませんので予めご了承下さい。(訪問販売法のクーリングオフは適用されません。）</B></BLOCKQUOTE>
          
-         <CENTER>����ʸ�������ϡ��֥饦���Ύ���뎣�ǎ����ϥե�������������ľ���Ʋ�������</CENTER>
+         <CENTER>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</CENTER>
          
          <P><FORM ACTION="/~kazu-y/cgi_bin2/nn_mail.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
@@ -1321,7 +1321,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="request" VALUE="\$request">
             <INPUT TYPE="hidden" NAME="exp" VALUE="\$exp">
             <INPUT TYPE="hidden" NAME="kgak" VALUE="\$kgak">
-            <CENTER><INPUT TYPE=submit NAME="����" VALUE="��ʸ"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="注文"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
