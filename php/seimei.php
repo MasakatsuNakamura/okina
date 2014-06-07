@@ -19,11 +19,11 @@ class Seimei {
 	
 	function Seimei() {
 		$this->kanji = Array();
-		$kanji = fopen("./kanji.dat", "r");
+		$in = fopen("./kanji.dat", "r");
 		
 		$i = 1;
-		while (!feof($kanji)) {
-			$line = fgets($kanji);
+		while (!feof($in)) {
+			$line = fgets($in);
 			for ($j = 0; $j < mb_strlen($line); $j++) {
 				$c = mb_substr($line, $j, 1);
 				$this->kanji[$c] = $i;
