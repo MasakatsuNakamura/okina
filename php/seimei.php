@@ -145,8 +145,8 @@ Class Seimei {
 			case 'gaikaku': $mongon = $reii->mongon[$this->gaikaku];
 			case 'soukaku': $mongon = $reii->mongon[$this->soukaku];
 			case 'jinkaku': $mongon = $reii->mongon[$this->jinkaku];
-			case 'seikaku': $mongon = $seikaku->mongon[$this->jinkaku];
-			case 'kenkou': $mongon = $kenkou->mongon[$this->jinkaku];
+			case 'seikaku': $mongon = $seikaku->mongon[$this->seikaku];
+			case 'kenkou': $mongon = $kenkou->mongon[$this->kenkou];
 			default:
 		}
 		if ($this->sex != "female") {
