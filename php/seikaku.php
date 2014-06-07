@@ -3,7 +3,7 @@
 // 人画の下一桁で判定する
 Class Seikaku
 {
-	private $mongon;
+	public $mongon;
 
 	public function Seikaku() {
 		$this->mongon = Array (

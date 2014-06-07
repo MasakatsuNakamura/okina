@@ -10,7 +10,7 @@
 // 上の数値を$iとした場合、$kenkou[$i]に結果が入る。
 Class Kenkou
 {
-	private $mongon;
+	public $mongon;
 	
 	public function Kenkou() {
 		$this->mongon = Array (
