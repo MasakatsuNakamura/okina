@@ -52,8 +52,6 @@ class Seimei {
 		$this->tenkaku = 0;
 		$this->jinkaku = 0;
 		$this->chikaku = 0;
-		$this->gaikaku = 0;
-		$this->soukaku = 0;
 		$this->error = Array();
 		
 		// 天画の算出
@@ -80,7 +78,7 @@ class Seimei {
 		
 		// 地画の算出
 		for ($i = 0; $i < mb_strlen($mei, "utf-8"); $i++) {
-			$c = mb_substr($sei, $i, 1, "utf-8");
+			$c = mb_substr($mei, $i, 1, "utf-8");
 			$k = $this->kanji[$c];
 			if ($k == 0) {
 				push($this->error, $c);
@@ -97,8 +95,8 @@ class Seimei {
 		}
 		
 		// 総画・外画の算出
-		$this->soukaku += $this->tenkaku + $this->chikaku;
-		$this->gaikaku += $this->soukaku - $this->jinkaku;
+		$this->soukaku = $this->tenkaku + $this->chikaku;
+		$this->gaikaku = $this->soukaku - $this->jinkaku;
 		
 		// オーバーフロー処理 - ちなみに > 81は間違いではない。
 		if ($this->tenkaku > 81) {
