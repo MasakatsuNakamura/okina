@@ -11,7 +11,7 @@ class Seimei {
 	public $seikaku;
 	public $kenkou;
 	
-	public $kakusu;
+	public $kanji;
 	
 	private $tenshimo;
 	private $jinshimo;
