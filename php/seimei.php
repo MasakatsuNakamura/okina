@@ -7,10 +7,10 @@ class Seimei {
 	private $kakusu;
 	private $kenkou;
 	
-	private $tenkaku;
-	private $chikaku;
-	private $gaikaku;
-	private $soukaku;
+	public $tenkaku;
+	public $chikaku;
+	public $gaikaku;
+	public $soukaku;
 	private $tenshimo;
 	private $jinshimo;
 	private $chishimo;
