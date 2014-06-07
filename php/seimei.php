@@ -151,36 +151,36 @@ Class Seimei {
 			default:
 		}
 		if ($this->sex != "female") {
-			$mongon = preg_replace("/\+w.*-w/ug", "", $mongon);
+			$mongon = preg_replace("/\+w.*-w/u", "", $mongon);
 		}
 		if ($this->sex != "male") {
-			$mongon = preg_replace("/\+m.*-m/ug", "", $mongon);
+			$mongon = preg_replace("/\+m.*-m/u", "", $mongon);
 		}
 		if ($this->marry != "yes") {
-			$mongon = preg_replace("/\+k.*-k/ug", "", $mongon);
+			$mongon = preg_replace("/\+k.*-k/u", "", $mongon);
 		}
 		if ($this->marry != "no") {
-			$mongon = preg_replace("/\+u.*-u/ug", "", $mongon);
+			$mongon = preg_replace("/\+u.*-u/u", "", $mongon);
 		}
 		if ($category != "jinkaku") {
-			$mongon = preg_replace("/\+j.*-j/ug", "", $mongon);
+			$mongon = preg_replace("/\+j.*-j/u", "", $mongon);
 		}
 		if ($category != "soukaku") {
-			$mongon = preg_replace("/\+s.*-s/ug", "", $mongon);
+			$mongon = preg_replace("/\+s.*-s/u", "", $mongon);
 		}
 		if ($category != "gaikaku") {
-			$mongon = preg_replace("/\+o.*-o/ug", "", $mongon);
+			$mongon = preg_replace("/\+o.*-o/u", "", $mongon);
 		}
 		if ($this->chikaku != 11) {
-			$mongon = preg_replace("/\+e.*-e/ug", "", $mongon);
+			$mongon = preg_replace("/\+e.*-e/u", "", $mongon);
 		}
 		if ($this->jinkaku != 26) {
-			$mongon = preg_replace("/\+t.*-t/ug", "", $mongon);
+			$mongon = preg_replace("/\+t.*-t/u", "", $mongon);
 		}
 		if ($this->jinkaku != 10 && $this->jinkaku != 20) {
-			$mongon = preg_replace("/\+g.*-g/ug", "", $mongon);
+			$mongon = preg_replace("/\+g.*-g/u", "", $mongon);
 		}
-		$mongon = preg_replace("/[\-\+][a-z]/ug", "", $mongon);
+		$mongon = preg_replace("/[\-\+][a-z]/u", "", $mongon);
 		
 		return($mongon);
 	}
