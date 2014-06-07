@@ -7,14 +7,15 @@ Class Seimei {
 	
 	public $sei;
 	public $mei;
-
+	public $sex;
+	public $marry;
+	public $over40;
+	
 	public $tenkaku;
 	public $jinkaku;
 	public $chikaku;
 	public $gaikaku;
 	public $soukaku;
-	public $sex;
-	public $marry;
 	
 	public $seikaku;
 	public $kenkou;
@@ -45,11 +46,14 @@ Class Seimei {
 		fclose($in);
 	}
 	
-	function kakusu ($sei, $mei) {
+	function kakusu ($sei, $mei, $sex, $marry, $over40) {
 		mb_regex_encoding("UTF-8");
 		$this->sei = $sei;
 		$this->mei = $mei;
-
+		$this->sex = $sex;
+		$this->marry = $marry;
+		$this->over40 = $over40;
+		
 		// 々ゝ仝の処理
 		$sei = preg_replace("/(.)(々ゝ仝)/u", "$1$1", $sei);
 		$mei = preg_replace("/(.)(々ゝ仝)/u", "$1$1", $mei);
@@ -141,13 +145,35 @@ Class Seimei {
 		$seikaku = New Seikaku();
 		
 		switch ($category) {
-			case 'tenkaku': $mongon = $reii->mongon[$this->tenkaku];
-			case 'chikaku': $mongon = $reii->mongon[$this->chikaku];
-			case 'gaikaku': $mongon = $reii->mongon[$this->gaikaku];
-			case 'soukaku': $mongon = $reii->mongon[$this->soukaku];
-			case 'jinkaku': $mongon = $reii->mongon[$this->jinkaku];
-			case 'seikaku': $mongon = $seikaku->mongon[$this->seikaku];
-			case 'kenkou': $mongon = $kenkou->mongon[$this->kenkou];
+
+			case 'tenkaku':
+				$mongon = $reii->mongon[$this->tenkaku];
+				break;
+			
+			case 'chikaku':
+				$mongon = $reii->mongon[$this->chikaku];
+				break;
+			
+			case 'gaikaku':
+				$mongon = $reii->mongon[$this->gaikaku];
+				break;
+			
+			case 'soukaku':
+				$mongon = $reii->mongon[$this->soukaku];
+				break;
+			
+			case 'jinkaku':
+				$mongon = $reii->mongon[$this->jinkaku];
+				break;
+			
+			case 'seikaku':
+				$mongon = $seikaku->mongon[$this->seikaku];
+				break;
+			
+			case 'kenkou':
+				$mongon = $kenkou->mongon[$this->kenkou];
+				break;
+
 			default:
 		}
 		if ($this->sex != "female") {

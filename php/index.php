@@ -2,7 +2,7 @@
 	require 'seimei.php';
 	
 	$seimei = New Seimei();
-	$seimei->kakusu('中村', '昌克');
+	$seimei->kakusu('中村', '昌克', 'male', 'yes', 'yes');
 
 ?>
 <html>
