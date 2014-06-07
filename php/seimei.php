@@ -115,7 +115,7 @@ class Seimei {
 		$this->chishimo = $this->chikaku % 10;
 		
 		// 性格診断の準備
-		$this->seikaku = $this->jinshimo; 人画の下一桁で決まる
+		$this->seikaku = $this->jinshimo; //人画の下一桁で決まる
 
 		// 陰陽五行のシリアル番号の算出(詳しくはkenkou.phpを参照)
 		$this->kenkou = $this->f($this->tenshimo) * 25 + $this->f($this->jinshimo) * 5 + $this->f($this->chishimo);
