@@ -19,4 +19,5 @@
 	echo '総画:' . $seimei->soukaku . '<br />' . $reii->mongon[$seimei->soukaku] . '<br />\n';
 	echo '性格:' . $seimei->seikaku . '<br />' . $seikaku->mongon[$seimei->seikaku] . '<br />\n';
 	echo '健康:' . $seimei->kenkou . '<br />' . $kenkou->mongon[$seimei->kenkou] . '<br />\n';
+	echo 'エラー漢字:'　. implode(",", $seimei->error);
 ?>

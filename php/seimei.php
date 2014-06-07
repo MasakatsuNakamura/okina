@@ -13,6 +13,8 @@ class Seimei {
 	public $seikaku;
 	public $kenkou;
 	
+	public $error;
+	
 	private $kanji;
 	
 	private $tenshimo;
@@ -52,14 +54,14 @@ class Seimei {
 		$this->chikaku = 0;
 		$this->gaikaku = 0;
 		$this->soukaku = 0;
-		$error = Array();
+		$this->error = Array();
 		
 		// 天画の算出
 		for ($i = 0; $i < mb_strlen($sei, "uft-8"); $i++) {
 			$c = mb_substr($sei, $i, 1, "utf-8");
 			$k = $this->kanji[$c];
 			if ($k == 0) {
-				push($error, $c);
+				push($this->error, $c);
 			} else {
 				$this->tenkaku += $k;
 			}
@@ -72,21 +74,21 @@ class Seimei {
 			$this->soukaku--; // 一画返す
 		}
 		
-		# 人画の算出
+		// 人画の算出
 		$this->jinkaku = $this->kanji[mb_substr($sei, mb_strlen($sei, "utf-8")-1, 1, "utf-8")] + $this->kanji[mb_substr(mei, 0, 1, "utf-8")];
 		
-		# 地画の算出
+		// 地画の算出
 		for ($i = 0; $i < mb_strlen($mei, "utf-8"); $i++) {
 			$c = mb_substr($sei, $i, 1, "utf-8");
 			$k = $this->kanji[$c];
 			if ($k == 0) {
-				push($error, $c);
+				push($this->error, $c);
 			} else {
 				$this->chikaku += $k;
 			}
 		}
 		
-		# 一文字名の処理
+		// 一文字名の処理
 		if (mb_strlen($mei) == 1) {
 			$this->chikaku++; // 一画借りる
 			$this->gaikaku++;
