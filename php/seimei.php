@@ -1,5 +1,9 @@
 <?php
-class Seimei {
+require 'reii.php';
+require 'kenkou.php';
+require 'seikaku.php';
+
+Class Seimei {
 	
 	public $sei;
 	public $mei;
@@ -9,7 +13,9 @@ class Seimei {
 	public $chikaku;
 	public $gaikaku;
 	public $soukaku;
-
+	public $sex;
+	public $marry;
+	
 	public $seikaku;
 	public $kenkou;
 	
@@ -125,6 +131,57 @@ class Seimei {
 
 		// 陰陽五行のシリアル番号の算出(詳しくはkenkou.phpを参照)
 		$this->kenkou = $this->f($this->tenshimo) * 25 + $this->f($this->jinshimo) * 5 + $this->f($this->chishimo);
+	}
+	
+	public function mongon ($category) {
+	// 占い結果(文言)の出力
+		$reii = New Reii();
+		$kenkou = New Kenkou();
+		$seikaku = New Seikaku();
+		
+		switch ($category) {
+			case 'tenkaku': $mongon = $reii->mongon[$this->tenkaku];
+			case 'chikaku': $mongon = $reii->mongon[$this->chikaku];
+			case 'gaikaku': $mongon = $reii->mongon[$this->gaikaku];
+			case 'soukaku': $mongon = $reii->mongon[$this->soukaku];
+			case 'jinkaku': $mongon = $reii->mongon[$this->jinkaku];
+			case 'seikaku': $mongon = $seikaku->mongon[$this->jinkaku];
+			case 'kenkou': $mongon = $kenkou->mongon[$this->jinkaku];
+			default:
+		}
+		if ($this->sex != "female") {
+			$mongon = mb_preg_replace("/\+w.*-w/g", "", $mongon);
+		}
+		if ($this->sex != "male") {
+			$mongon = mb_preg_replace("/\+m.*-m/g", "", $mongon);
+		}
+		if ($this->marry != "yes") {
+			$mongon = mb_preg_replace("/\+k.*-k/g");
+		}
+		if ($this->marry != "no") {
+			$mongon = mb_preg_replace("/\+u.*-u/g");
+		}
+		if ($category != "jinkaku") {
+			$mongon = mb_preg_replace("/\+j.*-j/g");
+		}
+		if ($category != "soukaku") {
+			$mongon = mb_preg_replace("/\+s.*-s/g");
+		}
+		if ($category != "gaikaku") {
+			$mongon = mb_preg_replace("/\+o.*-o/g");
+		}
+		if ($this->chikaku != 11) {
+			$mongon = mb_preg_replace("/\+e.*-e/g");
+		}
+		if ($this->jinkaku != 26) {
+			$mongon = mb_preg_replace("/\+t.*-t/g");
+		}
+		if ($this->jinkaku != 10 && $this->jinkaku != 20) {
+			$mongon = mb_preg_replace("/\+g.*-g/g");
+		}
+		$mongon = mb_preg_replace("/[\-\+][a-z]/g", "", $mongon);
+		
+		return($mongon);
 	}
 	
 	private function f($i) {
