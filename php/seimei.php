@@ -21,16 +21,15 @@ class Seimei {
 		$this->kanji = Array();
 		$in = fopen("./kanji.dat", "r");
 		
-		$i = 1;
+		$i = 0;
 		while (!feof($in)) {
+			if ($i++ > 31) {
+				$i = 1;
+			}
 			$line = fgets($in);
 			for ($j = 0; $j < mb_strlen($line); $j++) {
 				$c = mb_substr($line, $j, 1);
 				$this->kanji[$c] = $i;
-			}
-			$i++;
-			if ($i > 31) {
-				$i = 1;
 			}
 		}
 		fclose($kanji);
