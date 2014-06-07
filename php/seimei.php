@@ -11,7 +11,7 @@ class Seimei {
 	public $seikaku;
 	public $kenkou;
 	
-	private $kakusu;
+	public $kakusu;
 	
 	private $tenshimo;
 	private $jinshimo;

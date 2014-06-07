@@ -12,6 +12,10 @@
 	$seimei->kakusu('中村', '昌克');
 
 	echo $seimei->sei . ' ' . $seimei->mei . 'さんへのアドバイス<br />';
+	echo $seimei->kanji['中'] . "<br />";
+	echo $seimei->kanji['村'] . "<br />";
+	echo $seimei->kanji['昌'] . "<br />";
+	echo $seimei->kanji['克'] . "<br />";
 	echo '天画:' . $seimei->tenkaku . '<br />' . $reii->mongon[$seimei->tenkaku] . '<br />';
 	echo '人画:' . $seimei->jinkaku . '<br />' . $reii->mongon[$seimei->jinkaku] . '<br />';
 	echo '地画:' . $seimei->chikaku . '<br />' . $reii->mongon[$seimei->chikaku] . '<br />';
