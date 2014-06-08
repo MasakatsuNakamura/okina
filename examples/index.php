@@ -57,6 +57,7 @@ $naitik = $facebook->api('/naitik');
 <!doctype html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF8">
     <title>php-sdk</title>
     <style>
       body {
