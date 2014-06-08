@@ -29,6 +29,7 @@ Class Seimei {
 	private $chishimo;
 	
 	function Seimei() {
+	// 漢字画数データーベースの初期化
 		$this->kanji = Array();
 		$in = fopen("./kanji.dat", "r");
 		
@@ -45,7 +46,8 @@ Class Seimei {
 		}
 		fclose($in);
 	}
-	
+
+	// 画数計算
 	function kakusu ($sei, $mei, $sex, $marry, $over40) {
 		mb_regex_encoding("UTF-8");
 		$this->sei = $sei;
@@ -137,11 +139,14 @@ Class Seimei {
 		$this->kenkou = $this->f($this->tenshimo) * 25 + $this->f($this->jinshimo) * 5 + $this->f($this->chishimo);
 	}
 	
+	// 占い結果(文言)の出力
 	public function mongon ($category) {
 		mb_regex_encoding("UTF-8");
-		// 占い結果(文言)の出力
+		// 数の霊位文言の初期化
 		$reii = New Reii();
+		// 健康文言の初期化
 		$kenkou = New Kenkou();
+		// 性格文言の初期化
 		$seikaku = New Seikaku();
 		
 		switch ($category) {
