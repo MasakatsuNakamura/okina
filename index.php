@@ -9,6 +9,7 @@
 	<head>
 		<title>	<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> さんへのアドバイス</title>
 	</head>
+
 	<body>
 		<h1><?php echo $seimei->sei ?> <?php echo $seimei->mei ?> さんへのアドバイス</h1>
 
