@@ -12,7 +12,7 @@ Class Meimei
 		}
 	}
 	
-	public function NewName() {
+	public function Meimei() {
 		$meimei = Array(
 			"1-5-M" => "一功=かずのり,乙由=たかゆき,一巨=かずお,一平=いっぺい,一弘=かずひろ,一矢=かずや,一史=かずふみ",
 			"1-6-M" => "一臣=かずおみ,一好=かずよし,一光=かずみつ,一匡=かずまさ,一亘=かずのぶ",
