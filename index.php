@@ -51,10 +51,10 @@ if (count($_POST) == 0) {
 		<p>50歳前後から強く現れてきます。ただし、主運と基礎運に左右されますので注意して下さい。<br /><?php echo $seimei->mongon('soukaku') ?></p>
 		
 		<h2>男児に付けるなら</h2>
-		<p><?php echo implode(",", $seimei->meimei('M')); ?></p>
+		<p><?php echo $seimei->meimei('M') ?></p>
 
 		<h2>女児に付けるなら</h2>
-		<p><?php echo implode(",", $seimei->meimei('F')); ?></p>
+		<p><?php echo $seimei->meimei('F') ?></p>
 	</body>
 </html>
 <?php
