@@ -6,9 +6,9 @@ Class Meimei
 	public function getNewName($sei1, $sei2, $sex) {
 		$key = $sei1 . "-" . $sei2 . "-" . $sex;
 		if (array_key_exists($key, $baby)) {
-			return ($meimei[$key]);
+			return ($key . ":" . $meimei[$key]);
 		} else {
-			return ('');
+			return ($key);
 		}
 	}
 	

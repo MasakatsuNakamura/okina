@@ -11,8 +11,8 @@ Class Seimei {
 	public $sex;
 	public $marry;
 	public $over40;
-	public $sei1;
-	public $sei2;
+	private $sei1;
+	private $sei2;
 	
 	public $tenkaku;
 	public $jinkaku;
