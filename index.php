@@ -53,5 +53,6 @@ if (count($_POST) == 0) {
 		<h2>エラー漢字: <?php echo implode(",", $seimei->error); ?></h2>
 	</body>
 </html>
-?>
+<?php
 }
+?>
