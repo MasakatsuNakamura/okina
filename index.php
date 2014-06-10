@@ -2,27 +2,27 @@
 header("Content-Type: text/html; charset=utf-8");
 require 'seimei.php';
 
-if (count($_REQUEST) == 0) {
+if (count($_POST) == 0) {
 ?>
-	<html>
-		<head>
-			<title>	<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> さんへのアドバイス</title>
-		</head>
+<html>
+	<head>
+		<title>	<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> さんへのアドバイス</title>
+	</head>
 
-		<body>
-			<h1>山本式姓名判断</h1>
+	<body>
+		<h1>山本式姓名判断</h1>
 
-			<form action="" method="POST">
-			姓：<input type="text" name="sei" size="4">
-			名:<input type="text" name="mei" size="4">
-			<input type="submit" value="鑑定">
-			</form>
-		</body>
-	</html>
+		<form action="" method="POST">
+		姓：<input type="text" name="sei" size="4">
+		名:<input type="text" name="mei" size="4">
+		<input type="submit" value="鑑定">
+		</form>
+	</body>
+</html>
 <?php
 } else {
 	$seimei = New Seimei();
-	$seimei->kakusu($_POST['sei'], $_POST['mei'], 'male', 'yes', 'yes');
+	$seimei->shindan($_POST['sei'], $_POST['mei'], 'male', 'yes', 'yes');
 ?>
 <html>
 	<head>

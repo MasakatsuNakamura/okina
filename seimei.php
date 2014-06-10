@@ -48,7 +48,7 @@ Class Seimei {
 	}
 
 	// 画数計算
-	function kakusu ($sei, $mei, $sex, $marry, $over40) {
+	function shindan ($sei, $mei, $sex, $marry, $over40) {
 		mb_regex_encoding("UTF-8");
 		$this->sei = $sei;
 		$this->mei = $mei;
