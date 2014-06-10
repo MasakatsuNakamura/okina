@@ -42,7 +42,7 @@ if (count($_POST) == 0) {
 		<p>当人の外面的な性格を現します。自分が他人からどう見えているのか参考になります。<br /><?php echo $seimei->mongon('seikaku') ?></p>
 
 		<h2>健康運(体調・精神)</h2>
-		<p>；例え吉数揃いの姓名であっても、健康に恵まれなければ活かさせません。（△は単独での判断が難しい）<br /><?php echo $seimei->mongon('kenkou') ?></p>
+		<p>例え吉数揃いの姓名であっても、健康に恵まれなければ活かさせません。（△は単独での判断が難しい）<br /><?php echo $seimei->mongon('kenkou') ?></p>
 		
 		<h2>基礎運:<?php echo $seimei->chikaku ?>画</h2>
 		<p>幼少年期の運勢の吉凶を支配し、青年期まで最も強く作用します。(若年者の判断はこちらが有効):<br /><?php echo $seimei->mongon('chikaku') ?></p>
@@ -50,7 +50,11 @@ if (count($_POST) == 0) {
 		<h2>晩年運:<?php echo $seimei->soukaku ?>画</h2>
 		<p>50歳前後から強く現れてきます。ただし、主運と基礎運に左右されますので注意して下さい。<br /><?php echo $seimei->mongon('soukaku') ?></p>
 
-		<h2>エラー漢字: <?php echo implode(",", $seimei->error); ?></h2>
+		<h2>男児に付けるなら</h2>
+		<p><?php echo implode(",", $seimei->meimei('M')); ?></p>
+
+		<h2>女児に付けるなら</h2>
+		<p><?php echo implode(",", $seimei->meimei('F')); ?></p>
 	</body>
 </html>
 <?php

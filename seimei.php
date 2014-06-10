@@ -2,6 +2,7 @@
 require 'reii.php';
 require 'kenkou.php';
 require 'seikaku.php';
+require 'meimei.php';
 
 Class Seimei {
 	
@@ -10,6 +11,8 @@ Class Seimei {
 	public $sex;
 	public $marry;
 	public $over40;
+	public $sei1;
+	public $sei2;
 	
 	public $tenkaku;
 	public $jinkaku;
@@ -47,6 +50,11 @@ Class Seimei {
 		fclose($in);
 	}
 
+	function meimei ($sex) {
+		$meimei = New Meimei();
+		return($meimei->getNewName($this->sei1, $this->sei2, $sex));
+	}
+	
 	// 画数計算
 	function shindan ($sei, $mei, $sex, $marry, $over40) {
 		mb_regex_encoding("UTF-8");
@@ -55,6 +63,9 @@ Class Seimei {
 		$this->sex = $sex;
 		$this->marry = $marry;
 		$this->over40 = $over40;
+		
+		$this->sei1 = $kanji[mb_substr($this->sei, 0, 1)];
+		$this->sei2 = $kanji[mb_substr($this->sei, mb_strlen($this->sei) - 1, 1)];
 		
 		// 々ゝ仝の処理
 		$sei = preg_replace("/(.)(々ゝ仝)/u", "$1$1", $sei);
