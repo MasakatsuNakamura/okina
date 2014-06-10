@@ -2,10 +2,17 @@
 Class Meimei
 {
 	private $meimei;
+	private $kakusu;
 	
-	public function getNewName($sei1, $sei2, $sex) {
-		$key = $sei1 . "-" . $sei2 . "-" . $sex;
+	public function getNewName($sei1, $sei2) {
+		$key = $this->choise($sei1, $sei2);
 		return ($key . ":" . $this->meimei[$key]);
+	}
+	
+	private function choice($sei1, $sei2) {
+		$this->kakusu = Array(
+			
+		);
 	}
 	
 	public function Meimei() {
