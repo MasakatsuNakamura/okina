@@ -64,8 +64,8 @@ Class Seimei {
 		$this->marry = $marry;
 		$this->over40 = $over40;
 		
-		$this->sei1 = $kanji[mb_substr($this->sei, 0, 1)];
-		$this->sei2 = $kanji[mb_substr($this->sei, mb_strlen($this->sei) - 1, 1)];
+		$this->sei1 = $kanji[mb_substr($this->sei, 0, 1, "utf-8")];
+		$this->sei2 = $kanji[mb_substr($this->sei, mb_strlen($this->sei, "utf-8") - 1, 1, "utf-8")];
 		
 		// 々ゝ仝の処理
 		$sei = preg_replace("/(.)(々ゝ仝)/u", "$1$1", $sei);
