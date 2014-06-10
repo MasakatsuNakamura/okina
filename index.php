@@ -1,8 +1,10 @@
 <?php 
-	require 'seimei.php';
+header("Content-Type: text/html; charset=utf-8");
+
+require 'seimei.php';
 	
-	$seimei = New Seimei();
-	$seimei->kakusu('中村', '昌克', 'male', 'yes', 'yes');
+$seimei = New Seimei();
+$seimei->kakusu('中村', '昌克', 'male', 'yes', 'yes');
 
 ?>
 <html>
