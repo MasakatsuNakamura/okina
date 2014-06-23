@@ -1,0 +1,28 @@
+{
+    "name": "okina",
+    "authors": [
+        {
+            "name": "Masakatsu Nakamura (daibutsuda)",
+        }
+    ],
+    "require": {
+        "php": ">=5.2.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require": {
+    	"php/seimei.php": ">=1.0.0"
+    },
+    "require": {
+    	"php/kenkou.php": ">=1.0.0"
+    },
+    "require": {
+    	"php/reii.php": ">=1.0.0"
+    },
+    "require": {
+    	"php/seikaku.php": ">=1.0.0"
+    },
+    "require": {
+    	"php/kanji.dat": ">=1.0.0"
+    },
+}

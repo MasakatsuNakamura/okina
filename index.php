@@ -1,6 +1,6 @@
 <?php 
 header("Content-Type: text/html; charset=utf-8");
-require 'seimei.php';
+require 'php/seimei.php';
 
 // if (count($_POST) == 0) {
 if (false) {
