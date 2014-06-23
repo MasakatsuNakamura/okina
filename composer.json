@@ -1,14 +1,20 @@
 {
-  "require": {
-    "php": ">=5.3.0",
-  },
-  "config": {
-    "vendor-dir": "vendor/composer"
-  },
-  "extra": {
-    "heroku": {
-      "document-root": "htdocs",
-      "index-document": "index.php"
-    }
-  }
+	"repositories": [
+	    {
+	        "type": "git",
+	        "url": "git@heroku.com:okina.git",
+	    }
+	]
+	"require": {
+		"php": ">=5.3.0",
+	},
+	"config": {
+		"vendor-dir": "vendor/composer"
+	},
+	"extra": {
+		"heroku": {
+			"document-root": "htdocs",
+			"index-document": "index.php"
+		}
+	}
 }
