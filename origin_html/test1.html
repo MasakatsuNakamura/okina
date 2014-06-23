@@ -1,0 +1,179 @@
+<HTML>
+<HEAD>
+   <TITLE>ご注文フォーム</TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" BACKGROUND="image/wall.jpg" onload="scll()">
+<P><SCRIPT LANGUAGE=JavaScript>var cnt = -2;//文字位置
+var speed = 500;//動かすスピード(1/1000秒単位)
+var msg = "               送信される前にもう一度、記入内容をご確認下さい！　送信されるまで時間が掛かる場合がありますので、ボタンを1回クリックしてから暫くお待ち下さい。"; //メッセージ内容
+timeID=setTimeout('',1); //IE対策なにもしない;タイマーセット
+
+//　文字を移動させる
+function scll()
+{
+ status = msg.substring(cnt=cnt+2,msg.length+2);//日本語は2文字づつ動かす
+ if (cnt>msg.length){cnt=-2};
+ clearTimeout(timeID);//タイマーをクリア
+ timeID = setTimeout('scll()',speed);
+  }</SCRIPT></P>
+
+<P><EMBED SRC="midi/hol30xg.mid" PLUGINSPAGE="http://www.yamaha.co.jp/xg/midplug/top.html" WIDTH=2 HEIGHT=2 type="audio/midi" autostart=TRUE repeat=TRUE save=TRUE></P>
+
+<P><FORM ACTION="cgi_bin2/check.cgi" METHOD=POST>
+   <P><TABLE BORDER=0 WIDTH=640>
+      <TR>
+         <TD>
+            <CENTER><FONT SIZE="+3"><B><U>山本翁へのご注文フォーム</U></B></FONT></CENTER>
+            
+            <P><IMG SRC="image/line_a1.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></P>
+            
+            <BLOCKQUOTE><B><U>あなたのお名前</U></B>（全角で記入願います。姓と名は一文字空けて下さい。）<FONT COLOR="#FF0000"><B>(必須</B>）</FONT><B><U><BR>
+               </U></B><INPUT TYPE=text NAME=name VALUE="テスト　為太郎" SIZE=30>
+               
+               <P><B><U>あなたのメールアドレス</U>→</B>(記入例：xxx@xxx.ne.jp
+               ご注意：必ず半角で記入願います。)<FONT COLOR="#FF0000"><B>(必須)</B></FONT><U><BR>
+               </U><INPUT TYPE=text NAME=email VALUE="kazu-y@mahoroba.ne.jp" SIZE=80><BR>
+               <FONT COLOR="#FF0000">ご注意;<U>メールアドレスのご記載がない場合には、ご注文はお受け出来ません。</U></FONT><BR>
+               <FONT SIZE="-1">(特に、「.」(点)を「,」(カンマ)と誤打されたり、全角文字を使われたり、「or.jp」(旧アドレス)を使用されたりしてエラーとなるケースが散見されます。落ちついて正しく入力してください。)</FONT></P>
+               
+               <P><B><U>ご注文の内容(複数の選択可能)<BR>
+               </U></B><INPUT TYPE=checkbox NAME=order1 VALUE="電子本を注文">「翁の著書」電子本版：<B>パスワード代500円→</B>下記の<A HREF="#send">送信ボタン</A>を押して下さい。<BR>
+               <INPUT TYPE=checkbox NAME=order3 VALUE="命名を依頼">新生児の命名：<B>選名基本料10,000円</B>→<FONT COLOR="#FF0000">下記の1.にもご記入下さい。(お急ぎの方は2.にもご記入下さい。</FONT><FONT COLOR="#FF3300">振込み確認を行なわず結果を送信しますので、通常より3-5日短縮されます。</FONT><FONT COLOR="#FF0000">基本料に加え特急料金5,000円を頂戴致します。)</FONT></P>
+               
+               <P><FONT COLOR="#000000">なお、商品のご返品や内容クレームについてはお受け致しかねますので、ご容赦下さいませ。山本翁では領収書は発行しておりません、郵便振替の受領証をご利用下さい。また消費税は不要です。<BR>
+               </FONT><FONT COLOR="#FF0000">ご注意：お振り込みに際しては申込人(あなた様)のお名前を記入して頂くようにお願い申し上げます。</FONT></P></BLOCKQUOTE>
+            
+            <P><FONT COLOR="#CC3333"><IMG SRC="image/line_a1.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></FONT></P>
+         </TD>
+      </TR>
+      <TR>
+         <TD>
+            <P><TABLE BORDER=1 CELLSPACING=10 WIDTH=632>
+               <TR>
+                  <TD VALIGN=top WIDTH=298>
+                     <P><B><U>1.新生児の命名について</U></B></P>
+                     
+                     <P>姓(みょうじ)→(全角<FONT COLOR="#FF0000"><B>漢字</B></FONT>で記入)<BR>
+                     <INPUT TYPE=text NAME=familyname VALUE="幾野" SIZE=15>様</P>
+                     
+                     <P>出産予定日(誕生日)→(記入例：xx月xx日)<BR>
+                     <INPUT TYPE=text NAME=brthday VALUE="2003年5月31日" SIZE=30></P>
+                     
+                     <P>「翁の命名」を、今までにご利用されましたか。<BR>
+                     <INPUT TYPE=radio NAME=user VALUE="初めて依頼" CHECKED>初めて<BR>
+                     <INPUT TYPE=radio NAME=user VALUE="２回目以降">兄姉の名前で利用したことがある</P>
+                     
+                     <P>この度、生まれてくるお子様にご兄姉が居られるのでしたら、お名前をお聞かせ願えませんか。<INPUT TYPE=text NAME=brother VALUE="ちび" SIZE=30>ちゃん</P>
+                     
+                     <P><B>ご要望事項</B>：受付け後では追加でご要望をお受け出来ない場合がありますのでご注意下さい。(運勢最優先ですので、ご要望には添えない場合もあります。ご了承下さい。)<BR>
+                     既に生まれている場合は必ず男女の区別をお書き下さい。<FONT COLOR="#FF0000">お急ぎの時は右のチェックボックスにもマーク。</FONT><BR>
+                     <TEXTAREA NAME=request ROWS=5 COLS=40 WRAP=virtual>上手く行きますように。</TEXTAREA></P>
+                     
+                     <P></P>
+                  </TD>
+                  <TD VALIGN=top WIDTH=298>
+                     <P><B><U>2.新生児命名をお急ぎの方</U></B></P>
+                     
+                     <P>郵便番号(半角数字でxxx-xxxxと7桁番号を<FONT COLOR="#FF0000">ハイフォン付で記入</FONT>)<BR>
+                     <INPUT TYPE=text NAME=zipcord VALUE="639-0265" SIZE=10></P>
+                     
+                     <P>ご住所<BR>
+                     <INPUT TYPE=text NAME=address VALUE="香芝市上中1068-2" SIZE=40></P>
+                     
+                     <P>お電話番号※<BR>
+                     <INPUT TYPE=text NAME=tel VALUE="0745-71-5700" SIZE=30></P>
+                     
+                     <P><FONT SIZE="-1">※携帯電話の電話番号は不可です。上記ご住所にご登録されている電話番号をご記入下さい。商品管理の都合上、電話番号と住所の一致を確認させて頂きます</FONT><FONT SIZE="-1" COLOR="#CC0099">。</FONT></P>
+                     
+                     <P><INPUT TYPE=checkbox NAME=exp VALUE="至急！代金は後で支払います。"><B>至急！代金は後で支払います。<BR>
+                     </B><FONT COLOR="#FF3300"><B>基本料金に加え特急料金が加算され、料金は合計で15,000円になります。</B></FONT><B><BR>
+                     </B>ここにチェックを入れられる方は、必ず上の郵便番号・住所・連絡先電話番号を記入ください。<BR>
+                     先にお知らせする対象は、<B>既に生まれている方、および1週間以内に生まれる予定の方だけ</B>です。それ以外の方は先にお知らせ出来ません。</P>
+                     
+                     <P>「至急注文」を乱用されるお客様が多く、止むなくの措置である事ご理解下さい。どうしても必要なお客様のみのサービスですので、できるだけ時間に余裕を持ってご依頼戴くように重ねてお願い申し上げます。</P>
+                  </TD>
+               </TR>
+            </TABLE>
+            </P>
+         </TD>
+      </TR>
+      <TR>
+         <TD>
+            <CENTER><B><A NAME=send></A>入力は以上です。内容をご確認の上、送信ボタンを</B><FONT COLOR="#CC0000"><B>1回だけ</B></FONT><B>クリックして下さい。<BR>
+            送信完了後、「ご注文の確認」の画面が表示されます。</B>
+            
+            <P><B><INPUT TYPE=submit NAME="送信" VALUE="送信"></B><INPUT TYPE=reset VALUE="リセット"></P>
+            
+            <P><FONT SIZE="-1"><B>※上手く送信できない場合には、上記内容を</B></FONT><A HREF="mailto:okina@e-mail.ne.jp"><FONT SIZE="-1"><B>メール</B></FONT></A><FONT SIZE="-1">(okina@e-mail.ne.jp)<B>にて送付下さい。</B></FONT></P>
+            
+            <P><IMG SRC="image/line_a2.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></P></CENTER>
+         </TD>
+      </TR>
+   </TABLE>
+
+</FORM></P>
+
+<P><TABLE BORDER=0 WIDTH=640>
+   <TR>
+      <TD>
+         <CENTER>　
+         
+         <P><TABLE BORDER=1 WIDTH=632>
+            <TR>
+               <TD>
+                  <CENTER><A HREF="index.html" TARGET="_self">トップページ</A></CENTER>
+               </TD>
+               <TD>
+                  <CENTER><A HREF="input.html" TARGET="_self">姓名鑑定のコーナー</A></CENTER>
+               </TD>
+               <TD>
+                  <CENTER><A HREF="book.html" TARGET="_self">著書のコーナー</A></CENTER>
+               </TD>
+               <TD>
+                  <CENTER><A HREF="baby.html" TARGET="_self">命名のコーナー</A></CENTER>
+               </TD>
+            </TR>
+            <TR>
+               <TD>
+                  <CENTER><A HREF="consul.html">ご相談のコーナー</A></CENTER>
+               </TD>
+               <TD>
+                  <CENTER><A HREF="info.html">翁からのお知らせ</A></CENTER>
+               </TD>
+               <TD>
+                  <CENTER><A HREF="link.html">「占い直行便」</A></CENTER>
+               </TD>
+               <TD>
+                  <P></P>
+               </TD>
+            </TR>
+         </TABLE>
+         </P>
+         
+         <P><IMG SRC="image/line_a2.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></P></CENTER>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <CENTER>　
+         
+         <P>お聞きの曲「strauss」については、<A HREF="info.html#midi">こちら</A>をご覧下さい。</P></CENTER>
+         
+         <P><IMG SRC="image/line_a1.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></P>
+      </TD>
+   </TR>
+   <TR>
+      <TD>
+         <CENTER>　
+         
+         <P><FONT SIZE="-2" FACE="中ゴシック体">このページを見てのご意見やご感想をお聞かせ下さい。　<IMG SRC="image/mail_a2.gif" WIDTH=24 HEIGHT=19 ALIGN=bottom></FONT><A HREF="mailto:yamakazu@skyblue.ocn.ne.jp"><FONT SIZE="-2" FACE="中ゴシック体">okina@e-mail.ne.jp</FONT></A><FONT SIZE="-2" FACE="中ゴシック体"><I><BR>
+         </I>リンクは歓迎しますが、必ず</FONT><A HREF="index.html" TARGET="_self"><FONT SIZE="-2" FACE="中ゴシック体">TOPページ</FONT></A><FONT SIZE="-2" FACE="中ゴシック体">にお願いします。<BR>
+         </FONT><FONT SIZE="-2" FACE="中ゴシック体" COLOR="#000000"><I>CopyRight
+         . K.yamamoto</I></FONT></P></CENTER>
+      </TD>
+   </TR>
+</TABLE>
+</P>
+</BODY>
+</HTML>
