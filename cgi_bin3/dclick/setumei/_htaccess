@@ -1,1 +1,0 @@
-Options +IncludesAddType text/html shtmlAddHandler server-parsed shtmlDirectoryIndex index.shtml
