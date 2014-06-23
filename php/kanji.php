@@ -36,10 +36,10 @@ Class Kanji {
 	private $kakusu;
 	
 	public function Kanji() {
-		for ($i = 0; $i < count($kanji); $i++) {
+		for ($i = 0; $i < count($this->kanji); $i++) {
 			$k = $i > 31 ? $i - 31 : $i;
-			for ($j = 0; $j < mb_strlen($kanji[$i], "utf-8"); $j++) {
-				$c = mb_substr($kanji[$i], $j, 1, "utf-8");
+			for ($j = 0; $j < mb_strlen($this->kanji[$i], "utf-8"); $j++) {
+				$c = mb_substr($this->kanji[$i], $j, 1, "utf-8");
 				$this->kakusu[$c] = $k;
 			}
 		}

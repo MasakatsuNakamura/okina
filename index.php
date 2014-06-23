@@ -7,9 +7,8 @@ require 'php/seikaku.php';
 require 'php/meimei.php';
 require 'php/kanji.php';
 
-// if (count($_POST) == 0) {
-if (false) {
-	echo <<< EOM
+if (count($_POST) == 0) {
+?>
 <html>
 	<head>
 		<title>山本式姓名判断</title>
@@ -25,12 +24,11 @@ if (false) {
 		</form>
 	</body>
 </html>
-EOM;
+<?php
 } else {
 	$seimei = New Seimei();
-//	$seimei->shindan($_POST['sei'], $_POST['mei'], 'male', 'yes', 'yes');
-	$seimei->shindan('中村', '昌克', 'male', 'yes', 'yes');
-	echo <<< EOF
+	$seimei->shindan($_POST['sei'], $_POST['mei'], 'male', 'yes', 'yes');
+?>
 <html>
 	<head>
 		<title>	<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> さんへのアドバイス</title>
@@ -64,6 +62,6 @@ EOM;
 		<p><?php echo $seimei->meimei('F') ?></p>
 	</body>
 </html>
-EOF;
+<?php
 }
 ?>

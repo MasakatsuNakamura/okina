@@ -5,8 +5,8 @@ Class Meimei
 	private $kakusu;
 	
 	public function getNewName($sei1, $sei2) {
-		$key = $this->choise($sei1, $sei2);
-		return ($key . ":" . $this->meimei[$key]);
+//		$key = $this->choise($sei1, $sei2);
+//		return ($key . ":" . $this->meimei[$key]);
 	}
 	
 	private function choice($sei1, $sei2) {
