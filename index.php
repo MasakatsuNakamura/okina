@@ -6,6 +6,7 @@ require 'kenkou.php';
 require 'seikaku.php';
 require 'meimei.php';
 require 'kanji.php';
+date_default_timezone_set('UTC');
 
 if (count($_POST) == 0) {
 ?>
@@ -17,6 +18,7 @@ if (count($_POST) == 0) {
 	<body>
 		<h1>山本式姓名判断</h1>
 
+		<?php echo date() ?>
 		<form action="" method="POST">
 		姓：<input type="text" name="sei" size="4">
 		名:<input type="text" name="mei" size="4">
