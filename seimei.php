@@ -237,3 +237,4 @@ Class Seimei {
 		return($i);
 	}
 }
+?>
