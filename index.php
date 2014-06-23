@@ -3,7 +3,7 @@ header("Content-Type: text/html; charset=utf-8");
 require 'seimei.php';
 
 if (count($_POST) == 0) {
-?>
+	echo <<< EOM
 <html>
 	<head>
 		<title>山本式姓名判断</title>
@@ -19,12 +19,12 @@ if (count($_POST) == 0) {
 		</form>
 	</body>
 </html>
-<?php
+EOM;
 } else {
 	$seimei = New Seimei();
 //	$seimei->shindan($_POST['sei'], $_POST['mei'], 'male', 'yes', 'yes');
 	$seimei->shindan('中村', '昌克', 'male', 'yes', 'yes');
-?>
+	echo <<< EOF
 <html>
 	<head>
 		<title>	<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> さんへのアドバイス</title>
@@ -58,6 +58,6 @@ if (count($_POST) == 0) {
 		<p><?php echo $seimei->meimei('F') ?></p>
 	</body>
 </html>
-<?php
+EOF;
 }
 ?>
