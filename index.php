@@ -18,7 +18,7 @@ if (count($_POST) == 0) {
 	<body>
 		<h1>山本式姓名判断</h1>
 
-		<?php echo date() ?>
+		<?php echo date(DATE_RFC2822) ?>
 		<form action="" method="POST">
 		姓：<input type="text" name="sei" size="4">
 		名:<input type="text" name="mei" size="4">
