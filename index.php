@@ -2,7 +2,8 @@
 header("Content-Type: text/html; charset=utf-8");
 require 'seimei.php';
 
-if (count($_POST) == 0) {
+// if (count($_POST) == 0) {
+if (false) {
 	echo <<< EOM
 <html>
 	<head>
