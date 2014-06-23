@@ -22,7 +22,8 @@ if (count($_POST) == 0) {
 <?php
 } else {
 	$seimei = New Seimei();
-	$seimei->shindan($_POST['sei'], $_POST['mei'], 'male', 'yes', 'yes');
+//	$seimei->shindan($_POST['sei'], $_POST['mei'], 'male', 'yes', 'yes');
+	$seimei->shindan('中村', '昌克', 'male', 'yes', 'yes');
 ?>
 <html>
 	<head>
