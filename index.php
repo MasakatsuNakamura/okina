@@ -6,7 +6,7 @@ if (count($_POST) == 0) {
 ?>
 <html>
 	<head>
-		<title>	<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> さんへのアドバイス</title>
+		<title>山本式姓名判断</title>
 	</head>
 
 	<body>
