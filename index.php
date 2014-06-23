@@ -1,6 +1,11 @@
 <?php 
 header("Content-Type: text/html; charset=utf-8");
 require 'php/seimei.php';
+require 'php/reii.php';
+require 'php/kenkou.php';
+require 'php/seikaku.php';
+require 'php/meimei.php';
+require 'php/kanji.php';
 
 // if (count($_POST) == 0) {
 if (false) {

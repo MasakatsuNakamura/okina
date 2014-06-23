@@ -3,10 +3,5 @@
         "php": ">=5.2.0",
         "ext-curl": "*",
         "ext-json": "*",
-    	"php/seimei.php": "*",
-    	"php/kenkou.php": "*",
-    	"php/reii.php": "*",
-    	"php/seikaku.php": "*",
-    	"php/kanji.dat": "*",
     },
 }

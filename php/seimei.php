@@ -1,9 +1,4 @@
 <?php
-require 'reii.php';
-require 'kenkou.php';
-require 'seikaku.php';
-require 'meimei.php';
-
 Class Seimei {
 	
 	public $sei;
@@ -23,33 +18,12 @@ Class Seimei {
 	
 	public $error;
 	
-	private $kanji;
-	
 	private $sei1;
 	private $sei2;
 	private $tenshimo;
 	private $jinshimo;
 	private $chishimo;
 	
-	function Seimei() {
-	// 漢字画数データーベースの初期化
-		$this->kanji = Array();
-		$in = fopen("./kanji.dat", "r");
-		
-		$i = 0;
-		while (!feof($in)) {
-			if ($i++ > 31) {
-				$i = 1;
-			}
-			$line = fgets($in);
-			for ($j = 0; $j < mb_strlen($line, "utf-8"); $j++) {
-				$c = mb_substr($line, $j, 1, "utf-8");
-				$this->kanji[$c] = $i;
-			}
-		}
-		fclose($in);
-	}
-
 	function meimei ($sex) {
 		$meimei = New Meimei();
 		return($meimei->getNewName($this->sei1, $this->sei2, $sex));
@@ -63,14 +37,16 @@ Class Seimei {
 		$this->sex = $sex;
 		$this->marry = $marry;
 		$this->over40 = $over40;
+
+		$kanji = New Kanji();
 		
-		$this->sei1 = $this->kanji[mb_substr($this->sei, 0, 1, "utf-8")];
-		$this->sei2 = $this->kanji[mb_substr($this->sei, mb_strlen($this->sei, "utf-8") - 1, 1, "utf-8")];
+		$this->sei1 = $kanji->kakusu(mb_substr($this->sei, 0, 1, "utf-8"));
+		$this->sei2 = $kanji->kakusu(mb_substr($this->sei, mb_strlen($this->sei, "utf-8") - 1, 1, "utf-8"));
 		
 		// 々ゝ仝の処理
 		$sei = preg_replace("/(.)(々ゝ仝)/u", "$1$1", $sei);
 		$mei = preg_replace("/(.)(々ゝ仝)/u", "$1$1", $mei);
-
+		
 		// 天画・人画・地画・外画・総画の算出(結構ややこしい)
 		$this->tenkaku = 0;
 		$this->jinkaku = 0;
@@ -80,7 +56,7 @@ Class Seimei {
 		// 天画の算出
 		for ($i = 0; $i < mb_strlen($sei, "utf-8"); $i++) {
 			$c = mb_substr($sei, $i, 1, "utf-8");
-			$k = $this->kanji[$c];
+			$k = $kanji->kakusu($c);
 			if ($k == 0) {
 				push($this->error, $c);
 			} else {
@@ -96,13 +72,13 @@ Class Seimei {
 		}
 		
 		// 人画の算出
-		$this->jinkaku = $this->kanji[mb_substr($sei, mb_strlen($sei, "utf-8")-1, 1, "utf-8")]
-						 + $this->kanji[mb_substr($mei, 0, 1, "utf-8")];
+		$this->jinkaku = $kanji->kakusu(mb_substr($sei, mb_strlen($sei, "utf-8")-1, 1, "utf-8"))
+					   + $kanji->kakusu(mb_substr($mei, 0, 1, "utf-8"));
 		
 		// 地画の算出
 		for ($i = 0; $i < mb_strlen($mei, "utf-8"); $i++) {
 			$c = mb_substr($mei, $i, 1, "utf-8");
-			$k = $this->kanji[$c];
+			$k = $kanji->kakusu($c);
 			if ($k == 0) {
 				push($this->error, $c);
 			} else {
