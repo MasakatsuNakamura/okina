@@ -6,7 +6,7 @@ require 'jcode.pl';
 require "zenhan.pl";
 use MIME::Base64;
 &ReadParse();
-#####е╟б╝е┐д╬╝шдъ╣■д▀#####
+#####$B%G!<%?$N<h$j9~$_(B#####
 $name = $in{'name'};
 $email = $in{'email'};
 $email2 = $in{'email2'};
@@ -23,20 +23,20 @@ $method = $in{'method'};
 $user = $in{'user'};
 $brother = $in{'brother'};
 $request = $in{'request'};
-######╞■╬╧е╟б╝е┐д╬└░╖┴╜ш═¤######
+######$BF~NO%G!<%?$N@07A=hM}(B######
 if ($zipcord ne "") {
 	$zipcord =~ s/\s*//g;
-	#┴┤│╤▒╤┐Ї╗·дЄд╣д┘д╞╚╛│╤▒╤┐Ї╗·д╦д╣дыбг
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$zipcord = &zen2han($zipcord); 
 }
 if ($tel ne "") {
 	$tel =~ s/\s*//g;
-	#┴┤│╤▒╤┐Ї╗·дЄд╣д┘д╞╚╛│╤▒╤┐Ї╗·д╦д╣дыбг
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$tel = &zen2han($tel); 
 }
 if ($fax ne "") {
 	$fax =~ s/\s*//g;
-	#┴┤│╤▒╤┐Ї╗·дЄд╣д┘д╞╚╛│╤▒╤┐Ї╗·д╦д╣дыбг
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$fax = &zen2han($fax); 
 }
 if ($familyname ne "") {
@@ -47,122 +47,122 @@ if ($brthday ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#┴┤│╤▒╤┐Ї╗·дЄд╣д┘д╞╚╛│╤▒╤┐Ї╗·д╦д╣дыбг
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email = &zen2han($email);
 } 
 if ($email2 ne "") {
 	$email2 =~ s/\s*//g;
-	#┴┤│╤▒╤┐Ї╗·дЄд╣д┘д╞╚╛│╤▒╤┐Ї╗·д╦д╣дыбг
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email2 = &zen2han($email);
 } 
-#####╞■╬╧еиещб╝д╬е┴езе├еп#####
+#####$BF~NO%(%i!<$N%A%'%C%/(B#####
 if ($name =~ /^\s*$/){
-	&CgiError("╠╛┴░д╬╡н╞■дмдвдъд▐д╗дєбг",
-	"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("есб╝еыеве╔еье╣д╬╡н╞■дмдвдъд▐д╗дєбг",
-	"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("╞■╬╧еиещб╝",
-		"есб╝еыеве╔еье╣д╬╜ёдн╩¤дм┤╓░уд├д╞ддд▐д╣бг",$email,
-		"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }	
 if ($order2 ne "") {
 	if ($zipcord eq "") {
-		&CgiError("═╣╩╪╚╓╣цдм╞■╬╧д╡дьд╞ддд▐д╗дєбг",
-		"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+		&CgiError("$BM9JXHV9f$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($address eq "") {
-		&CgiError("╜╗╜ъдм╞■╬╧д╡дьд╞ддд▐д╗дєбг",
-		"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+		&CgiError("$B=;=j$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}	
 	elsif ($fullname eq "") {
-		&CgiError("╝ї╝ш┐═дм╞■╬╧д╡дьд╞ддд▐д╗дєбг",
-		"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+		&CgiError("$B<u<h?M$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if ($order3 ne "") {
 	if ($familyname eq "") {
-		&CgiError("╔─╗·(└л)дм╞■╬╧д╡дьд╞ддд▐д╗дєбг",
-		"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+		&CgiError("$BID;z(B($B@+(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($brthday eq "") {
-		&CgiError("═╜─ъ╞№(├┬└╕╞№)дм╞■╬╧д╡дьд╞ддд▐д╗дєбг",
-		"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+		&CgiError("$BM=DjF|(B($BCB@8F|(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if (($order3 ne "") and ($method eq "fax")) {
 	if ($fax eq "") {
-		&CgiError("┴ўдъ└шд╬е╒ебе├епе╣╚╓╣цдм╞■╬╧д╡дьд╞ддд▐д╗дєбг",
-		"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+		&CgiError("$BAw$j@h$N%U%!%C%/%9HV9f$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if (($order3 ne "") and ($method eq "mail")) {
 	if ($email2 =~ /^\s*$/){
-	&CgiError("╖ы▓╠╧в═э└шд╬есб╝еыеве╔еье╣д╬╡н╞■дмдвдъд▐д╗дєбг",
-	"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+	&CgiError("$B7k2LO"Mm@h$N%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
     }
     elsif (($email2) and (not $email2 =~ /.+\@.+\..+/)) {
-	&CgiError("╞■╬╧еиещб╝",
-		"╖ы▓╠╧в═э└шд╬есб╝еыеве╔еье╣д╬╜ёдн╩¤дм┤╓░уд├д╞ддд▐д╣бг",$email2,
-		"е╓ещеже╢д╬ОвBackОге▄е┐еєд╟╠сд├д╞║╞╞■╬╧д╖д╞дпд└д╡ддбг");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B7k2LO"Mm@h$N%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email2,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
     }
 }
-#####╝ъ├╩дЄ╩╕╛╧▓╜#####
+#####$B<jCJ$rJ8>O2=(B#####
 if ($method eq "fax") {
-	$method ="е╒ебе├епе╣д╟┴ўд├д╞дпд└д╡ддбг";
+	$method ="$B%U%!%C%/%9$GAw$C$F$/$@$5$$!#(B";
 }
 if ($method eq "mail") {
-	$method ="┼┼╗╥есб╝еыд╟┴ўд├д╞дпд└д╡ддбг";
+	$method ="$BEE;R%a!<%k$GAw$C$F$/$@$5$$!#(B";
 }
 &jcode'convert(*method, 'jis', 'euc');
-######д│д│длдщ░·дн╖╤до╛Ё╩єд╬└╕└од╚╔╜╝и▓ш╠╠######
-#########╜ё└╥д╬д▀├э╩╕##########
+######$B$3$3$+$i0z$-7Q$.>pJs$N@8@.$HI=<(2hLL(B######
+#########$B=q@R$N$_CmJ8(B##########
 if ($order2 ne "")  {
 	$msg = <<"ORDER020";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-<TITLE>╜ё└╥д╬д┤├э╩╕</TITLE>
+<TITLE>$B=q@R$N$4CmJ8(B</TITLE>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 <P>
-<CENTER><B><U>д┤├э╩╕╞т═╞д╬д┤│╬╟з</U></B></CENTER>        
-<BLOCKQUOTE>д│д╬▓ш╠╠д╧бвд┤├э╩╕╞т═╞дЄд┤│╬╟з─║дпд┐дсд╬дтд╬д╟д╣бг╞т═╞д╦╕эдъдмдвды╛ь╣чд╧бве╓ещеже╢д╬б╓╠сдыб╫е▄е┐еєдЄ▓бд╖д╞Ов╞■╬╧е╒ейб╝ерОгдлдщ╜д└╡д╖д╞▓╝д╡ддбгд│дьд╟╡╣д╖д▒дьд╨б╓├э╩╕б╫е▄е┐еєдЄ▓бд╖д╞▓╝д╡ддбг</BLOCKQUOTE>         
-<CENTER><B>д┤├э╩╕╞т═╞</B></CENTER><BR>
+<CENTER><B><U>$B$4CmJ8FbMF$N$43NG'(B</U></B></CENTER>        
+<BLOCKQUOTE>$B$3$N2hLL$O!"$4CmJ8FbMF$r$43NG'D:$/$?$a$N$b$N$G$9!#FbMF$K8m$j$,$"$k>l9g$O!"%V%i%&%6$N!VLa$k!W%\%?%s$r2!$7$F!VF~NO%U%)!<%`!W$+$i=$@5$7$F2<$5$$!#$3$l$G59$7$1$l$P!VCmJ8!W%\%?%s$r2!$7$F2<$5$$!#(B</BLOCKQUOTE>         
+<CENTER><B>$B$4CmJ8FbMF(B</B></CENTER><BR>
 <HR>
-двд╩д┐д╬дк╠╛┴░б╩дк┐╜╣■┐═б╦<BR>
+$B$"$J$?$N$*L>A0!J$*?=9~?M!K(B<BR>
 \$name<BR>
-есб╝еыеве╔еье╣<BR>
+$B%a!<%k%"%I%l%9(B<BR>
 \$email<BR>
-╜ё└╥д╬┴ўдъ└шд╦д─ддд╞<BR>
-═╣╩╪╚╓╣ц<BR>
+$B=q@R$NAw$j@h$K$D$$$F(B<BR>
+$BM9JXHV9f(B<BR>
 \$zipcord<BR>
-д┤╜╗╜ъ<BR>
+$B$4=;=j(B<BR>
 \$address<BR>
-д┤╝л┬Ёд╬дк┼┼╧├╚╓╣ц<BR>
+$B$4<+Bp$N$*EEOCHV9f(B<BR>
 \$tel<BR>
-╝ї╝ш┐═д┤╗с╠╛<BR>
+$B<u<h?M$4;aL>(B<BR>
 \$fullname<BR>
 <HR>         
-<BLOCKQUOTE><B>д┤│╬╟здм║╤д▀д▐д╖д┐дщ</B><FONT COLOR="#FF0000"><B>▓╝╡нОв├э╩╕Оге▄е┐еєдЄ1▓єд└д▒▓бд╖д╞д┤╚п├э</B></FONT><B>дпд└д╡ддбг<BR>
-д╩дкбв╛ж╔╩д╬└н│╩╛хбвд│дь░╩╣▀д╬д┤├э╩╕д╬╝шдъ╛├д╖дф╩╓╔╩д╧░ь└┌╜╨═шд▐д╗дєд╬д╟═╜дсд┤╬╗╛╡▓╝д╡ддбг(╦м╠ф╚╬╟ф╦бд╬епб╝еъеєе░еке╒д╧┼м═╤д╡дьд▐д╗дєбгб╦</B></BLOCKQUOTE>        
-д┤├э╩╕д╬─√└╡д╧бве╓ещеже╢д╬Ов╠сдыОгд╟Ов╞■╬╧е╒ейб╝ерОгдлдщдфдъ─╛д╖д╞▓╝д╡ддбг<BR>          <P><FORM ACTION="/~kazu-y/cgi_bin2/in-order.cgi" METHOD=POST>
+<BLOCKQUOTE><B>$B$43NG'$,:Q$_$^$7$?$i(B</B><FONT COLOR="#FF0000"><B>$B2<5-!VCmJ8!W%\%?%s$r(B1$B2s$@$12!$7$F$4H/Cm(B</B></FONT><B>$B$/$@$5$$!#(B<BR>
+$B$J$*!">&IJ$N@-3J>e!"$3$l0J9_$N$4CmJ8$N<h$j>C$7$dJVIJ$O0l@Z=PMh$^$;$s$N$GM=$a$4N;>52<$5$$!#(B($BK,LdHNGdK!$N%/!<%j%s%0%*%U$OE,MQ$5$l$^$;$s!#!K(B</B></BLOCKQUOTE>        
+$B$4CmJ8$ND{@5$O!"%V%i%&%6$N!VLa$k!W$G!VF~NO%U%)!<%`!W$+$i$d$jD>$7$F2<$5$$!#(B<BR>          <P><FORM ACTION="/~kazu-y/cgi_bin2/in-order.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
             <INPUT TYPE="hidden" NAME="email" VALUE="\$email">
             <INPUT TYPE="hidden" NAME="email2" VALUE="">
@@ -180,7 +180,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="brother" VALUE="">
             <INPUT TYPE="hidden" NAME="request" VALUE="">
             <INPUT TYPE="hidden" NAME="kgak" VALUE="1,810">
-            <CENTER><INPUT TYPE=submit NAME="┴ў┐о" VALUE="├э╩╕">
+            <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BCmJ8(B">
          </FORM></P>
 </P>
 </BODY>
@@ -196,46 +196,46 @@ ORDER020
 	$msg =~ s/\$fullname/$fullname/g;
 	print $msg;
 }
-###########╠┐╠╛д╬д▀░══ъ############
+###########$BL?L>$N$_0MMj(B############
 elsif ($order3 ne "")  {
 	$msg = <<"ORDER003";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-<TITLE>╠┐╠╛д╬д┤░══ъ</TITLE>
+<TITLE>$BL?L>$N$40MMj(B</TITLE>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
 <P>
-<CENTER><B><U>д┤├э╩╕╞т═╞д╬д┤│╬╟з</U></B></CENTER>         
-<BLOCKQUOTE>д│д╬▓ш╠╠д╧бвд┤├э╩╕╞т═╞дЄд┤│╬╟з─║дпд┐дсд╬дтд╬д╟д╣бг╞т═╞д╦╕эдъдмдвды╛ь╣чд╧бве╓ещеже╢д╬б╓╠сдыб╫е▄е┐еєдЄ▓бд╖д╞Ов╞■╬╧е╒ейб╝ерОгдлдщ╜д└╡д╖д╞▓╝д╡ддбгд│дьд╟╡╣д╖д▒дьд╨б╓├э╩╕б╫е▄е┐еєдЄ▓бд╖д╞▓╝д╡ддбг</BLOCKQUOTE>
-<CENTER><B>д┤├э╩╕╞т═╞</B><BR></CENTER>
+<CENTER><B><U>$B$4CmJ8FbMF$N$43NG'(B</U></B></CENTER>         
+<BLOCKQUOTE>$B$3$N2hLL$O!"$4CmJ8FbMF$r$43NG'D:$/$?$a$N$b$N$G$9!#FbMF$K8m$j$,$"$k>l9g$O!"%V%i%&%6$N!VLa$k!W%\%?%s$r2!$7$F!VF~NO%U%)!<%`!W$+$i=$@5$7$F2<$5$$!#$3$l$G59$7$1$l$P!VCmJ8!W%\%?%s$r2!$7$F2<$5$$!#(B</BLOCKQUOTE>
+<CENTER><B>$B$4CmJ8FbMF(B</B><BR></CENTER>
 <HR>
-двд╩д┐д╬дк╠╛┴░б╩дк┐╜╣■┐═б╦<BR>
+$B$"$J$?$N$*L>A0!J$*?=9~?M!K(B<BR>
 \$name<BR>
-есб╝еыеве╔еье╣<BR>
+$B%a!<%k%"%I%l%9(B<BR>
 \$email<BR>
-┐╖└╕╗∙д╬╔─╗·(└л)<BR>
+$B?7@8;y$NID;z(B($B@+(B)<BR>
 \$familyname<BR>
-д┤╜╨╗║═╜─ъ╞№<BR>
+$B$4=P;:M=DjF|(B<BR>
 \$brthday<BR>
-д┤═°═╤▓є┐Ї<BR>
+$B$4MxMQ2s?t(B<BR>
 \$user<BR>
-д┤╖╗╗╨д╬дк╠╛┴░<BR>
+$B$47;;P$N$*L>A0(B<BR>
 \$brother<BR>
-д┤═╫╦╛╗Ў╣р<BR>
+$B$4MWK>;v9`(B<BR>
 \$request<BR>
-╖ы▓╠д╬д┤╧в═э╩¤╦б<BR>
+$B7k2L$N$4O"MmJ}K!(B<BR>
 \$method<BR>
-е╒ебе├епе╣╚╓╣ц<BR>
+$B%U%!%C%/%9HV9f(B<BR>
 \$fax<BR>
-е╤е╜е│еєд╬Eесб╝еыеве╔еье╣<BR>
+$B%Q%=%3%s$N(BE$B%a!<%k%"%I%l%9(B<BR>
 \$email2<BR>
 <HR>
-<BLOCKQUOTE><B>д┤│╬╟здм║╤д▀д▐д╖д┐дщ</B><FONT COLOR="#FF0000"><B>▓╝╡нОв├э╩╕Оге▄е┐еєдЄ1▓єд└д▒▓бд╖д╞д┤╚п├э</B></FONT><B>дпд└д╡ддбг<BR>
-д╩дкбв╛ж╔╩д╬└н│╩╛хбвд│дь░╩╣▀д╬д┤├э╩╕д╬╝шдъ╛├д╖дф╩╓╔╩д╧░ь└┌╜╨═шд▐д╗дєд╬д╟═╜дсд┤╬╗╛╡▓╝д╡ддбг(╦м╠ф╚╬╟ф╦бд╬епб╝еъеєе░еке╒д╧┼м═╤д╡дьд▐д╗дєбгб╦</B></BLOCKQUOTE>         
-д┤├э╩╕д╬─√└╡д╧бве╓ещеже╢д╬Ов╠сдыОгд╟Ов╞■╬╧е╒ейб╝ерОгдлдщдфдъ─╛д╖д╞▓╝д╡ддбг        
+<BLOCKQUOTE><B>$B$43NG'$,:Q$_$^$7$?$i(B</B><FONT COLOR="#FF0000"><B>$B2<5-!VCmJ8!W%\%?%s$r(B1$B2s$@$12!$7$F$4H/Cm(B</B></FONT><B>$B$/$@$5$$!#(B<BR>
+$B$J$*!">&IJ$N@-3J>e!"$3$l0J9_$N$4CmJ8$N<h$j>C$7$dJVIJ$O0l@Z=PMh$^$;$s$N$GM=$a$4N;>52<$5$$!#(B($BK,LdHNGdK!$N%/!<%j%s%0%*%U$OE,MQ$5$l$^$;$s!#!K(B</B></BLOCKQUOTE>         
+$B$4CmJ8$ND{@5$O!"%V%i%&%6$N!VLa$k!W$G!VF~NO%U%)!<%`!W$+$i$d$jD>$7$F2<$5$$!#(B        
          <P><FORM ACTION="/~kazu-y/cgi_bin2/in-order.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
             <INPUT TYPE="hidden" NAME="email" VALUE="\$email">
@@ -254,7 +254,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="brother" VALUE="\$brother">
             <INPUT TYPE="hidden" NAME="request" VALUE="\$request">
             <INPUT TYPE="hidden" NAME="kgak" VALUE="10,000">
-            <CENTER><INPUT TYPE=submit NAME="┴ў┐о" VALUE="├э╩╕">
+            <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BCmJ8(B">
          </FORM></P>
 </P>
 </BODY>

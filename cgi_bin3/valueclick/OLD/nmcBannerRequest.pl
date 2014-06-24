@@ -1,6 +1,6 @@
 package nmcBannerRequest;
 
-        # ½é´üÀßÄê
+        # $B=i4|@_Dj(B
 #	print "Version ".$]."\n";
 #	if ($] >= 5 ){
         	use Socket;
@@ -13,10 +13,10 @@ sub BannerRequest{
 	$SIG{'ALRM'} = 'getaralm';
         $SiteId = $_[0];
         $S = "SOCK";
-        # ¹­¹ðÇÛ¿®¥µ¡¼¥Ð¡¼¤ÎÀßÄê
+        # $B9-9pG[?.%5!<%P!<$N@_Dj(B
         $host = "jaguar.mobileclick.ne.jp";
         $port = 80;
-	#ÇÛ¿®CGI¤Î»ØÄê
+	#$BG[?.(BCGI$B$N;XDj(B
 	$url = "/cgi-bin/DealBanners.cgi"."?".$SiteId;
         socket($S,PF_INET,SOCK_STREAM,getprotobyname('tcp')) || return "socket NG<BR>\n";
         $port = getservbyname($port,'tcp') unless $port =~ /^\d+/;
@@ -33,12 +33,12 @@ User-Agent: $Env{HTTP_USER_AGENT}
 
 END
 
-        # ½ÐÎÏ·ë²Ì¤ò³ÊÇ¼¤¹¤ë
+        # $B=PNO7k2L$r3JG<$9$k(B
         local $output= "";
  	local $BlankCnt = 0;
         local $read_bits='';
         vec($read_bits,fileno(SOCK),1)=1;
-	#TimeOut¤ÎÀßÄê	1sec
+	#TimeOut$B$N@_Dj(B	1sec
         select ($read_bits,undef,undef,1);
         if (vec($read_bits,fileno(SOCK),1) == 0 ) {
                 return "";

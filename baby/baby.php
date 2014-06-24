@@ -17,19 +17,19 @@ case "meimei" :
 	$sei = HANtoZEN($sei, 2);
 
 	if (strstr($confirm, "no")) {
-		echo "<body>利用規約にご同意いただけない場合、ご利用はご遠慮いただいております。<br>";
-		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=フォームに戻る></form></body>";
+		echo "<body>$BMxMQ5,Ls$K$4F10U$$$?$@$1$J$$>l9g!"$4MxMQ$O$41sN8$$$?$@$$$F$*$j$^$9!#(B<br>";
+		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=$B%U%)!<%`$KLa$k(B></form></body>";
 		exit();
 	}
 	if ($sei == "") {
-		echo "<body>姓の欄をご入力いただけないと、命名が出来ません。<br>";
-		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=フォームに戻る></form></body>";
+		echo "<body>$B@+$NMs$r$4F~NO$$$?$@$1$J$$$H!"L?L>$,=PMh$^$;$s!#(B<br>";
+		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=$B%U%)!<%`$KLa$k(B></form></body>";
  		exit();
 	}
 	if ((($birthmonth == 4 or $birthmonth == 6 or $birthmonth == 9 or $birthmonth == 11) and 
 		$birthday == 31) or ($birthmonth == 2 and $birthday >29)) {
-		echo "<body>" . $birthmonth . "月" . $birthday . "日：正しい誕生日が入力されていません。<br>";
-		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=フォームに戻る></form></body>";
+		echo "<body>" . $birthmonth . "$B7n(B" . $birthday . "$BF|!'@5$7$$CB@8F|$,F~NO$5$l$F$$$^$;$s!#(B<br>";
+		echo "<form action=baby.php method=POST><input type=hidden name=mode value=form><input type=hidden name=password value=" . $password . "><input type=submit value=$B%U%)!<%`$KLa$k(B></form></body>";
 		exit();
 	}
 
@@ -63,8 +63,8 @@ case "meimei" :
 		}
 	}
 	if ($kakusu1[0] == 0 or $kakusu2[0] == 0) {
-		echo "<body>姓に使用されている漢字がデータベースにありません。ご入力内容をご確認の上、間違いがなければハンドメイドでのご依頼をお願いいたします<br>";
-		echo "<a href=index.html>戻る</a></body>";
+		echo "<body>$B@+$K;HMQ$5$l$F$$$k4A;z$,%G!<%?%Y!<%9$K$"$j$^$;$s!#$4F~NOFbMF$r$43NG'$N>e!"4V0c$$$,$J$1$l$P%O%s%I%a%$%I$G$N$40MMj$r$*4j$$$$$?$7$^$9(B<br>";
+		echo "<a href=index.html>$BLa$k(B</a></body>";
 	}
 
 	$sei1kaku = $kakusu1[0];
@@ -140,7 +140,7 @@ case "kakunin" :
 	if (strstr($mail, $mailconf)) {
 		include("./kakunin.html");
 	} else {
-		echo "<body>メールアドレスが正しくありません</body>\n";
+		echo "<body>$B%a!<%k%"%I%l%9$,@5$7$/$"$j$^$;$s(B</body>\n";
 	}
 	break;
 
@@ -166,14 +166,14 @@ case "form" :
 <html>
 <body>
 <meta http-equiv="Context-Type" content="text/html;charset=SJIS">
-<title>パスワード入力</title></head>
+<title>$B%Q%9%o!<%IF~NO(B</title></head>
 <body bgcolor="white">
 
-パスワードを入力してください
+$B%Q%9%o!<%I$rF~NO$7$F$/$@$5$$(B
 <form action="./baby.php" method="post">
 <input type=password name=password>
 <input type="hidden" name="mode" value="form">
-<input value= "実行" type="submit">
+<input value= "$B<B9T(B" type="submit">
 
 <br>
 </body>

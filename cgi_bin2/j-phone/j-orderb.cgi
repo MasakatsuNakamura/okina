@@ -9,82 +9,82 @@ require "jcode.pl";
 require "zenhan.pl";
 use MIME::Base64;
 &ReadParse();
-#####¥Ç¡¼¥¿¤Î¼è¤ê¹þ¤ß#####
+#####$B%G!<%?$N<h$j9~$_(B#####
 $name = $in{'name'};
 $email = $in{'email'};
 $zipcord = $in{'zipcord'};
 $tel = $in{'tel'};
-######ÆþÎÏ¥Ç¡¼¥¿¤ÎÀ°·Á½èÍý######
+######$BF~NO%G!<%?$N@07A=hM}(B######
 if ($zipcord ne "") {
 	$zipcord =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$zipcord = &zen2han($zipcord); 
 }
 if ($tel ne "") {
 	$tel =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$tel = &zen2han($tel); 
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email = &zen2han($email);
 } 
-#####ÆþÎÏ¥¨¥é¡¼¤Î¥Á¥§¥Ã¥¯#####
+#####$BF~NO%(%i!<$N%A%'%C%/(B#####
 if ($name =~ /^\s*$/){
-	&CgiError("Ì¾Á°¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("¥á¡¼¥ë¥¢¥É¥ì¥¹¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("ÆþÎÏ¥¨¥é¡¼",
-		"¥á¡¼¥ë¥¢¥É¥ì¥¹¤Î½ñ¤­Êý¤¬´Ö°ã¤Ã¤Æ¤¤¤Þ¤¹¡£",$email,
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }	
 if ($zipcord eq "") {
-	&CgiError("Í¹ÊØÈÖ¹æ¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BM9JXHV9f$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
-#####¤³¤³¤«¤éBase64¥á¡¼¥ë#####
-##### ¥Ü¥Ç¥£´ðËÜÊ¸»úÎó¤ÎÄêµÁ######
+#####$B$3$3$+$i(BBase64$B%a!<%k(B#####
+##### $B%\%G%#4pK\J8;zNs$NDj5A(B######
 @body = (
 	"=====================================", 
-	"¡Ö»³ËÜ²§¤Î½ñÀÒ¡×¤´ÃíÊ¸¥Õ¥©¡¼¥à", 
-	"°Ê²¼¤Î¢¨¤òÏ³¤ì¤Ê¤¯¤´µ­Æþ¤Î¾å¡¢¡ÖÊÖ¿®¡×¤·¤Æ²¼¤µ¤¤¡£", 
-	"¿½¹þ¿ÍÍÍ¤Î»áÌ¾¡§", 
-	"¢¨", 
-	"¿½¹þ¿ÍÍÍ¤ÎE¥á¡¼¥ë¥¢¥É¥ì¥¹¡§", 
-	"¢¨", 
-	"½ñÀÒ¤ÎÁ÷ÉÕÀè¤ª¤è¤ÓÏ¢ÍíÀè", 
-	"Í¹ÊØÈÖ¹æ¡§", 
-	"¢¨", 
-	"¤´½»½ê¡§", 
-	"¢¨", 
-	"¤ªÅÅÏÃÈÖ¹æ¡§", 
-	"¢¨", 
-	"¼õ¼è¿ÍÍÍ¡§", 
-	"¢¨", 
-    "½ñÀÒ¤¬ÆÏ¤­¤Þ¤·¤¿¤é¡¢Âå¶â¤Î¤ª¿¶¤ê¹þ¤ß¤ò¤ª´ê¤¤¤·¤Þ¤¹¡£",
-	"¿¶¹þÀè¤Ï¡¢½ñÀÒ¤ËÆ±º­¤·¤Æ¤´Ï¢ÍíÃ×¤·¤Þ¤¹¡£", 
+	"$B!V;3K\2'$N=q@R!W$4CmJ8%U%)!<%`(B", 
+	"$B0J2<$N"($rO3$l$J$/$45-F~$N>e!"!VJV?.!W$7$F2<$5$$!#(B", 
+	"$B?=9~?MMM$N;aL>!'(B", 
+	"$B"((B", 
+	"$B?=9~?MMM$N(BE$B%a!<%k%"%I%l%9!'(B", 
+	"$B"((B", 
+	"$B=q@R$NAwIU@h$*$h$SO"Mm@h(B", 
+	"$BM9JXHV9f!'(B", 
+	"$B"((B", 
+	"$B$4=;=j!'(B", 
+	"$B"((B", 
+	"$B$*EEOCHV9f!'(B", 
+	"$B"((B", 
+	"$B<u<h?MMM!'(B", 
+	"$B"((B", 
+    "$B=q@R$,FO$-$^$7$?$i!"Be6b$N$*?6$j9~$_$r$*4j$$$7$^$9!#(B",
+	"$B?69~@h$O!"=q@R$KF1:-$7$F$4O"MmCW$7$^$9!#(B", 
 	"====================================="
 );
 foreach(@body) {
 	&jcode'convert(*_, "sjis", "euc");
 }
-#######Sub¤ÎÀ¸À®(Base64¥¨¥ó¥³¡¼¥É)#######
-$subject = "²§¤Ø¤´ÃíÊ¸(j¥Õ¥©¥óVer.1)";
+#######Sub$B$N@8@.(B(Base64$B%(%s%3!<%I(B)#######
+$subject = "$B2'$X$4CmJ8(B(j$B%U%)%s(BVer.1)";
 &jcode'convert(*subject, 'jis', 'euc');
 $subject = encode_base64($subject);
 chop($subject);
-$subject = "=?iso-2022-jp?B?" . $subject . "?=";
-####### ¥Ø¥Ã¥À¤ÎÄêµÁ#########
+$subject = " . $subject . "?=";
+####### $B%X%C%@$NDj5A(B#########
 $mail_header = <<"EOM4";
 From: $okina_email
 To: $email
@@ -94,24 +94,24 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: base64
 Subject: $subject
 EOM4
-####### ¥á¥Ã¥»¡¼¥¸¥Ü¥Ç¥£¤ÎÀ¸À®########
+####### $B%a%C%;!<%8%\%G%#$N@8@.(B########
 $body[4] .= $name;
 $body[6] .= $email;
 $body[9] .= $zipcord;
 $body[13] .= $tel;
 $mailbody = join("\n", @body);
 $encoded = encode_base64($mailbody);
-######## ¥á¡¼¥ëÁ÷¿®#########
+######## $B%a!<%kAw?.(B#########
 open(MAIL, "|$sendmail $okina_email");
 print MAIL $mail_header;
 for ($i = 0; $i < length($encoded); $i += 76) {
 	print MAIL substr($encoded, $i, 76);
 }
 close(MAIL);
-#####°Ê¾å¤¬Base64¥á¡¼¥ë#####
-$msg1 = "¤´ÃíÊ¸Í½Ìó´°Î»\n";
-$msg2 = "»Ã¤¯¤·¤Þ¤¹¤È¡¢¤´ÃíÊ¸ÍÑ»æ¤¬¥á¡¼¥ë¤ÇÆÏ¤­¤Þ¤¹¡£\n";
-$msg3 = "1¢ª¤ªÃÎ¤é¤»¤ËÌá¤ë¡£\n";
+#####$B0J>e$,(BBase64$B%a!<%k(B#####
+$msg1 = "$B$4CmJ8M=Ls40N;(B\n";
+$msg2 = "$B;C$/$7$^$9$H!"$4CmJ8MQ;f$,%a!<%k$GFO$-$^$9!#(B\n";
+$msg3 = "1$B"*$*CN$i$;$KLa$k!#(B\n";
 &jcode'convert(*msg1, 'sjis', 'euc');
 &jcode'convert(*msg2, 'sjis', 'euc');
 &jcode'convert(*msg3, 'sjis', 'euc');

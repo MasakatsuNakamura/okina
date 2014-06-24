@@ -29,12 +29,12 @@ sub dclick_try{
 	$port = 80;
 	$port = getservbyname($port,'tcp') unless $port =~ /^\d+/;
 	$iaddr = inet_aton("$serverurl")
-	        or die "$serverurl§œ¬∏∫ﬂ§∑§ §§•€•π•»§«§π°£\n";
+	        or die "$serverurl$B$OB8:_$7$J$$%[%9%H$G$9!#(B\n";
 	$sock_addr = pack_sockaddr_in($port,$iaddr);
 	socket(SOCKET,PF_INET,SOCK_STREAM,0)
-	        or die "•Ω•±•√•»§Ú¿∏¿Æ§«§≠§ﬁ§ª§Û°£\n";
+	        or die "$B%=%1%C%H$r@8@.$G$-$^$;$s!#(B\n";
 	connect(SOCKET,$sock_addr)
-	        or die "$serverurl§Œ•›°º•»$port§À¿‹¬≥§«§≠§ﬁ§ª§Û°£\n";
+	        or die "$serverurl$B$N%]!<%H(B$port$B$K@\B3$G$-$^$;$s!#(B\n";
 	select(SOCKET); $|=1; select(STDOUT);
 	print SOCKET "GET http://$serverurl/pv.php?id=$id&number=$number HTTP/1.0\r\n\r\n";
 	

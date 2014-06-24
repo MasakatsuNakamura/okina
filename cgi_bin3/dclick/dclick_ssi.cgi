@@ -1,25 +1,25 @@
 #!/usr/local/bin/perl
-#¢¬¡ÊÃí¡Ëperl¤Î¥Ñ¥¹¤ò³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£
+#$B",!JCm!K(Bperl$B$N%Q%9$r3NG'$7$F$/$@$5$$!#(B
 
 use Socket;
 
 require "./dclick_perl.pl";
 #use dclick_perl;
 
-#dclick SSI ÂÐ±þ
-#½é´üÀßÄê
+#dclick SSI $BBP1~(B
+#$B=i4|@_Dj(B
 
-#Ãí°Õ¡ªÉ¬¤º¤´¼«¿È¤Î¹­¹ðID¤ËÊÑ¹¹¤·¤Æ¤¯¤À¤µ¤¤¡£
+#$BCm0U!*I,$:$4<+?H$N9-9p(BID$B$KJQ99$7$F$/$@$5$$!#(B
 $id = "B00369";
 
-#É½¼¨¤µ¤»¤¿¤¤¹­¹ð¿ô¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤(1¡Á3)
+#$BI=<($5$;$?$$9-9p?t$rF~NO$7$F$/$@$5$$(B(1$B!A(B3)
 $number = 1;
 
-#É½¼¨¤µ¤»¤¿¤¤html¤ÎÃæ¤Ë°Ê²¼¤Î¥³¥Þ¥ó¥É¤òÁÞÆþ¤·¤Æ¤¯¤À¤µ¤¤¡£
+#$BI=<($5$;$?$$(Bhtml$B$NCf$K0J2<$N%3%^%s%I$rA^F~$7$F$/$@$5$$!#(B
 #<!--#exec cgi="./dclick_ssi.cgi"-->
-#¤â¤·¤¯¤Ï <!--#include file="./dclick_ssi.cgi"-->
+#$B$b$7$/$O(B <!--#include file="./dclick_ssi.cgi"-->
 
-#º¸¤«¤é¡ÊID,¹­¹ð¿ô¡Ë
+#$B:8$+$i!J(BID,$B9-9p?t!K(B
 @banner=&dclick_perl'dclick($id,$number);
 
 print "Content-type: text/html\n\n";

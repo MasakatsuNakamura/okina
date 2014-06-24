@@ -26,7 +26,7 @@ $sex2 = $in{'sex2'};
 $trade2 = $in{'trade2'};
 $request = $in{'request'};
 
-######ÆþÎÏ¥Ç¡¼¥¿¤ÎÀ°·Á½èÍý######
+######$BF~NO%G!<%?$N@07A=hM}(B######
 if ($familyname1 ne "") {
 	$familyname1 =~ s/\s*//g;
 }
@@ -47,167 +47,167 @@ if ($birthday2 ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email = &zen2han($email);
 } 
 
-#####ÆþÎÏ¥¨¥é¡¼¤Î¥Á¥§¥Ã¥¯#####
+#####$BF~NO%(%i!<$N%A%'%C%/(B#####
 if ($name =~ /^\s*$/){
-	&CgiError("Ì¾Á°¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("¥á¡¼¥ë¥¢¥É¥ì¥¹¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("ÆþÎÏ¥¨¥é¡¼",
-		"¥á¡¼¥ë¥¢¥É¥ì¥¹¤Î½ñ¤­Êý¤¬´Ö°ã¤Ã¤Æ¤¤¤Þ¤¹¡£",$email,
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($order4 ne "") {
 	if ($familyname1 eq "") {
-		&CgiError("À«¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B@+$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($firstname1 eq "") {
-		&CgiError("Ì¾¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BL>$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}	
 	elsif ($birthday1 eq "") {
-		&CgiError("À¸Ç¯·îÆü¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($trade1 eq "") {
-		&CgiError("¤ª»Å»öÆâÍÆ¤Þ¤¿¤Ï¡¢Ì¾Á°¤ÎÍÑÅÓ¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B$*;E;vFbMF$^$?$O!"L>A0$NMQES$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if ($order6 ne "") {
 	if ($familyname1 eq "") {
-		&CgiError("°ÍÍê¼ÔÂ¦¤ÎÀ«¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B0MMj<TB&$N@+$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($firstname1 eq "") {
-		&CgiError("°ÍÍê¼ÔÂ¦¤ÎÌ¾¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B0MMj<TB&$NL>$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($birthday1 eq "") {
-		&CgiError("°ÍÍê¼ÔÂ¦¤ÎÀ¸Ç¯·îÆü¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B0MMj<TB&$N@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($trade1 eq "") {
-		&CgiError("°ÍÍê¼ÔÂ¦¤Î¤´¿¦¶È¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B0MMj<TB&$N$4?&6H$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($familyname2 eq "") {
-		&CgiError("Áê¼êÂ¦¤ÎÀ«¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BAj<jB&$N@+$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($firstname2 eq "") {
-		&CgiError("Áê¼êÂ¦¤ÎÌ¾¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BAj<jB&$NL>$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($birthday2 eq "") {
-		&CgiError("Áê¼êÂ¦¤ÎÀ¸Ç¯·îÆü¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BAj<jB&$N@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($trade2 eq "") {
-		&CgiError("Áê¼êÂ¦¤Î¤´¿¦¶È¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BAj<jB&$N$4?&6H$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($request eq "") {
-		&CgiError("¤´ÁêÃÌÆâÍÆ¤ò¤ª½ñ¤­²¼¤µ¤¤¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B$4AjCLFbMF$r$*=q$-2<$5$$!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if ($order7 ne "") {
 	if ($familyname1 eq "") {
-		&CgiError("À«¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B@+$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($firstname1 eq "") {
-		&CgiError("Ì¾¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BL>$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($birthday1 eq "") {
-		&CgiError("À¸Ç¯·îÆü¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($trade1 eq "") {
-		&CgiError("¤´¿¦¶È¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B$4?&6H$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($request eq "") {
-		&CgiError("¤´ÁêÃÌÆâÍÆ¤ò¤ª½ñ¤­²¼¤µ¤¤¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B$4AjCLFbMF$r$*=q$-2<$5$$!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 
-#####ÃíÊ¸¥á¡¼¥ë¤ÎÁ÷¿®#####
+#####$BCmJ8%a!<%k$NAw?.(B#####
 $com = <<"MESSAGE3";
 From: $email
-Subject: ²§¤Ø¤´ÁêÃÌ(i¥â¡¼¥Év.1)
+Subject: $B2'$X$4AjCL(B(i$B%b!<%I(Bv.1)
 
 =====================================
-»³ËÜ²§¤µ¤Þ¤Ø¡¢°Ê²¼¤Î¤´ÁêÃÌ¤òÃ×¤·¤¿¤¯¡£
+$B;3K\2'$5$^$X!"0J2<$N$4AjCL$rCW$7$?$/!#(B
 
-¿½¹þ¿ÍÍÍ¤Î»áÌ¾¡§
+$B?=9~?MMM$N;aL>!'(B
 $name
-¿½¹þ¿ÍÍÍ¤ÎE¥á¡¼¥ë¥¢¥É¥ì¥¹¡§
+$B?=9~?MMM$N(BE$B%a!<%k%"%I%l%9!'(B
 $email
-¤´°ÍÍêÆâÍÆ¡§
+$B$40MMjFbMF!'(B
 $order4 
 $order6 
 $order7 
-¤´Í×Ë¾»ö¹à¡§
+$B$4MWK>;v9`!'(B
 $request
 
-¤´°ÍÍê¼Ô¤Î¾ðÊó
-À«¡§
+$B$40MMj<T$N>pJs(B
+$B@+!'(B
 $familyname1
-Ì¾¡§
+$BL>!'(B
 $firstname1
-À¸Ç¯·îÆü¡§
+$B@8G/7nF|!'(B
 $birthday1
-À«ÊÌ¡§
+$B@+JL!'(B
 $sex1
-¤´¿¦¶È¡¦¶ÈÌ³ÆâÍÆ¡§
+$B$4?&6H!&6HL3FbMF!'(B
 $trade1
-·ëº§¸å¤ÎÀ«¡§
+$B7k:'8e$N@+!'(B
 $sei
 
-Áê¼êÊý¤Î¾ðÊó
-À«¡§
+$BAj<jJ}$N>pJs(B
+$B@+!'(B
 $familyname2 
-Ì¾¡§
+$BL>!'(B
 $firstname2
-À¸Ç¯·îÆü¡§
+$B@8G/7nF|!'(B
 $birthday2
-À­ÊÌ¡§
+$B@-JL!'(B
 $sex2 
-¤´¿¦¶È¡§
+$B$4?&6H!'(B
 $trade2
 
 =====================================
@@ -221,14 +221,14 @@ close(MAIL);
 print "Content-type: text/html\n\n";
 print "<HTML>\n";
 print "<HEAD>\n";
-print "<TITLE>¤´ÁêÃÌ¼õÉÕ´°Î»</TITLE>\n";
+print "<TITLE>$B$4AjCL<uIU40N;(B</TITLE>\n";
 print "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html;CHARSET=SHIFT_JIS\">\n";
 print "</HEAD>\n";
 print "<BODY BGCOLOR=\"#FFFFFF\" TEXT=\"#000000\" LINK=\"#0000FF\">\n";
 print "<P>\n";
 print "<BR>\n";
 print "<BR>\n";
-print "<FONT COLOR=\"#FF0000\"><B>¤¢¤ê¤¬¤È¤¦¤´¤¶¤¤¤Þ¤·¤¿¡£</B></FONT><BR>\n";
-print "<A HREF=\"/~kazu-y/i-info2.html\" accesskey=1>1¢ª¤ªÃÎ¤é¤»¤ËÌá¤ë¡£</A><BR>\n";
+print "<FONT COLOR=\"#FF0000\"><B>$B$"$j$,$H$&$4$6$$$^$7$?!#(B</B></FONT><BR>\n";
+print "<A HREF=\"/~kazu-y/i-info2.html\" accesskey=1>1$B"*$*CN$i$;$KLa$k!#(B</A><BR>\n";
 print "</BODY>\n";
 print "</HTML>\n";

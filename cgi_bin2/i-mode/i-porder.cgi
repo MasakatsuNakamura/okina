@@ -9,7 +9,7 @@ $cgipath = "/~kazu-y/cgi_bin2";
 $baseurl = "http://www2.mahoroba.ne.jp";
 
 &ReadParse;
-#####¥Ç¡¼¥¿¤Î¼è¤ê¹þ¤ß#####
+#####$B%G!<%?$N<h$j9~$_(B#####
 $name = $in{'name'};
 $email = $in{'email'};
 $order3 = $in{'order3'};
@@ -18,7 +18,7 @@ $brthday = $in{'brthday'};
 $user = $in{'user'};
 $brother = $in{'brother'};
 
-######ÆþÎÏ¥Ç¡¼¥¿¤ÎÀ°·Á½èÍý######
+######$BF~NO%G!<%?$N@07A=hM}(B######
 if ($familyname ne "") {
 	$familyname =~ s/\s*//g;
 }
@@ -27,53 +27,53 @@ if ($brthday ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email = &zen2han($email);
 } 
 
-#####ÆþÎÏ¥¨¥é¡¼¤Î¥Á¥§¥Ã¥¯#####
+#####$BF~NO%(%i!<$N%A%'%C%/(B#####
 if ($name =~ /^\s*$/){
-	&CgiError("Ì¾Á°¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("¥á¡¼¥ë¥¢¥É¥ì¥¹¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("ÆþÎÏ¥¨¥é¡¼",
-		"¥á¡¼¥ë¥¢¥É¥ì¥¹¤Î½ñ¤­Êý¤¬´Ö°ã¤Ã¤Æ¤¤¤Þ¤¹¡£",$email,
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($order3 eq "")  {
-	&CgiError("ÆþÎÏ¥¨¥é¡¼",
-		"¤´ÃíÊ¸¤¬²¿¤â»Ø¼¨¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B$4CmJ8$,2?$b;X<($5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }	
 if ($order3 ne "") {
 	if ($familyname eq "") {
-		&CgiError("ÉÄ»ú(À«)¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BID;z(B($B@+(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($brthday eq "") {
-		&CgiError("Í½ÄêÆü(ÃÂÀ¸Æü)¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BM=DjF|(B($BCB@8F|(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 
-#####ÃíÊ¸É¼£²¤ÎÉ½¼¨#####
+#####$BCmJ8I<#2$NI=<((B#####
 $msg = <<"ORDER2";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>Ì¿Ì¾¤Î¤´°ÍÍê(1/2)</TITLE>
+   <TITLE>$BL?L>$N$40MMj(B(1/2)</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=SHIFT_JIS">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF">
@@ -86,25 +86,25 @@ Content-type: text/html
    <INPUT TYPE=hidden NAME=user VALUE="\$user">
    <INPUT TYPE=hidden NAME=brother VALUE="\$brother"></P>
    
-   <P><B><U>¤´Í×Ë¾»ö¹à</U></B><U>¡¡(¤´´üÂÔ¤ËÅº¤¨¤Ê¤¤¾ì¹ç¤â¤¢¤ê¤Þ¤¹¡£¤´Î»¾µ²¼¤µ¤¤¡£)</U><BR>
+   <P><B><U>$B$4MWK>;v9`(B</U></B><U>$B!!(B($B$44|BT$KE:$($J$$>l9g$b$"$j$^$9!#$4N;>52<$5$$!#(B)</U><BR>
    <TEXTAREA NAME=request ROWS=6 COLS=10 WRAP=virtual></TEXTAREA></P>
    
-   <P><B><U>·ë²Ì¤Î¤´Ï¢ÍíÊýË¡</U></B><BR>
-   <INPUT TYPE=radio NAME=method VALUE=fax CHECKED>¥Õ¥¡¥Ã¥¯¥¹¤Ç¼õ¿®¤·¤Þ¤¹¡£¢ª²¼µ­1.¤Ë¤ªÅÅÏÃÈÖ¹æ¤ò¤´µ­Æþ²¼¤µ¤¤¡£<BR>
-   <INPUT TYPE=radio NAME=method VALUE=mail>¥Ñ¥½¥³¥ó¤«¤éÅÅ»Ò¥á¡¼¥ë¤Ç¼õ¿®¤·¤Þ¤¹¡£<FONT COLOR="#FF0000">¡Ê·ÈÂÓÅÅÏÃ¤Ç¤Ï¼õ¿®¤Ç¤­¤Þ¤»¤ó)</FONT>¢ª²¼µ­2.¤Ë¥¢¥É¥ì¥¹¤ò¤´µ­Æþ²¼¤µ¤¤¡£</P>
+   <P><B><U>$B7k2L$N$4O"MmJ}K!(B</U></B><BR>
+   <INPUT TYPE=radio NAME=method VALUE=fax CHECKED>$B%U%!%C%/%9$G<u?.$7$^$9!#"*2<5-(B1.$B$K$*EEOCHV9f$r$45-F~2<$5$$!#(B<BR>
+   <INPUT TYPE=radio NAME=method VALUE=mail>$B%Q%=%3%s$+$iEE;R%a!<%k$G<u?.$7$^$9!#(B<FONT COLOR="#FF0000">$B!J7HBSEEOC$G$O<u?.$G$-$^$;$s(B)</FONT>$B"*2<5-(B2.$B$K%"%I%l%9$r$45-F~2<$5$$!#(B</P>
    
-   <P><B><U>1.¥Õ¥¡¥Ã¥¯¥¹ÈÖ¹æ</U></B><BR>
+   <P><B><U>1.$B%U%!%C%/%9HV9f(B</U></B><BR>
    <INPUT TYPE=text NAME=fax VALUE="" SIZE=16 ISTYLE=4></P>
    
-   <P><B><U>2.¥Ñ¥½¥³¥ó¤ÎÅÅ»Ò¥á¡¼¥ë¥¢¥É¥ì¥¹<BR>
+   <P><B><U>2.$B%Q%=%3%s$NEE;R%a!<%k%"%I%l%9(B<BR>
    </U></B><INPUT TYPE=text NAME=email2 VALUE="" SIZE=16 MAXLENGTH=80 ISTYLE=3></P>
    
-   <P><FONT COLOR="#FF0000"><B>ÆþÎÏ¤Ï°Ê¾å¤Ç¤¹¡£ÆâÍÆ¤ò¤´³ÎÇ§¤Î¾å¡¢¤´ÃíÊ¸¥Ü¥¿¥ó¤ò1²ó¤À¤±¥¯¥ê¥Ã¥¯¤·¤Æ²¼¤µ¤¤¡£<BR>
-   ¤´ÃíÊ¸³ÎÇ§¤Î²èÌÌ¤¬É½¼¨¤µ¤ì¤Þ¤¹¤Î¤Ç¡¢ÆþÎÏÆâÍÆ¤ò¤´³ÎÇ§²¼¤µ¤¤¡£</B></FONT></P>
-   <P><B><INPUT TYPE=submit NAME="Á÷¿®" VALUE="¤´ÃíÊ¸"></B><INPUT TYPE=reset VALUE="¥ê¥»¥Ã¥È">
+   <P><FONT COLOR="#FF0000"><B>$BF~NO$O0J>e$G$9!#FbMF$r$43NG'$N>e!"$4CmJ8%\%?%s$r(B1$B2s$@$1%/%j%C%/$7$F2<$5$$!#(B<BR>
+   $B$4CmJ83NG'$N2hLL$,I=<($5$l$^$9$N$G!"F~NOFbMF$r$43NG'2<$5$$!#(B</B></FONT></P>
+   <P><B><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$B$4CmJ8(B"></B><INPUT TYPE=reset VALUE="$B%j%;%C%H(B">
 </FORM></P>
 
-<P><B>¢¨¾å¼ê¤¯ÃíÊ¸¤Ç¤­¤Ê¤¤¾ì¹ç¤Ë¤Ï¡¢¾åµ­ÆâÍÆ¤ò</B><A HREF="mailto:okina\@e-mail.ne.jp" ACCESSKEY=0><B>¥á¡¼¥ë(0¥Ü¥¿¥ó¤ò²¡¤·¤Æ²¼¤µ¤¤¡£)</B></A>(okina\@e-mail.ne.jp)<B>¤Ë¤ÆÁ÷ÉÕ²¼¤µ¤¤¡£</B></P>
+<P><B>$B"(>e<j$/CmJ8$G$-$J$$>l9g$K$O!">e5-FbMF$r(B</B><A HREF="mailto:okina\@e-mail.ne.jp" ACCESSKEY=0><B>$B%a!<%k(B(0$B%\%?%s$r2!$7$F2<$5$$!#(B)</B></A>(okina\@e-mail.ne.jp)<B>$B$K$FAwIU2<$5$$!#(B</B></P>
 </BODY>
 </HTML>
 ORDER2

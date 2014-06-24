@@ -9,7 +9,7 @@ require "jcode.pl";
 require "zenhan.pl";
 &ReadParse;
 
-#####¥Ç¡¼¥¿¤Î¼è¤ê¹þ¤ß#####
+#####$B%G!<%?$N<h$j9~$_(B#####
 $name = $in{'name'};
 $email = $in{'email'};
 $order1 = $in{'order1'};
@@ -25,18 +25,18 @@ $user = $in{'user'};
 $brother = $in{'brother'};
 $request = $in{'request'};
 
-######ÆþÎÏ¥Ç¡¼¥¿¤ÎÀ°·Á½èÍý######
+######$BF~NO%G!<%?$N@07A=hM}(B######
 if ($zipcord ne "") {
 	$zipcord =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$zipcord = &zen2han($zipcord); 
-	#Í¹ÊØÈÖ¹æ¤¬7·å°Ê²¼¤ÇÆþÎÏ¤µ¤ì¤¿¾ì¹ç¡¢00¤òËöÈø¤ËÉÕ²Ã¤¹¤ë¡£
+	#$BM9JXHV9f$,(B7$B7e0J2<$GF~NO$5$l$?>l9g!"(B00$B$rKvHx$KIU2C$9$k!#(B
 	$zipcord = $zipcord . "00000000";
 	$zipcord = substr($zipcord, 0, 8);
 }
 if ($tel ne "") {
 	$tel =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$tel = &zen2han($tel); 
 }
 if ($familyname ne "") {
@@ -47,98 +47,98 @@ if ($brthday ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email = &zen2han($email);
 } 
 
-#####ÆþÎÏ¥¨¥é¡¼¤Î¥Á¥§¥Ã¥¯#####
+#####$BF~NO%(%i!<$N%A%'%C%/(B#####
 if ($name =~ /^\s*$/){
-	&CgiError("Ì¾Á°¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("¥á¡¼¥ë¥¢¥É¥ì¥¹¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("ÆþÎÏ¥¨¥é¡¼",
-		"¥á¡¼¥ë¥¢¥É¥ì¥¹¤Î½ñ¤­Êý¤¬´Ö°ã¤Ã¤Æ¤¤¤Þ¤¹¡£",$email,
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if (($order1 eq "" ) and ($order2 eq "" ) and ($order3 eq ""))  {
-	&CgiError("ÆþÎÏ¥¨¥é¡¼",
-		"¤´ÃíÊ¸¤¬²¿¤â»Ø¼¨¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B$4CmJ8$,2?$b;X<($5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }	
 if ($order2 ne "") {
 	if ($zipcord eq "") {
-		&CgiError("Í¹ÊØÈÖ¹æ¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BM9JXHV9f$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($address eq "") {
-		&CgiError("½»½ê¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B=;=j$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}	
 	elsif ($fullname eq "") {
-		&CgiError("¼õ¼è¿Í¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B<u<h?M$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if ($order3 ne "") {
 	if ($familyname eq "") {
-		&CgiError("ÉÄ»ú(À«)¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BID;z(B($B@+(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($brthday eq "") {
-		&CgiError("Í½ÄêÆü(ÃÂÀ¸Æü)¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BM=DjF|(B($BCB@8F|(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 
-#####ÃíÊ¸¥á¡¼¥ë¤ÎÁ÷¿®#####
+#####$BCmJ8%a!<%k$NAw?.(B#####
 $com = <<"MESSAGE";
 From: $email
-Subject: »³ËÜ²§¤Ø¤Î¤´ÃíÊ¸(i-geti/Ver.4)
+Subject: $B;3K\2'$X$N$4CmJ8(B(i-geti/Ver.4)
 
 =====================================
-¿½¹þ¿ÍÍÍ¤Î»áÌ¾¡§
+$B?=9~?MMM$N;aL>!'(B
 $name
-¿½¹þ¿ÍÍÍ¤ÎE¥á¡¼¥ë¥¢¥É¥ì¥¹¡§
+$B?=9~?MMM$N(BE$B%a!<%k%"%I%l%9!'(B
 $email
-¤´ÃíÊ¸ÆâÍÆ¡§
+$B$4CmJ8FbMF!'(B
 $order1
 $order2
 $order3
 
-½ñÀÒ¤ÎÁ÷ÉÕÀè¤Þ¤¿¤Ï¤´Ï¢ÍíÀè
-Í¹ÊØÈÖ¹æ¡§
+$B=q@R$NAwIU@h$^$?$O$4O"Mm@h(B
+$BM9JXHV9f!'(B
 $zipcord
-¤´½»½ê¡§
+$B$4=;=j!'(B
 $address
-¤ªÅÅÏÃÈÖ¹æ¡§
+$B$*EEOCHV9f!'(B
 $tel
-¼õ¼è¿ÍÍÍ¡§
+$B<u<h?MMM!'(B
 $fullname
 
-Ì¿Ì¾¤Î¤´°ÍÍêÆâÍÆ
-À«(¤ß¤ç¤¦¤¸)¡§
+$BL?L>$N$40MMjFbMF(B
+$B@+(B($B$_$g$&$8(B)$B!'(B
 $familyname
-½Ð»ºÍ½ÄêÆü¡§
+$B=P;:M=DjF|!'(B
 $brthday
-º£¤Þ¤Ç¤ÎÍøÍÑ¡§
+$B:#$^$G$NMxMQ!'(B
 $user
-·»»Ð¤Î¤ªÌ¾Á°¡§
+$B7;;P$N$*L>A0!'(B
 $brother
-¤´Í×Ë¾»ö¹à¡§
+$B$4MWK>;v9`!'(B
 $request
 
 =====================================
@@ -152,15 +152,15 @@ close(MAIL);
 print "Content-type: text/html\n\n";
 print "<html>\n";
 print "<head>\n";
-#²¼µ­¤ÎURL¤Ï¡¢¤¢¤Ê¤¿¤Î¥µ¡Ý¥Ð¡Ý¤Ë¤¢¤ï¤»¤Æ²¼¤µ¤¤¡£
+#$B2<5-$N(BURL$B$O!"$"$J$?$N%5!]%P!]$K$"$o$;$F2<$5$$!#(B
 print "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"5;URL=/~kazu-y/i-geti.html\">\n";
-print "<title>¤´ÃíÊ¸¼õÉÕ´°Î»</title></head>\n";
+print "<title>$B$4CmJ8<uIU40N;(B</title></head>\n";
 print "<body bgcolor=\"ffffff\" TEXT=\"000000\" link=\"fb02ee\" vlink=\"fb02ee\">\n";
 print "<p>\n";
 print "<br>\n";
 print "<br>\n";
 print "<center>\n";
-print "<font size=\"6\" color=\"000000\"><b>¤¢¤ê¤¬¤È¤¦¤´¤¶¤¤¤Þ¤·¤¿¡£</b></font><br>\n";
+print "<font size=\"6\" color=\"000000\"><b>$B$"$j$,$H$&$4$6$$$^$7$?!#(B</b></font><br>\n";
 print "</center>\n";
 print "</body>\n";
 print "</html>\n";

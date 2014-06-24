@@ -9,7 +9,7 @@ require "jcode.pl";
 require "zenhan.pl";
 use MIME::Base64;
 &ReadParse();
-#####¥Ç¡¼¥¿¤Î¼è¤ê¹þ¤ß#####
+#####$B%G!<%?$N<h$j9~$_(B#####
 $name = $in{'name'};
 $email = $in{'email'};
 $email2 = $in{'email2'};
@@ -26,20 +26,20 @@ $method = $in{'method'};
 $user = $in{'user'};
 $brother = $in{'brother'};
 $request = $in{'request'};
-######ÆþÎÏ¥Ç¡¼¥¿¤ÎÀ°·Á½èÍý######
+######$BF~NO%G!<%?$N@07A=hM}(B######
 if ($zipcord ne "") {
 	$zipcord =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$zipcord = &zen2han($zipcord); 
 }
 if ($tel ne "") {
 	$tel =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$tel = &zen2han($tel); 
 }
 if ($fax ne "") {
 	$fax =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$fax = &zen2han($fax); 
 }
 if ($familyname ne "") {
@@ -50,141 +50,141 @@ if ($brthday ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email = &zen2han($email);
 } 
 if ($email2 ne "") {
 	$email2 =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email2 = &zen2han($email);
 } 
-#####ÆþÎÏ¥¨¥é¡¼¤Î¥Á¥§¥Ã¥¯#####
+#####$BF~NO%(%i!<$N%A%'%C%/(B#####
 if ($name =~ /^\s*$/){
-	&CgiError("Ì¾Á°¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("¥á¡¼¥ë¥¢¥É¥ì¥¹¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("ÆþÎÏ¥¨¥é¡¼",
-		"¥á¡¼¥ë¥¢¥É¥ì¥¹¤Î½ñ¤­Êý¤¬´Ö°ã¤Ã¤Æ¤¤¤Þ¤¹¡£",$email,
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }	
 if ($order2 ne "") {
 	if ($zipcord eq "") {
-		&CgiError("Í¹ÊØÈÖ¹æ¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BM9JXHV9f$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($address eq "") {
-		&CgiError("½»½ê¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B=;=j$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}	
 	elsif ($fullname eq "") {
-		&CgiError("¼õ¼è¿Í¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$B<u<h?M$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if ($order3 ne "") {
 	if ($familyname eq "") {
-		&CgiError("ÉÄ»ú(À«)¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BID;z(B($B@+(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($brthday eq "") {
-		&CgiError("Í½ÄêÆü(ÃÂÀ¸Æü)¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BM=DjF|(B($BCB@8F|(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if (($order3 ne "") and ($method eq "fax")) {
 	if ($fax eq "") {
-		&CgiError("Á÷¤êÀè¤Î¥Õ¥¡¥Ã¥¯¥¹ÈÖ¹æ¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+		&CgiError("$BAw$j@h$N%U%!%C%/%9HV9f$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if (($order3 ne "") and ($method eq "mail")) {
 	if ($email2 =~ /^\s*$/){
-	&CgiError("·ë²ÌÏ¢ÍíÀè¤Î¥á¡¼¥ë¥¢¥É¥ì¥¹¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$B7k2LO"Mm@h$N%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
     }
     elsif (($email2) and (not $email2 =~ /.+\@.+\..+/)) {
-	&CgiError("ÆþÎÏ¥¨¥é¡¼",
-		"·ë²ÌÏ¢ÍíÀè¤Î¥á¡¼¥ë¥¢¥É¥ì¥¹¤Î½ñ¤­Êý¤¬´Ö°ã¤Ã¤Æ¤¤¤Þ¤¹¡£",$email2,
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B7k2LO"Mm@h$N%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email2,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
     }
 }
-#####¼êÃÊ¤òÊ¸¾Ï²½#####
+#####$B<jCJ$rJ8>O2=(B#####
 if ($method eq "fax") {
-	$method ="¥Õ¥¡¥Ã¥¯¥¹¤ÇÁ÷¤Ã¤Æ¤¯¤À¤µ¤¤¡£";
+	$method ="$B%U%!%C%/%9$GAw$C$F$/$@$5$$!#(B";
 }
 if ($method eq "mail") {
-	$method ="¥á¡¼¥ë¤·¤Æ²¼¤µ¤¤¡£";
+	$method ="$B%a!<%k$7$F2<$5$$!#(B";
 }
 &jcode'convert(*method, 'jis', 'euc');
-#####¤³¤³¤«¤éBase64¥á¡¼¥ë#####
-##### ¥Ü¥Ç¥£´ðËÜÊ¸»úÎó¤ÎÄêµÁ######
+#####$B$3$3$+$i(BBase64$B%a!<%k(B#####
+##### $B%\%G%#4pK\J8;zNs$NDj5A(B######
 @body = (
 	"=====================================", 
-	"»³ËÜ²§¤µ¤Þ¤Ø¡¢°Ê²¼¤ÎÃíÊ¸¤òÃ×¤·¤¿¤¯¡£", 
+	"$B;3K\2'$5$^$X!"0J2<$NCmJ8$rCW$7$?$/!#(B", 
 	"", 
-	"¿½¹þ¿ÍÍÍ¤Î»áÌ¾¡§", 
+	"$B?=9~?MMM$N;aL>!'(B", 
 	"", 
-	"¿½¹þ¿ÍÍÍ¤ÎE¥á¡¼¥ë¥¢¥É¥ì¥¹¡§", 
+	"$B?=9~?MMM$N(BE$B%a!<%k%"%I%l%9!'(B", 
 	"", 
-	"¤´ÃíÊ¸ÆâÍÆ¡§",
+	"$B$4CmJ8FbMF!'(B",
 	"",
 	"",
     "",  
-	"½ñÀÒ¤ÎÁ÷ÉÕÀè¤Þ¤¿¤ÏÏ¢ÍíÀè", 
-	"Í¹ÊØÈÖ¹æ¡§", 
+	"$B=q@R$NAwIU@h$^$?$OO"Mm@h(B", 
+	"$BM9JXHV9f!'(B", 
 	"", 
-	"¤´½»½ê¡§", 
+	"$B$4=;=j!'(B", 
 	"", 
-	"¤ªÅÅÏÃÈÖ¹æ¡§", 
+	"$B$*EEOCHV9f!'(B", 
 	"", 
-	"¼õ¼è¿ÍÍÍ¡§", 
+	"$B<u<h?MMM!'(B", 
 	"", 
     "",
-	"Ì¿Ì¾¤Î¤´°ÍÍêÆâÍÆ", 
-	"À«(¤ß¤ç¤¦¤¸)¡§", 
+	"$BL?L>$N$40MMjFbMF(B", 
+	"$B@+(B($B$_$g$&$8(B)$B!'(B", 
 	"", 
-	"½Ð»ºÍ½ÄêÆü¡§", 
+	"$B=P;:M=DjF|!'(B", 
 	"", 
-    "·ë²Ì¤ÎÁ÷¿®¼êÃÊ¡§",
+    "$B7k2L$NAw?.<jCJ!'(B",
     "",
-    "¥Õ¥¡¥Ã¥¯¥¹¤ÎÈÖ¹æ¡§",
+    "$B%U%!%C%/%9$NHV9f!'(B",
     "",
-    "·ë²ÌE¥á¡¼¥ë¤ÎÈÖ¹æ¡§",
+    "$B7k2L(BE$B%a!<%k$NHV9f!'(B",
     "",
-	"º£¤Þ¤Ç¤ÎÍøÍÑ¡§", 
+	"$B:#$^$G$NMxMQ!'(B", 
 	"", 
-	"·»»Ð¤Î¤ªÌ¾Á°¡§", 
+	"$B7;;P$N$*L>A0!'(B", 
 	"", 
-	"¤´Í×Ë¾»ö¹à¡§", 
+	"$B$4MWK>;v9`!'(B", 
 	"", 
 	"====================================="
 );
 foreach(@body) {
 	&jcode'convert(*_, "sjis", "euc");
 }
-#######Sub¤ÎÀ¸À®(Base64¥¨¥ó¥³¡¼¥É)#######
-$subject = "²§¤Ø¤´ÃíÊ¸(i¥â¡¼¥ÉVer.4)";
+#######Sub$B$N@8@.(B(Base64$B%(%s%3!<%I(B)#######
+$subject = "$B2'$X$4CmJ8(B(i$B%b!<%I(BVer.4)";
 &jcode'convert(*subject, 'jis', 'euc');
 $subject = encode_base64($subject);
 chop($subject);
-$subject = "=?iso-2022-jp?B?" . $subject . "?=";
-####### ¥Ø¥Ã¥À¤ÎÄêµÁ#########
+$subject = " . $subject . "?=";
+####### $B%X%C%@$NDj5A(B#########
 $mail_header = <<"EOM4";
 From: $email
 To: $okina_email
@@ -194,7 +194,7 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: base64
 Subject: $subject
 EOM4
-####### ¥á¥Ã¥»¡¼¥¸¥Ü¥Ç¥£¤ÎÀ¸À®########
+####### $B%a%C%;!<%8%\%G%#$N@8@.(B########
 $body[4] .= $name;
 $body[6] .= $email;
 $body[8] .= $order2;
@@ -213,17 +213,17 @@ $body[35] .= $brother;
 $body[37] .= $request;
 $mailbody = join("\r\n", @body);
 $encoded = encode_base64($mailbody);
-######## ¥á¡¼¥ëÁ÷¿®#########
+######## $B%a!<%kAw?.(B#########
 open(MAIL, "|$sendmail $okina_email");
 print MAIL $mail_header;
 for ($i = 0; $i < length($encoded); $i += 76) {
 	print MAIL substr($encoded, $i, 76);
 }
 close(MAIL);
-#####°Ê¾å¤¬Base64¥á¡¼¥ë#####
-$msg1 = "¤´°ÍÍê¼õÉÕ´°Î»\n";
-$msg2 = "¤¢¤ê¤¬¤È¤¦¤´¤¶¤¤¤Þ¤·¤¿¡£\n";
-$msg3 = "1¢ª¤ªÃÎ¤é¤»¤ËÌá¤ë¡£\n";
+#####$B0J>e$,(BBase64$B%a!<%k(B#####
+$msg1 = "$B$40MMj<uIU40N;(B\n";
+$msg2 = "$B$"$j$,$H$&$4$6$$$^$7$?!#(B\n";
+$msg3 = "1$B"*$*CN$i$;$KLa$k!#(B\n";
 &jcode'convert(*msg1, 'sjis', 'euc');
 &jcode'convert(*msg2, 'sjis', 'euc');
 &jcode'convert(*msg3, 'sjis', 'euc');

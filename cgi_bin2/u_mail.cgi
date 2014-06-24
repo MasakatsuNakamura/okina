@@ -8,7 +8,7 @@ require "cgi-lib.pl";
 require "jcode.pl";
 require "zenhan.pl";
 &ReadParse;
-######データの取り込み#######
+######$B%G!<%?$N<h$j9~$_(B#######
 $member = $in{'member'};
 $KMEI = $in{'name'};
 $KMAIL = $in{'email'};
@@ -25,88 +25,88 @@ $user = $in{'user'};
 $brother = $in{'brother'};
 $request = $in{'request'};
 
-######入力されたデータのチェック######
+######$BF~NO$5$l$?%G!<%?$N%A%'%C%/(B######
 if ($member =~ /^\s*$/) {
-	&CgiError("NET-U会員番号が入力されていません。",
-	"ブラウザの「Back」ボタンで戻って再入力してください。");
+	&CgiError("NET-U$B2q0wHV9f$,F~NO$5$l$F$$$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($KMEI =~ /^\s*$/) {
-	&CgiError("お客様のお名前の記入がありません。",
-	"ブラウザの「Back」ボタンで戻って再入力してください。");
+	&CgiError("$B$*5RMM$N$*L>A0$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if (($order1 eq "" ) and ($order2 eq "" ) and ($order3 eq ""))  {
-	&CgiError("入力エラー",
-		"ご注文が何も指示されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B$4CmJ8$,2?$b;X<($5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }	
 if ($order2 ne "") {
 	if ($SPOST eq "") {
-		&CgiError("郵便番号が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BM9JXHV9f$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($SADR eq "") {
-		&CgiError("住所が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B=;=j$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}	
 	elsif ($SMEI eq "") {
-		&CgiError("受取人が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B<u<h?M$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if ($order3 ne "") {
 	if ($familyname eq "") {
-		&CgiError("苗字(姓)が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BID;z(B($B@+(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($brthday eq "") {
-		&CgiError("予定日(誕生日)が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BM=DjF|(B($BCB@8F|(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 
-######メールアドレスのチェック######
+######$B%a!<%k%"%I%l%9$N%A%'%C%/(B######
 if ($KMAIL =~ /^\s*$/){
-	&CgiError("メールアドレスの記入がありません。",
-	"ブラウザの「Back」ボタンで戻って再入力してください。");
+	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 elsif (($KMAIL) and (not $KMAIL =~ /.+\@.+\..+/)) {
-	&CgiError("入力エラー",
-		"メールアドレスの書き方が間違っています。",$KMAIL,
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$KMAIL,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 elsif (($hostname = $KMAIL) =~ s/.+\@(\S+)/$1/) {
 	($hname,$aliases,$addresstype, $length,@address) =
 		gethostbyname $hostname;
 	if (not $hname) {
-		&CgiError("メールホストエラー",
-		"メールアドレスが確認できませんでした。");
+		&CgiError("$B%a!<%k%[%9%H%(%i!<(B",
+		"$B%a!<%k%"%I%l%9$,3NG'$G$-$^$;$s$G$7$?!#(B");
 		exit;
 	}
 }
 
-######入力データの整形処理######
+######$BF~NO%G!<%?$N@07A=hM}(B######
 $member =~ s/\s*//g;
 if ($SPOST ne "") {
 	$SPOST =~ s/\s*//g;
-	#全角英数字をすべて半角英数字にする。
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$SPOST = &zen2han($SPOST); 
-	#郵便番号が7桁以下で入力された場合、00を末尾に付加する。
+	#$BM9JXHV9f$,(B7$B7e0J2<$GF~NO$5$l$?>l9g!"(B00$B$rKvHx$KIU2C$9$k!#(B
 	$SPOST = $SPOST . "00000000";
 	$SPOST = substr($SPOST, 0, 8);
 }
 if ($STEL ne "") {
 	$STEL =~ s/\s*//g;
-	#全角英数字をすべて半角英数字にする。
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$STEL = &zen2han($STEL); 
 }
 if ($familyname ne "") {
@@ -116,57 +116,57 @@ if ($brthday ne "") {
 	$brthday =~ s/\s*//g;
 }
 
-######Pレジ受付番号の生成######
+######P$B%l%8<uIUHV9f$N@8@.(B######
 $countfile = "count.txt";
 open COUNTER,"$countfile"
-	or &CgiError("$countfile オープン失敗1\n");
+	or &CgiError("$countfile $B%*!<%W%s<:GT(B1\n");
 $SJNO = <COUNTER>;
 close COUNTER;
 
 ++$SJNO;
 
 open COUNTER,">$countfile"
-	or &CgiError("$countfile オープン失敗2\n");
+	or &CgiError("$countfile $B%*!<%W%s<:GT(B2\n");
 print COUNTER $SJNO;
 close COUNTER;
 
-######翁へのご注文メールの送信######
+######$B2'$X$N$4CmJ8%a!<%k$NAw?.(B######
 $com = <<MESSAGE;
 From: $KMAIL
-Subject: 山本翁へのご注文(NET-U会員)
+Subject: $B;3K\2'$X$N$4CmJ8(B(NET-U$B2q0w(B)
 
 =====================================
-Ｐレジ受付番号：
+$B#P%l%8<uIUHV9f!'(B
 $SJNO
-申込人様の氏名：
+$B?=9~?MMM$N;aL>!'(B
 $KMEI
-申込人様のEメールアドレス：
+$B?=9~?MMM$N(BE$B%a!<%k%"%I%l%9!'(B
 $KMAIL
-ご注文内容：
+$B$4CmJ8FbMF!'(B
 $order1
 $order2
 $order3
 
-書籍の送付先または連絡先
-郵便番号：
+$B=q@R$NAwIU@h$^$?$OO"Mm@h(B
+$BM9JXHV9f!'(B
 $SPOST
-ご住所：
+$B$4=;=j!'(B
 $SADR
-お電話番号：
+$B$*EEOCHV9f!'(B
 $STEL
-受取人様：
+$B<u<h?MMM!'(B
 $SMEI
 
-命名のご依頼内容
-姓(みょうじ)：
+$BL?L>$N$40MMjFbMF(B
+$B@+(B($B$_$g$&$8(B)$B!'(B
 $familyname
-出産予定日：
+$B=P;:M=DjF|!'(B
 $brthday
-今までの利用：
+$B:#$^$G$NMxMQ!'(B
 $user
-兄姉のお名前：
+$B7;;P$N$*L>A0!'(B
 $brother
-ご要望事項：
+$B$4MWK>;v9`!'(B
 $request
 
 =====================================
@@ -177,66 +177,66 @@ open(MAIL, "|$sendmail $youraddress");
 print MAIL $com;
 close(MAIL);
 
-######ここから引き継ぎ情報の生成と表示画面######
-######電子本、書籍、命名の3つを注文#######
+######$B$3$3$+$i0z$-7Q$.>pJs$N@8@.$HI=<(2hLL(B######
+######$BEE;RK\!"=q@R!"L?L>$N(B3$B$D$rCmJ8(B#######
 if (($order1 ne "") and ($order2 ne "") and ($order3 ne ""))  {
 	$msg = <<"ORDER123";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>電子本と書籍のご注文・命名のご依頼</TITLE>
+   <TITLE>$BEE;RK\$H=q@R$N$4CmJ8!&L?L>$N$40MMj(B</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>ご注文有難うございます。</U></B></FONT>
+         <CENTER><FONT SIZE="+3"><B><U>$B$4CmJ8M-Fq$&$4$6$$$^$9!#(B</U></B></FONT>
          
-         <P><FONT COLOR="#FF0000"><B>引き続きNET-Uカードの決済を行っていただきます。</B></FONT></P>
+         <P><FONT COLOR="#FF0000"><B>$B0z$-B3$-(BNET-U$B%+!<%I$N7h:Q$r9T$C$F$$$?$@$-$^$9!#(B</B></FONT></P>
          
-         <P>ご注文内容のご確認<BR>
+         <P>$B$4CmJ8FbMF$N$43NG'(B<BR>
          <TABLE BORDER=1 WIDTH="80%">
             <TR>
                <TD>
-                  <CENTER>ご注文内容</CENTER>
+                  <CENTER>$B$4CmJ8FbMF(B</CENTER>
                </TD>
                <TD>
-                  <CENTER>代金(消費税込み)</CENTER>
+                  <CENTER>$BBe6b(B($B>CHq@G9~$_(B)</CENTER>
                </TD>
                <TD>
-                  <CENTER>備考</CENTER>
-               </TD>
-            </TR>
-            <TR>
-               <TD>
-                  <P>1.「山本翁の電子本」を購入</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>500円</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>パスワード代金</P>
+                  <CENTER>$BHw9M(B</CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <P>2.「山本翁の著書」を購入</P>
+                  <P>1.$B!V;3K\2'$NEE;RK\!W$r9XF~(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>1,810円</P>
+                  <P ALIGN=right>500$B1_(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>送料310円込み</P>
+                  <P ALIGN=right>$B%Q%9%o!<%IBe6b(B</P>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <P>3.「新生児の命名」を依頼</P>
+                  <P>2.$B!V;3K\2'$NCx=q!W$r9XF~(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>10,000円</P>
+                  <P ALIGN=right>1,810$B1_(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>$BAwNA(B310$B1_9~$_(B</P>
+               </TD>
+            </TR>
+            <TR>
+               <TD>
+                  <P>3.$B!V?7@8;y$NL?L>!W$r0MMj(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>10,000$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -244,10 +244,10 @@ Content-type: text/html
             </TR>
             <TR>
                <TD>
-                  <P ALIGN=right>合計購入金額</P>
+                  <P ALIGN=right>$B9g7W9XF~6b3[(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>12,310円</P>
+                  <P ALIGN=right>12,310$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -255,10 +255,10 @@ Content-type: text/html
             </TR>
          </TABLE>
          
-         <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「送信」ボタンを1回だけ押して</B></FONT><B>ください。<BR>
-         しばらくお待ち頂ければ、NET-Uカードの決済画面に変わります。</B></P>
+         <B>$B$43NG'$,:Q$_$^$7$?$i(B</B><FONT COLOR="#FF0000"><B>$B2<5-!VAw?.!W%\%?%s$r(B1$B2s$@$12!$7$F(B</B></FONT><B>$B$/$@$5$$!#(B<BR>
+         $B$7$P$i$/$*BT$AD:$1$l$P!"(BNET-U$B%+!<%I$N7h:Q2hLL$KJQ$o$j$^$9!#(B</B></P>
          
-         <P>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</P>
+         <P>$B$4CmJ8$ND{@5$O!"%V%i%&%6$N!VLa$k!W$G!VF~NO%U%)!<%`!W$+$i$d$jD>$7$F2<$5$$!#(B</P>
          
          <P><FORM ACTION="http://p-reg.u-card.co.jp/cgi-bin/junbi.cgi" METHOD=POST>
             <P><INPUT TYPE=hidden NAME="SID" VALUE=P0000161>
@@ -278,7 +278,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="SPOST" VALUE="\$SPOST">
             <INPUT TYPE="hidden" NAME="SADR" VALUE="\$SADR">
             <INPUT TYPE="hidden" NAME="STEL" VALUE="\$STEL"></P>
-            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="送信"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -301,65 +301,65 @@ ORDER123
 	$msg =~ s/\$SJNO/$SJNO/g;
 	print $msg;
 }
-#######電子本と書籍を注文##########
+#######$BEE;RK\$H=q@R$rCmJ8(B##########
 elsif (($order1 ne "") and ($order2 ne ""))  {
 	$msg = <<"ORDER120";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>電子本と書籍のご注文</TITLE>
+   <TITLE>$BEE;RK\$H=q@R$N$4CmJ8(B</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>ご注文有難うございます。</U></B></FONT>
+         <CENTER><FONT SIZE="+3"><B><U>$B$4CmJ8M-Fq$&$4$6$$$^$9!#(B</U></B></FONT>
          
-         <P><FONT COLOR="#FF0000"><B>引き続きNET-Uカードの決済を行っていただきます。</B></FONT></P>
+         <P><FONT COLOR="#FF0000"><B>$B0z$-B3$-(BNET-U$B%+!<%I$N7h:Q$r9T$C$F$$$?$@$-$^$9!#(B</B></FONT></P>
          
-         <P>ご注文内容のご確認<BR>
+         <P>$B$4CmJ8FbMF$N$43NG'(B<BR>
          <TABLE BORDER=1 WIDTH="80%">
             <TR>
                <TD>
-                  <CENTER>ご注文内容</CENTER>
+                  <CENTER>$B$4CmJ8FbMF(B</CENTER>
                </TD>
                <TD>
-                  <CENTER>代金(消費税込み)</CENTER>
+                  <CENTER>$BBe6b(B($B>CHq@G9~$_(B)</CENTER>
                </TD>
                <TD>
-                  <CENTER>備考</CENTER>
-               </TD>
-            </TR>
-            <TR>
-               <TD>
-                  <P>1.「山本翁の電子本」を購入</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>500円</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>パスワード代金</P>
+                  <CENTER>$BHw9M(B</CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <P>2.「山本翁の著書」を購入</P>
+                  <P>1.$B!V;3K\2'$NEE;RK\!W$r9XF~(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>1,810円</P>
+                  <P ALIGN=right>500$B1_(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>送料310円込み</P>
+                  <P ALIGN=right>$B%Q%9%o!<%IBe6b(B</P>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <P ALIGN=right>合計購入金額</P>
+                  <P>2.$B!V;3K\2'$NCx=q!W$r9XF~(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>2,310円</P>
+                  <P ALIGN=right>1,810$B1_(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>$BAwNA(B310$B1_9~$_(B</P>
+               </TD>
+            </TR>
+            <TR>
+               <TD>
+                  <P ALIGN=right>$B9g7W9XF~6b3[(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>2,310$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -367,10 +367,10 @@ Content-type: text/html
             </TR>
          </TABLE>
          
-         <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「送信」ボタンを1回だけ押して</B></FONT><B>ください。<BR>
-         しばらくお待ち頂ければ、NET-Uカードの決済画面に変わります。</B></P>
+         <B>$B$43NG'$,:Q$_$^$7$?$i(B</B><FONT COLOR="#FF0000"><B>$B2<5-!VAw?.!W%\%?%s$r(B1$B2s$@$12!$7$F(B</B></FONT><B>$B$/$@$5$$!#(B<BR>
+         $B$7$P$i$/$*BT$AD:$1$l$P!"(BNET-U$B%+!<%I$N7h:Q2hLL$KJQ$o$j$^$9!#(B</B></P>
          
-         <P>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</P>
+         <P>$B$4CmJ8$ND{@5$O!"%V%i%&%6$N!VLa$k!W$G!VF~NO%U%)!<%`!W$+$i$d$jD>$7$F2<$5$$!#(B</P>
          
          <P><FORM ACTION="http://p-reg.u-card.co.jp/cgi-bin/junbi.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="SID" VALUE="P0000161">
@@ -389,7 +389,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="SADR" VALUE="\$SADR">
             <INPUT TYPE="hidden" NAME="STEL" VALUE="\$STEL"></P>
             
-            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="送信"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -411,54 +411,54 @@ ORDER120
 	$msg =~ s/\$SJNO/$SJNO/g;
 	print $msg;
 }
-########電子本の注文と命名の依頼###########
+########$BEE;RK\$NCmJ8$HL?L>$N0MMj(B###########
 elsif (($order1 ne "") and ($order3 ne ""))  {
 	$msg = <<"ORDER103";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>電子本のご注文・命名のご依頼</TITLE>
+   <TITLE>$BEE;RK\$N$4CmJ8!&L?L>$N$40MMj(B</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>ご注文有難うございます。</U></B></FONT>
+         <CENTER><FONT SIZE="+3"><B><U>$B$4CmJ8M-Fq$&$4$6$$$^$9!#(B</U></B></FONT>
          
-         <P><FONT COLOR="#FF0000"><B>引き続きNET-Uカードの決済を行っていただきます。</B></FONT></P>
+         <P><FONT COLOR="#FF0000"><B>$B0z$-B3$-(BNET-U$B%+!<%I$N7h:Q$r9T$C$F$$$?$@$-$^$9!#(B</B></FONT></P>
          
-         <P>ご注文内容のご確認<BR>
+         <P>$B$4CmJ8FbMF$N$43NG'(B<BR>
          <TABLE BORDER=1 WIDTH="80%">
             <TR>
                <TD>
-                  <CENTER>ご注文内容</CENTER>
+                  <CENTER>$B$4CmJ8FbMF(B</CENTER>
                </TD>
                <TD>
-                  <CENTER>代金(消費税込み)</CENTER>
+                  <CENTER>$BBe6b(B($B>CHq@G9~$_(B)</CENTER>
                </TD>
                <TD>
-                  <CENTER>備考</CENTER>
-               </TD>
-            </TR>
-            <TR>
-               <TD>
-                  <P>1.「山本翁の電子本」を購入</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>500円</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>パスワード代金</P>
+                  <CENTER>$BHw9M(B</CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <P>2.「新生児の命名」を依頼</P>
+                  <P>1.$B!V;3K\2'$NEE;RK\!W$r9XF~(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>10,000円</P>
+                  <P ALIGN=right>500$B1_(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>$B%Q%9%o!<%IBe6b(B</P>
+               </TD>
+            </TR>
+            <TR>
+               <TD>
+                  <P>2.$B!V?7@8;y$NL?L>!W$r0MMj(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>10,000$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -466,10 +466,10 @@ Content-type: text/html
             </TR>
             <TR>
                <TD>
-                  <P ALIGN=right>合計購入金額</P>
+                  <P ALIGN=right>$B9g7W9XF~6b3[(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>10,500円</P>
+                  <P ALIGN=right>10,500$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -477,10 +477,10 @@ Content-type: text/html
             </TR>
          </TABLE>
          
-         <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「送信」ボタンを1回だけ押して</B></FONT><B>ください。<BR>
-         しばらくお待ち頂ければ、NET-Uカードの決済画面に変わります。</B></P>
+         <B>$B$43NG'$,:Q$_$^$7$?$i(B</B><FONT COLOR="#FF0000"><B>$B2<5-!VAw?.!W%\%?%s$r(B1$B2s$@$12!$7$F(B</B></FONT><B>$B$/$@$5$$!#(B<BR>
+         $B$7$P$i$/$*BT$AD:$1$l$P!"(BNET-U$B%+!<%I$N7h:Q2hLL$KJQ$o$j$^$9!#(B</B></P>
          
-         <P>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</P>
+         <P>$B$4CmJ8$ND{@5$O!"%V%i%&%6$N!VLa$k!W$G!VF~NO%U%)!<%`!W$+$i$d$jD>$7$F2<$5$$!#(B</P>
          
          <P><FORM ACTION="http://p-reg.u-card.co.jp/cgi-bin/junbi.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="SID" VALUE="P0000161">
@@ -494,7 +494,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="ISUU2" VALUE="1">
             <INPUT TYPE="hidden" NAME="KMEI" VALUE="\$KMEI">
             <INPUT TYPE="hidden" NAME="KMAIL" VALUE="\$KMAIL"></P>
-            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="送信"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -516,54 +516,54 @@ ORDER103
 	$msg =~ s/\$SJNO/$SJNO/g;
 	print $msg;
 }
-########書籍の注文と命名の依頼###########
+########$B=q@R$NCmJ8$HL?L>$N0MMj(B###########
 elsif (($order2 ne "") and ($order3 ne ""))  {
 	$msg = <<"ORDER023";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>書籍のご注文・命名のご依頼</TITLE>
+   <TITLE>$B=q@R$N$4CmJ8!&L?L>$N$40MMj(B</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>ご注文有難うございます。</U></B></FONT>
+         <CENTER><FONT SIZE="+3"><B><U>$B$4CmJ8M-Fq$&$4$6$$$^$9!#(B</U></B></FONT>
          
-         <P><FONT COLOR="#FF0000"><B>引き続きNET-Uカードの決済を行っていただきます。</B></FONT></P>
+         <P><FONT COLOR="#FF0000"><B>$B0z$-B3$-(BNET-U$B%+!<%I$N7h:Q$r9T$C$F$$$?$@$-$^$9!#(B</B></FONT></P>
          
-         <P>ご注文内容のご確認<BR>
+         <P>$B$4CmJ8FbMF$N$43NG'(B<BR>
          <TABLE BORDER=1 WIDTH="80%">
             <TR>
                <TD>
-                  <CENTER>ご注文内容</CENTER>
+                  <CENTER>$B$4CmJ8FbMF(B</CENTER>
                </TD>
                <TD>
-                  <CENTER>代金(消費税込み)</CENTER>
+                  <CENTER>$BBe6b(B($B>CHq@G9~$_(B)</CENTER>
                </TD>
                <TD>
-                  <CENTER>備考</CENTER>
-               </TD>
-            </TR>
-            <TR>
-               <TD>
-                  <P>1.「山本翁の著書」を購入</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>1,810円</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>送料310円込み</P>
+                  <CENTER>$BHw9M(B</CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <P>2.「新生児の命名」を依頼</P>
+                  <P>1.$B!V;3K\2'$NCx=q!W$r9XF~(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>10,000円</P>
+                  <P ALIGN=right>1,810$B1_(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>$BAwNA(B310$B1_9~$_(B</P>
+               </TD>
+            </TR>
+            <TR>
+               <TD>
+                  <P>2.$B!V?7@8;y$NL?L>!W$r0MMj(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>10,000$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -571,10 +571,10 @@ Content-type: text/html
             </TR>
             <TR>
                <TD>
-                  <P ALIGN=right>合計購入金額</P>
+                  <P ALIGN=right>$B9g7W9XF~6b3[(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>11,810円</P>
+                  <P ALIGN=right>11,810$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -582,10 +582,10 @@ Content-type: text/html
             </TR>
          </TABLE>
          
-         <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「送信」ボタンを1回だけ押して</B></FONT><B>ください。<BR>
-         しばらくお待ち頂ければ、NET-Uカードの決済画面に変わります。</B></P>
+         <B>$B$43NG'$,:Q$_$^$7$?$i(B</B><FONT COLOR="#FF0000"><B>$B2<5-!VAw?.!W%\%?%s$r(B1$B2s$@$12!$7$F(B</B></FONT><B>$B$/$@$5$$!#(B<BR>
+         $B$7$P$i$/$*BT$AD:$1$l$P!"(BNET-U$B%+!<%I$N7h:Q2hLL$KJQ$o$j$^$9!#(B</B></P>
          
-         <P>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</P>
+         <P>$B$4CmJ8$ND{@5$O!"%V%i%&%6$N!VLa$k!W$G!VF~NO%U%)!<%`!W$+$i$d$jD>$7$F2<$5$$!#(B</P>
          
          <P><FORM ACTION="http://p-reg.u-card.co.jp/cgi-bin/junbi.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="SID" VALUE="P0000161">
@@ -603,7 +603,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="SPOST" VALUE="\$SPOST">
             <INPUT TYPE="hidden" NAME="SADR" VALUE="\$SADR">
             <INPUT TYPE="hidden" NAME="STEL" VALUE="\$STEL"></P>
-            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="送信"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -625,54 +625,54 @@ ORDER023
 	$msg =~ s/\$SJNO/$SJNO/g;
 	print $msg;
 }
-############電子本のみ注文###########
+############$BEE;RK\$N$_CmJ8(B###########
 elsif ($order1 ne "")  {
 	$msg = <<"ORDER100";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>電子本のご注文</TITLE>
+   <TITLE>$BEE;RK\$N$4CmJ8(B</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>ご注文有難うございます。</U></B></FONT>
+         <CENTER><FONT SIZE="+3"><B><U>$B$4CmJ8M-Fq$&$4$6$$$^$9!#(B</U></B></FONT>
          
-         <P><FONT COLOR="#FF0000"><B>引き続きNET-Uカードの決済を行っていただきます。</B></FONT></P>
+         <P><FONT COLOR="#FF0000"><B>$B0z$-B3$-(BNET-U$B%+!<%I$N7h:Q$r9T$C$F$$$?$@$-$^$9!#(B</B></FONT></P>
          
-         <P>ご注文内容のご確認<BR>
+         <P>$B$4CmJ8FbMF$N$43NG'(B<BR>
          <TABLE BORDER=1 WIDTH="80%">
             <TR>
                <TD>
-                  <CENTER>ご注文内容</CENTER>
+                  <CENTER>$B$4CmJ8FbMF(B</CENTER>
                </TD>
                <TD>
-                  <CENTER>代金(消費税込み)</CENTER>
+                  <CENTER>$BBe6b(B($B>CHq@G9~$_(B)</CENTER>
                </TD>
                <TD>
-                  <CENTER>備考</CENTER>
-               </TD>
-            </TR>
-            <TR>
-               <TD>
-                  <P>1.「山本翁の電子本」を購入</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>500円</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>パスワード代金</P>
+                  <CENTER>$BHw9M(B</CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <P ALIGN=right>合計購入金額</P>
+                  <P>1.$B!V;3K\2'$NEE;RK\!W$r9XF~(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>500円</P>
+                  <P ALIGN=right>500$B1_(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>$B%Q%9%o!<%IBe6b(B</P>
+               </TD>
+            </TR>
+            <TR>
+               <TD>
+                  <P ALIGN=right>$B9g7W9XF~6b3[(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>500$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -680,10 +680,10 @@ Content-type: text/html
             </TR>
          </TABLE>
          
-         <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「送信」ボタンを1回だけ押して</B></FONT><B>ください。<BR>
-         しばらくお待ち頂ければ、NET-Uカードの決済画面に変わります。</B></P>
+         <B>$B$43NG'$,:Q$_$^$7$?$i(B</B><FONT COLOR="#FF0000"><B>$B2<5-!VAw?.!W%\%?%s$r(B1$B2s$@$12!$7$F(B</B></FONT><B>$B$/$@$5$$!#(B<BR>
+         $B$7$P$i$/$*BT$AD:$1$l$P!"(BNET-U$B%+!<%I$N7h:Q2hLL$KJQ$o$j$^$9!#(B</B></P>
          
-         <P>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</P>
+         <P>$B$4CmJ8$ND{@5$O!"%V%i%&%6$N!VLa$k!W$G!VF~NO%U%)!<%`!W$+$i$d$jD>$7$F2<$5$$!#(B</P>
          
          <P><FORM ACTION="http://p-reg.u-card.co.jp/cgi-bin/junbi.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="SID" VALUE="P0000161">
@@ -695,7 +695,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="ISUU1" VALUE="1">
             <INPUT TYPE="hidden" NAME="KMEI" VALUE="\$KMEI">
             <INPUT TYPE="hidden" NAME="KMAIL" VALUE="\$KMAIL"></P>
-            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="送信"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -716,54 +716,54 @@ ORDER100
 	$msg =~ s/\$SJNO/$SJNO/g;
 	print $msg;
 }
-#########書籍のみ注文##########
+#########$B=q@R$N$_CmJ8(B##########
 elsif ($order2 ne "")  {
 	$msg = <<"ORDER020";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>書籍のご注文</TITLE>
+   <TITLE>$B=q@R$N$4CmJ8(B</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>ご注文有難うございます。</U></B></FONT>
+         <CENTER><FONT SIZE="+3"><B><U>$B$4CmJ8M-Fq$&$4$6$$$^$9!#(B</U></B></FONT>
          
-         <P><FONT COLOR="#FF0000"><B>引き続きNET-Uカードの決済を行っていただきます。</B></FONT></P>
+         <P><FONT COLOR="#FF0000"><B>$B0z$-B3$-(BNET-U$B%+!<%I$N7h:Q$r9T$C$F$$$?$@$-$^$9!#(B</B></FONT></P>
          
-         <P>ご注文内容のご確認<BR>
+         <P>$B$4CmJ8FbMF$N$43NG'(B<BR>
          <TABLE BORDER=1 WIDTH="80%">
             <TR>
                <TD>
-                  <CENTER>ご注文内容</CENTER>
+                  <CENTER>$B$4CmJ8FbMF(B</CENTER>
                </TD>
                <TD>
-                  <CENTER>代金(消費税込み)</CENTER>
+                  <CENTER>$BBe6b(B($B>CHq@G9~$_(B)</CENTER>
                </TD>
                <TD>
-                  <CENTER>備考</CENTER>
-               </TD>
-            </TR>
-            <TR>
-               <TD>
-                  <P>1.「山本翁の著書」を購入</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>1,810円</P>
-               </TD>
-               <TD>
-                  <P ALIGN=right>送料310円込み</P>
+                  <CENTER>$BHw9M(B</CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <P ALIGN=right>合計購入金額</P>
+                  <P>1.$B!V;3K\2'$NCx=q!W$r9XF~(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>1,810円</P>
+                  <P ALIGN=right>1,810$B1_(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>$BAwNA(B310$B1_9~$_(B</P>
+               </TD>
+            </TR>
+            <TR>
+               <TD>
+                  <P ALIGN=right>$B9g7W9XF~6b3[(B</P>
+               </TD>
+               <TD>
+                  <P ALIGN=right>1,810$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -771,10 +771,10 @@ Content-type: text/html
             </TR>
          </TABLE>
          
-         <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「送信」ボタンを1回だけ押して</B></FONT><B>ください。<BR>
-         しばらくお待ち頂ければ、NET-Uカードの決済画面に変わります。</B></P>
+         <B>$B$43NG'$,:Q$_$^$7$?$i(B</B><FONT COLOR="#FF0000"><B>$B2<5-!VAw?.!W%\%?%s$r(B1$B2s$@$12!$7$F(B</B></FONT><B>$B$/$@$5$$!#(B<BR>
+         $B$7$P$i$/$*BT$AD:$1$l$P!"(BNET-U$B%+!<%I$N7h:Q2hLL$KJQ$o$j$^$9!#(B</B></P>
          
-         <P>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</P>
+         <P>$B$4CmJ8$ND{@5$O!"%V%i%&%6$N!VLa$k!W$G!VF~NO%U%)!<%`!W$+$i$d$jD>$7$F2<$5$$!#(B</P>
          
          <P><FORM ACTION="http://p-reg.u-card.co.jp/cgi-bin/junbi.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="SID" VALUE="P0000161">
@@ -790,7 +790,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="SPOST" VALUE="\$SPOST">
             <INPUT TYPE="hidden" NAME="SADR" VALUE="\$SADR">
             <INPUT TYPE="hidden" NAME="STEL" VALUE="\$STEL"></P>
-            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="送信"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>
@@ -812,42 +812,42 @@ ORDER020
 	print $msg;
 }
 elsif ($order3 ne "")  {
-#命名のみ依頼
+#$BL?L>$N$_0MMj(B
 	$msg = <<"ORDER003";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>命名のご依頼</TITLE>
+   <TITLE>$BL?L>$N$40MMj(B</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>ご注文有難うございます。</U></B></FONT>
+         <CENTER><FONT SIZE="+3"><B><U>$B$4CmJ8M-Fq$&$4$6$$$^$9!#(B</U></B></FONT>
          
-         <P><FONT COLOR="#FF0000"><B>引き続きNET-Uカードの決済を行っていただきます。</B></FONT></P>
+         <P><FONT COLOR="#FF0000"><B>$B0z$-B3$-(BNET-U$B%+!<%I$N7h:Q$r9T$C$F$$$?$@$-$^$9!#(B</B></FONT></P>
          
-         <P>ご注文内容のご確認<BR>
+         <P>$B$4CmJ8FbMF$N$43NG'(B<BR>
          <TABLE BORDER=1 WIDTH="80%">
             <TR>
                <TD>
-                  <CENTER>ご注文内容</CENTER>
+                  <CENTER>$B$4CmJ8FbMF(B</CENTER>
                </TD>
                <TD>
-                  <CENTER>代金(消費税込み)</CENTER>
+                  <CENTER>$BBe6b(B($B>CHq@G9~$_(B)</CENTER>
                </TD>
                <TD>
-                  <CENTER>備考</CENTER>
+                  <CENTER>$BHw9M(B</CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <P>1.「新生児の命名」を依頼</P>
+                  <P>1.$B!V?7@8;y$NL?L>!W$r0MMj(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>10,000円</P>
+                  <P ALIGN=right>10,000$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -855,10 +855,10 @@ Content-type: text/html
             </TR>
             <TR>
                <TD>
-                  <P ALIGN=right>合計購入金額</P>
+                  <P ALIGN=right>$B9g7W9XF~6b3[(B</P>
                </TD>
                <TD>
-                  <P ALIGN=right>10,000円</P>
+                  <P ALIGN=right>10,000$B1_(B</P>
                </TD>
                <TD>
                   <P></P>
@@ -866,10 +866,10 @@ Content-type: text/html
             </TR>
          </TABLE>
          
-         <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「送信」ボタンを1回だけ押して</B></FONT><B>ください。<BR>
-         しばらくお待ち頂ければ、NET-Uカードの決済画面に変わります。</B></P>
+         <B>$B$43NG'$,:Q$_$^$7$?$i(B</B><FONT COLOR="#FF0000"><B>$B2<5-!VAw?.!W%\%?%s$r(B1$B2s$@$12!$7$F(B</B></FONT><B>$B$/$@$5$$!#(B<BR>
+         $B$7$P$i$/$*BT$AD:$1$l$P!"(BNET-U$B%+!<%I$N7h:Q2hLL$KJQ$o$j$^$9!#(B</B></P>
          
-         <P>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</P>
+         <P>$B$4CmJ8$ND{@5$O!"%V%i%&%6$N!VLa$k!W$G!VF~NO%U%)!<%`!W$+$i$d$jD>$7$F2<$5$$!#(B</P>
          
          <P><FORM ACTION="http://p-reg.u-card.co.jp/cgi-bin/junbi.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="SID" VALUE="P0000161">
@@ -881,7 +881,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="ISUU1" VALUE="1">
             <INPUT TYPE="hidden" NAME="KMEI" VALUE="\$KMEI">
             <INPUT TYPE="hidden" NAME="KMAIL" VALUE="\$KMAIL"></P>
-            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="送信"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>

@@ -44,7 +44,7 @@ $birthday5= $in{'birthday5'};
 $sex5 = $in{'sex5'};
 $trade5 = $in{'trade5'};
 $request5 = $in{'request5'};
-######入力データの整形処理######
+######$BF~NO%G!<%?$N@07A=hM}(B######
 if ($familyname1 ne "") {
 	$familyname1 =~ s/\s*//g;
 }
@@ -89,255 +89,255 @@ if ($birthday5 ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#全角英数字をすべて半角英数字にする。
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email = &zen2han($email);
 } 
-#####入力エラーのチェック#####
+#####$BF~NO%(%i!<$N%A%'%C%/(B#####
 if ($name =~ /^\s*$/){
-	&CgiError("名前の記入がありません。",
-	"ブラウザの「Back」ボタンで戻って再入力してください。");
+	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("メールアドレスの記入がありません。",
-	"ブラウザの「Back」ボタンで戻って再入力してください。");
+	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("入力エラー",
-		"メールアドレスの書き方が間違っています。",$email,
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if (($order4 eq "" ) and ($order5 eq "" ) and ($order6 eq "") and ($order7 eq ""))  {
-	&CgiError("入力エラー",
-		"ご依頼事項が何も指示されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B$40MMj;v9`$,2?$b;X<($5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }	
 if ($order4 ne "") {
 	if ($familyname1 eq "") {
-		&CgiError("姓が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B@+$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($firstname1 eq "") {
-		&CgiError("名が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BL>$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}	
 	elsif ($birthday1 eq "") {
-		&CgiError("生年月日が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
     elsif ($sex1 eq "") {
-		&CgiError("性別が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B@-JL$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
     elsif ($trade1 eq "") {
-		&CgiError("業種・ご職業が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B6H<o!&$4?&6H$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($request1 eq "") {
-		&CgiError("ご依頼内容の詳細が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B$40MMjFbMF$N>\:Y$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if ($order5 ne "") {
 	if ($familyname2 eq "") {
-		&CgiError("姓が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B@+$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 	elsif ($firstname2 eq "") {
-		&CgiError("名が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BL>$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}	
 }
 if ($order6 ne "") {
 	if ($familyname3 eq "") {
-		&CgiError("依頼者側の姓が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B0MMj<TB&$N@+$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($firstname3 eq "") {
-		&CgiError("依頼者側の名が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B0MMj<TB&$NL>$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($birthday3 eq "") {
-		&CgiError("依頼者側の生年月日が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B0MMj<TB&$N@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($sex3 eq "") {
-		&CgiError("依頼者側の性別が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B0MMj<TB&$N@-JL$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($trade3 eq "") {
-		&CgiError("依頼者側のご職業が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B0MMj<TB&$N$4?&6H$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($familyname4 eq "") {
-		&CgiError("相手側の姓が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BAj<jB&$N@+$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($firstname4 eq "") {
-		&CgiError("相手側の名が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BAj<jB&$NL>$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($birthday4 eq "") {
-		&CgiError("相手側の生年月日が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BAj<jB&$N@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($sex4 eq "") {
-		&CgiError("相手側の性別が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BAj<jB&$N@-JL$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($trade4 eq "") {
-		&CgiError("相手側のご職業が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BAj<jB&$N$4?&6H$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($sei eq "") {
-		&CgiError("ご結婚後の姓が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B$47k:'8e$N@+$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
 if ($order7 ne "") {
 	if ($familyname5 eq "") {
-		&CgiError("姓が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B@+$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($firstname5 eq "") {
-		&CgiError("名が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$BL>$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($birthday5 eq "") {
-		&CgiError("生年月日が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($sex5 eq "") {
-		&CgiError("性別が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B@-JL$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($trade5 eq "") {
-		&CgiError("ご職業が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B$4?&6H$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
    elsif ($request5 eq "") {
-		&CgiError("ご相談内容が入力されていません。",
-		"ブラウザの「Back」ボタンで戻って再入力してください。");
+		&CgiError("$B$4AjCLFbMF$,F~NO$5$l$F$$$^$;$s!#(B",
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 		exit;
 	}
 }
-#####ここからBase64メール#####
-##### ボディ基本文字列の定義######
+#####$B$3$3$+$i(BBase64$B%a!<%k(B#####
+##### $B%\%G%#4pK\J8;zNs$NDj5A(B######
 @body = (
 	"=====================================",
-    "山本翁さまへ、以下のご相談を致したく。",
+    "$B;3K\2'$5$^$X!"0J2<$N$4AjCL$rCW$7$?$/!#(B",
     "",
-    "申込人様の氏名：",
+    "$B?=9~?MMM$N;aL>!'(B",
     "",
-    "申込人様のEメールアドレス：",
+    "$B?=9~?MMM$N(BE$B%a!<%k%"%I%l%9!'(B",
     "",
     "",
-    "ご依頼内容：",
+    "$B$40MMjFbMF!'(B",
     "", 
-    "姓：",
+    "$B@+!'(B",
     "",
-    "名：",
+    "$BL>!'(B",
     "",
-    "生年月日：",
+    "$B@8G/7nF|!'(B",
     "",
-    "性別：",
+    "$B@-JL!'(B",
     "",
-    "業種・職業：",
+    "$B6H<o!&?&6H!'(B",
     "",
-    "ご要望事項：",
+    "$B$4MWK>;v9`!'(B",
     "", 
     "",
-    "ご依頼内容：",
+    "$B$40MMjFbMF!'(B",
     "",
-    "姓：",
+    "$B@+!'(B",
     "",
-    "名：",
+    "$BL>!'(B",
     "",
-    "ご家族のお名前と続き柄：",
+    "$B$42HB2$N$*L>A0$HB3$-JA!'(B",
     "", 
-    "ご要望事項：",
+    "$B$4MWK>;v9`!'(B",
     "",
     "",
-    "ご依頼内容：",
+    "$B$40MMjFbMF!'(B",
     "",
-    "依頼者側の姓：",
+    "$B0MMj<TB&$N@+!'(B",
     "",
-    "依頼者側の名：",
+    "$B0MMj<TB&$NL>!'(B",
     "",
-    "依頼者側の生年月日：",
+    "$B0MMj<TB&$N@8G/7nF|!'(B",
     "",
-    "依頼者側の姓別：",
+    "$B0MMj<TB&$N@+JL!'(B",
     "",
-    "依頼者側のご職業：",
+    "$B0MMj<TB&$N$4?&6H!'(B",
     "",
-    "相手側の姓：",
+    "$BAj<jB&$N@+!'(B",
     "",
-    "相手側の名：",
+    "$BAj<jB&$NL>!'(B",
     "",
-    "相手側の生年月日：",
+    "$BAj<jB&$N@8G/7nF|!'(B",
     "",
-    "相手側の性別：",
+    "$BAj<jB&$N@-JL!'(B",
     "",
-    "相手側のご職業：",
+    "$BAj<jB&$N$4?&6H!'(B",
     "",
-    "結婚後の姓：",
+    "$B7k:'8e$N@+!'(B",
     "",
-    "ご要望事項：",
+    "$B$4MWK>;v9`!'(B",
     "",
     "",
-    "ご依頼事項：",
+    "$B$40MMj;v9`!'(B",
     "",
-    "姓：",
+    "$B@+!'(B",
     "",
-    "名：",
+    "$BL>!'(B",
     "", 
-    "生年月日：",
+    "$B@8G/7nF|!'(B",
     "",
-    "性別：",
+    "$B@-JL!'(B",
     "",
-    "ご職業：",
+    "$B$4?&6H!'(B",
     "", 
-    "ご依頼事項：",
+    "$B$40MMj;v9`!'(B",
     "", 
     "====================================="
 );
 foreach(@body) {
 	&jcode'convert(*_, "sjis", "euc");
 }
-#######Subの生成(Base64エンコード)#######
-$subject = "翁へのご相談(Ver.3)";
+#######Sub$B$N@8@.(B(Base64$B%(%s%3!<%I(B)#######
+$subject = "$B2'$X$N$4AjCL(B(Ver.3)";
 &jcode'convert(*subject, 'jis', 'euc');
 $subject = encode_base64($subject);
 chop($subject);
 $subject = " . $subject . "?=";
-####### ヘッダの定義#########
+####### $B%X%C%@$NDj5A(B#########
 $mail_header = <<"EOM3";
 From: $email
 To: $okina_email
@@ -347,7 +347,7 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: base64
 Subject: $subject
 EOM3
-####### メッセージボディの生成########
+####### $B%a%C%;!<%8%\%G%#$N@8@.(B########
 $body[4] .= $name;
 $body[6] .= $email;
 $body[9] .= $order4;
@@ -384,26 +384,26 @@ $body[72] .= $trade5;
 $body[74] .= $request5;
 $mailbody = join("\r\n", @body);
 $encoded = encode_base64($mailbody);
-######## メール送信#########
+######## $B%a!<%kAw?.(B#########
 open(MAIL, "|$sendmail $okina_email");
 print MAIL $mail_header;
 for ($i = 0; $i < length($encoded); $i += 76) {
 	print MAIL substr($encoded, $i, 76);
 }
 close(MAIL);
-#####以上がBase64メール#####
+#####$B0J>e$,(BBase64$B%a!<%k(B#####
 print "Content-type: text/html\n\n";
 print "<html>\n";
 print "<head>\n";
-#下記のURLは、あなたのサ−バ−にあわせて下さい。
+#$B2<5-$N(BURL$B$O!"$"$J$?$N%5!]%P!]$K$"$o$;$F2<$5$$!#(B
 print "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"5;URL=/~kazu-y/index.html\">\n";
-print "<title>ご相談受付完了</title></head>\n";
+print "<title>$B$4AjCL<uIU40N;(B</title></head>\n";
 print "<body bgcolor=\"ffffff\" TEXT=\"000000\" link=\"fb02ee\" vlink=\"fb02ee\">\n";
 print "<p>\n";
 print "<br>\n";
 print "<br>\n";
 print "<center>\n";
-print "<font size=\"6\" color=\"000000\"><b>ありがとうございました。</b></font><br>\n";
+print "<font size=\"6\" color=\"000000\"><b>$B$"$j$,$H$&$4$6$$$^$7$?!#(B</b></font><br>\n";
 print "</center>\n";
 print "</body>\n";
 print "</html>\n";

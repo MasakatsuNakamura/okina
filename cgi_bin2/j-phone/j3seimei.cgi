@@ -6,19 +6,19 @@ require "reii.pl";
 require "seikaku.pl";
 require "kenkou.pl";
 
-# ²ñ¼Ò´Ä¶­¥Æ¥¹¥ÈÍÑ
+# $B2q<R4D6-%F%9%HMQ(B
 #$root = "/~nakamura/test/seimei2/public_html";
 #$cgipath = "/~nakamura/test/seimei2/cgi_bin";
 #$baseurl = "http://ppd.sf.nara.sharp.co.jp";
 
-# »³°ì´Ä¶­ÍÑ
+# $B;30l4D6-MQ(B
 $root = "/~kazu-y";
 $cgipath = "/~kazu-y/cgi_bin2";
 $baseurl = "http://www2.mahoroba.ne.jp";
 
 
 
-# CGIÊÑ¿ô¼è¤ê¤³¤ß
+# CGI$BJQ?t<h$j$3$_(B
 &ReadParse();
 $sei = $in{'sei'};
 $mei = $in{'mei'};
@@ -46,26 +46,26 @@ if ($sei eq "" || $mei eq "") {
 $sei1 = $sei;
 $mei1 = $mei;
 
-# ¡¹¤Î½èÍý
+# $B!9$N=hM}(B
 $sei1 =~ s/(..)\x81\x58/$1$1/;
 $mei1 =~ s/(..)\x81\x58/$1$1/;
 
-# ¡µ¤Î½èÍý
+# $B!5$N=hM}(B
 $sei1 =~ s/(..)\x81\x54/$1$1/;
 $mei1 =~ s/(..)\x81\x54/$1$1/;
 
-# ¡¸¤Î½èÍý
+# $B!8$N=hM}(B
 $sei1 =~ s/(..)\x81\x57/$1$1/;
 $mei1 =~ s/(..)\x81\x57/$1$1/;
 
-# Å·²è¡¦¿Í²è¡¦ÃÏ²è¡¦³°²è¡¦Áí²è¤Î»»½Ð(·ë¹½¤ä¤ä¤³¤·¤¤)
+# $BE72h!&?M2h!&CO2h!&302h!&Am2h$N;;=P(B($B7k9=$d$d$3$7$$(B)
 $kakusu{'tenkaku'} = 0;
 $kakusu{'chikaku'} = 0;
 $kakusu{'gaikaku'} = 0;
 $kakusu{'soukaku'} = 0;
 @error = ();
 
-# Å·²è¤Î»»½Ð
+# $BE72h$N;;=P(B
 for ($i = 0; $i<length($sei1); $i+=2) {
 	$kanji = substr($sei1, $i, 2);
 	$kakusu = &kakusu($kanji);
@@ -75,17 +75,17 @@ for ($i = 0; $i<length($sei1); $i+=2) {
 	$kakusu{'tenkaku'} += $kakusu;
 }
 
-# °ìÊ¸»úÀ«¤Î½èÍý
+# $B0lJ8;z@+$N=hM}(B
 if (length($sei1) == 2) {
-	$kakusu{'tenkaku'}++; # °ì²è¼Ú¤ê¤ë
+	$kakusu{'tenkaku'}++; # $B0l2h<Z$j$k(B
 	$kakusu{'gaikaku'}++;
-	$kakusu{'soukaku'}--; # °ì²èÊÖ¤¹
+	$kakusu{'soukaku'}--; # $B0l2hJV$9(B
 }
 
-# ¿Í²è¤Î»»½Ð
+# $B?M2h$N;;=P(B
 $kakusu{'jinkaku'} = &kakusu(substr($sei1, length($sei1)-2, 2)) + &kakusu(substr($mei1, 0, 2));
 
-# ÃÏ²è¤Î»»½Ð
+# $BCO2h$N;;=P(B
 for ($i = 0; $i<length($mei1); $i+=2) {
 	$kanji = substr($mei1, $i, 2);
 	$kakusu = &kakusu($kanji);
@@ -95,34 +95,34 @@ for ($i = 0; $i<length($mei1); $i+=2) {
 	$kakusu{'chikaku'} += $kakusu;
 }
 
-# °ìÊ¸»úÌ¾¤Î½èÍý
+# $B0lJ8;zL>$N=hM}(B
 if (length($mei1) == 2) {
-	$kakusu{'chikaku'}++; # °ì²è¼Ú¤ê¤ë
+	$kakusu{'chikaku'}++; # $B0l2h<Z$j$k(B
 	$kakusu{'gaikaku'}++;
-	$kakusu{'soukaku'}--; # °ì²èÊÖ¤¹
+	$kakusu{'soukaku'}--; # $B0l2hJV$9(B
 }
 
-# Áí²è¡¦³°²è¤Î»»½Ð
+# $BAm2h!&302h$N;;=P(B
 $kakusu{'soukaku'} += $kakusu{'tenkaku'} + $kakusu{'chikaku'};
 $kakusu{'gaikaku'} += $kakusu{'soukaku'} - $kakusu{'jinkaku'};
 
-# ¥ª¡¼¥Ð¡¼¥Õ¥í¡¼½èÍý - ¤Á¤Ê¤ß¤Ë > 81¤Ï´Ö°ã¤¤¤Ç¤Ï¤Ê¤¤¡£
+# $B%*!<%P!<%U%m!<=hM}(B - $B$A$J$_$K(B > 81$B$O4V0c$$$G$O$J$$!#(B
 foreach (keys %kakusu) {
 	$kakusu{$_} %= 80 if ($kakusu{$_} > 81);
 }
 
-# Å·²è¡¦¿Í²è¡¦ÃÏ²è¤Î²¼°ì·å¤Î»»½Ð(10¤Ç³ä¤Ã¤¿Í¾¤ê¤ò¼è¤ë¤À¤±)
+# $BE72h!&?M2h!&CO2h$N2<0l7e$N;;=P(B(10$B$G3d$C$?M>$j$r<h$k$@$1(B)
 $tenshimo = $kakusu{'tenkaku'} % 10;
 $jinshimo = $kakusu{'jinkaku'} % 10;
 $chishimo = $kakusu{'chikaku'} % 10;
 
-# À­³Ê¿ÇÃÇ¤Î½àÈ÷
+# $B@-3J?GCG$N=`Hw(B
 $kakusu{'seikaku'} = $jinshimo;
 
-# ±¢ÍÛ¸Þ¹Ô¤Î¥·¥ê¥¢¥ëÈÖ¹æ¤Î»»½Ð(¾Ü¤·¤¯¤Ïkenkou.pl¤ò»²¾È)
+# $B1"M[8^9T$N%7%j%"%kHV9f$N;;=P(B($B>\$7$/$O(Bkenkou.pl$B$r;2>H(B)
 $kakusu{'kenkou'} = &f($tenshimo)*25 + &f($jinshimo) *5 + &f($chishimo);
 
-# ¶ÊÌ¾·èÄê
+# $B6JL>7hDj(B
 $kyoku = $jinshimo;
 $kyoku = 10 if ($kyoku == 0);
 $kyoku -= 1;
@@ -130,7 +130,7 @@ $kyoku -= $kyoku % 2;
 $kyoku /= 2;
 $kyoku++;
 
-# Àê¤¤·ë²Ì¤ÎÀ°·Á½èÍý
+# $B@j$$7k2L$N@07A=hM}(B
 foreach (keys %kakusu) {
 	if ($_ eq "kenkou") {
 		$res{$_} = $kenkou[$kakusu{$_}];
@@ -155,13 +155,13 @@ foreach (keys %kakusu) {
 }
 
 if ($#error >= 0) {
-	# ¥¨¥é¡¼´Á»ú¤¬°ìÊ¸»ú¤Ç¤â¤¢¤ì¤Ð¥¨¥é¡¼É½¼¨
+	# $B%(%i!<4A;z$,0lJ8;z$G$b$"$l$P%(%i!<I=<((B
 	$msg = <<"EOK";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸</TITLE>
+   <TITLE>$B%(%i!<%a%C%;!<%8(B</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=SHIFT_JIS">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF">
@@ -169,27 +169,27 @@ Content-type: text/html
 
 <HR>
 
-<FONT COLOR="#FF0000">ÆþÎÏ¤µ¤ì¤¿´Á»úŽ¢\$errorŽ£¤¬È½ÊÌ¤Ç¤­¤Þ¤»¤ó¡£</FONT><BR>
+<FONT COLOR="#FF0000">$BF~NO$5$l$?4A;z!V(B\$error$B!W$,H=JL$G$-$^$;$s!#(B</FONT><BR>
 
 <HR>
 
-À¿¤Ë¶²¤ìÆþ¤ê¤Þ¤¹¤¬¡¢²¼µ­¤ÎÁ÷¿®¥Õ¥©¡¼¥à¤ò¤´³ÎÇ§¸å¡¢Ž¢Á÷¿®Ž£¥Ü¥¿¥ó¤ò²¡¤·¤Æ²¼¤µ¤¤¡£<BR>
-Àµ³Î¤Ê²è¿ôÈ½Äê¤ò¹Ô¤¤¡¢£Ä£Â¤ò½¤Àµ¤·¡¢¤´»ØÄê¤Î¥á¡¼¥ë¥¢¥É¥ì¥¹¤Þ¤ÇÏ¢Ííº¹¤·¾å¤²¤Þ¤¹¡£</P>
+$B@?$K62$lF~$j$^$9$,!"2<5-$NAw?.%U%)!<%`$r$43NG'8e!"!VAw?.!W%\%?%s$r2!$7$F2<$5$$!#(B<BR>
+$B@53N$J2h?tH=Dj$r9T$$!"#D#B$r=$@5$7!"$4;XDj$N%a!<%k%"%I%l%9$^$GO"Mm:9$7>e$2$^$9!#(B</P>
 
 <P><FORM ACTION="$cgipath/i-n_mail.cgi" METHOD=GET>
-   <P>¥¨¥é¡¼¤Ë¤Ê¤Ã¤¿´Á»ú¡§<INPUT TYPE=hidden NAME=kanji VALUE="\$error" size=10 maxlength=10>\$error<BR>
-   ¤¢¤Ê¤¿ÍÍ¤Î¤ªÌ¾Á°¡§<INPUT TYPE=text NAME=name2 VALUE="\$seimei" ISTYLE="1" SIZE=10 MAXLENGTH=10><BR>
-   ¥á¡¼¥ë¥¢¥É¥ì¥¹¡§<INPUT TYPE=text NAME=email2 VALUE="" MODE=alphabet SIZE=16 MAXLENGTH=256><BR>
-   <INPUT TYPE=submit NAME="Á÷¿®" VALUE="Á÷¿®"><BR>
-   <INPUT TYPE=reset VALUE="¼è¤ê¾Ã¤·">
+   <P>$B%(%i!<$K$J$C$?4A;z!'(B<INPUT TYPE=hidden NAME=kanji VALUE="\$error" size=10 maxlength=10>\$error<BR>
+   $B$"$J$?MM$N$*L>A0!'(B<INPUT TYPE=text NAME=name2 VALUE="\$seimei" ISTYLE="1" SIZE=10 MAXLENGTH=10><BR>
+   $B%a!<%k%"%I%l%9!'(B<INPUT TYPE=text NAME=email2 VALUE="" MODE=alphabet SIZE=16 MAXLENGTH=256><BR>
+   <INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"><BR>
+   <INPUT TYPE=reset VALUE="$B<h$j>C$7(B">
 </FORM></P>
 
 <P>
 
 <HR>
 
-<A HREF="$root/j-sky2.shtml" DIRECTKEY="1">1¢ª¤â¤¦°ìÅÙ´ÕÄê¤¹¤ë¡£</A><BR>
-<A HREF="$root/j-info.html" DIRECTKEY="3">3¢ª²§¤«¤é¤Î¤ªÃÎ¤é¤»¤òÆÉ¤à¡£</A><BR>
+<A HREF="$root/j-sky2.shtml" DIRECTKEY="1">1$B"*$b$&0lEY4UDj$9$k!#(B</A><BR>
+<A HREF="$root/j-info.html" DIRECTKEY="3">3$B"*2'$+$i$N$*CN$i$;$rFI$`!#(B</A><BR>
 </P>
 </BODY>
 </HTML>
@@ -199,13 +199,13 @@ EOK
 	$msg =~ s/\$error/@error/g;
 	print $msg;
 } else {
-	# È½Äê·ë²ÌÉ½¼¨
+	# $BH=Dj7k2LI=<((B
 	$msg = <<"EOM";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>»³ËÜ²§¤Î´ÕÄê·ë²Ì(3/6)</TITLE>
+   <TITLE>$B;3K\2'$N4UDj7k2L(B(3/6)</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=SHIFT_JIS">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF">
@@ -213,12 +213,12 @@ Content-type: text/html
 
 <HR>
 
-\$seimei¤µ¤ó¤Ø¤Î½õ¸À(3/6)<BR>
+\$seimei$B$5$s$X$N=u8@(B(3/6)<BR>
 
 <HR>
 
-<FONT COLOR="#FF3300"><U>·ò¹¯±¿(ÂÎÄ´¡¦Àº¿À)</U>
-¡¨Îã¤¨µÈ¿ôÂ·¤¤¤ÎÀ«Ì¾¤Ç¤¢¤Ã¤Æ¤â¡¢·ò¹¯¤Ë·Ã¤Þ¤ì¤Ê¤±¤ì¤Ð³è¤«¤µ¤»¤Þ¤»¤ó¡£</FONT></P>
+<FONT COLOR="#FF3300"><U>$B7r9/1?(B($BBND4!&@:?@(B)</U>
+$B!(Nc$(5H?tB7$$$N@+L>$G$"$C$F$b!"7r9/$K7C$^$l$J$1$l$P3h$+$5$;$^$;$s!#(B</FONT></P>
 
 <P>$res{'kenkou'}</P>
 
@@ -227,7 +227,7 @@ Content-type: text/html
    <INPUT TYPE=hidden NAME=mei VALUE="\$mei" size=10 maxlength=10>
    <INPUT TYPE=hidden NAME=sex VALUE="\$sex" size=10 maxlength=10>
    <INPUT TYPE=hidden NAME=marry VALUE="\$marry" size=10 maxlength=10>
-   <INPUT TYPE=submit NAME="Á÷¿®" VALUE="À­³Ê¤Ø"><BR>
+   <INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$B@-3J$X(B"><BR>
 
 </FORM></P>
 </BODY>

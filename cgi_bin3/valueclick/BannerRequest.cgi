@@ -1,7 +1,7 @@
 #!/usr/local/bin/perl
 use strict;use mc3BannerRequest;
 
-# ภ฿ฤ๊ฅีฅกฅคฅ๋คุคฮม๊ยะฅัฅน
+# $B@_Dj%U%!%$%k$X$NAjBP%Q%9(B
 my $pf='mc3_pref.txt';
 
 my ($pg,$fl,$to,$bn);

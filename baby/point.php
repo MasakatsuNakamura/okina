@@ -173,15 +173,15 @@ function point($sei1,$sei2,$mei1,$mei2,$sex) {
 	$gogyou[2] = $chikaku % 10;
 	for ($i = 0; $i <= 2; $i++) {
 		if ($gogyou[$i] == 1 or $gogyou[$i] == 2) {
-			$gogyou[$i] = "木";
+			$gogyou[$i] = "$BLZ(B";
 		} else if ($gogyou[$i] == 3 or $gogyou[$i] == 4) {
-			$gogyou[$i] = "火";
+			$gogyou[$i] = "$B2P(B";
 		} else if ($gogyou[$i] == 5 or $gogyou[$i] == 6) {
-			$gogyou[$i] = "土";
+			$gogyou[$i] = "$BEZ(B";
 		} else if ($gogyou[$i] == 7 or $gogyou[$i] == 8) {
-			$gogyou[$i] = "金";
+			$gogyou[$i] = "$B6b(B";
 		} else if ($gogyou[$i] == 7 or $gogyou[$i] == 8) {
-			$gogyou[$i] = "水";
+			$gogyou[$i] = "$B?e(B";
 		}
 		$gogyou[$i] = SJIStoEUC($gogyou[$i]);
 	}
@@ -192,13 +192,13 @@ function point($sei1,$sei2,$mei1,$mei2,$sex) {
 		$kenkou = pg_fetch_row($request, $i);
 	}
 	$kenkou = EUCtoSJIS($kenkou[0]);
-	if (strstr($kenkou,"◎")) {
+	if (strstr($kenkou,"$B!}(B")) {
 		$kenkou = 1;
-	} else if (strstr($kenkou, "○")) {
+	} else if (strstr($kenkou, "$B!{(B")) {
 		$kenkou = 0.9;
-	} else if (strstr($kenkou, "△")) {
+	} else if (strstr($kenkou, "$B"$(B")) {
 		$kenkou = 0.7;
-	} else if (strstr($kenkou, "×")) {
+	} else if (strstr($kenkou, "$B!_(B")) {
 		$kenkou = 0.5;
 	}
 

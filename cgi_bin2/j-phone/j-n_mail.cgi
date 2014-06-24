@@ -13,43 +13,43 @@ use MIME::Base64;
 $kanji = $in{'kanji'};
 $name2 = $in{'name2'};
 $email2 = $in{'email2'};
-#####¥Ç¡¼¥¿¤ÎÀ°·Á½èÍı#####
+#####$B%G!<%?$N@07A=hM}(B#####
 if ($email2 ne "") {
 	$email2 =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email2 = &zen2han($email2);
 } 
-#####´Á»ú¥³¡¼¥É¤ÎÀ¸À®#####
+#####$B4A;z%3!<%I$N@8@.(B#####
 $kanjicode = $kanji;
 $kanjicode =~ s/ //g;
 $kanjicode =~ s/(.)/sprintf("%02X",unpack("c",$1) >= 0 ? unpack("c",$1)
 : 256 + unpack("c",$1))/eg;
 $kanjicode =~ s/(....)/$1 /g;
-#####¤³¤³¤«¤éBase64¥á¡¼¥ë#####
-##### ¥Ü¥Ç¥£´ğËÜÊ¸»úÎó¤ÎÄêµÁ######
+#####$B$3$3$+$i(BBase64$B%a!<%k(B#####
+##### $B%\%G%#4pK\J8;zNs$NDj5A(B######
 @body = (
 	"=====================================", 
-	"´ÕÄê¤Ç¤­¤Ê¤¤´Á»ú¥³¡¼¥É(SJIS)¡§", 
+	"$B4UDj$G$-$J$$4A;z%3!<%I(B(SJIS)$B!'(B", 
 	"", 
-	"Ï¢Íí¿Í¤ÎE¥á¡¼¥ë¥¢¥É¥ì¥¹¡§", 
+	"$BO"Mm?M$N(BE$B%a!<%k%"%I%l%9!'(B", 
 	"", 
-	"Ï¢Íí¿Í¤Î»áÌ¾(»²¹Í)¡§", 
+	"$BO"Mm?M$N;aL>(B($B;29M(B)$B!'(B", 
 	"", 
-	"¥¨¥é¡¼´Á»ú(»²¹Í)¡§",
+	"$B%(%i!<4A;z(B($B;29M(B)$B!'(B",
 	"",
-	"»²¹Í¡§¥¨¥é¡¼¤¬È¯À¸¤¹¤ë²ÄÇ½À­¤¬¹â¤¤¡£", 
+	"$B;29M!'%(%i!<$,H/@8$9$k2DG=@-$,9b$$!#(B", 
 	"====================================="
 );
 foreach(@body) {
 	&jcode'convert(*_, "sjis", "euc");
 }
-#######Sub¤ÎÀ¸À®(Base64¥¨¥ó¥³¡¼¥É)#######
-$subject = "È½Äê½ĞÍè¤Ê¤¤´Á»ú(j¥Õ¥©¥óVer.1)";
+#######Sub$B$N@8@.(B(Base64$B%(%s%3!<%I(B)#######
+$subject = "$BH=Dj=PMh$J$$4A;z(B(j$B%U%)%s(BVer.1)";
 &jcode'convert(*subject, 'jis', 'euc');
 $subject = encode_base64($subject);
 chop($subject);
-$subject = "=?iso-2022-jp?B?" . $subject . "?=";
-####### ¥Ø¥Ã¥À¤ÎÄêµÁ#########
+$subject = " . $subject . "?=";
+####### $B%X%C%@$NDj5A(B#########
 $mail_header = <<"EOM6";
 From: $email2
 To: $youraddress
@@ -59,24 +59,24 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: base64
 Subject: $subject
 EOM6
-####### ¥á¥Ã¥»¡¼¥¸¥Ü¥Ç¥£¤ÎÀ¸À®########
+####### $B%a%C%;!<%8%\%G%#$N@8@.(B########
 $body[2] .= $kanjicode;
 $body[4] .= $email2;
 $body[6] .= $name2;
 $body[8] .= $kanji;
 $mailbody = join("\n", @body);
 $encoded = encode_base64($mailbody);
-######## ¥á¡¼¥ëÁ÷¿®#########
+######## $B%a!<%kAw?.(B#########
 open(MAIL, "|$sendmail $youraddress");
 print MAIL $mail_header;
 for ($i = 0; $i < length($encoded); $i += 76) {
 	print MAIL substr($encoded, $i, 76);
 }
 close(MAIL);
-#####°Ê¾å¤¬Base64¥á¡¼¥ë#####
-$msg1 = "¥¨¥é¡¼Á÷¿®´°Î»\n";
-$msg2 = "¤´¶¨ÎÏ¤¢¤ê¤¬¤È¤¦¤´¤¶¤¤¤Ş¤·¤¿¡£\n";
-$msg3 = "1¢ª¤â¤¦°ìÅÙ´ÕÄê¤¹¤ë¡£\n";
+#####$B0J>e$,(BBase64$B%a!<%k(B#####
+$msg1 = "$B%(%i!<Aw?.40N;(B\n";
+$msg2 = "$B$46(NO$"$j$,$H$&$4$6$$$^$7$?!#(B\n";
+$msg3 = "1$B"*$b$&0lEY4UDj$9$k!#(B\n";
 &jcode'convert(*msg1, 'sjis', 'euc');
 &jcode'convert(*msg2, 'sjis', 'euc');
 &jcode'convert(*msg3, 'sjis', 'euc');

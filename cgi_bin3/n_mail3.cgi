@@ -1,14 +1,14 @@
 #!/usr/local/bin/perl
-#¾å¤Î¥Ñ¥¹¤Ï¡¢¤¢¤Ê¤¿¤Î¥µ¡Ý¥Ð¡Ý¤Ë¤¢¤ï¤»¤Æ²¼¤µ¤¤¡£
+#$B>e$N%Q%9$O!"$"$J$?$N%5!]%P!]$K$"$o$;$F2<$5$$!#(B
 ####################################################################
 #N_Mail CGI
 #Copyright 1992/1997                 K.Yamano 
-#Scripts Archive at¡§          
-#CGI¤ÎÈÎÇä¡¢Å¾ºÜ¡¢ÇÛÉÛ¡¢ÌµÃÇÍøÍÑ¸·¶Ø¡£
+#Scripts Archive at$B!'(B          
+#CGI$B$NHNGd!"E>:\!"G[I[!"L5CGMxMQ876X!#(B
 ####################################################################
-#¤¢¤Ê¤¿¤Î¥µ¡Ý¥Ð¡Ý¤Îsendmail¤Î¥Ñ¥¹¤Ë¤¢¤ï¤»¤ë¡£
+#$B$"$J$?$N%5!]%P!]$N(Bsendmail$B$N%Q%9$K$"$o$;$k!#(B
 $sendmail = "/usr/lib/sendmail";
-#¤¢¤Ê¤¿¤ÎMail¥¢¥É¥ì¥¹¤òµ­Æþ¡£
+#$B$"$J$?$N(BMail$B%"%I%l%9$r5-F~!#(B
 $youraddress = 'kazu-y@mahoroba.ne.jp ';
 #$youraddress = 'nakamura@ppd.sf.nara.sharp.co.jp ';
 #####################################################################
@@ -17,7 +17,7 @@ require "jcode.pl";
 require "zenhan.pl";
 &ReadParse;
 
-###############²¼µ­¤Î¹àÌÜ¤Ï¡¢ÌµÀ©¸Â¤ËÄÉ²Ã½ÐÍè¤Þ¤¹¡£
+###############$B2<5-$N9`L\$O!"L5@)8B$KDI2C=PMh$^$9!#(B
 #################
 $email = $in{'email'};
 $name = $in{'name'};
@@ -25,61 +25,61 @@ $tel = $in{'tel'};
 $adress = $in{'adress'};
 $price = $in{'price'};
 $order = $in{'order'};
-######ÆþÎÏ¥Ç¡¼¥¿¤ÎÀ°·Á½èÍý######
+######$BF~NO%G!<%?$N@07A=hM}(B######
 if ($tel ne "") {
 	$tel =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$tel = &zen2han($tel); 
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#Á´³Ñ±Ñ¿ô»ú¤ò¤¹¤Ù¤ÆÈ¾³Ñ±Ñ¿ô»ú¤Ë¤¹¤ë¡£
+	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
 	$email = &zen2han($email);
 } 
-#####ÆþÎÏ¥¨¥é¡¼¤Î¥Á¥§¥Ã¥¯#####
+#####$BF~NO%(%i!<$N%A%'%C%/(B#####
 if ($email =~ /^\s*$/){
-	&CgiError("¥á¡¼¥ë¥¢¥É¥ì¥¹¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("ÆþÎÏ¥¨¥é¡¼",
-		"¥á¡¼¥ë¥¢¥É¥ì¥¹¤Î½ñ¤­Êý¤¬´Ö°ã¤Ã¤Æ¤¤¤Þ¤¹¡£",$email,
-		"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BF~NO%(%i!<(B",
+		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
+		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($name eq ""){
-	&CgiError("Ì¾Á°¤Îµ­Æþ¤¬¤¢¤ê¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
 if ($adress eq "") {
-    &CgiError("½»½ê¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-    "¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+    &CgiError("$B=;=j$,F~NO$5$l$F$$$^$;$s!#(B",
+    "$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
     exit;
 }	
 if ($tel eq "") {
-	&CgiError("ÅÅÏÃÈÖ¹æ¤¬ÆþÎÏ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£",
-	"¥Ö¥é¥¦¥¶¤ÎŽ¢BackŽ£¥Ü¥¿¥ó¤ÇÌá¤Ã¤ÆºÆÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£");
+	&CgiError("$BEEOCHV9f$,F~NO$5$l$F$$$^$;$s!#(B",
+	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
 	exit;
 }
-#####ÃíÊ¸¥á¡¼¥ë¤ÎÁ÷¿®#####
+#####$BCmJ8%a!<%k$NAw?.(B#####
 $com = <<MESSAGE;
 From: $email
-Subject: Êª·ï¤Î¤ªÌä¤¤¹ç¤ï¤»
+Subject: $BJ*7o$N$*Ld$$9g$o$;(B
 
 =====================================
-¤ªÌ¾Á°¡§
+$B$*L>A0!'(B
 $name
-¥á¡¼¥ë¥¢¥É¥ì¥¹¡§
+$B%a!<%k%"%I%l%9!'(B
 $email
-ÅÅÏÃÈÖ¹æ¡§
+$BEEOCHV9f!'(B
 $tel
-½»½ê¡§
+$B=;=j!'(B
 $adress
-´õË¾²Á³Ê¡§
+$B4uK>2A3J!'(B
 $price
-Ï¢Íí»ö¹à¡§
+$BO"Mm;v9`!'(B
 $order
 =====================================
 MESSAGE
@@ -98,16 +98,16 @@ close(MAIL);
 print "Content-type: text/html\n\n";
 print "<html>\n";
 print "<head>\n";
-#²¼µ­¤ÎURL¤Ï¡¢¤¢¤Ê¤¿¤Î¥µ¡Ý¥Ð¡Ý¤Ë¤¢¤ï¤»¤Æ²¼¤µ¤¤¡£
+#$B2<5-$N(BURL$B$O!"$"$J$?$N%5!]%P!]$K$"$o$;$F2<$5$$!#(B
 print "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"5;URL=http://www.sikasenbey.or.jp/haibara/haibara.htm\">\n";
 #print "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"5;URL=http://ppd.sf.nara.sharp.co.jp/~nakamura/test/seimei2/public_html/input.html\">\n";
-print "<title>Á÷¿®´°Î»</title></head>\n";
+print "<title>$BAw?.40N;(B</title></head>\n";
 print "<body bgcolor=\"ffffff\" TEXT=\"000000\" link=\"fb02ee\" vlink=\"fb02ee\">\n";
 print "<p>\n";
 print "<br>\n";
 print "<br>\n";
 print "<center>\n";
-print "<font size=\"6\" color=\"000000\"><b>¸åÆü¡¢¤³¤Á¤é¤«¤é¤´Ï¢Ííº¹¤·¾å¤²¤Þ¤¹¡£</b></font><br>\n";
+print "<font size=\"6\" color=\"000000\"><b>$B8eF|!"$3$A$i$+$i$4O"Mm:9$7>e$2$^$9!#(B</b></font><br>\n";
 print "</center>\n";
 print "</body>\n";
 print "</html>\n";

@@ -6,19 +6,19 @@ require "reii.pl";
 require "seikaku.pl";
 require "kenkou.pl";
 
-# ²ñ¼Ò´Ä¶­¥Æ¥¹¥ÈÍÑ
+# $B2q<R4D6-%F%9%HMQ(B
 #$root = "/~nakamura/test/seimei2/public_html";
 #$cgipath = "/~nakamura/test/seimei2/cgi_bin";
 #$baseurl = "http://ppd.sf.nara.sharp.co.jp";
 
-# ¤Þ¤Û¤í¤ÐWWW2ÍÑ
+# $B$^$[$m$P(BWWW2$BMQ(B
 $root = "/~kazu-y";
 $cgipath = "/~kazu-y/cgi_bin3";
 #$baseurl = "http://www2.mahoroba.ne.jp";
 
 
 
-# CGIÊÑ¿ô¼è¤ê¤³¤ß
+# CGI$BJQ?t<h$j$3$_(B
 &ReadParse();
 $sei = $in{'sei'};
 $mei = $in{'mei'};
@@ -46,18 +46,18 @@ if ($sei eq "" || $mei eq "") {
 $sei1 = $sei;
 $mei1 = $mei;
 
-# ¡¹¤Î½èÍý
+# $B!9$N=hM}(B
 $sei1 =~ s/(..)\x81\x58/$1$1/;
 $mei1 =~ s/(..)\x81\x58/$1$1/;
 
-# Å·²è¡¦¿Í²è¡¦ÃÏ²è¡¦³°²è¡¦Áí²è¤Î»»½Ð(·ë¹½¤ä¤ä¤³¤·¤¤)
+# $BE72h!&?M2h!&CO2h!&302h!&Am2h$N;;=P(B($B7k9=$d$d$3$7$$(B)
 $kakusu{'tenkaku'} = 0;
 $kakusu{'chikaku'} = 0;
 $kakusu{'gaikaku'} = 0;
 $kakusu{'soukaku'} = 0;
 @error = ();
 
-# Å·²è¤Î»»½Ð
+# $BE72h$N;;=P(B
 for ($i = 0; $i<length($sei1); $i+=2) {
 	$kanji = substr($sei1, $i, 2);
 	$kakusu = &kakusu($kanji);
@@ -67,17 +67,17 @@ for ($i = 0; $i<length($sei1); $i+=2) {
 	$kakusu{'tenkaku'} += $kakusu;
 }
 
-# °ìÊ¸»úÀ«¤Î½èÍý
+# $B0lJ8;z@+$N=hM}(B
 if (length($sei1) == 2) {
-	$kakusu{'tenkaku'}++; # °ì²è¼Ú¤ê¤ë
+	$kakusu{'tenkaku'}++; # $B0l2h<Z$j$k(B
 	$kakusu{'gaikaku'}++;
-	$kakusu{'soukaku'}--; # °ì²èÊÖ¤¹
+	$kakusu{'soukaku'}--; # $B0l2hJV$9(B
 }
 
-# ¿Í²è¤Î»»½Ð
+# $B?M2h$N;;=P(B
 $kakusu{'jinkaku'} = &kakusu(substr($sei1, length($sei1)-2, 2)) + &kakusu(substr($mei1, 0, 2));
 
-# ÃÏ²è¤Î»»½Ð
+# $BCO2h$N;;=P(B
 for ($i = 0; $i<length($mei1); $i+=2) {
 	$kanji = substr($mei1, $i, 2);
 	$kakusu = &kakusu($kanji);
@@ -87,18 +87,18 @@ for ($i = 0; $i<length($mei1); $i+=2) {
 	$kakusu{'chikaku'} += $kakusu;
 }
 
-# °ìÊ¸»úÌ¾¤Î½èÍý
+# $B0lJ8;zL>$N=hM}(B
 if (length($mei1) == 2) {
-	$kakusu{'chikaku'}++; # °ì²è¼Ú¤ê¤ë
+	$kakusu{'chikaku'}++; # $B0l2h<Z$j$k(B
 	$kakusu{'gaikaku'}++;
-	$kakusu{'soukaku'}--; # °ì²èÊÖ¤¹
+	$kakusu{'soukaku'}--; # $B0l2hJV$9(B
 }
 
-# Áí²è¡¦³°²è¤Î»»½Ð
+# $BAm2h!&302h$N;;=P(B
 $kakusu{'soukaku'} += $kakusu{'tenkaku'} + $kakusu{'chikaku'};
 $kakusu{'gaikaku'} += $kakusu{'soukaku'} - $kakusu{'jinkaku'};
 
-#À«»ú1¡¦À«»ú2¡¦Ì¾»ú1¡¦Ì¾»ú2¤Î»»½Ð
+#$B@+;z(B1$B!&@+;z(B2$B!&L>;z(B1$B!&L>;z(B2$B$N;;=P(B
 $seijib = &kakusu(substr($sei1, length($sei1)-2, 2));
 $meijia = &kakusu(substr($mei1, 0, 2));
 if (length($mei1) == 2) {
@@ -109,23 +109,23 @@ if (length($mei1) == 2) {
 $meijib = $kakusu{'soukaku'} - $kakusu{'jinkaku'} - $seijia;
 
 
-# ¥ª¡¼¥Ð¡¼¥Õ¥í¡¼½èÍý - ¤Á¤Ê¤ß¤Ë > 81¤Ï´Ö°ã¤¤¤Ç¤Ï¤Ê¤¤¡£
+# $B%*!<%P!<%U%m!<=hM}(B - $B$A$J$_$K(B > 81$B$O4V0c$$$G$O$J$$!#(B
 foreach (keys %kakusu) {
 	$kakusu{$_} %= 80 if ($kakusu{$_} > 81);
 }
 
-# Å·²è¡¦¿Í²è¡¦ÃÏ²è¤Î²¼°ì·å¤Î»»½Ð(10¤Ç³ä¤Ã¤¿Í¾¤ê¤ò¼è¤ë¤À¤±)
+# $BE72h!&?M2h!&CO2h$N2<0l7e$N;;=P(B(10$B$G3d$C$?M>$j$r<h$k$@$1(B)
 $tenshimo = $kakusu{'tenkaku'} % 10;
 $jinshimo = $kakusu{'jinkaku'} % 10;
 $chishimo = $kakusu{'chikaku'} % 10;
 
-# À­³Ê¿ÇÃÇ¤Î½àÈ÷
+# $B@-3J?GCG$N=`Hw(B
 $kakusu{'seikaku'} = $jinshimo;
 
-# ±¢ÍÛ¸Þ¹Ô¤Î¥·¥ê¥¢¥ëÈÖ¹æ¤Î»»½Ð(¾Ü¤·¤¯¤Ïkenkou.pl¤ò»²¾È)
+# $B1"M[8^9T$N%7%j%"%kHV9f$N;;=P(B($B>\$7$/$O(Bkenkou.pl$B$r;2>H(B)
 $kakusu{'kenkou'} = &f($tenshimo)*25 + &f($jinshimo) *5 + &f($chishimo);
 
-# ¶ÊÌ¾·èÄê
+# $B6JL>7hDj(B
 #$kyoku = $jinshimo;
 #$kyoku = 10 if ($kyoku == 0);
 #$kyoku -= 1;
@@ -133,7 +133,7 @@ $kakusu{'kenkou'} = &f($tenshimo)*25 + &f($jinshimo) *5 + &f($chishimo);
 #$kyoku /= 2;
 #$kyoku++;
 
-# Àê¤¤·ë²Ì¤ÎÀ°·Á½èÍý
+# $B@j$$7k2L$N@07A=hM}(B
 foreach (keys %kakusu) {
 	if ($_ eq "kenkou") {
 		$res{$_} = $kenkou[$kakusu{$_}];
@@ -158,32 +158,32 @@ foreach (keys %kakusu) {
 }
 
 if ($#error >= 0) {
-	# ¥¨¥é¡¼´Á»ú¤¬°ìÊ¸»ú¤Ç¤â¤¢¤ì¤Ð¥¨¥é¡¼É½¼¨
+	# $B%(%i!<4A;z$,0lJ8;z$G$b$"$l$P%(%i!<I=<((B
 	$msg = <<"EOK";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸</TITLE>
+   <TITLE>$B%(%i!<%a%C%;!<%8(B</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="$root/image/wall.jpg">
-<P><HTML><HEAD><TITLE>¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸</TITLE></HEAD></P>
+<P><HTML><HEAD><TITLE>$B%(%i!<%a%C%;!<%8(B</TITLE></HEAD></P>
 
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3" COLOR="#FF0000"><B>ÆþÎÏ¤µ¤ì¤¿´Á»úŽ¢
-         \$error Ž£¤¬È½ÊÌ¤Ç¤­¤Þ¤»¤ó¡£</B></FONT>
+         <CENTER><FONT SIZE="+3" COLOR="#FF0000"><B>$BF~NO$5$l$?4A;z!V(B
+         \$error $B!W$,H=JL$G$-$^$;$s!#(B</B></FONT>
          
-         <P>À¿¤Ë¶²¤ìÆþ¤ê¤Þ¤¹¤¬¡¢²¼µ­¤ÎÁ÷¿®¥Õ¥©¡¼¥à¤ò¤´³ÎÇ§¸å¡¢Ž¢Á÷¿®Ž£¥Ü¥¿¥ó¤ò²¡¤·¤Æ²¼¤µ¤¤¡£<BR>
-         »³ËÜ²§¤¬Àµ³Î¤Ë´Á»ú¤Î²è¿ôÈ½Äê¤ò¹Ô¤¤¡¢²¼µ­¥á¡¼¥ë¥¢¥É¥ì¥¹¤Þ¤Ç¤´Ï¢Ííº¹¤·¾å¤²¤Þ¤¹¡£</P>
+         <P>$B@?$K62$lF~$j$^$9$,!"2<5-$NAw?.%U%)!<%`$r$43NG'8e!"!VAw?.!W%\%?%s$r2!$7$F2<$5$$!#(B<BR>
+         $B;3K\2'$,@53N$K4A;z$N2h?tH=Dj$r9T$$!"2<5-%a!<%k%"%I%l%9$^$G$4O"Mm:9$7>e$2$^$9!#(B</P>
          
-         <P>¤ªµÞ¤®¤Î¾ì¹ç¤Ë¤Ï¡¢³ºÅö¤¹¤ë´Á»ú¤Î²è¿ô¤ò2·å¤Î<B>È¾³Ñ</B>»»ÍÑ¿ô»ú¤ÇÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£<BR>
-         Îã¡¢»³ÅÄÂÀÏº¢ª»³ÅÄÂÀ14¡Ê¡ÖÏº¡×¤Ë¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸¤¬½Ð¤¿¾ì¹ç¡£¡Ë</P>
+         <P>$B$*5^$.$N>l9g$K$O!"3:Ev$9$k4A;z$N2h?t$r(B2$B7e$N(B<B>$BH>3Q(B</B>$B;;MQ?t;z$GF~NO$7$F2<$5$$!#(B<BR>
+         $BNc!";3EDB@O:"*;3EDB@(B14$B!J!VO:!W$K%(%i!<%a%C%;!<%8$,=P$?>l9g!#!K(B</P>
          
-         <P>¤´·ÀÌó¤Ë´ð¤Å¤­¥Ç¡¼¥¿¥Ù¡¼¥¹¤Î¹¹¿·ºî¶È»þ¤Ë¤Ï¡¢º£²ó¤Î¥¨¥é¡¼´Á»ú¤òÈ¿±Ç¤µ¤»¤ÆÄº¤­¤Þ¤¹¡£</P></CENTER>
+         <P>$B$47@Ls$K4p$E$-%G!<%?%Y!<%9$N99?7:n6H;~$K$O!":#2s$N%(%i!<4A;z$rH?1G$5$;$FD:$-$^$9!#(B</P></CENTER>
          
          <P>
          
@@ -194,20 +194,20 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B>²§¤«¤é¤Î¤ªÏÍ¤Ó</B></FONT></CENTER>
+         <CENTER><FONT SIZE="+3"><B>$B2'$+$i$N$*OM$S(B</B></FONT></CENTER>
          
-         <P><U>Ê¸»ú¤Î²è¿ô¥Ç¡¼¥¿¥Ù¡¼¥¹¤Ë¤Ä¤¤¤Æ</U></P>
+         <P><U>$BJ8;z$N2h?t%G!<%?%Y!<%9$K$D$$$F(B</U></P>
          
-         <P>¸½ºß¡¢Ì¾Á°¤ËÍÑ¤¤¤é¤ì¤ë´Á»ú¤Ï¡¢ÅöÍÑ´Á»ú¤È¿ÍÌ¾´Á»ú¤Ç¤¹¡£ÅÐÏ¿´Á»ú
-         ¤Ï¤³¤Î4000Ê¸»ú°Ê¾å¤òÌÖÍå¤·¤Æ¤ª¤ê¤Þ¤¹¤¬¡¢²áµî¤«¤é¤¢¤ëÀ«Ì¾¤Ë¤Ï¤³¤ì¤Ë³ºÅö¤·¤Ê¤¤¤â¤Î¤¬´ö¤Ä¤â¤¢¤ê¤Þ¤¹¡£»³ËÜ²§¤Î·Ð¸³¤«¤é²áµî¡¢²§¤¬ÀÜ¤·¤¿¤³¤È¤Î¤¢¤ëÀ«Ì¾¤Ë¤Ä¤¤¤Æ¤Ï½ÐÍè¤ë¤«¤®¤ê¥Ç¡¼¥¿¥Ù¡¼¥¹¤Ë¤ÏÅÐÏ¿¤·¤Æ¤ª¤ê¤Þ¤¹¡£¤·¤«¤·¤Ê¤¬¤é¡¢Á´¤Æ¤¬ÅÐÏ¿¤µ¤ì¤Æ¤¤¤ë¤È¤Ï¸À¤¤Æñ¤¯¡¢¤Þ¤¿ÅÐÏ¿Ï³¤ì¤¬¤Ê¤¤¤È¤â¸Â¤ê¤Þ¤»¤ó¡£</P>
+         <P>$B8=:_!"L>A0$KMQ$$$i$l$k4A;z$O!"EvMQ4A;z$H?ML>4A;z$G$9!#EPO?4A;z(B
+         $B$O$3$N(B4000$BJ8;z0J>e$rLVMe$7$F$*$j$^$9$,!"2a5n$+$i$"$k@+L>$K$O$3$l$K3:Ev$7$J$$$b$N$,4v$D$b$"$j$^$9!#;3K\2'$N7P83$+$i2a5n!"2'$,@\$7$?$3$H$N$"$k@+L>$K$D$$$F$O=PMh$k$+$.$j%G!<%?%Y!<%9$K$OEPO?$7$F$*$j$^$9!#$7$+$7$J$,$i!"A4$F$,EPO?$5$l$F$$$k$H$O8@$$Fq$/!"$^$?EPO?O3$l$,$J$$$H$b8B$j$^$;$s!#(B</P>
          
-         <P>º£²ó¤Ï¤½¤¦¸À¤Ã¤¿µ©¤Ê¥±¡¼¥¹¤Ç¤¢¤ë¤È»×¤ï¤ì¤Þ¤¹¡£À¿¤Ë¤ª¼ê¿ô¤Ç¤¹¤¬¡¢²¼µ­¤ÎÆâÍÆ¤ò¤´³ÎÇ§Äº¤­(¥á¡¼¥ë¥¢¥É¥ì¥¹¤Ï´ÉÍý¼Ô¤Î»Ø¼¨¤Ë½¾¤Ã¤Æ¤¯¤À¤µ¤¤)¡¢Á÷¿®¤·¤ÆÄº¤±¤ì¤Ð¡¢¸åÆü¡¢²§¤«¤é´Á»ú¤Î²è¿ô¤ò¤ªÃÎ¤é¤»Ã×¤·¤Þ¤¹¡£º£¸å¤Î¥Ç¡¼¥¿¥Ù¡¼¥¹¤ËÈ¿±Ç¤µ¤»¤ÆÄº¤­¤Þ¤¹¡£</P>
+         <P>$B:#2s$O$=$&8@$C$?5)$J%1!<%9$G$"$k$H;W$o$l$^$9!#@?$K$*<j?t$G$9$,!"2<5-$NFbMF$r$43NG'D:$-(B($B%a!<%k%"%I%l%9$O4IM}<T$N;X<($K=>$C$F$/$@$5$$(B)$B!"Aw?.$7$FD:$1$l$P!"8eF|!"2'$+$i4A;z$N2h?t$r$*CN$i$;CW$7$^$9!#:#8e$N%G!<%?%Y!<%9$KH?1G$5$;$FD:$-$^$9!#(B</P>
          
          <CENTER><FORM ACTION="$cgipath/n_mail2.cgi" METHOD=POST>
             <BLOCKQUOTE><BLOCKQUOTE><CENTER><TABLE BORDER=0 CELLSPACING=10 CELLPADDING=0>
                      <TR>
                         <TD>
-                           <P ALIGN=right>¥¨¥é¡¼¤Ë¤Ê¤Ã¤¿´Á»ú</P>
+                           <P ALIGN=right>$B%(%i!<$K$J$C$?4A;z(B</P>
                         </TD>
                         <TD>
                            <P><INPUT TYPE=hidden NAME=kanji VALUE="\$error" SIZE=10 MAXLENGTH=10>\$error</P>
@@ -215,7 +215,7 @@ Content-type: text/html
                      </TR>
                      <TR>
                         <TD>
-                           <P ALIGN=right>¤ªÌ¾Á°</P>
+                           <P ALIGN=right>$B$*L>A0(B</P>
                         </TD>
                         <TD>
                            <P><INPUT TYPE=text NAME=name2 VALUE="\$seimei" SIZE=20 MAXLENGTH=10></P>
@@ -223,7 +223,7 @@ Content-type: text/html
                      </TR>
                      <TR>
                         <TD>
-                           <P ALIGN=right>¥á¡¼¥ë¥¢¥É¥ì¥¹</P>
+                           <P ALIGN=right>$B%a!<%k%"%I%l%9(B</P>
                         </TD>
                         <TD>
                            <P><INPUT TYPE=text NAME=email2 VALUE="" SIZE=40></P>
@@ -234,7 +234,7 @@ Content-type: text/html
                            <P></P>
                         </TD>
                         <TD>
-                           <P><INPUT TYPE=submit NAME="Á÷¿®" VALUE="Á÷¿®"><INPUT TYPE=reset VALUE="¼è¤ê¾Ã¤·"></P>
+                           <P><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"><INPUT TYPE=reset VALUE="$B<h$j>C$7(B"></P>
                         </TD>
                      </TR>
                   </TABLE>
@@ -250,7 +250,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><A HREF="$root/input3.html" TARGET="_self"><B>¤â¤¦°ìÅÙ´ÕÄê¤¹¤ë</B></A>
+         <CENTER><A HREF="$root/input3.html" TARGET="_self"><B>$B$b$&0lEY4UDj$9$k(B</B></A>
          
          <P><B>
          
@@ -261,8 +261,8 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="-2">¤³¤Î¥×¥í¥°¥é¥à¤Ï´ë¶È¸þ¤±¥¤¥ó¥È¥é¥Í¥Ã¥ÈÈÇ¤Ç¤¹¡£WWW¤Ç¤Î¾¦ÍÑÍøÍÑ¤Ï¤Ç¤­¤Þ¤»¤ó¡£<BR>
-         ¤³¤Î¥×¥í¥°¥é¥à¤Î¥é¥¤¥»¥ó¥¹¤ò¼õ¤±¤¿´ë¶È°Ê³°¤ÎÂè»°¼Ô¤ØÅ¾Çä¡¢ºÆÇÛÉÕ¤ò¶Ø»ß¤·¤Þ¤¹¡£<BR>
+         <CENTER><FONT SIZE="-2">$B$3$N%W%m%0%i%`$O4k6H8~$1%$%s%H%i%M%C%HHG$G$9!#(BWWW$B$G$N>&MQMxMQ$O$G$-$^$;$s!#(B<BR>
+         $B$3$N%W%m%0%i%`$N%i%$%;%s%9$r<u$1$?4k6H0J30$NBh;0<T$XE>Gd!":FG[IU$r6X;_$7$^$9!#(B<BR>
          <I>CopyRight. K.Yamamoto.1998.9.1</I></FONT></CENTER>
       </TD>
    </TR>
@@ -277,22 +277,22 @@ EOK
 	$msg =~ s/\$error/@error/g;
 	print $msg;
 } else {
-	# È½Äê·ë²ÌÉ½¼¨
+	# $BH=Dj7k2LI=<((B
 	$msg = <<"EOM";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>»³ËÜ²§¤Î´ÕÄê·ë²Ì</TITLE>
+   <TITLE>$B;3K\2'$N4UDj7k2L(B</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="$root/image/wall.jpg">
-<P><HTML><HEAD><TITLE>»³ËÜ²§¤ÎÀ«Ì¾È½ÃÇ</TITLE></HEAD></P>
+<P><HTML><HEAD><TITLE>$B;3K\2'$N@+L>H=CG(B</TITLE></HEAD></P>
 
 <CENTER><TABLE BORDER=0 CELLSPACING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3" COLOR="#00CC00"><B>\$seimei¤µ¤ó¤Î´ÕÄê·ë²Ì</B></FONT></CENTER>
+         <CENTER><FONT SIZE="+3" COLOR="#00CC00"><B>\$seimei$B$5$s$N4UDj7k2L(B</B></FONT></CENTER>
          
          <P>
          
@@ -300,26 +300,26 @@ Content-type: text/html
          
          </P>
          
-         <P>´ðÁÃ¥Ç¡¼¥¿¡§À«A=$seijia,¡¡À«B=$seijib,¡¡Å·²è=$kakusu{'tenkaku'},¡¡Ì¾A=$meijia,¡¡Ì¾B=$meijib
+         <P>$B4pAC%G!<%?!'@+(BA=$seijia,$B!!@+(BB=$seijib,$B!!E72h(B=$kakusu{'tenkaku'},$B!!L>(BA=$meijia,$B!!L>(BB=$meijib
 <FORM ACTION="seimei.cgi" METHOD=POST>
             <CENTER><TABLE BORDER=0 CELLSPACING=5 WIDTH=160>
                <TR>
                   <TD>
-                     <CENTER>À«<BR>
+                     <CENTER>$B@+(B<BR>
                      <INPUT TYPE=text NAME=sei VALUE="\$sei" SIZE=10 MAXLENGTH=10></CENTER>
                   </TD>
                   <TD>
-                     <CENTER>Ì¾<BR>
+                     <CENTER>$BL>(B<BR>
                      <INPUT TYPE=text NAME=mei VALUE="" SIZE=10 MAXLENGTH=10></CENTER>
                   </TD>
                </TR><INPUT TYPE=hidden NAME=sex VALUE="\$sex" size=10 maxlength=10>
        <INPUT TYPE=hidden NAME=marry VALUE="\$marry" size=10 maxlength=10>
                <TR>
                   <TD>
-                     <CENTER><INPUT TYPE=submit NAME="Á÷¿®" VALUE="´ÕÄê"></CENTER>
+                     <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$B4UDj(B"></CENTER>
                   </TD>
                   <TD>
-                     <CENTER><A HREF="$root/input3.html">Ìá¤ë</A></CENTER>
+                     <CENTER><A HREF="$root/input3.html">$BLa$k(B</A></CENTER>
                   </TD>
                </TR>
             </TABLE>
@@ -332,34 +332,34 @@ Content-type: text/html
          <P><TABLE BORDER=3 CELLSPACING=10 WIDTH="100%">
             <TR>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#B30000"><B><U>¼ç±¿</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#B30000">¡¨Åö¿Í¤Î°ìÀ¸¤ÎÃæ¿´¤ò»Ê¤ê¤Þ¤¹¡£·ëº§¤Ë¤è¤êÀ«¤¬ÊÑ¤ï¤ë¤È¼ç±¿¤âÊÑ¤ï¤ê¤Þ¤¹¤¬¡¢ÃæÇ¯°Ê¹ß¤Ë¶¯¤¯¸½¤ì¤Þ¤¹¡£</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#B30000"><B><U>$B<g1?(B</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#B30000">$B!(Ev?M$N0l@8$NCf?4$r;J$j$^$9!#7k:'$K$h$j@+$,JQ$o$k$H<g1?$bJQ$o$j$^$9$,!"CfG/0J9_$K6/$/8=$l$^$9!#(B</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'jinkaku'}²è¡§$res{'jinkaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'jinkaku'}$B2h!'(B$res{'jinkaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#1D00B3"><B><U>ÂÐ¿Í±¿¡¦¼Ò¸ò±¿</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#1D00B3">¡¨ÂÐ¿Í´Ø·¸¤ä²ÈÂ²¡¦É×ÉØ´Ø·¸¡¢Í§Ã£´Ø·¸¤Ë¸½¤ì¤Æ¤­¤Þ¤¹¡£</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#1D00B3"><B><U>$BBP?M1?!&<R8r1?(B</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#1D00B3">$B!(BP?M4X78$d2HB2!&IWIX4X78!"M'C#4X78$K8=$l$F$-$^$9!#(B</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'gaikaku'}²è¡§$res{'gaikaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'gaikaku'}$B2h!'(B$res{'gaikaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
             </TR>
             <TR>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#007F1F"><B><U>·ò¹¯±¿(ÂÎÄ´¡¦Àº¿À)</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#007F1F">¡¨Îã¤¨µÈ¿ôÂ·¤¤¤ÎÀ«Ì¾¤Ç¤¢¤Ã¤Æ¤â¡¢·ò¹¯¤Ë·Ã¤Þ¤ì¤Ê¤±¤ì¤Ð³è¤«¤µ¤»¤Þ¤»¤ó¡£</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#007F1F"><B><U>$B7r9/1?(B($BBND4!&@:?@(B)</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#007F1F">$B!(Nc$(5H?tB7$$$N@+L>$G$"$C$F$b!"7r9/$K7C$^$l$J$1$l$P3h$+$5$;$^$;$s!#(B</FONT></P>
                   
                   <BLOCKQUOTE>$res{'kenkou'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#B35900"><B><U>À­³Ê</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#B35900">¡¨Åö¿Í¤Î³°ÌÌÅª¤ÊÀ­³Ê¤ò¸½¤·¤Þ¤¹¡£¼«Ê¬¤¬Â¾¿Í¤«¤é¤É¤¦¸«¤¨¤Æ¤¤¤ë¤Î¤«»²¹Í¤Ë¤Ê¤ê¤Þ¤¹¡£</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#B35900"><B><U>$B@-3J(B</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#B35900">$B!(Ev?M$N30LLE*$J@-3J$r8=$7$^$9!#<+J,$,B>?M$+$i$I$&8+$($F$$$k$N$+;29M$K$J$j$^$9!#(B</FONT></P>
                   
                   <BLOCKQUOTE>$res{'seikaku'}</BLOCKQUOTE>
                   
@@ -368,18 +368,18 @@ Content-type: text/html
             </TR>
             <TR>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#7F0260"><B><U>´ðÁÃ±¿</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#7F0260">¡¨ÍÄ¾¯Ç¯´ü¤Î±¿Àª¤ÎµÈ¶§¤ò»ÙÇÛ¤·¡¢ÀÄÇ¯´ü¤Þ¤ÇºÇ¤â¶¯¤¯ºîÍÑ¤·¤Þ¤¹¡£(¼ãÇ¯¼Ô¤ÎÈ½ÃÇ¤Ï¤³¤Á¤é¤¬Í­¸ú)</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#7F0260"><B><U>$B4pAC1?(B</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#7F0260">$B!(MD>/G/4|$N1?@*$N5H6'$r;YG[$7!"@DG/4|$^$G:G$b6/$/:nMQ$7$^$9!#(B($B<cG/<T$NH=CG$O$3$A$i$,M-8z(B)</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'chikaku'}²è¡§$res{'chikaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'chikaku'}$B2h!'(B$res{'chikaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#B30068"><B><U>ÈÕÇ¯±¿</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#B30068">¡¨50ºÐÁ°¸å¤«¤é¶¯¤¯¸½¤ì¤Æ¤­¤Þ¤¹¡£¤¿¤À¤·¡¢¼ç±¿¤È´ðÁÃ±¿¤Ëº¸±¦¤µ¤ì¤Þ¤¹¤Î¤ÇÃí°Õ¤·¤Æ²¼¤µ¤¤¡£</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#B30068"><B><U>$BHUG/1?(B</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#B30068">$B!((B50$B:PA08e$+$i6/$/8=$l$F$-$^$9!#$?$@$7!"<g1?$H4pAC1?$K:81&$5$l$^$9$N$GCm0U$7$F2<$5$$!#(B</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'soukaku'}²è¡§$res{'soukaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'soukaku'}$B2h!'(B$res{'soukaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
@@ -393,7 +393,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><A HREF="$root/input3.html" TARGET="_self"><B>¤â¤¦°ìÅÙ´ÕÄê¤ò¤¹¤ë</B></A>
+         <CENTER><A HREF="$root/input3.html" TARGET="_self"><B>$B$b$&0lEY4UDj$r$9$k(B</B></A>
          
          <P><B>
          
@@ -404,13 +404,13 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="-2">¤³¤Î¥×¥í¥°¥é¥à¤Ï´ë¶È¸þ¤±¥¤¥ó¥È¥é¥Í¥Ã¥ÈÈÇ¤Ç¤¹¡£WWW¤Ç¤Î¾¦ÍÑÍøÍÑ¤Ï¤Ç¤­¤Þ¤»¤ó¡£<BR>
-         ¤³¤Î¥×¥í¥°¥é¥à¤Î¥é¥¤¥»¥ó¥¹¤ò¼õ¤±¤¿´ë¶È°Ê³°¤ÎÂè»°¼Ô¤ØÅ¾Çä¡¢ºÆÇÛÉÕ¤ò¶Ø»ß¤·¤Þ¤¹¡£<BR>
+         <CENTER><FONT SIZE="-2">$B$3$N%W%m%0%i%`$O4k6H8~$1%$%s%H%i%M%C%HHG$G$9!#(BWWW$B$G$N>&MQMxMQ$O$G$-$^$;$s!#(B<BR>
+         $B$3$N%W%m%0%i%`$N%i%$%;%s%9$r<u$1$?4k6H0J30$NBh;0<T$XE>Gd!":FG[IU$r6X;_$7$^$9!#(B<BR>
          <I>CopyRight. K.Yamamoto.1999.3.21</I></FONT></CENTER>
       </TD>
    </TR>
 </TABLE>
- <FONT SIZE="-1">¡¡</FONT>¡¡¡¡¡¡ ¡¡¡¡¡¡</CENTER>
+ <FONT SIZE="-1">$B!!(B</FONT>$B!!!!!!(B $B!!!!!!(B</CENTER>
 </BODY>
 </HTML>
 
