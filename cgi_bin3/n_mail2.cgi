@@ -1,14 +1,14 @@
 #!/usr/local/bin/perl
-#$B>e$N%Q%9$O!"$"$J$?$N%5!]%P!]$K$"$o$;$F2<$5$$!#(B
+#上のパスは、あなたのサ−バ−にあわせて下さい。
 ####################################################################
 #N_Mail CGI
 #Copyright 1992/1997                 K.Yamano 
-#Scripts Archive at$B!'(B          
-#CGI$B$NHNGd!"E>:\!"G[I[!"L5CGMxMQ876X!#(B
+#Scripts Archive at：          
+#CGIの販売、転載、配布、無断利用厳禁。
 ####################################################################
-#$B$"$J$?$N%5!]%P!]$N(Bsendmail$B$N%Q%9$K$"$o$;$k!#(B
+#あなたのサ−バ−のsendmailのパスにあわせる。
 $sendmail = "/usr/lib/sendmail";
-#$B$"$J$?$N(BMail$B%"%I%l%9$r5-F~!#(B
+#あなたのMailアドレスを記入。
 $youraddress = 'kazu-y@mahoroba.ne.jp ';
 #$youraddress = 'nakamura@ppd.sf.nara.sharp.co.jp ';
 #####################################################################
@@ -16,15 +16,15 @@ require "cgi-lib.pl";
 require "jcode.pl";
 &ReadParse;
 
-###############$B2<5-$N9`L\$O!"L5@)8B$KDI2C=PMh$^$9!#(B#################
+###############下記の項目は、無制限に追加出来ます。#################
 $kanji = $in{'kanji'};
 $name2 = $in{'name2'};
 $email2 = $in{'email2'};
 
 
-####$B2<5-$N=;=j!";aL>!"(BTEL$B!"(BFAX$B$O!">e$N9`L\$K$"$o$;$FDI2C$9$k!#(B######
-####$BNc$($P!"2q<RL>$rDI2C$N>l9g$O!"2q<RL>!"(B$kaisya $B$H5-F~!#(B
-####$kaisya$B$O!"I,$:%m!]%^;z%3!]%I$GBG$A9~$`!#(B
+####下記の住所、氏名、TEL、FAXは、上の項目にあわせて追加する。######
+####例えば、会社名を追加の場合は、会社名、$kaisya と記入。
+####$kaisyaは、必ずロ−マ字コ−ドで打ち込む。
 $kanjicode = $kanji;
 $kanjicode =~ s/ //g;
 $kanjicode =~ s/(.)/sprintf("%02X",unpack("c",$1) >= 0 ? unpack("c",$1)
@@ -33,18 +33,18 @@ $kanjicode =~ s/(....)/$1 /g;
 
 $com = <<MESSAGE;
 From: $email2
-Subject: $BH=Dj=PMh$J$$4A;z(B($B4k6HHG(B)
+Subject: 判定出来ない漢字(企業版)
 
 =====================================
-$B4UDj$G$-$J$$4A;z%3!<%I(B(SJIS)$B!'(B
+鑑定できない漢字コード(SJIS)：
 $kanjicode
-$BO"Mm?M$N(BE$B%a!<%k%"%I%l%9!'(B
+連絡人のEメールアドレス：
 $email2
-$BO"Mm?M$N;aL>(B($B;29M(B)$B!'(B
+連絡人の氏名(参考)：
 $name2
-$B%(%i!<4A;z(B($B;29M(B)$B!'(B
+エラー漢字(参考)：
 $kanji
-$B;29M!'%(%i!<$,H/@8$9$k2DG=@-$,9b$$!#(B
+参考：エラーが発生する可能性が高い。
 =====================================
 MESSAGE
 #&jcode'convert(*com,"sjis","euc");
@@ -59,16 +59,16 @@ close(MAIL);
 print "Content-type: text/html\n\n";
 print "<html>\n";
 print "<head>\n";
-#$B2<5-$N(BURL$B$O!"$"$J$?$N%5!]%P!]$K$"$o$;$F2<$5$$!#(B
+#下記のURLは、あなたのサ−バ−にあわせて下さい。
 print "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"5;URL=/~kazu-y/input3.html\">\n";
 #print "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"5;URL=http://ppd.sf.nara.sharp.co.jp/~nakamura/test/seimei2/public_html/input.html\">\n";
-print "<title>$BAw?.40N;(B</title></head>\n";
+print "<title>送信完了</title></head>\n";
 print "<body bgcolor=\"ffffff\" TEXT=\"000000\" link=\"fb02ee\" vlink=\"fb02ee\">\n";
 print "<p>\n";
 print "<br>\n";
 print "<br>\n";
 print "<center>\n";
-print "<font size=\"6\" color=\"000000\"><b>$B$46(NO$"$j$,$H$&$4$6$$$^$7$?!#(B</b></font><br>\n";
+print "<font size=\"6\" color=\"000000\"><b>ご協力ありがとうございました。</b></font><br>\n";
 print "</center>\n";
 print "</body>\n";
 print "</html>\n";

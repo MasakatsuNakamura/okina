@@ -29,7 +29,7 @@ Class Seimei {
 		return($meimei->getNewName($this->sei1, $this->sei2, $sex));
 	}
 	
-	// $B2h?t7W;;(B
+	// 画数計算
 	function shindan ($sei, $mei, $sex, $marry, $over40) {
 		mb_regex_encoding("UTF-8");
 		$this->sei = $sei;
@@ -43,17 +43,17 @@ Class Seimei {
 		$this->sei1 = $kanji->kakusu(mb_substr($this->sei, 0, 1, "utf-8"));
 		$this->sei2 = $kanji->kakusu(mb_substr($this->sei, mb_strlen($this->sei, "utf-8") - 1, 1, "utf-8"));
 		
-		// $B!9!5!8$N=hM}(B
-		$sei = preg_replace("/(.)($B!9!5!8(B)/u", "$1$1", $sei);
-		$mei = preg_replace("/(.)($B!9!5!8(B)/u", "$1$1", $mei);
+		// 々ゝ仝の処理
+		$sei = preg_replace("/(.)(々ゝ仝)/u", "$1$1", $sei);
+		$mei = preg_replace("/(.)(々ゝ仝)/u", "$1$1", $mei);
 		
-		// $BE72h!&?M2h!&CO2h!&302h!&Am2h$N;;=P(B($B7k9=$d$d$3$7$$(B)
+		// 天画・人画・地画・外画・総画の算出(結構ややこしい)
 		$this->tenkaku = 0;
 		$this->jinkaku = 0;
 		$this->chikaku = 0;
 		$this->error = Array();
 		
-		// $BE72h$N;;=P(B
+		// 天画の算出
 		for ($i = 0; $i < mb_strlen($sei, "utf-8"); $i++) {
 			$c = mb_substr($sei, $i, 1, "utf-8");
 			$k = $kanji->kakusu($c);
@@ -64,18 +64,18 @@ Class Seimei {
 			}
 		}
 		
-		// $B0lJ8;z@+$N=hM}(B
+		// 一文字姓の処理
 		if (mb_strlen($sei) == 1) {
-			$this->tenkaku++; // $B0l2h<Z$j$k(B
+			$this->tenkaku++; // 一画借りる
 			$this->gaikaku++;
-			$this->soukaku--; // $B0l2hJV$9(B
+			$this->soukaku--; // 一画返す
 		}
 		
-		// $B?M2h$N;;=P(B
+		// 人画の算出
 		$this->jinkaku = $kanji->kakusu(mb_substr($sei, mb_strlen($sei, "utf-8")-1, 1, "utf-8"))
 					   + $kanji->kakusu(mb_substr($mei, 0, 1, "utf-8"));
 		
-		// $BCO2h$N;;=P(B
+		// 地画の算出
 		for ($i = 0; $i < mb_strlen($mei, "utf-8"); $i++) {
 			$c = mb_substr($mei, $i, 1, "utf-8");
 			$k = $kanji->kakusu($c);
@@ -86,18 +86,18 @@ Class Seimei {
 			}
 		}
 		
-		// $B0lJ8;zL>$N=hM}(B
+		// 一文字名の処理
 		if (mb_strlen($mei) == 1) {
-			$this->chikaku++; // $B0l2h<Z$j$k(B
+			$this->chikaku++; // 一画借りる
 			$this->gaikaku++;
-			$this->soukaku--; // $B0l2hJV$9(B
+			$this->soukaku--; // 一画返す
 		}
 		
-		// $BAm2h!&302h$N;;=P(B
+		// 総画・外画の算出
 		$this->soukaku = $this->tenkaku + $this->chikaku;
 		$this->gaikaku = $this->soukaku - $this->jinkaku;
 		
-		// $B%*!<%P!<%U%m!<=hM}(B - $B$A$J$_$K(B > 81$B$O4V0c$$$G$O$J$$!#(B
+		// オーバーフロー処理 - ちなみに > 81は間違いではない。
 		if ($this->tenkaku > 81) {
 			$this->tenkaku %= 80;
 		}
@@ -114,26 +114,26 @@ Class Seimei {
 			$this->soukaku %= 80;
 		}
 		
-		// $BE72h!&?M2h!&CO2h$N2<0l7e$N;;=P(B(10$B$G3d$C$?M>$j$r<h$k$@$1(B)
+		// 天画・人画・地画の下一桁の算出(10で割った余りを取るだけ)
 		$this->tenshimo = $this->tenkaku % 10;
 		$this->jinshimo = $this->jinkaku % 10;
 		$this->chishimo = $this->chikaku % 10;
 		
-		// $B@-3J?GCG$N=`Hw(B
-		$this->seikaku = $this->jinshimo; //$B?M2h$N2<0l7e$G7h$^$k(B
+		// 性格診断の準備
+		$this->seikaku = $this->jinshimo; //人画の下一桁で決まる
 
-		// $B1"M[8^9T$N%7%j%"%kHV9f$N;;=P(B($B>\$7$/$O(Bkenkou.php$B$r;2>H(B)
+		// 陰陽五行のシリアル番号の算出(詳しくはkenkou.phpを参照)
 		$this->kenkou = $this->f($this->tenshimo) * 25 + $this->f($this->jinshimo) * 5 + $this->f($this->chishimo);
 	}
 	
-	// $B@j$$7k2L(B($BJ88@(B)$B$N=PNO(B
+	// 占い結果(文言)の出力
 	public function mongon ($category) {
 		mb_regex_encoding("UTF-8");
-		// $B?t$NNn0LJ88@$N=i4|2=(B
+		// 数の霊位文言の初期化
 		$reii = New Reii();
-		// $B7r9/J88@$N=i4|2=(B
+		// 健康文言の初期化
 		$kenkou = New Kenkou();
-		// $B@-3JJ88@$N=i4|2=(B
+		// 性格文言の初期化
 		$seikaku = New Seikaku();
 		
 		switch ($category) {

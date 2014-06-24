@@ -6,19 +6,19 @@ require "reii.pl";
 require "seikaku.pl";
 require "kenkou.pl";
 
-# $B2q<R4D6-%F%9%HMQ(B
+# 会社環境テスト用
 #$root = "/~nakamura/test/seimei2/public_html";
 #$cgipath = "/~nakamura/test/seimei2/cgi_bin";
 #$baseurl = "http://ppd.sf.nara.sharp.co.jp";
 
-# $B$^$[$m$P(BWWW2$BMQ(B
+# まほろばWWW2用
 $root = "/~kazu-y";
 $cgipath = "/~kazu-y/cgi_bin3";
 #$baseurl = "http://www2.mahoroba.ne.jp";
 
 
 
-# CGI$BJQ?t<h$j$3$_(B
+# CGI変数取りこみ
 &ReadParse();
 $sei = $in{'sei'};
 $mei = $in{'mei'};
@@ -46,18 +46,18 @@ if ($sei eq "" || $mei eq "") {
 $sei1 = $sei;
 $mei1 = $mei;
 
-# $B!9$N=hM}(B
+# 々の処理
 $sei1 =~ s/(..)\x81\x58/$1$1/;
 $mei1 =~ s/(..)\x81\x58/$1$1/;
 
-# $BE72h!&?M2h!&CO2h!&302h!&Am2h$N;;=P(B($B7k9=$d$d$3$7$$(B)
+# 天画・人画・地画・外画・総画の算出(結構ややこしい)
 $kakusu{'tenkaku'} = 0;
 $kakusu{'chikaku'} = 0;
 $kakusu{'gaikaku'} = 0;
 $kakusu{'soukaku'} = 0;
 @error = ();
 
-# $BE72h$N;;=P(B
+# 天画の算出
 for ($i = 0; $i<length($sei1); $i+=2) {
 	$kanji = substr($sei1, $i, 2);
 	$kakusu = &kakusu($kanji);
@@ -67,17 +67,17 @@ for ($i = 0; $i<length($sei1); $i+=2) {
 	$kakusu{'tenkaku'} += $kakusu;
 }
 
-# $B0lJ8;z@+$N=hM}(B
+# 一文字姓の処理
 if (length($sei1) == 2) {
-	$kakusu{'tenkaku'}++; # $B0l2h<Z$j$k(B
+	$kakusu{'tenkaku'}++; # 一画借りる
 	$kakusu{'gaikaku'}++;
-	$kakusu{'soukaku'}--; # $B0l2hJV$9(B
+	$kakusu{'soukaku'}--; # 一画返す
 }
 
-# $B?M2h$N;;=P(B
+# 人画の算出
 $kakusu{'jinkaku'} = &kakusu(substr($sei1, length($sei1)-2, 2)) + &kakusu(substr($mei1, 0, 2));
 
-# $BCO2h$N;;=P(B
+# 地画の算出
 for ($i = 0; $i<length($mei1); $i+=2) {
 	$kanji = substr($mei1, $i, 2);
 	$kakusu = &kakusu($kanji);
@@ -87,18 +87,18 @@ for ($i = 0; $i<length($mei1); $i+=2) {
 	$kakusu{'chikaku'} += $kakusu;
 }
 
-# $B0lJ8;zL>$N=hM}(B
+# 一文字名の処理
 if (length($mei1) == 2) {
-	$kakusu{'chikaku'}++; # $B0l2h<Z$j$k(B
+	$kakusu{'chikaku'}++; # 一画借りる
 	$kakusu{'gaikaku'}++;
-	$kakusu{'soukaku'}--; # $B0l2hJV$9(B
+	$kakusu{'soukaku'}--; # 一画返す
 }
 
-# $BAm2h!&302h$N;;=P(B
+# 総画・外画の算出
 $kakusu{'soukaku'} += $kakusu{'tenkaku'} + $kakusu{'chikaku'};
 $kakusu{'gaikaku'} += $kakusu{'soukaku'} - $kakusu{'jinkaku'};
 
-#$B@+;z(B1$B!&@+;z(B2$B!&L>;z(B1$B!&L>;z(B2$B$N;;=P(B
+#姓字1・姓字2・名字1・名字2の算出
 $seijib = &kakusu(substr($sei1, length($sei1)-2, 2));
 $meijia = &kakusu(substr($mei1, 0, 2));
 if (length($mei1) == 2) {
@@ -109,23 +109,23 @@ if (length($mei1) == 2) {
 $meijib = $kakusu{'soukaku'} - $kakusu{'jinkaku'} - $seijia;
 
 
-# $B%*!<%P!<%U%m!<=hM}(B - $B$A$J$_$K(B > 81$B$O4V0c$$$G$O$J$$!#(B
+# オーバーフロー処理 - ちなみに > 81は間違いではない。
 foreach (keys %kakusu) {
 	$kakusu{$_} %= 80 if ($kakusu{$_} > 81);
 }
 
-# $BE72h!&?M2h!&CO2h$N2<0l7e$N;;=P(B(10$B$G3d$C$?M>$j$r<h$k$@$1(B)
+# 天画・人画・地画の下一桁の算出(10で割った余りを取るだけ)
 $tenshimo = $kakusu{'tenkaku'} % 10;
 $jinshimo = $kakusu{'jinkaku'} % 10;
 $chishimo = $kakusu{'chikaku'} % 10;
 
-# $B@-3J?GCG$N=`Hw(B
+# 性格診断の準備
 $kakusu{'seikaku'} = $jinshimo;
 
-# $B1"M[8^9T$N%7%j%"%kHV9f$N;;=P(B($B>\$7$/$O(Bkenkou.pl$B$r;2>H(B)
+# 陰陽五行のシリアル番号の算出(詳しくはkenkou.plを参照)
 $kakusu{'kenkou'} = &f($tenshimo)*25 + &f($jinshimo) *5 + &f($chishimo);
 
-# $B6JL>7hDj(B
+# 曲名決定
 #$kyoku = $jinshimo;
 #$kyoku = 10 if ($kyoku == 0);
 #$kyoku -= 1;
@@ -133,7 +133,7 @@ $kakusu{'kenkou'} = &f($tenshimo)*25 + &f($jinshimo) *5 + &f($chishimo);
 #$kyoku /= 2;
 #$kyoku++;
 
-# $B@j$$7k2L$N@07A=hM}(B
+# 占い結果の整形処理
 foreach (keys %kakusu) {
 	if ($_ eq "kenkou") {
 		$res{$_} = $kenkou[$kakusu{$_}];
@@ -158,32 +158,32 @@ foreach (keys %kakusu) {
 }
 
 if ($#error >= 0) {
-	# $B%(%i!<4A;z$,0lJ8;z$G$b$"$l$P%(%i!<I=<((B
+	# エラー漢字が一文字でもあればエラー表示
 	$msg = <<"EOK";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>$B%(%i!<%a%C%;!<%8(B</TITLE>
+   <TITLE>エラーメッセージ</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="$root/image/wall.jpg">
-<P><HTML><HEAD><TITLE>$B%(%i!<%a%C%;!<%8(B</TITLE></HEAD></P>
+<P><HTML><HEAD><TITLE>エラーメッセージ</TITLE></HEAD></P>
 
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3" COLOR="#FF0000"><B>$BF~NO$5$l$?4A;z!V(B
-         \$error $B!W$,H=JL$G$-$^$;$s!#(B</B></FONT>
+         <CENTER><FONT SIZE="+3" COLOR="#FF0000"><B>入力された漢字「
+         \$error 」が判別できません。</B></FONT>
          
-         <P>$B@?$K62$lF~$j$^$9$,!"2<5-$NAw?.%U%)!<%`$r$43NG'8e!"!VAw?.!W%\%?%s$r2!$7$F2<$5$$!#(B<BR>
-         $B;3K\2'$,@53N$K4A;z$N2h?tH=Dj$r9T$$!"2<5-%a!<%k%"%I%l%9$^$G$4O"Mm:9$7>e$2$^$9!#(B</P>
+         <P>誠に恐れ入りますが、下記の送信フォームをご確認後、「送信」ボタンを押して下さい。<BR>
+         山本翁が正確に漢字の画数判定を行い、下記メールアドレスまでご連絡差し上げます。</P>
          
-         <P>$B$*5^$.$N>l9g$K$O!"3:Ev$9$k4A;z$N2h?t$r(B2$B7e$N(B<B>$BH>3Q(B</B>$B;;MQ?t;z$GF~NO$7$F2<$5$$!#(B<BR>
-         $BNc!";3EDB@O:"*;3EDB@(B14$B!J!VO:!W$K%(%i!<%a%C%;!<%8$,=P$?>l9g!#!K(B</P>
+         <P>お急ぎの場合には、該当する漢字の画数を2桁の<B>半角</B>算用数字で入力して下さい。<BR>
+         例、山田太郎→山田太14（「郎」にエラーメッセージが出た場合。）</P>
          
-         <P>$B$47@Ls$K4p$E$-%G!<%?%Y!<%9$N99?7:n6H;~$K$O!":#2s$N%(%i!<4A;z$rH?1G$5$;$FD:$-$^$9!#(B</P></CENTER>
+         <P>ご契約に基づきデータベースの更新作業時には、今回のエラー漢字を反映させて頂きます。</P></CENTER>
          
          <P>
          
@@ -194,20 +194,20 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B>$B2'$+$i$N$*OM$S(B</B></FONT></CENTER>
+         <CENTER><FONT SIZE="+3"><B>翁からのお詫び</B></FONT></CENTER>
          
-         <P><U>$BJ8;z$N2h?t%G!<%?%Y!<%9$K$D$$$F(B</U></P>
+         <P><U>文字の画数データベースについて</U></P>
          
-         <P>$B8=:_!"L>A0$KMQ$$$i$l$k4A;z$O!"EvMQ4A;z$H?ML>4A;z$G$9!#EPO?4A;z(B
-         $B$O$3$N(B4000$BJ8;z0J>e$rLVMe$7$F$*$j$^$9$,!"2a5n$+$i$"$k@+L>$K$O$3$l$K3:Ev$7$J$$$b$N$,4v$D$b$"$j$^$9!#;3K\2'$N7P83$+$i2a5n!"2'$,@\$7$?$3$H$N$"$k@+L>$K$D$$$F$O=PMh$k$+$.$j%G!<%?%Y!<%9$K$OEPO?$7$F$*$j$^$9!#$7$+$7$J$,$i!"A4$F$,EPO?$5$l$F$$$k$H$O8@$$Fq$/!"$^$?EPO?O3$l$,$J$$$H$b8B$j$^$;$s!#(B</P>
+         <P>現在、名前に用いられる漢字は、当用漢字と人名漢字です。登録漢字
+         はこの4000文字以上を網羅しておりますが、過去からある姓名にはこれに該当しないものが幾つもあります。山本翁の経験から過去、翁が接したことのある姓名については出来るかぎりデータベースには登録しております。しかしながら、全てが登録されているとは言い難く、また登録漏れがないとも限りません。</P>
          
-         <P>$B:#2s$O$=$&8@$C$?5)$J%1!<%9$G$"$k$H;W$o$l$^$9!#@?$K$*<j?t$G$9$,!"2<5-$NFbMF$r$43NG'D:$-(B($B%a!<%k%"%I%l%9$O4IM}<T$N;X<($K=>$C$F$/$@$5$$(B)$B!"Aw?.$7$FD:$1$l$P!"8eF|!"2'$+$i4A;z$N2h?t$r$*CN$i$;CW$7$^$9!#:#8e$N%G!<%?%Y!<%9$KH?1G$5$;$FD:$-$^$9!#(B</P>
+         <P>今回はそう言った稀なケースであると思われます。誠にお手数ですが、下記の内容をご確認頂き(メールアドレスは管理者の指示に従ってください)、送信して頂ければ、後日、翁から漢字の画数をお知らせ致します。今後のデータベースに反映させて頂きます。</P>
          
          <CENTER><FORM ACTION="$cgipath/n_mail2.cgi" METHOD=POST>
             <BLOCKQUOTE><BLOCKQUOTE><CENTER><TABLE BORDER=0 CELLSPACING=10 CELLPADDING=0>
                      <TR>
                         <TD>
-                           <P ALIGN=right>$B%(%i!<$K$J$C$?4A;z(B</P>
+                           <P ALIGN=right>エラーになった漢字</P>
                         </TD>
                         <TD>
                            <P><INPUT TYPE=hidden NAME=kanji VALUE="\$error" SIZE=10 MAXLENGTH=10>\$error</P>
@@ -215,7 +215,7 @@ Content-type: text/html
                      </TR>
                      <TR>
                         <TD>
-                           <P ALIGN=right>$B$*L>A0(B</P>
+                           <P ALIGN=right>お名前</P>
                         </TD>
                         <TD>
                            <P><INPUT TYPE=text NAME=name2 VALUE="\$seimei" SIZE=20 MAXLENGTH=10></P>
@@ -223,7 +223,7 @@ Content-type: text/html
                      </TR>
                      <TR>
                         <TD>
-                           <P ALIGN=right>$B%a!<%k%"%I%l%9(B</P>
+                           <P ALIGN=right>メールアドレス</P>
                         </TD>
                         <TD>
                            <P><INPUT TYPE=text NAME=email2 VALUE="" SIZE=40></P>
@@ -234,7 +234,7 @@ Content-type: text/html
                            <P></P>
                         </TD>
                         <TD>
-                           <P><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"><INPUT TYPE=reset VALUE="$B<h$j>C$7(B"></P>
+                           <P><INPUT TYPE=submit NAME="送信" VALUE="送信"><INPUT TYPE=reset VALUE="取り消し"></P>
                         </TD>
                      </TR>
                   </TABLE>
@@ -250,7 +250,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><A HREF="$root/input3.html" TARGET="_self"><B>$B$b$&0lEY4UDj$9$k(B</B></A>
+         <CENTER><A HREF="$root/input3.html" TARGET="_self"><B>もう一度鑑定する</B></A>
          
          <P><B>
          
@@ -261,8 +261,8 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="-2">$B$3$N%W%m%0%i%`$O4k6H8~$1%$%s%H%i%M%C%HHG$G$9!#(BWWW$B$G$N>&MQMxMQ$O$G$-$^$;$s!#(B<BR>
-         $B$3$N%W%m%0%i%`$N%i%$%;%s%9$r<u$1$?4k6H0J30$NBh;0<T$XE>Gd!":FG[IU$r6X;_$7$^$9!#(B<BR>
+         <CENTER><FONT SIZE="-2">このプログラムは企業向けイントラネット版です。WWWでの商用利用はできません。<BR>
+         このプログラムのライセンスを受けた企業以外の第三者へ転売、再配付を禁止します。<BR>
          <I>CopyRight. K.Yamamoto.1998.9.1</I></FONT></CENTER>
       </TD>
    </TR>
@@ -277,22 +277,22 @@ EOK
 	$msg =~ s/\$error/@error/g;
 	print $msg;
 } else {
-	# $BH=Dj7k2LI=<((B
+	# 判定結果表示
 	$msg = <<"EOM";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>$B;3K\2'$N4UDj7k2L(B</TITLE>
+   <TITLE>山本翁の鑑定結果</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="$root/image/wall.jpg">
-<P><HTML><HEAD><TITLE>$B;3K\2'$N@+L>H=CG(B</TITLE></HEAD></P>
+<P><HTML><HEAD><TITLE>山本翁の姓名判断</TITLE></HEAD></P>
 
 <CENTER><TABLE BORDER=0 CELLSPACING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3" COLOR="#00CC00"><B>\$seimei$B$5$s$N4UDj7k2L(B</B></FONT></CENTER>
+         <CENTER><FONT SIZE="+3" COLOR="#00CC00"><B>\$seimeiさんの鑑定結果</B></FONT></CENTER>
          
          <P>
          
@@ -300,26 +300,26 @@ Content-type: text/html
          
          </P>
          
-         <P>$B4pAC%G!<%?!'@+(BA=$seijia,$B!!@+(BB=$seijib,$B!!E72h(B=$kakusu{'tenkaku'},$B!!L>(BA=$meijia,$B!!L>(BB=$meijib
+         <P>基礎データ：姓A=$seijia,　姓B=$seijib,　天画=$kakusu{'tenkaku'},　名A=$meijia,　名B=$meijib
 <FORM ACTION="seimei.cgi" METHOD=POST>
             <CENTER><TABLE BORDER=0 CELLSPACING=5 WIDTH=160>
                <TR>
                   <TD>
-                     <CENTER>$B@+(B<BR>
+                     <CENTER>姓<BR>
                      <INPUT TYPE=text NAME=sei VALUE="\$sei" SIZE=10 MAXLENGTH=10></CENTER>
                   </TD>
                   <TD>
-                     <CENTER>$BL>(B<BR>
+                     <CENTER>名<BR>
                      <INPUT TYPE=text NAME=mei VALUE="" SIZE=10 MAXLENGTH=10></CENTER>
                   </TD>
                </TR><INPUT TYPE=hidden NAME=sex VALUE="\$sex" size=10 maxlength=10>
        <INPUT TYPE=hidden NAME=marry VALUE="\$marry" size=10 maxlength=10>
                <TR>
                   <TD>
-                     <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$B4UDj(B"></CENTER>
+                     <CENTER><INPUT TYPE=submit NAME="送信" VALUE="鑑定"></CENTER>
                   </TD>
                   <TD>
-                     <CENTER><A HREF="$root/input3.html">$BLa$k(B</A></CENTER>
+                     <CENTER><A HREF="$root/input3.html">戻る</A></CENTER>
                   </TD>
                </TR>
             </TABLE>
@@ -332,34 +332,34 @@ Content-type: text/html
          <P><TABLE BORDER=3 CELLSPACING=10 WIDTH="100%">
             <TR>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#B30000"><B><U>$B<g1?(B</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#B30000">$B!(Ev?M$N0l@8$NCf?4$r;J$j$^$9!#7k:'$K$h$j@+$,JQ$o$k$H<g1?$bJQ$o$j$^$9$,!"CfG/0J9_$K6/$/8=$l$^$9!#(B</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#B30000"><B><U>主運</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#B30000">；当人の一生の中心を司ります。結婚により姓が変わると主運も変わりますが、中年以降に強く現れます。</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'jinkaku'}$B2h!'(B$res{'jinkaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'jinkaku'}画：$res{'jinkaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#1D00B3"><B><U>$BBP?M1?!&<R8r1?(B</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#1D00B3">$B!(BP?M4X78$d2HB2!&IWIX4X78!"M'C#4X78$K8=$l$F$-$^$9!#(B</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#1D00B3"><B><U>対人運・社交運</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#1D00B3">；対人関係や家族・夫婦関係、友達関係に現れてきます。</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'gaikaku'}$B2h!'(B$res{'gaikaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'gaikaku'}画：$res{'gaikaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
             </TR>
             <TR>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#007F1F"><B><U>$B7r9/1?(B($BBND4!&@:?@(B)</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#007F1F">$B!(Nc$(5H?tB7$$$N@+L>$G$"$C$F$b!"7r9/$K7C$^$l$J$1$l$P3h$+$5$;$^$;$s!#(B</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#007F1F"><B><U>健康運(体調・精神)</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#007F1F">；例え吉数揃いの姓名であっても、健康に恵まれなければ活かさせません。</FONT></P>
                   
                   <BLOCKQUOTE>$res{'kenkou'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#B35900"><B><U>$B@-3J(B</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#B35900">$B!(Ev?M$N30LLE*$J@-3J$r8=$7$^$9!#<+J,$,B>?M$+$i$I$&8+$($F$$$k$N$+;29M$K$J$j$^$9!#(B</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#B35900"><B><U>性格</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#B35900">；当人の外面的な性格を現します。自分が他人からどう見えているのか参考になります。</FONT></P>
                   
                   <BLOCKQUOTE>$res{'seikaku'}</BLOCKQUOTE>
                   
@@ -368,18 +368,18 @@ Content-type: text/html
             </TR>
             <TR>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#7F0260"><B><U>$B4pAC1?(B</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#7F0260">$B!(MD>/G/4|$N1?@*$N5H6'$r;YG[$7!"@DG/4|$^$G:G$b6/$/:nMQ$7$^$9!#(B($B<cG/<T$NH=CG$O$3$A$i$,M-8z(B)</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#7F0260"><B><U>基礎運</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#7F0260">；幼少年期の運勢の吉凶を支配し、青年期まで最も強く作用します。(若年者の判断はこちらが有効)</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'chikaku'}$B2h!'(B$res{'chikaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'chikaku'}画：$res{'chikaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
                <TD VALIGN=top>
-                  <P><FONT SIZE="+2" COLOR="#B30068"><B><U>$BHUG/1?(B</U></B></FONT>
-                  <FONT SIZE="-1" COLOR="#B30068">$B!((B50$B:PA08e$+$i6/$/8=$l$F$-$^$9!#$?$@$7!"<g1?$H4pAC1?$K:81&$5$l$^$9$N$GCm0U$7$F2<$5$$!#(B</FONT></P>
+                  <P><FONT SIZE="+2" COLOR="#B30068"><B><U>晩年運</U></B></FONT>
+                  <FONT SIZE="-1" COLOR="#B30068">；50歳前後から強く現れてきます。ただし、主運と基礎運に左右されますので注意して下さい。</FONT></P>
                   
-                  <BLOCKQUOTE>$kakusu{'soukaku'}$B2h!'(B$res{'soukaku'}</BLOCKQUOTE>
+                  <BLOCKQUOTE>$kakusu{'soukaku'}画：$res{'soukaku'}</BLOCKQUOTE>
                   
                   <P></P>
                </TD>
@@ -393,7 +393,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><A HREF="$root/input3.html" TARGET="_self"><B>$B$b$&0lEY4UDj$r$9$k(B</B></A>
+         <CENTER><A HREF="$root/input3.html" TARGET="_self"><B>もう一度鑑定をする</B></A>
          
          <P><B>
          
@@ -404,13 +404,13 @@ Content-type: text/html
    </TR>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="-2">$B$3$N%W%m%0%i%`$O4k6H8~$1%$%s%H%i%M%C%HHG$G$9!#(BWWW$B$G$N>&MQMxMQ$O$G$-$^$;$s!#(B<BR>
-         $B$3$N%W%m%0%i%`$N%i%$%;%s%9$r<u$1$?4k6H0J30$NBh;0<T$XE>Gd!":FG[IU$r6X;_$7$^$9!#(B<BR>
+         <CENTER><FONT SIZE="-2">このプログラムは企業向けイントラネット版です。WWWでの商用利用はできません。<BR>
+         このプログラムのライセンスを受けた企業以外の第三者へ転売、再配付を禁止します。<BR>
          <I>CopyRight. K.Yamamoto.1999.3.21</I></FONT></CENTER>
       </TD>
    </TR>
 </TABLE>
- <FONT SIZE="-1">$B!!(B</FONT>$B!!!!!!(B $B!!!!!!(B</CENTER>
+ <FONT SIZE="-1">　</FONT>　　　 　　　</CENTER>
 </BODY>
 </HTML>
 

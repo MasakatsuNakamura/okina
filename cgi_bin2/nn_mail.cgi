@@ -27,15 +27,15 @@ $brother = $in{'brother'};
 $request = $in{'request'};
 $exp = $in{'exp'};
 $kgak = $in{'kgak'};
-######$BF~NO%G!<%?$N@07A=hM}(B######
+######入力データの整形処理######
 if ($zipcord ne "") {
 	$zipcord =~ s/\s*//g;
-	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
+	#全角英数字をすべて半角英数字にする。
 	$zipcord = &zen2han($zipcord); 
 }
 if ($tel ne "") {
 	$tel =~ s/\s*//g;
-	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
+	#全角英数字をすべて半角英数字にする。
 	$tel = &zen2han($tel); 
 }
 if ($familyname ne "") {
@@ -46,136 +46,136 @@ if ($brthday ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
+	#全角英数字をすべて半角英数字にする。
 	$email = &zen2han($email);
 } 
-#####$BEE;RK\%Q%9%o!<%I$NKd$a9~$_(B#####
+#####電子本パスワードの埋め込み#####
 if ($order1 ne "" ) {
-	$order1 ="$BEE;RK\$r$4CmJ8!J%Q%9%o!<%I$O(B19580723$B$G$9!#!K(B";
+	$order1 ="電子本をご注文（パスワードは19580723です。）";
     &jcode'convert(*order1, 'jis', 'euc');
 }
-#####$BF~NO%(%i!<$N%A%'%C%/(B#####
+#####入力エラーのチェック#####
 if ($name =~ /^\s*$/){
-	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
-	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("名前の記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
-	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("メールアドレスの記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("$BF~NO%(%i!<(B",
-		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("入力エラー",
+		"メールアドレスの書き方が間違っています。",$email,
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if (($order1 eq "" ) and ($order2 eq "" ) and ($order3 eq ""))  {
-	&CgiError("$BF~NO%(%i!<(B",
-		"$B$4CmJ8$,2?$b;X<($5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("入力エラー",
+		"ご注文が何も指示されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }	
 if ($order2 ne "") {
 	if ($zipcord eq "") {
-		&CgiError("$BM9JXHV9f$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("郵便番号が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($address eq "") {
-		&CgiError("$B=;=j$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("住所が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}	
 	elsif ($fullname eq "") {
-		&CgiError("$B<u<h?M$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("受取人が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($tel eq "") {
-		&CgiError("$BEEOCHV9f$,F~NO$5$l$F$$$^$;$s!#8GDjEEOC$,L5$$;~$K8B$j7HBSHV9f$G$b7k9=$G$9!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("電話番号が入力されていません。固定電話が無い時に限り携帯番号でも結構です。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
 if ($order3 ne "") {
 	if ($familyname eq "") {
-		&CgiError("$BID;z(B($B@+(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("苗字(姓)が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($brthday eq "") {
-		&CgiError("$BM=DjF|(B($BCB@8F|(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("予定日(誕生日)が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
 if ($exp ne "") {
 	if ($tel eq "") {
-		&CgiError("$BEEOCHV9f$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("電話番号が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($zipcord eq "") {
-		&CgiError("$BM9JXHV9f$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("郵便番号が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
     elsif ($address eq "") {
-		&CgiError("$B=;=j$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("住所が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}	
 }
-#####$B$3$3$+$i(BBase64$B%a!<%k(B#####
-#####$B<+J,08$NCmJ8%a!<%kAw?.(B#####
-##### $B%\%G%#4pK\J8;zNs$NDj5A(B######
+#####ここからBase64メール#####
+#####自分宛の注文メール送信#####
+##### ボディ基本文字列の定義######
 @body = (
 	"=====================================", 
-	"$B;3K\2'$5$^$X!"0J2<$NCmJ8$rCW$7$?$/!#(B", 
+	"山本翁さまへ、以下の注文を致したく。", 
 	"", 
-	"$B?=9~?MMM$N;aL>!'(B", 
+	"申込人様の氏名：", 
 	"", 
-	"$B?=9~?MMM$N(BE$B%a!<%k%"%I%l%9!'(B", 
+	"申込人様のEメールアドレス：", 
 	"", 
-	"$B$4CmJ8FbMF!'(B",
+	"ご注文内容：",
 	"",
 	"", 
 	"",  
-	"$B=q@R$NAwIU@h$^$?$OO"Mm@h(B", 
-	"$BM9JXHV9f!'(B", 
+	"書籍の送付先または連絡先", 
+	"郵便番号：", 
 	"", 
-	"$B$4=;=j!'(B", 
+	"ご住所：", 
 	"", 
-	"$B$*EEOCHV9f!'(B", 
+	"お電話番号：", 
 	"", 
-	"$B<u<h?MMM!'(B", 
+	"受取人様：", 
 	"", 
-	"$BL?L>$N$40MMjFbMF!'(B", 
+	"命名のご依頼内容：", 
 	"", 
-	"$B@+(B($B$_$g$&$8(B)$B!'(B", 
+	"姓(みょうじ)：", 
 	"", 
-	"$B=P;:M=DjF|!'(B", 
+	"出産予定日：", 
 	"", 
-	"$B:#$^$G$NMxMQ!'(B", 
+	"今までの利用：", 
 	"", 
-	"$B7;;P$N$*L>A0!'(B", 
+	"兄姉のお名前：", 
 	"", 
-	"$B$4MWK>;v9`!'(B", 
+	"ご要望事項：", 
 	"", 
 	"=====================================",
 );
 foreach(@body) {
 	&jcode'convert(*_, "sjis", "euc");
 }
-#######Sub$B$N@8@.(B(Base64$B%(%s%3!<%I(B)#######
-$subject = "$B2'$X$4CmJ8(B(Ver.8)";
+#######Subの生成(Base64エンコード)#######
+$subject = "翁へご注文(Ver.8)";
 &jcode'convert(*subject, 'jis', 'euc');
 $subject = encode_base64($subject);
 chop($subject);
 $subject = " . $subject . "?=";
-####### $B%X%C%@$NDj5A(B#########
+####### ヘッダの定義#########
 $mail_header = <<"EOM";
 From: $email
 To: $okina_email
@@ -185,7 +185,7 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: base64
 Subject: $subject
 EOM
-####### $B%a%C%;!<%8%\%G%#$N@8@.(B########
+####### メッセージボディの生成########
 $body[4] .= $name;
 $body[6] .= $email;
 $body[8] .= $order1;
@@ -203,39 +203,39 @@ $body[29] .= $brother;
 $body[31] .= $request;
 $mailbody = join("\r\n", @body);
 $encoded = encode_base64($mailbody);
-######## $B%a!<%kAw?.(B#########
+######## メール送信#########
 open(MAIL, "|$sendmail $okina_email");
 print MAIL $mail_header;
 for ($i = 0; $i < length($encoded); $i += 76) {
 	print MAIL substr($encoded, $i, 76);
 }
 close(MAIL);
-#####$B?69~@h$40FFb%a!<%k(B#####
-##### $B%\%G%#4pK\J8;zNs$NDj5A(B######
+#####振込先ご案内メール#####
+##### ボディ基本文字列の定義######
 @body2 = (
 	"", 
-	"$B$5$^!";3K\2'$G$9!#(B", 
-	"$B$3$N$?$S$O!"0J2<$N$40MMj$rD:$-$"$j$,$H$&$4$6$$$^$9!#(B", 
+	"さま、山本翁です。", 
+	"このたびは、以下のご依頼を頂きありがとうございます。", 
 	"", 
 	"", 
 	"", 
-	"$BBe6b$N9g7W6b3[(B($B@G9~$_(B)", 
+	"代金の合計金額(税込み)", 
 	"",
-	"$B1_$O2<5-$N8}:B$K$*?6$j9~$_D:$-$^$9$h$&$*4j$$?=$7>e$2$^$9!#(B",
-	"$BM9JX0YBX!!8}:BHV9f!!(B00930-9-136431", 
-	"$B8}:BL>5A!!7C?4<R(B",  
-	"$B$J$*!"?69~<j?tNA$O$*5RMM$4IiC4$G$*4j$$CW$7$^$9!#(B", 
+	"円は下記の口座にお振り込み頂きますようお願い申し上げます。",
+	"郵便為替　口座番号　00930-9-136431", 
+	"口座名義　恵心社",  
+	"なお、振込手数料はお客様ご負担でお願い致します。", 
 );
 foreach(@body2) {
 	&jcode'convert(*_, "jis", "euc");
 }
-#######Sub$B$N@8@.(B(Base64$B%(%s%3!<%I(B)#######
-$subject = "$B$4CmJ8$r>5$j$^$7$?!#(B";
+#######Subの生成(Base64エンコード)#######
+$subject = "ご注文を承りました。";
 &jcode'convert(*subject, 'jis', 'euc');
 $subject = encode_base64($subject);
 chop($subject);
 $subject = " . $subject . "?=";
-####### $B%X%C%@$NDj5A(B#########
+####### ヘッダの定義#########
 $mail_header = <<"EOM2";
 From: $okina_email2
 To: $email
@@ -245,7 +245,7 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: base64
 Subject: $subject
 EOM2
-####### $B%a%C%;!<%8%\%G%#$N@8@.(B########
+####### メッセージボディの生成########
 $body2[0] .= $name;
 $body2[3] .= $order1;
 $body2[4] .= $order2;
@@ -253,28 +253,28 @@ $body2[5] .= $order3;
 $body2[7] .= $kgak;
 $mailbody = join("\r\n", @body2);
 $encoded = encode_base64($mailbody);
-######## $B%a!<%kAw?.(B#########
+######## メール送信#########
 open(MAIL, "|$sendmail $email");
 print MAIL $mail_header;
 for ($i = 0; $i < length($encoded); $i += 76) {
 	print MAIL substr($encoded, $i, 76);
 }
 close(MAIL);
-#####$B0J>e$,(BBase64$B%a!<%k(B#####
+#####以上がBase64メール#####
 print "Content-type: text/html\n\n";
 print "<html>\n";
 print "<html lang=\"ja\">\n";
 print "<head>\n";
 print "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=EUC-JP\">\n";
 print "<META HTTP-EQUIV=\"Refresh\" CONTENT=\"5;URL=/~kazu-y/index.html\">\n";
-print "<title>$B$4CmJ8<uIU40N;(B</title></head>\n";
+print "<title>ご注文受付完了</title></head>\n";
 print "<body bgcolor=\"ffffff\" TEXT=\"000000\" link=\"fb02ee\" vlink=\"fb02ee\">\n";
 print "<p>\n";
 print "<br>\n";
 print "<br>\n";
 print "<center>\n";
-print "<font size=\"6\" color=\"000000\"><b>$B$"$j$,$H$&$4$6$$$^$9!#(B</b></font><br>\n";
-print "<font size=\"3\" color=\"000000\"><b>$B$*?69~@h$N0FFb%a!<%k$rAw$i$;$FD:$-$^$7$?!#(B</b></font><br>\n";
+print "<font size=\"6\" color=\"000000\"><b>ありがとうございます。</b></font><br>\n";
+print "<font size=\"3\" color=\"000000\"><b>お振込先の案内メールを送らせて頂きました。</b></font><br>\n";
 print "</center>\n";
 print "</body>\n";
 print "</html>\n";

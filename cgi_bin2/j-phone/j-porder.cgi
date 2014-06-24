@@ -9,7 +9,7 @@ $cgipath = "/~kazu-y/cgi_bin2";
 $baseurl = "http://www2.mahoroba.ne.jp";
 
 &ReadParse;
-#####$B%G!<%?$N<h$j9~$_(B#####
+#####データの取り込み#####
 $name = $in{'name'};
 $email = $in{'email'};
 $order3 = $in{'order3'};
@@ -18,7 +18,7 @@ $brthday = $in{'brthday'};
 $user = $in{'user'};
 $brother = $in{'brother'};
 
-######$BF~NO%G!<%?$N@07A=hM}(B######
+######入力データの整形処理######
 if ($familyname ne "") {
 	$familyname =~ s/\s*//g;
 }
@@ -27,53 +27,53 @@ if ($brthday ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
+	#全角英数字をすべて半角英数字にする。
 	$email = &zen2han($email);
 } 
 
-#####$BF~NO%(%i!<$N%A%'%C%/(B#####
+#####入力エラーのチェック#####
 if ($name =~ /^\s*$/){
-	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
-	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("名前の記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
-	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("メールアドレスの記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("$BF~NO%(%i!<(B",
-		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("入力エラー",
+		"メールアドレスの書き方が間違っています。",$email,
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if ($order3 eq "")  {
-	&CgiError("$BF~NO%(%i!<(B",
-		"$B$4CmJ8$,2?$b;X<($5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("入力エラー",
+		"ご注文が何も指示されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }	
 if ($order3 ne "") {
 	if ($familyname eq "") {
-		&CgiError("$BID;z(B($B@+(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("苗字(姓)が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($brthday eq "") {
-		&CgiError("$BM=DjF|(B($BCB@8F|(B)$B$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("予定日(誕生日)が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
 
-#####$BCmJ8I<#2$NI=<((B#####
+#####注文票２の表示#####
 $msg = <<"ORDER2";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>$BL?L>$N$40MMj(B(1/2)</TITLE>
+   <TITLE>命名のご依頼(1/2)</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=SHIFT_JIS">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF">
@@ -86,28 +86,28 @@ Content-type: text/html
    <INPUT TYPE=hidden NAME=user VALUE="\$user">
    <INPUT TYPE=hidden NAME=brother VALUE="\$brother"></P>
    
-   <P><B><U>$B$4MWK>;v9`(B</U></B><U>$B!!(B($B$44|BT$KE:$($J$$>l9g$b$"$j$^$9!#$4N;>52<$5$$!#(B)</U><BR>
+   <P><B><U>ご要望事項</U></B><U>　(ご期待に添えない場合もあります。ご了承下さい。)</U><BR>
    <TEXTAREA NAME=request ROWS=6 COLS=10 WRAP=virtual></TEXTAREA></P>
    
-   <P><B><U>$B7k2L$N$4O"MmJ}K!(B</U></B><BR>
-   <INPUT TYPE=radio NAME=method VALUE=fax CHECKED>$B%U%!%C%/%9$G<u?."*2<5-(B1.$B$K$*EEOCHV9f$r$45-F~2<$5$$!#(B<BR>
-   <INPUT TYPE=radio NAME=method VALUE=mail>E$B%a!<%k$G<u?.(B<FONT COLOR="#FF0000">$B!J%Q%=%3%sEy$+$i$4Mw2<$5$$!#7HBSEEOC$O<u?.IT2D(B)</FONT>$B"*2<5-(B2.$B$K%"%I%l%9$r$45-F~2<$5$$!#(B</P>
+   <P><B><U>結果のご連絡方法</U></B><BR>
+   <INPUT TYPE=radio NAME=method VALUE=fax CHECKED>ファックスで受信→下記1.にお電話番号をご記入下さい。<BR>
+   <INPUT TYPE=radio NAME=method VALUE=mail>Eメールで受信<FONT COLOR="#FF0000">（パソコン等からご覧下さい。携帯電話は受信不可)</FONT>→下記2.にアドレスをご記入下さい。</P>
    
-   <P><B><U>1.$B%U%!%C%/%9HV9f(B</U></B><BR>
+   <P><B><U>1.ファックス番号</U></B><BR>
    <INPUT TYPE=text NAME=fax VALUE="" SIZE=16 MODE=numeric></P>
    
-   <P><B><U>2.E$B%a!<%k%"%I%l%9(B<BR>
+   <P><B><U>2.Eメールアドレス<BR>
    </U></B><INPUT TYPE=text NAME=email2 VALUE="" SIZE=16 MAXLENGTH=80 MODE=alphabet></P>
    
-   <P><FONT COLOR="#FF0000"><B>$BF~NO$O0J>e$G$9!#FbMF$r$43NG'$N>e!"$4CmJ8%\%?%s$r(B1$B2s$@$1%/%j%C%/$7$F2<$5$$!#(B<BR>
-   $B$4CmJ8<uIU8e!"!V$"$j$,$H$&$4$6$$$^$7$?!W$N2hLL$,I=<($5$l!"(BTOP$B%Z!<%8$KLa$j$^$9!#(B</B></FONT></P>
+   <P><FONT COLOR="#FF0000"><B>入力は以上です。内容をご確認の上、ご注文ボタンを1回だけクリックして下さい。<BR>
+   ご注文受付後、「ありがとうございました」の画面が表示され、TOPページに戻ります。</B></FONT></P>
    
-   <P><FONT COLOR="#FF0000"><B>$B$J$*!"$4CmJ8$N%-%c%s%;%k$O=PMh$^$;$s$N$G!"$h$/$*3N$+$a2<$5$$!#(B</B></FONT></P>
+   <P><FONT COLOR="#FF0000"><B>なお、ご注文のキャンセルは出来ませんので、よくお確かめ下さい。</B></FONT></P>
    
-   <P><B><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$B$4CmJ8(B"></B><INPUT TYPE=reset VALUE="$B%j%;%C%H(B">
+   <P><B><INPUT TYPE=submit NAME="送信" VALUE="ご注文"></B><INPUT TYPE=reset VALUE="リセット">
 </FORM></P>
 
-<P><B>$B"(>e<j$/CmJ8$G$-$J$$>l9g$K$O!">e5-FbMF$r(B</B><A HREF="mailto:okina\@e-mail.ne.jp" DIRECTKEY="0"><B>$B%a!<%k(B(0$B%\%?%s$r2!$7$F2<$5$$!#(B)</B></A>(okina\@e-mail.ne.jp)<B>$B$K$FAwIU2<$5$$!#(B</B></P>
+<P><B>※上手く注文できない場合には、上記内容を</B><A HREF="mailto:okina\@e-mail.ne.jp" DIRECTKEY="0"><B>メール(0ボタンを押して下さい。)</B></A>(okina\@e-mail.ne.jp)<B>にて送付下さい。</B></P>
 </BODY>
 </HTML>
 ORDER2

@@ -1,24 +1,24 @@
 <HTML>
 <!--This file created 01.12.2 9:57 PM by Home Page Pro version 3.0J v1-->
 <HEAD>
-   <TITLE>$B$4CmJ8%U%)!<%`(B</TITLE>
+   <TITLE>ご注文フォーム</TITLE>
    <META NAME=GENERATOR CONTENT="Home Page Pro 3.0J v1">
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
    <X-CLARIS-WINDOW TOP=39 BOTTOM=768 LEFT=125 RIGHT=818>
    <X-CLARIS-TAGVIEW MODE=minimal>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="image/wall.jpg" onload="scll()">
-<P><SCRIPT LANGUAGE=JavaScript>var cnt = -2;//$BJ8;z0LCV(B
-var speed = 500;//$BF0$+$9%9%T!<%I(B(1/1000$BICC10L(B)
-var msg = "               $BAw?.$5$l$kA0$K$b$&0lEY!"5-F~FbMF$r$43NG'2<$5$$!*!!Aw?.$5$l$k$^$G;~4V$,3]$+$k>l9g$,$"$j$^$9$N$G!"%\%?%s$r(B1$B2s%/%j%C%/$7$F$+$i;C$/$*BT$A2<$5$$!#(B"; //$B%a%C%;!<%8FbMF(B
-timeID=setTimeout('',1); //IE$BBP:v$J$K$b$7$J$$(B;$B%?%$%^!<%;%C%H(B
+<P><SCRIPT LANGUAGE=JavaScript>var cnt = -2;//文字位置
+var speed = 500;//動かすスピード(1/1000秒単位)
+var msg = "               送信される前にもう一度、記入内容をご確認下さい！　送信されるまで時間が掛かる場合がありますので、ボタンを1回クリックしてから暫くお待ち下さい。"; //メッセージ内容
+timeID=setTimeout('',1); //IE対策なにもしない;タイマーセット
 
-//$B!!J8;z$r0\F0$5$;$k(B
+//　文字を移動させる
 function scll()
 {
- status = msg.substring(cnt=cnt+2,msg.length+2);//$BF|K\8l$O(B2$BJ8;z$E$DF0$+$9(B
+ status = msg.substring(cnt=cnt+2,msg.length+2);//日本語は2文字づつ動かす
  if (cnt>msg.length){cnt=-2};
- clearTimeout(timeID);//$B%?%$%^!<$r%/%j%"(B
+ clearTimeout(timeID);//タイマーをクリア
  timeID = setTimeout('scll()',speed);
   }</SCRIPT></P>
 
@@ -28,9 +28,9 @@ function scll()
    <P><TABLE BORDER=0 WIDTH=640>
       <TR>
          <TD>
-            <CENTER><FONT SIZE="+3"><B><U>$B;3K\2'$X$N$4AjCL%U%)!<%`(B</U></B></FONT></CENTER>
+            <CENTER><FONT SIZE="+3"><B><U>山本翁へのご相談フォーム</U></B></FONT></CENTER>
             
-            <P><FONT SIZE="+1" COLOR="#FF0000"><B>$B$40MMj$r=P$5$l$kA0$K!*$3$N%5!<%S%9$O(B<BLINK>$BM-NA(B</BLINK>$B$G$9!#$4F~6b3NG'$r$7$F$+$i!"2sEz$r:9$7>e$2$^$9!#(B</B></FONT><FONT SIZE="+1"><B>$BBe6b$OM9JX?6BX$G$9!#$40MMjD:$$$?J}$K$O?69~@h$r$40FFbCW$7$^$9!#2sEz$O?6$j9~$_3NG'8e!"Ls(B1$B=54V$rMW$7$^$9!#(B</B></FONT></P>
+            <P><FONT SIZE="+1" COLOR="#FF0000"><B>ご依頼を出される前に！このサービスは<BLINK>有料</BLINK>です。ご入金確認をしてから、回答を差し上げます。</B></FONT><FONT SIZE="+1"><B>代金は郵便振替です。ご依頼頂いた方には振込先をご案内致します。回答は振り込み確認後、約1週間を要します。</B></FONT></P>
             
             <CENTER><FONT SIZE="+1"><B><IMG SRC="image/gosodan_1.gif" WIDTH=575 HEIGHT=209 ALIGN=bottom></B></FONT></CENTER>
             
@@ -38,24 +38,24 @@ function scll()
                
                <HR>
                
-               </U></B></FONT><B><U>$B$"$J$?$N$*L>A0(B</U></B>$B!JA43Q$G5-F~4j$$$^$9!#@+$HL>$r0lJ8;z6u$1$F2<$5$$!#!K(B<FONT COLOR="#FF0000"><B>($BI,?\(B</B>$B!K(B</FONT><B><U><BR>
-               </U></B><INPUT TYPE=text NAME=name VALUE="$B;3K\!!??:Z(B" SIZE=30>
+               </U></B></FONT><B><U>あなたのお名前</U></B>（全角で記入願います。姓と名を一文字空けて下さい。）<FONT COLOR="#FF0000"><B>(必須</B>）</FONT><B><U><BR>
+               </U></B><INPUT TYPE=text NAME=name VALUE="山本　真菜" SIZE=30>
                
-               <P><B><U>$B$"$J$?$N%a!<%k%"%I%l%9(B</U>$B"*(B</B>($B5-F~Nc!'(Bxxx@xxx.ne.jp
-               $B$4Cm0U!'I,$:H>3Q$G5-F~4j$$$^$9!#(B)<FONT COLOR="#FF0000"><B>($BI,?\(B)</B></FONT><U><BR>
+               <P><B><U>あなたのメールアドレス</U>→</B>(記入例：xxx@xxx.ne.jp
+               ご注意：必ず半角で記入願います。)<FONT COLOR="#FF0000"><B>(必須)</B></FONT><U><BR>
                </U><INPUT TYPE=text NAME=email VALUE="yamakazu@skyblue.ocn.ne.jp" SIZE=80><BR>
-               <FONT COLOR="#FF0000">$B$4Cm0U(B;$B%a!<%k%"%I%l%9$N$45-:\$,$J$$>l9g$K$O!"$4CmJ8$O$*<u$1=PMh$^$;$s!#(B</FONT><BR>
-               <FONT SIZE="-1">($BFC$K!"!V(B.$B!W(B($BE@(B)$B$r!V(B,$B!W(B($B%+%s%^(B)$B$H8mBG$5$l$?$j!"A43QJ8;z$r;H$o$l$?$j!"!V(Bor.jp$B!W(B($B5l%"%I%l%9(B)$B$r;HMQ$5$l$?$j$7$F%(%i!<$H$J$k%1!<%9$,;68+$5$l$^$9!#Mn$A$D$$$F@5$7$/F~NO$7$F$/$@$5$$!#7HBSEEOC%"%I%l%9$G$OJ8;z?t$N@)Ls$+$i$4MxMQD:$1$^$;$s!#$^$?%U%j!<%a!<%k$G$OFI$a$J$$>l9g$b$"$j$^$9!#(B)</FONT></P>
+               <FONT COLOR="#FF0000">ご注意;メールアドレスのご記載がない場合には、ご注文はお受け出来ません。</FONT><BR>
+               <FONT SIZE="-1">(特に、「.」(点)を「,」(カンマ)と誤打されたり、全角文字を使われたり、「or.jp」(旧アドレス)を使用されたりしてエラーとなるケースが散見されます。落ちついて正しく入力してください。携帯電話アドレスでは文字数の制約からご利用頂けません。またフリーメールでは読めない場合もあります。)</FONT></P>
                
-               <P><B><U>$B$40MMj$NFbMF(B<BR>
-               </U></B><INPUT TYPE=checkbox NAME=order VALUE="" CHECKED>$BA*L>$r0MMj"*0MMjFbMF$r2<5-$+$iA*$s$G!"(B<FONT COLOR="#FF0000">$B2<5-$N(B1.$B$K$b$45-F~2<$5$$!#(B</FONT><FONT SIZE="-1" COLOR="#FF0000">($BNA6b$O(B10,000$B1_$G$9(B)<BR>
-               </FONT><B><U><INPUT TYPE=radio NAME=order4 VALUE="$B2~L>$r0MMj(B" CHECKED></U></B><FONT COLOR="#000000"><B>$B2~L>$r0MMj!JF|>o@83h$G;H$o$l$k$*L>A0!K(B</B></FONT><BR>
-               <INPUT TYPE=radio NAME=order4 VALUE="$B7]L>$r0MMj(B"><FONT COLOR="#000000"><B>$B7]L>!&2m9f!&I.L>$d!"$*;E;v$G;H$o$l$k$*L>A0$r0MMj(B</B></FONT><BR>
-               <INPUT TYPE=checkbox NAME=order6 VALUE="$B7k:'$NAjCL(B"><B>$B$47k:'A0$N$4AjCL(B</B>$B"*(B<FONT COLOR="#FF0000">$B2<5-$N(B2.$B$K$b$45-F~2<$5$$!#(B</FONT><FONT SIZE="-1" COLOR="#FF0000">($BNA6b$O(B3000$B1_$G$9(B)<BR>
-               </FONT>$B"($47k:'8e$N$*Fs?M$N1?@*$rCf?4$K!"%"%I%P%$%9:9$7>e$2$^$9!#$4:'Ls$r$*LB$$$NJ}$K$b%"%I%P%$%9CW$7$^$9!#(B</P>
+               <P><B><U>ご依頼の内容<BR>
+               </U></B><INPUT TYPE=checkbox NAME=order VALUE="" CHECKED>選名を依頼→依頼内容を下記から選んで、<FONT COLOR="#FF0000">下記の1.にもご記入下さい。</FONT><FONT SIZE="-1" COLOR="#FF0000">(料金は10,000円です)<BR>
+               </FONT><B><U><INPUT TYPE=radio NAME=order4 VALUE="改名を依頼" CHECKED></U></B><FONT COLOR="#000000"><B>改名を依頼（日常生活で使われるお名前）</B></FONT><BR>
+               <INPUT TYPE=radio NAME=order4 VALUE="芸名を依頼"><FONT COLOR="#000000"><B>芸名・雅号・筆名や、お仕事で使われるお名前を依頼</B></FONT><BR>
+               <INPUT TYPE=checkbox NAME=order6 VALUE="結婚の相談"><B>ご結婚前のご相談</B>→<FONT COLOR="#FF0000">下記の2.にもご記入下さい。</FONT><FONT SIZE="-1" COLOR="#FF0000">(料金は3000円です)<BR>
+               </FONT>※ご結婚後のお二人の運勢を中心に、アドバイス差し上げます。ご婚約をお迷いの方にもアドバイス致します。</P>
                
-               <P><FONT COLOR="#000000">$B>&IJ$N@-3J>e!"$4JVIJ$dFbMF%/%l!<%`$K$D$$$F$O$*<u$1CW$7$+$M$^$9$N$G!"$4MF<O2<$5$$$^$;!#;3K\2'$G$ONN<}=q$OH/9T$7$F$*$j$^$;$s!"M9JX?6BX$N<uNN>Z$r$4MxMQ2<$5$$!#$^$?>CHq@G$OITMW$G$9!#(B<BR>
-               </FONT><FONT COLOR="#FF0000">$B$4Cm0U!'$*?6$j9~$_$K:]$7$F$O?=9~?M(B($B$"$J$?MM(B)$B$N$*L>A0$r5-F~$7$FD:$/$h$&$K$*4j$$?=$7>e$2$^$9!#(B</FONT></P></BLOCKQUOTE>
+               <P><FONT COLOR="#000000">商品の性格上、ご返品や内容クレームについてはお受け致しかねますので、ご容赦下さいませ。山本翁では領収書は発行しておりません、郵便振替の受領証をご利用下さい。また消費税は不要です。<BR>
+               </FONT><FONT COLOR="#FF0000">ご注意：お振り込みに際しては申込人(あなた様)のお名前を記入して頂くようにお願い申し上げます。</FONT></P></BLOCKQUOTE>
          </TD>
       </TR>
       <TR>
@@ -63,53 +63,53 @@ function scll()
             <P><TABLE BORDER=1 CELLSPACING=10 CELLPADDING=5 WIDTH=632>
                <TR>
                   <TD VALIGN=top WIDTH=298>
-                     <P><B><U>1.$BA*L>$N$40MMj$K$D$$$F(B</U></B></P>
+                     <P><B><U>1.選名のご依頼について</U></B></P>
                      
-                     <P>$BA*L>$r4uK>$5$l$kJ}$N(B<B>$B$*L>A0(B</B>$B!'(B($BA43Q(B<FONT COLOR="#FF0000"><B>$B4A;z(B</B></FONT>$B$G5-F~(B)<BR>
-                     $B@+(B<INPUT TYPE=text NAME=familyname1 VALUE="$B4vLn(B" SIZE=15>$BL>(B<INPUT TYPE=text NAME=firstname1 VALUE="$B:4CR;R(B" SIZE=15></P>
+                     <P>選名を希望される方の<B>お名前</B>：(全角<FONT COLOR="#FF0000"><B>漢字</B></FONT>で記入)<BR>
+                     姓<INPUT TYPE=text NAME=familyname1 VALUE="幾野" SIZE=15>名<INPUT TYPE=text NAME=firstname1 VALUE="佐智子" SIZE=15></P>
                      
-                     <P>$BA*L>$r4uK>$5$l$kJ}$N(B<B>$B@8G/7nF|(B</B><BR>
-                     $B!J(B19xx$BG/(Bxx$B7n(Bxx$BF|$H5-F~2<$5$$!#!K(B<BR>
-                     <INPUT TYPE=text NAME=birthday1 VALUE="1999$BG/(B1$B7n(B1$BF|(B" SIZE=40></P>
+                     <P>選名を希望される方の<B>生年月日</B><BR>
+                     （19xx年xx月xx日と記入下さい。）<BR>
+                     <INPUT TYPE=text NAME=birthday1 VALUE="1999年1月1日" SIZE=40></P>
                      
-                     <P>$BA*L>$r4uK>$5$l$kJ}$N(B<B>$B@-JL(B</B><BR>
-                     <INPUT TYPE=radio NAME=sex1 VALUE="$BCK(B">$BCK@-(B<INPUT TYPE=radio NAME=sex1 VALUE="$B=w(B" CHECKED>$B=w@-(B<BR>
-                     <B>$B$4?&6H$^$?$O!"5;7];vL>(B</B><BR>
-                     <INPUT TYPE=text NAME=trade1 VALUE="$B<gIX(B" SIZE=50></P>
+                     <P>選名を希望される方の<B>性別</B><BR>
+                     <INPUT TYPE=radio NAME=sex1 VALUE="男">男性<INPUT TYPE=radio NAME=sex1 VALUE="女" CHECKED>女性<BR>
+                     <B>ご職業または、技芸事名</B><BR>
+                     <INPUT TYPE=text NAME=trade1 VALUE="主婦" SIZE=50></P>
                      
-                     <P><B>$B$40MMjFbMF$r>\$7$/$45-F~2<$5$$!#(B</B><BR>
-                     $B2~L>$r$44uK>$5$l$kM}M3!"FI$_J}$N$4;XDj!"$44uK>$N$*L>A0(B($BID;z(B)$B!"L>A0$KJz$+$l$k%$%a!<%8$J$I(B<BR>
-                     <TEXTAREA NAME=request1 ROWS=15 COLS=50 WRAP=virtual>$B6b1?$N$"$kL>A0$r9M$($FM_$7$$!#(B</TEXTAREA><BR>
-                     $B"($4IW?M$G2~L>$r4uK>$5$l$kJ}$O!"I,$:$4<g?M$N$*L>A0$r$*J9$+$;2<$5$$!#(B</P>
+                     <P><B>ご依頼内容を詳しくご記入下さい。</B><BR>
+                     改名をご希望される理由、読み方のご指定、ご希望のお名前(苗字)、名前に抱かれるイメージなど<BR>
+                     <TEXTAREA NAME=request1 ROWS=15 COLS=50 WRAP=virtual>金運のある名前を考えて欲しい。</TEXTAREA><BR>
+                     ※ご夫人で改名を希望される方は、必ずご主人のお名前をお聞かせ下さい。</P>
                   </TD>
                   <TD VALIGN=top WIDTH=298>
-                     <P><B><U>2.$B$47k:'A0$N$4AjCL$K$D$$$F(B</U></B></P>
+                     <P><B><U>2.ご結婚前のご相談について</U></B></P>
                      
-                     <P><B>$B$47k:'$J$5$kJ}(B($B$40MMj<TB&(B)$B$K$D$$$F(B</B><BR>
-                     $B8=:_$N(B<B>$B$*L>A0(B</B>$B!'(B($BA43Q(B<FONT COLOR="#FF0000"><B>$B4A;z(B</B></FONT>$B$G5-F~(B)<BR>
-                     $B@+(B<INPUT TYPE=text NAME=familyname3 VALUE="$B;3K\(B" SIZE=15>$BL>(B<INPUT TYPE=text NAME=firstname3 VALUE="$B??:Z(B" SIZE=15><BR>
-                     <B>$B@8G/7nF|(B</B>$B!'(B(19xx$BG/(Bxx$B7n(Bxx$BF|$H5-F~2<$5$$!#(B)<BR>
-                     <INPUT TYPE=text NAME=birthday3 VALUE="2000$BG/(B7$B7n(B1$BF|(B" SIZE=40><BR>
-                     <INPUT TYPE=radio NAME=sex3 VALUE="$BCK(B">$BCK@-(B<INPUT TYPE=radio NAME=sex3 VALUE="$B=w(B" CHECKED>$B=w@-(B<BR>
-                     <B>$B$4?&6H(B</B><BR>
-                     <INPUT TYPE=text NAME=trade3 VALUE="$B2q<R0w(B" SIZE=50></P>
+                     <P><B>ご結婚なさる方(ご依頼者側)について</B><BR>
+                     現在の<B>お名前</B>：(全角<FONT COLOR="#FF0000"><B>漢字</B></FONT>で記入)<BR>
+                     姓<INPUT TYPE=text NAME=familyname3 VALUE="山本" SIZE=15>名<INPUT TYPE=text NAME=firstname3 VALUE="真菜" SIZE=15><BR>
+                     <B>生年月日</B>：(19xx年xx月xx日と記入下さい。)<BR>
+                     <INPUT TYPE=text NAME=birthday3 VALUE="2000年7月1日" SIZE=40><BR>
+                     <INPUT TYPE=radio NAME=sex3 VALUE="男">男性<INPUT TYPE=radio NAME=sex3 VALUE="女" CHECKED>女性<BR>
+                     <B>ご職業</B><BR>
+                     <INPUT TYPE=text NAME=trade3 VALUE="会社員" SIZE=50></P>
                      
-                     <P><B>$BAj<jJ}$K$D$$$F(B($B8+$FM_$7$$J}(B)</B><BR>
-                     $B8=:_$N(B<B>$B$*L>A0(B</B>$B!'(B($BA43Q(B<FONT COLOR="#FF0000"><B>$B4A;z(B</B></FONT>$B$G5-F~(B)<BR>
-                     $B@+(B<INPUT TYPE=text NAME=familyname4 VALUE="$B4vLn(B" SIZE=15>$BL>(B<INPUT TYPE=text NAME=firstname4 VALUE="$BMNZv(B" SIZE=15><BR>
-                     <B>$B@8G/7nF|(B</B>$B!'(B(19xx$BG/(Bxx$B7n(Bxx$BF|$H5-F~2<$5$$!#(B)<BR>
-                     <INPUT TYPE=text NAME=birthday4 VALUE="1999$BG/(B12$B7n(B31$BF|(B" SIZE=40><BR>
-                     <INPUT TYPE=radio NAME=sex4 VALUE="$BCK(B" CHECKED>$BCK@-(B<INPUT TYPE=radio NAME=sex4 VALUE="$B=w(B">$B=w@-(B<BR>
-                     <B>$B$4?&6H(B</B><BR>
-                     <INPUT TYPE=text NAME=trade4 VALUE="$B2q<R7P1D(B" SIZE=50></P>
+                     <P><B>相手方について(見て欲しい方)</B><BR>
+                     現在の<B>お名前</B>：(全角<FONT COLOR="#FF0000"><B>漢字</B></FONT>で記入)<BR>
+                     姓<INPUT TYPE=text NAME=familyname4 VALUE="幾野" SIZE=15>名<INPUT TYPE=text NAME=firstname4 VALUE="洋暉" SIZE=15><BR>
+                     <B>生年月日</B>：(19xx年xx月xx日と記入下さい。)<BR>
+                     <INPUT TYPE=text NAME=birthday4 VALUE="1999年12月31日" SIZE=40><BR>
+                     <INPUT TYPE=radio NAME=sex4 VALUE="男" CHECKED>男性<INPUT TYPE=radio NAME=sex4 VALUE="女">女性<BR>
+                     <B>ご職業</B><BR>
+                     <INPUT TYPE=text NAME=trade4 VALUE="会社経営" SIZE=50></P>
                      
-                     <P><B>$B$47k:'8e$N@+(B($BID;z(B)</B>$B$K$D$$$F(B<BR>
-                     <INPUT TYPE=radio NAME=sei VALUE="$BCK@-J}$rL>>h$k(B" CHECKED>$BCK@-J}$N@+$r;H$&(B<BR>
-                     <INPUT TYPE=radio NAME=sei VALUE="$B=w@-J}$N@+$rL>>h$k(B">$B=w@-J}$N@+$r;H$&(B<BR>
-                     <INPUT TYPE=radio NAME=sei VALUE="$B$I$A$i$G$b$h$$(B">$B$3$@$o$i$J$$!#(B</P>
+                     <P><B>ご結婚後の姓(苗字)</B>について<BR>
+                     <INPUT TYPE=radio NAME=sei VALUE="男性方を名乗る" CHECKED>男性方の姓を使う<BR>
+                     <INPUT TYPE=radio NAME=sei VALUE="女性方の姓を名乗る">女性方の姓を使う<BR>
+                     <INPUT TYPE=radio NAME=sei VALUE="どちらでもよい">こだわらない。</P>
                      
-                     <P>$B$44uK>$,$"$j$^$7$?$i$*=q$-2<$5$$!#(B<BR>
-                     <TEXTAREA NAME=request3 ROWS=3 COLS=50 WRAP=virtual>$BFC$K$"$j$^$;$s!#(B</TEXTAREA></P>
+                     <P>ご希望がありましたらお書き下さい。<BR>
+                     <TEXTAREA NAME=request3 ROWS=3 COLS=50 WRAP=virtual>特にありません。</TEXTAREA></P>
                   </TD>
                </TR>
             </TABLE>
@@ -118,15 +118,15 @@ function scll()
       </TR>
       <TR>
          <TD>
-            <BLOCKQUOTE><B><A NAME=send></A>$BF~NO$O0J>e$G$9!#FbMF$r$43NG'$N>e!"CmJ8%\%?%s$r(B</B><FONT COLOR="#FF0000"><B>1$B2s$@$1(B</B></FONT><B>$B%/%j%C%/$7$F2<$5$$!#<uCm40N;8e!"!V$"$j$,$H$&$4$6$$$^$7$?!W$N2hLL$,I=<($5$l!"(BTOP$B%Z!<%8$KLa$j$^$9!#(B</B>
+            <BLOCKQUOTE><B><A NAME=send></A>入力は以上です。内容をご確認の上、注文ボタンを</B><FONT COLOR="#FF0000"><B>1回だけ</B></FONT><B>クリックして下さい。受注完了後、「ありがとうございました」の画面が表示され、TOPページに戻ります。</B>
                
-               <CENTER><B><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BCmJ8(B">$B!!(B</B><INPUT TYPE=reset VALUE="$B<h$j>C$7(B"></CENTER>
+               <CENTER><B><INPUT TYPE=submit NAME="送信" VALUE="注文">　</B><INPUT TYPE=reset VALUE="取り消し"></CENTER>
                
-               <P><B>$B>&IJ$N@-3J>e!"$3$l0J9_$N$4CmJ8$N<h$j>C$7$dJVIJ$O0l@Z=PMh$^$;$s$N$GM=$a$4N;>52<$5$$!#(B</B>($BK,LdHNGdK!$N%/!<%j%s%0%*%U$OE,MQ$5$l$^$;$s!#!K$^$?!"M-NA%5!<%S%9$G$9$N$G!"Be6b$N$*?6$j9~$_$,$J$$$H!"7k2L$O$*<u$1<h$j$K$J$l$^$;$s!#$^$?!"2'$G$O<uNN>Z$OH/9T$7$^$;$s$N$G!"M9JX6I$G<u$1<h$j$rLc$C$F2<$5$$!#(B<FONT COLOR="#FF0000"><B><BR>
+               <P><B>商品の性格上、これ以降のご注文の取り消しや返品は一切出来ませんので予めご了承下さい。</B>(訪問販売法のクーリングオフは適用されません。）また、有料サービスですので、代金のお振り込みがないと、結果はお受け取りになれません。また、翁では受領証は発行しませんので、郵便局で受け取りを貰って下さい。<FONT COLOR="#FF0000"><B><BR>
                <BR>
-               </B></FONT>$B$4CmJ8FbMF$r6cL#$7!"$*0z$-<u$1$G$-$k>l9g$K$O!"%a!<%k$K$F$4O"MmCW$7$^$9!#2?EY$+$4MWK>$N3NG'$r$5$;$FD:$-!"$=$N8e$*?6$j9~$_@h$r$4O"MmCW$7$^$9!#$=$N>l9g$K$O!"I,$:0l=54V0JFb$K$*?6$j9~$_2<$5$$!#(B($BK\Ev$K:$$C$F5o$i$l$kJ}!9$KLBOG$G$9$N$G!"!V<h$j4:$($:!W$N$*?=$79~$_$O8f1sN82<$5$$!#!K(B</P></BLOCKQUOTE>
+               </B></FONT>ご注文内容を吟味し、お引き受けできる場合には、メールにてご連絡致します。何度かご要望の確認をさせて頂き、その後お振り込み先をご連絡致します。その場合には、必ず一週間以内にお振り込み下さい。(本当に困って居られる方々に迷惑ですので、「取り敢えず」のお申し込みは御遠慮下さい。）</P></BLOCKQUOTE>
             
-            <CENTER><FONT SIZE="-1"><B>$B"(>e<j$/Aw?.$G$-$J$$>l9g$K$O!">e5-FbMF$r(B</B></FONT><A HREF="mailto:okina@e-mail.ne.jp"><FONT SIZE="-1"><B>$B%a!<%k(B</B></FONT></A><FONT SIZE="-1">(okina@e-mail.ne.jp)<B>$B$K$FAwIU2<$5$$!#(B</B></FONT>
+            <CENTER><FONT SIZE="-1"><B>※上手く送信できない場合には、上記内容を</B></FONT><A HREF="mailto:okina@e-mail.ne.jp"><FONT SIZE="-1"><B>メール</B></FONT></A><FONT SIZE="-1">(okina@e-mail.ne.jp)<B>にて送付下さい。</B></FONT>
             
             <P>
             
@@ -145,30 +145,30 @@ function scll()
          <CENTER><TABLE BORDER=1 WIDTH=632>
             <TR>
                <TD>
-                  <CENTER><A HREF="index.html" TARGET="_self">$B%H%C%W%Z!<%8(B</A></CENTER>
+                  <CENTER><A HREF="index.html" TARGET="_self">トップページ</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="input.html" TARGET="_self">$B@+L>4UDj$N%3!<%J!<(B</A></CENTER>
+                  <CENTER><A HREF="input.html" TARGET="_self">姓名鑑定のコーナー</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="book.html" TARGET="_self">$BCx=q$N%3!<%J!<(B</A></CENTER>
+                  <CENTER><A HREF="book.html" TARGET="_self">著書のコーナー</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="baby.html" TARGET="_self">$BL?L>$N%3!<%J!<(B</A></CENTER>
+                  <CENTER><A HREF="baby.html" TARGET="_self">命名のコーナー</A></CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <CENTER><A HREF="kanji.html">$B4A;z$N%3!<%J!<(B</A></CENTER>
+                  <CENTER><A HREF="kanji.html">漢字のコーナー</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="$B%P%C%/%"%C%W(B/010609/consul.html">$B$4AjCL$N%3!<%J!<(B</A></CENTER>
+                  <CENTER><A HREF="バックアップ/010609/consul.html">ご相談のコーナー</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="info.html">$B2'$+$i$N$*CN$i$;(B</A></CENTER>
+                  <CENTER><A HREF="info.html">翁からのお知らせ</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="link.html">$B!V@j$$D>9TJX!W(B</A></CENTER>
+                  <CENTER><A HREF="link.html">「占い直行便」</A></CENTER>
                </TD>
             </TR>
          </TABLE>
@@ -180,7 +180,7 @@ function scll()
    </TR>
    <TR>
       <TD>
-         <CENTER>$B$*J9$-$N6J!V(Bstrauss$B!W$K$D$$$F$O!"(B<A HREF="info.html#midi">$B$3$A$i(B</A>$B$r$4Mw2<$5$$!#(B</CENTER>
+         <CENTER>お聞きの曲「strauss」については、<A HREF="info.html#midi">こちら</A>をご覧下さい。</CENTER>
          
          <P>
          
@@ -191,8 +191,8 @@ function scll()
    </TR>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B">$B$3$N%Z!<%8$r8+$F$N$40U8+$d$446A[$r$*J9$+$;2<$5$$!#!!(B</FONT><A HREF="mailto:yamakazu@skyblue.ocn.ne.jp"><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B">okina@e-mail.ne.jp</FONT></A><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B"><I><BR>
-         </I>$B%j%s%/$O4?7^$7$^$9$,!"I,$:(B</FONT><A HREF="index.html" TARGET="_self"><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B">TOP$B%Z!<%8(B</FONT></A><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B">$B$K$*4j$$$7$^$9!#(B<BR>
+         <CENTER><FONT SIZE="-2" FACE="中ゴシック体">このページを見てのご意見やご感想をお聞かせ下さい。　</FONT><A HREF="mailto:yamakazu@skyblue.ocn.ne.jp"><FONT SIZE="-2" FACE="中ゴシック体">okina@e-mail.ne.jp</FONT></A><FONT SIZE="-2" FACE="中ゴシック体"><I><BR>
+         </I>リンクは歓迎しますが、必ず</FONT><A HREF="index.html" TARGET="_self"><FONT SIZE="-2" FACE="中ゴシック体">TOPページ</FONT></A><FONT SIZE="-2" FACE="中ゴシック体">にお願いします。<BR>
          <I>CopyRight. K.Yamamoto.</I></FONT></CENTER>
       </TD>
    </TR>

@@ -29,7 +29,7 @@ $sex4 = $in{'sex4'};
 $trade4 = $in{'trade4'};
 $sei = $in{'sei'};
 $request3 = $in{'request3'};
-######$BF~NO%G!<%?$N@07A=hM}(B######
+######入力データの整形処理######
 if ($familyname1 ne "") {
 	$familyname1 =~ s/\s*//g;
 }
@@ -59,141 +59,141 @@ if ($birthday4 ne "") {
 }
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
+	#全角英数字をすべて半角英数字にする。
 	$email = &zen2han($email);
 }
-#####$BF~NO%(%i!<$N%A%'%C%/(B#####
+#####入力エラーのチェック#####
 if ($name =~ /^\s*$/){
-	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
-	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("名前の記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
-	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("メールアドレスの記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("$BF~NO%(%i!<(B",
-		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("入力エラー",
+		"メールアドレスの書き方が間違っています。",$email,
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if (($order4 eq "" ) and ($order6 eq "") )  {
-	&CgiError("$BF~NO%(%i!<(B",
-		"$B$40MMj;v9`$,2?$b;X<($5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("入力エラー",
+		"ご依頼事項が何も指示されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if ($order4 ne "") {
 	if ($familyname1 eq "") {
-		&CgiError("$B@+$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($firstname1 eq "") {
-		&CgiError("$BL>$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 	elsif ($birthday1 eq "") {
-		&CgiError("$B@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("生年月日が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
     elsif ($sex1 eq "") {
-		&CgiError("$B@-JL$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("性別が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
     elsif ($trade1 eq "") {
-		&CgiError("$B6H<o!&$4?&6H$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("業種・ご職業が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($request1 eq "") {
-		&CgiError("$B$40MMjFbMF$N>\:Y$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("ご依頼内容の詳細が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
 if ($order6 ne "") {
 	if ($familyname3 eq "") {
-		&CgiError("$B0MMj<TB&$N@+$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("依頼者側の姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($firstname3 eq "") {
-		&CgiError("$B0MMj<TB&$NL>$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("依頼者側の名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($birthday3 eq "") {
-		&CgiError("$B0MMj<TB&$N@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("依頼者側の生年月日が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($sex3 eq "") {
-		&CgiError("$B0MMj<TB&$N@-JL$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("依頼者側の性別が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($trade3 eq "") {
-		&CgiError("$B0MMj<TB&$N$4?&6H$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("依頼者側のご職業が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($familyname4 eq "") {
-		&CgiError("$BAj<jB&$N@+$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("相手側の姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($firstname4 eq "") {
-		&CgiError("$BAj<jB&$NL>$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("相手側の名が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($birthday4 eq "") {
-		&CgiError("$BAj<jB&$N@8G/7nF|$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("相手側の生年月日が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($sex4 eq "") {
-		&CgiError("$BAj<jB&$N@-JL$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("相手側の性別が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($trade4 eq "") {
-		&CgiError("$BAj<jB&$N$4?&6H$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("相手側のご職業が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
    elsif ($sei eq "") {
-		&CgiError("$B$47k:'8e$N@+$,F~NO$5$l$F$$$^$;$s!#(B",
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+		&CgiError("ご結婚後の姓が入力されていません。",
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 		exit;
 	}
 }
-######$B$3$3$+$i0z$-7Q$.>pJs$N@8@.$HI=<(2hLL(B######
+######ここから引き継ぎ情報の生成と表示画面######
 $msg = <<"ORDER";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>$B2'$X$N$4AjCLFbMF$N3NG'(B</TITLE>
+   <TITLE>翁へのご相談内容の確認</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="/~kazu-y/image/wall.jpg">
 <P><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=640>
    <TR>
       <TD>
-         <CENTER><FONT SIZE="+3"><B><U>$B$40MMjFbMF$N$43NG'(B</U></B></FONT></CENTER>
-         <BLOCKQUOTE>$B$3$N2hLL$O!"$40MMjFbMF$r$43NG'D:$/$?$a$N$b$N$G$9!#FbMF$K8m$j$,$"$k>l9g$O!"%V%i%&%6$N!VLa$k!W%\%?%s$r2!$7$F!VF~NO%U%)!<%`!W$+$i=$@5$7$F2<$5$$!#$3$l$G59$7$1$l$P!V0MMj!W%\%?%s$r2!$7$F2<$5$$!#(B</BLOCKQUOTE>
-         <CENTER><B>$B$40MMjFbMF(B</B><BR>
+         <CENTER><FONT SIZE="+3"><B><U>ご依頼内容のご確認</U></B></FONT></CENTER>
+         <BLOCKQUOTE>この画面は、ご依頼内容をご確認頂くためのものです。内容に誤りがある場合は、ブラウザの「戻る」ボタンを押して「入力フォーム」から修正して下さい。これで宜しければ「依頼」ボタンを押して下さい。</BLOCKQUOTE>
+         <CENTER><B>ご依頼内容</B><BR>
 <TABLE BORDER=1 WIDTH="90%">
    <TR>
       <TD WIDTH=148>
-         <P>$B$40MMj<T(B($B5.J}(B)$B$N$*L>A0(B</P>
+         <P>ご依頼者(貴方)のお名前</P>
       </TD>
       <TD>
          <P>\$name</P>
@@ -201,7 +201,7 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148>
-         <P>$B$40MMj<T$N%a!<%k%"%I%l%9(B</P>
+         <P>ご依頼者のメールアドレス</P>
       </TD>
       <TD>
          <P>\$email</P>
@@ -209,10 +209,10 @@ Content-type: text/html
    </TR>
    <TR>
       <TD WIDTH=148 HEIGHT=6>
-         <CENTER>$B$40MMj$NFbMF(B</CENTER>
+         <CENTER>ご依頼の内容</CENTER>
       </TD>
       <TD HEIGHT=6>
-         <CENTER>$B$40MMjFbMF$K4X$9$k>\:Y9`L\(B</CENTER>
+         <CENTER>ご依頼内容に関する詳細項目</CENTER>
       </TD>
    </TR>
    <TR>
@@ -220,11 +220,11 @@ Content-type: text/html
          <P>\$order4</P>
       </TD>
       <TD>
-         <P>$B2~L>$dA*L>$r<u$1$i$l$kJ}$N>pJs(B<BR>
+         <P>改名や選名を受けられる方の情報<BR>
          <TABLE BORDER=1>
             <TR>
                <TD WIDTH=105>
-                  <P>$B@+(B($BID;z(B)</P>
+                  <P>姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$familyname1</P>
@@ -232,7 +232,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B8=:_$NL>(B</P>
+                  <P>現在の名</P>
                </TD>
                <TD>
                   <P>\$firstname1</P>
@@ -240,7 +240,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B@8G/7nF|(B</P>
+                  <P>生年月日</P>
                </TD>
                <TD>
                   <P>\$birthday1</P>
@@ -248,7 +248,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B@-JL(B</P>
+                  <P>性別</P>
                </TD>
                <TD>
                   <P>\$sex1</P>
@@ -256,7 +256,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B$4?&6H(B($B6H<o(B)</P>
+                  <P>ご職業(業種)</P>
                </TD>
                <TD>
                   <P>\$trade1</P>
@@ -264,8 +264,8 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B$4MWK>;v9`(B<BR>
-                  ($BA*L>>r7o(B)</P>
+                  <P>ご要望事項<BR>
+                  (選名条件)</P>
                </TD>
                <TD>
                   <P>\$request1</P>
@@ -280,11 +280,11 @@ Content-type: text/html
          <P>\$order6</P>
       </TD>
       <TD>
-         <P>$B7k:'$5$l$k$*Fs?M$N>pJs(B<BR>
+         <P>結婚されるお二人の情報<BR>
          <TABLE BORDER=1>
             <TR>
                <TD WIDTH=105>
-                  <P>$B0MMj<T$N@+(B($BID;z(B)</P>
+                  <P>依頼者の姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$familyname3</P>
@@ -292,7 +292,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B0MMj<T$NL>(B</P>
+                  <P>依頼者の名</P>
                </TD>
                <TD>
                   <P>\$firstname3</P>
@@ -300,7 +300,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B0MMj<T$N@8G/7nF|(B</P>
+                  <P>依頼者の生年月日</P>
                </TD>
                <TD>
                   <P>\$birthday3</P>
@@ -308,7 +308,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B0MMj<T$N@-JL(B</P>
+                  <P>依頼者の性別</P>
                </TD>
                <TD>
                   <P>\$sex3</P>
@@ -316,7 +316,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B0MMj<T$N$4?&6H(B</P>
+                  <P>依頼者のご職業</P>
                </TD>
                <TD>
                   <P>\$trade3</P>
@@ -324,7 +324,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$BAj<jJ}$N@+(B($BID;z(B)</P>
+                  <P>相手方の姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$familyname4</P>
@@ -332,7 +332,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$BAj<jJ}$NL>(B</P>
+                  <P>相手方の名</P>
                </TD>
                <TD>
                   <P>\$firstname4</P>
@@ -340,7 +340,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$BAj<jJ}$N@8G/7nF|(B</P>
+                  <P>相手方の生年月日</P>
                </TD>
                <TD>
                   <P>\$birthday4</P>
@@ -348,7 +348,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$BAj<jJ}$N@-JL(B</P>
+                  <P>相手方の性別</P>
                </TD>
                <TD>
                   <P>\$sex4</P>
@@ -356,7 +356,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$BAj<jJ}$N$4?&6H(B</P>
+                  <P>相手方のご職業</P>
                </TD>
                <TD>
                   <P>\$trade4</P>
@@ -364,7 +364,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B7k:'8e$N@+(B($BID;z(B)</P>
+                  <P>結婚後の姓(苗字)</P>
                </TD>
                <TD>
                   <P>\$sei</P>
@@ -372,7 +372,7 @@ Content-type: text/html
             </TR>
             <TR>
                <TD WIDTH=105>
-                  <P>$B$4MWK>;v9`(B</P>
+                  <P>ご要望事項</P>
                </TD>
                <TD>
                   <P>\$request3</P>
@@ -385,9 +385,9 @@ Content-type: text/html
 </TABLE>
 </CENTER>
          <BLOCKQUOTE>
-            <B>$B$43NG'$,:Q$_$^$7$?$i(B</B><FONT COLOR="#FF0000"><B>$B2<5-!VCmJ8!W%\%?%s$r(B1$B2s$@$12!$7$F$4H/Cm(B</B></FONT><B>$B$/$@$5$$!#(B<BR>
-            $B$J$*!">&IJ$N@-3J>e!"$3$l0J9_$N$4CmJ8$N<h$j>C$7$dJVIJ$O0l@Z=PMh$^$;$s$N$GM=$a$4N;>52<$5$$!#(B($BK,LdHNGdK!$N%/!<%j%s%0%*%U$OE,MQ$5$l$^$;$s!#(B)</B></BLOCKQUOTE>
-         <CENTER>$B$4CmJ8$ND{@5$O!"%V%i%&%6$N!VLa$k!W$G!VF~NO%U%)!<%`!W$+$i$d$jD>$7$F2<$5$$!#(B</CENTER>
+            <B>ご確認が済みましたら</B><FONT COLOR="#FF0000"><B>下記「注文」ボタンを1回だけ押してご発注</B></FONT><B>ください。<BR>
+            なお、商品の性格上、これ以降のご注文の取り消しや返品は一切出来ませんので予めご了承下さい。(訪問販売法のクーリングオフは適用されません。)</B></BLOCKQUOTE>
+         <CENTER>ご注文の訂正は、ブラウザの「戻る」で「入力フォーム」からやり直して下さい。</CENTER>
          <P><FORM ACTION="/~kazu-y/cgi_bin2/nn_mail3.cgi" METHOD=POST>
             <P><INPUT TYPE="hidden" NAME="name" VALUE="\$name">
             <INPUT TYPE="hidden" NAME="email" VALUE="\$email">
@@ -423,7 +423,7 @@ Content-type: text/html
             <INPUT TYPE="hidden" NAME="sex5" VALUE="">
             <INPUT TYPE="hidden" NAME="trade5" VALUE="">
             <INPUT TYPE="hidden" NAME="request5" VALUE="">
-            <CENTER><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$B0MMj(B"></CENTER>
+            <CENTER><INPUT TYPE=submit NAME="送信" VALUE="依頼"></CENTER>
          </FORM></P></CENTER>
       </TD>
    </TR>

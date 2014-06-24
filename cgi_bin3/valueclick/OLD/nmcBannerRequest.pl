@@ -1,6 +1,6 @@
 package nmcBannerRequest;
 
-        # $B=i4|@_Dj(B
+        # 初期設定
 #	print "Version ".$]."\n";
 #	if ($] >= 5 ){
         	use Socket;
@@ -13,10 +13,10 @@ sub BannerRequest{
 	$SIG{'ALRM'} = 'getaralm';
         $SiteId = $_[0];
         $S = "SOCK";
-        # $B9-9pG[?.%5!<%P!<$N@_Dj(B
+        # 広告配信サーバーの設定
         $host = "jaguar.mobileclick.ne.jp";
         $port = 80;
-	#$BG[?.(BCGI$B$N;XDj(B
+	#配信CGIの指定
 	$url = "/cgi-bin/DealBanners.cgi"."?".$SiteId;
         socket($S,PF_INET,SOCK_STREAM,getprotobyname('tcp')) || return "socket NG<BR>\n";
         $port = getservbyname($port,'tcp') unless $port =~ /^\d+/;
@@ -33,12 +33,12 @@ User-Agent: $Env{HTTP_USER_AGENT}
 
 END
 
-        # $B=PNO7k2L$r3JG<$9$k(B
+        # 出力結果を格納する
         local $output= "";
  	local $BlankCnt = 0;
         local $read_bits='';
         vec($read_bits,fileno(SOCK),1)=1;
-	#TimeOut$B$N@_Dj(B	1sec
+	#TimeOutの設定	1sec
         select ($read_bits,undef,undef,1);
         if (vec($read_bits,fileno(SOCK),1) == 0 ) {
                 return "";

@@ -2,22 +2,22 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=x-sjis">
 		<meta name="generator" content="Adobe GoLive 4">
-		<title>$B$4CmJ8%U%)!<%`(B</title>
+		<title>ご注文フォーム</title>
 	</head>
 
 	<body bgcolor="white" background="../image/wall.jpg" onload="scll()">
 		<script language="JavaScript"><!--
-var cnt = -2;//$BJ8;z0LCV(B
-var speed = 500;//$BF0$+$9%9%T!<%I(B(1/1000$BICC10L(B)
-var msg = "               $BAw?.$5$l$kA0$K$b$&0lEY!"5-F~FbMF$r$43NG'2<$5$$!*!!Aw?.$5$l$k$^$G;~4V$,3]$+$k>l9g$,$"$j$^$9$N$G!"%\%?%s$r(B1$B2s%/%j%C%/$7$F$+$i;C$/$*BT$A2<$5$$!#(B"; //$B%a%C%;!<%8FbMF(B
-timeID=setTimeout('',1); //IE$BBP:v$J$K$b$7$J$$(B;$B%?%$%^!<%;%C%H(B
+var cnt = -2;//文字位置
+var speed = 500;//動かすスピード(1/1000秒単位)
+var msg = "               送信される前にもう一度、記入内容をご確認下さい！　送信されるまで時間が掛かる場合がありますので、ボタンを1回クリックしてから暫くお待ち下さい。"; //メッセージ内容
+timeID=setTimeout('',1); //IE対策なにもしない;タイマーセット
 
-//$B!!J8;z$r0\F0$5$;$k(B
+//　文字を移動させる
 function scll()
 {
- status = msg.substring(cnt=cnt+2,msg.length+2);//$BF|K\8l$O(B2$BJ8;z$E$DF0$+$9(B
+ status = msg.substring(cnt=cnt+2,msg.length+2);//日本語は2文字づつ動かす
  if (cnt>msg.length){cnt=-2};
- clearTimeout(timeID);//$B%?%$%^!<$r%/%j%"(B
+ clearTimeout(timeID);//タイマーをクリア
  timeID = setTimeout('scll()',speed);
   }
 // -->
@@ -31,49 +31,49 @@ function scll()
 			<tr>
 				<td>
 					<center>
-							<font size="6"><u><b>$B$4CmJ8$N$43NG'(B</b></u></font></center>
+							<font size="6"><u><b>ご注文のご確認</b></u></font></center>
 					<p><img src="../image/line_a1.gif" width="640" height="3" align="bottom"></p>
 						<blockquote>
-							$B$4CmJ8$N$43NG'$r$*4j$$CW$7$^$9!#(B<br>
-							$B$3$l$h$j@h$NJQ99$O$G$-$^$;$s$N$G!"=$@5$r$5$l$k>l9g$K$O(BWeb$B%V%i%&%6$N!VLa$k!W%\%?%s$GA0$N%Z!<%8$KLa$C$F=$@5$r$7$F$/$@$5$$!#(B
+							ご注文のご確認をお願い致します。<br>
+							これより先の変更はできませんので、修正をされる場合にはWebブラウザの「戻る」ボタンで前のページに戻って修正をしてください。
 							
 							<p></p>
 							<table width="100%" border="1" cellspacing="2" cellpadding="0">
 								<tr>
-									<td width="50%">$BA*L>$r<u$1$i$l$kJ}$N$4ID;z(B($B@+(B)</td>
+									<td width="50%">選名を受けられる方のご苗字(姓)</td>
 									<td><?php echo $sei?></td>
 									<input type="hidden" name="sei" value="<?php echo $sei?>">
 								</tr>
 								<tr>
-									<td width="50%">$B@-JL(B</td>
-									<td><?php if ($sex == "M") { echo "$BCK;y(B"; } else { echo "$B=w;y(B"; }?></td>
+									<td width="50%">性別</td>
+									<td><?php if ($sex == "M") { echo "男児"; } else { echo "女児"; }?></td>
 									<input type="hidden" name="sex" value="<?php echo $sex?>">
 								</tr>
 								<tr>
-									<td width="50%">$B$4=P;:M=DjF|(B($B$*CB@8F|(B)</td>
-									<td><?php echo $birthmonth . "$B7n(B" . $birthday . "$BF|(B"?></td>
+									<td width="50%">ご出産予定日(お誕生日)</td>
+									<td><?php echo $birthmonth . "月" . $birthday . "日"?></td>
 									<input type="hidden" name="birthmonth" value="<?php echo $birthmonth?>">
 									<input type="hidden" name="birthday" value="<?php echo $birthday?>">
 								</tr>
 								<tr>
-									<td width="50%">$B$*A*$S$K$J$C$?8uJd(B</td>
-									<td>$BBh(B<?php echo $select?>$B8uJd(B</td>
+									<td width="50%">お選びになった候補</td>
+									<td>第<?php echo $select?>候補</td>
 									<input type="hidden" name="select" value="<?php echo $select?>">
 								</tr>
 								<tr>
-									<td width="50%">$B$*L>A0$N6qBNNc?t(B</td>
+									<td width="50%">お名前の具体例数</td>
 									<td><?php echo $samplerows[$select]?></td>
 								</tr>
 								<tr>
-									<td width="50%">$B2'$NI>2AE@(B(%)</td>
+									<td width="50%">翁の評価点(%)</td>
 									<td><?php echo $points[$select]?></td>
 								</tr>
 								<tr>
-									<td width="50%">$BA*L>NA(B</td>
-									<td><?php echo $price[$select]?>$B1_(B</td>
+									<td width="50%">選名料</td>
+									<td><?php echo $price[$select]?>円</td>
 								</tr>
 								<tr>
-									<td width="50%">$B$*5RMM$N%a!<%k%"%I%l%9(B</td>
+									<td width="50%">お客様のメールアドレス</td>
 									<td><?php echo $mail?></td>
 									<input type="hidden" name="mail" value="<?php echo $mail?>">
 								</tr>
@@ -85,12 +85,12 @@ function scll()
 				<tr>
 				<td>
 						<blockquote>
-							<p><b>$BFbMF$N$43NG'$,=*$o$j$^$7$?$i!"2<$N!VAw?.%\%?%s!W$r(B</b><font color="#cc0000"><b>1$B2s$@$1(B</b></font><b>$B%/%j%C%/$7$F2<$5$$!#(B<br>
-										$BAw?.40N;8e!"(B</b><b>$B!V%/%l%8%C%H%+!<%I2q<R$N7h:Q2hLL!W$K0\$j$^$9!#$=$3$G$N$*;YJ'$$$,40N;$9$k$H!"!VA*L>7k2L!W(B</b><b>$B$N2hLL$,I=<($5$l$^$9!#(B</b>
+							<p><b>内容のご確認が終わりましたら、下の「送信ボタン」を</b><font color="#cc0000"><b>1回だけ</b></font><b>クリックして下さい。<br>
+										送信完了後、</b><b>「クレジットカード会社の決済画面」に移ります。そこでのお支払いが完了すると、「選名結果」</b><b>の画面が表示されます。</b>
 							<center>
 								<input type="hidden" name="password" value="<?php echo $password?>">
 								<input type="hidden" name="mode" value="kekka">
-								<p><b><input type="submit" name="$BAw?.(B" value="$BAw?.(B"></b></p>
+								<p><b><input type="submit" name="送信" value="送信"></b></p>
 							</center>
 						</blockquote>
 						<center>
@@ -108,39 +108,39 @@ function scll()
 			<tr>
 				<td width="636">
 					<center>
-						$B!!(B
+						　
 
 						<table border="1" width="632">
 							<tr>
 								<td>
 									<center>
-										<a href="index.html" target="_self">$B%H%C%W%Z!<%8(B</a></center>
+										<a href="index.html" target="_self">トップページ</a></center>
 								</td>
 								<td>
 									<center>
-										<a href="input.html" target="_self">$B@+L>4UDj$N%3!<%J!<(B</a></center>
+										<a href="input.html" target="_self">姓名鑑定のコーナー</a></center>
 								</td>
 								<td>
 									<center>
-										<a href="book.html" target="_self">$BCx=q$N%3!<%J!<(B</a></center>
+										<a href="book.html" target="_self">著書のコーナー</a></center>
 								</td>
 								<td>
 									<center>
-										<a href="baby.html" target="_self">$BL?L>$N%3!<%J!<(B</a></center>
+										<a href="baby.html" target="_self">命名のコーナー</a></center>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<center>
-										<a href="consul.html">$B$4AjCL$N%3!<%J!<(B</a></center>
+										<a href="consul.html">ご相談のコーナー</a></center>
 								</td>
 								<td>
 									<center>
-										<a href="info.html">$B2'$+$i$N$*CN$i$;(B</a></center>
+										<a href="info.html">翁からのお知らせ</a></center>
 								</td>
 								<td>
 									<center>
-										<a href="link.html">$B!V@j$$D>9TJX!W(B</a></center>
+										<a href="link.html">「占い直行便」</a></center>
 								</td>
 								<td></td>
 							</tr>
@@ -152,18 +152,18 @@ function scll()
 			<tr>
 				<td width="636">
 					<center>
-						$B!!(B
-						<p>$B$*J9$-$N6J!V(Bstrauss$B!W$K$D$$$F$O!"(B<a href="info.html#midi">$B$3$A$i(B</a>$B$r$4Mw2<$5$$!#(B</p>
+						　
+						<p>お聞きの曲「strauss」については、<a href="info.html#midi">こちら</a>をご覧下さい。</p>
 					</center>
 					<p><img src="../image/line_a1.gif" width="640" height="3" align="bottom"></td>
 			</tr>
 			<tr>
 				<td width="636">
 					<center>
-						$B!!(B
-						<p><font size="1" face="$BCf%4%7%C%/BN(B">$B$3$N%Z!<%8$r8+$F$N$40U8+$d$446A[$r$*J9$+$;2<$5$$!#!!(B<img src="../image/mail_a2.gif" width="24" height="19" align="bottom"></font><a href="mailto:yamakazu@skyblue.ocn.ne.jp"><font size="1" face="$BCf%4%7%C%/BN(B">okina@e-mail.ne.jp</font></a><font size="1" face="$BCf%4%7%C%/BN(B"><i><br>
-						</i>$B%j%s%/$O4?7^$7$^$9$,!"I,$:(B</font><a href="index.html" target="_self"><font size="1" face="$BCf%4%7%C%/BN(B">TOP$B%Z!<%8(B</font></a><font size="1" face="$BCf%4%7%C%/BN(B">$B$K$*4j$$$7$^$9!#(B<br>
-						</font><font size="1" face="$BCf%4%7%C%/BN(B" color="black"><i>CopyRight . K.yamamoto</i></font></center>
+						　
+						<p><font size="1" face="中ゴシック体">このページを見てのご意見やご感想をお聞かせ下さい。　<img src="../image/mail_a2.gif" width="24" height="19" align="bottom"></font><a href="mailto:yamakazu@skyblue.ocn.ne.jp"><font size="1" face="中ゴシック体">okina@e-mail.ne.jp</font></a><font size="1" face="中ゴシック体"><i><br>
+						</i>リンクは歓迎しますが、必ず</font><a href="index.html" target="_self"><font size="1" face="中ゴシック体">TOPページ</font></a><font size="1" face="中ゴシック体">にお願いします。<br>
+						</font><font size="1" face="中ゴシック体" color="black"><i>CopyRight . K.yamamoto</i></font></center>
 				</td>
 			</tr>
 		</table>

@@ -13,86 +13,86 @@ use MIME::Base64;
 $name = $in{'name'};
 $email = $in{'email'};
 $order = $in{'order'};
-######$BF~NO%G!<%?$N@07A=hM}(B######
+######入力データの整形処理######
 if ($email ne "") {
 	$email =~ s/\s*//g;
-	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
+	#全角英数字をすべて半角英数字にする。
 	$email = &zen2han($email);
 } 
-#####$BF~NO%(%i!<$N%A%'%C%/(B#####
+#####入力エラーのチェック#####
 if ($name =~ /^\s*$/){
-	&CgiError("$BL>A0$N5-F~$,$"$j$^$;$s!#(B",
-	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("名前の記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 if ($email =~ /^\s*$/){
-	&CgiError("$B%a!<%k%"%I%l%9$N5-F~$,$"$j$^$;$s!#(B",
-	"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("メールアドレスの記入がありません。",
+	"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
 elsif (($email) and (not $email =~ /.+\@.+\..+/)) {
-	&CgiError("$BF~NO%(%i!<(B",
-		"$B%a!<%k%"%I%l%9$N=q$-J}$,4V0c$C$F$$$^$9!#(B",$email,
-		"$B%V%i%&%6$N!V(BBack$B!W%\%?%s$GLa$C$F:FF~NO$7$F$/$@$5$$!#(B");
+	&CgiError("入力エラー",
+		"メールアドレスの書き方が間違っています。",$email,
+		"ブラウザの「Back」ボタンで戻って再入力してください。");
 	exit;
 }
-#####$B<jCJ$rJ8>O2=(B#####
+#####手段を文章化#####
 if ($order eq "change") {
-	$order ="$B2~L>$NAjCL!JL>A0$rJQ$($?$$!K(B";
+	$order ="改名の相談（名前を変えたい）";
 }
 if ($order eq "pen") {
-	$order ="$BA*L>$N0MMj!J$*;E;v>e$N$*L>A0!"2m9f!"%Z%s%M!<%`!"7]L>$J$I!K(B";
+	$order ="選名の依頼（お仕事上のお名前、雅号、ペンネーム、芸名など）";
 }
 if ($order eq "corp") {
-	$order ="$B2q<RL>$NA*L>(B";
+	$order ="会社名の選名";
 }
 &jcode'convert(*order, 'jis', 'euc');
-#####$B$3$3$+$i(BBase64$B%a!<%k(B#####
-##### $B%\%G%#4pK\J8;zNs$NDj5A(B######
+#####ここからBase64メール#####
+##### ボディ基本文字列の定義######
 @body = (
 	"=====================================", 
-	"$B;3K\2'$X$N!V$4AjCL!W$40MMj%U%)!<%`(B", 
-	"$B2<5-$N"(Ms$r$45-F~$N>e!"!VJV?.!W$7$F2<$5$$!#(B", 
-	"$B?=9~?MMM$N;aL>!'(B", 
-	"$B"((B", 
-	"$B?=9~?MMM$N(BE$B%a!<%k%"%I%l%9!'(B", 
-	"$B"((B", 
-	"$B$40MMjFbMF!'(B",
-	"$B"((B",
-	"$B$4MWK>;v9`!J6qBNE*$K!K!'(B", 
-	"$B"((B", 
+	"山本翁への「ご相談」ご依頼フォーム", 
+	"下記の※欄をご記入の上、「返信」して下さい。", 
+	"申込人様の氏名：", 
+	"※", 
+	"申込人様のEメールアドレス：", 
+	"※", 
+	"ご依頼内容：",
+	"※",
+	"ご要望事項（具体的に）：", 
+	"※", 
 	"", 
-	"$BL>A0$rIU$1$i$l$kJ}$N>pJs!J2~L>!&A*L>$N>l9g!K(B", 
-	"$B@+!J$_$g$&$8!'I,$:4A;z$G$*4j$$CW$7$^$9!K!'(B", 
-	"$B"((B", 
-	"$BL>!'(B", 
-	"$B"((B", 
-	"$B@8G/7nF|!'(B", 
-	"$B"((B", 
-	"$B@-JL!'(B", 
-	"$B"((B", 
-	"$B$4?&6H$^$?$O!"6HL3FbMF!'(B", 
-	"$B"((B", 
+	"名前を付けられる方の情報（改名・選名の場合）", 
+	"姓（みょうじ：必ず漢字でお願い致します）：", 
+	"※", 
+	"名：", 
+	"※", 
+	"生年月日：", 
+	"※", 
+	"性別：", 
+	"※", 
+	"ご職業または、業務内容：", 
+	"※", 
     "",
-	"$B2q<R$N>pJs!J2q<RL>$N>l9g!K(B", 
-	"$B2q<R$N6HL3FbMF!J6qBNE*$K!K!'(B", 
-    "$B"((B",
+	"会社の情報（会社名の場合）", 
+	"会社の業務内容（具体的に）：", 
+    "※",
 	"", 
 	"", 
-	"$B<uCm8e!"?69~@h$r?=9~?M$5$^$K$4O"MmCW$7$^$9!#(B", 
-    "$B$*?6$j9~$_3NG'8e!"(B2-3$BF|$G7k2L$r$*CN$i$;$7$^$9!#(B",
+	"受注後、振込先を申込人さまにご連絡致します。", 
+    "お振り込み確認後、2-3日で結果をお知らせします。",
 	"====================================="
 );
 foreach(@body) {
 	&jcode'convert(*_, "sjis", "euc");
 }
-#######Sub$B$N@8@.(B(Base64$B%(%s%3!<%I(B)#######
-$subject = "$B2'$X$4AjCL(B(j$B%U%)%s(BVer.1)";
+#######Subの生成(Base64エンコード)#######
+$subject = "翁へご相談(jフォンVer.1)";
 &jcode'convert(*subject, 'jis', 'euc');
 $subject = encode_base64($subject);
 chop($subject);
 $subject = " . $subject . "?=";
-####### $B%X%C%@$NDj5A(B#########
+####### ヘッダの定義#########
 $mail_header = <<"EOM6";
 From: $okina_email
 To: $email
@@ -102,23 +102,23 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: base64
 Subject: $subject
 EOM6
-####### $B%a%C%;!<%8%\%G%#$N@8@.(B########
+####### メッセージボディの生成########
 $body[4] .= $name;
 $body[6] .= $email;
 $body[8] .= $order;
 $mailbody = join("\n", @body);
 $encoded = encode_base64($mailbody);
-######## $B%a!<%kAw?.(B#########
+######## メール送信#########
 open(MAIL, "|$sendmail $okina_email");
 print MAIL $mail_header;
 for ($i = 0; $i < length($encoded); $i += 76) {
 	print MAIL substr($encoded, $i, 76);
 }
 close(MAIL);
-#####$B0J>e$,(BBase64$B%a!<%k(B#####
-$msg1 = "$B$4AjCLM=Ls40N;(B\n";
-$msg2 = "$B;C$/$7$^$9$H!"$40MMjMQ;f$,%a!<%k$GFO$-$^$9!#(B\n";
-$msg3 = "1$B"*$*CN$i$;$KLa$k!#(B\n";
+#####以上がBase64メール#####
+$msg1 = "ご相談予約完了\n";
+$msg2 = "暫くしますと、ご依頼用紙がメールで届きます。\n";
+$msg3 = "1→お知らせに戻る。\n";
 &jcode'convert(*msg1, 'sjis', 'euc');
 &jcode'convert(*msg2, 'sjis', 'euc');
 &jcode'convert(*msg3, 'sjis', 'euc');

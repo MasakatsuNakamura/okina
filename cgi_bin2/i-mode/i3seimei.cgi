@@ -6,19 +6,19 @@ require "reii.pl";
 require "seikaku.pl";
 require "kenkou.pl";
 
-# $B2q<R4D6-%F%9%HMQ(B
+# 会社環境テスト用
 #$root = "/~nakamura/test/seimei2/public_html";
 #$cgipath = "/~nakamura/test/seimei2/cgi_bin";
 #$baseurl = "http://ppd.sf.nara.sharp.co.jp";
 
-# $B;30l4D6-MQ(B
+# 山一環境用
 $root = "/~kazu-y";
 $cgipath = "/~kazu-y/cgi_bin2";
 $baseurl = "http://www2.mahoroba.ne.jp";
 
 
 
-# CGI$BJQ?t<h$j$3$_(B
+# CGI変数取りこみ
 &ReadParse();
 $sei = $in{'sei'};
 $mei = $in{'mei'};
@@ -46,18 +46,18 @@ if ($sei eq "" || $mei eq "") {
 $sei1 = $sei;
 $mei1 = $mei;
 
-# $B!9$N=hM}(B
+# 々の処理
 $sei1 =~ s/(..)\x81\x58/$1$1/;
 $mei1 =~ s/(..)\x81\x58/$1$1/;
 
-# $BE72h!&?M2h!&CO2h!&302h!&Am2h$N;;=P(B($B7k9=$d$d$3$7$$(B)
+# 天画・人画・地画・外画・総画の算出(結構ややこしい)
 $kakusu{'tenkaku'} = 0;
 $kakusu{'chikaku'} = 0;
 $kakusu{'gaikaku'} = 0;
 $kakusu{'soukaku'} = 0;
 @error = ();
 
-# $BE72h$N;;=P(B
+# 天画の算出
 for ($i = 0; $i<length($sei1); $i+=2) {
 	$kanji = substr($sei1, $i, 2);
 	$kakusu = &kakusu($kanji);
@@ -67,17 +67,17 @@ for ($i = 0; $i<length($sei1); $i+=2) {
 	$kakusu{'tenkaku'} += $kakusu;
 }
 
-# $B0lJ8;z@+$N=hM}(B
+# 一文字姓の処理
 if (length($sei1) == 2) {
-	$kakusu{'tenkaku'}++; # $B0l2h<Z$j$k(B
+	$kakusu{'tenkaku'}++; # 一画借りる
 	$kakusu{'gaikaku'}++;
-	$kakusu{'soukaku'}--; # $B0l2hJV$9(B
+	$kakusu{'soukaku'}--; # 一画返す
 }
 
-# $B?M2h$N;;=P(B
+# 人画の算出
 $kakusu{'jinkaku'} = &kakusu(substr($sei1, length($sei1)-2, 2)) + &kakusu(substr($mei1, 0, 2));
 
-# $BCO2h$N;;=P(B
+# 地画の算出
 for ($i = 0; $i<length($mei1); $i+=2) {
 	$kanji = substr($mei1, $i, 2);
 	$kakusu = &kakusu($kanji);
@@ -87,34 +87,34 @@ for ($i = 0; $i<length($mei1); $i+=2) {
 	$kakusu{'chikaku'} += $kakusu;
 }
 
-# $B0lJ8;zL>$N=hM}(B
+# 一文字名の処理
 if (length($mei1) == 2) {
-	$kakusu{'chikaku'}++; # $B0l2h<Z$j$k(B
+	$kakusu{'chikaku'}++; # 一画借りる
 	$kakusu{'gaikaku'}++;
-	$kakusu{'soukaku'}--; # $B0l2hJV$9(B
+	$kakusu{'soukaku'}--; # 一画返す
 }
 
-# $BAm2h!&302h$N;;=P(B
+# 総画・外画の算出
 $kakusu{'soukaku'} += $kakusu{'tenkaku'} + $kakusu{'chikaku'};
 $kakusu{'gaikaku'} += $kakusu{'soukaku'} - $kakusu{'jinkaku'};
 
-# $B%*!<%P!<%U%m!<=hM}(B - $B$A$J$_$K(B > 81$B$O4V0c$$$G$O$J$$!#(B
+# オーバーフロー処理 - ちなみに > 81は間違いではない。
 foreach (keys %kakusu) {
 	$kakusu{$_} %= 80 if ($kakusu{$_} > 81);
 }
 
-# $BE72h!&?M2h!&CO2h$N2<0l7e$N;;=P(B(10$B$G3d$C$?M>$j$r<h$k$@$1(B)
+# 天画・人画・地画の下一桁の算出(10で割った余りを取るだけ)
 $tenshimo = $kakusu{'tenkaku'} % 10;
 $jinshimo = $kakusu{'jinkaku'} % 10;
 $chishimo = $kakusu{'chikaku'} % 10;
 
-# $B@-3J?GCG$N=`Hw(B
+# 性格診断の準備
 $kakusu{'seikaku'} = $jinshimo;
 
-# $B1"M[8^9T$N%7%j%"%kHV9f$N;;=P(B($B>\$7$/$O(Bkenkou.pl$B$r;2>H(B)
+# 陰陽五行のシリアル番号の算出(詳しくはkenkou.plを参照)
 $kakusu{'kenkou'} = &f($tenshimo)*25 + &f($jinshimo) *5 + &f($chishimo);
 
-# $B6JL>7hDj(B
+# 曲名決定
 $kyoku = $jinshimo;
 $kyoku = 10 if ($kyoku == 0);
 $kyoku -= 1;
@@ -122,7 +122,7 @@ $kyoku -= $kyoku % 2;
 $kyoku /= 2;
 $kyoku++;
 
-# $B@j$$7k2L$N@07A=hM}(B
+# 占い結果の整形処理
 foreach (keys %kakusu) {
 	if ($_ eq "kenkou") {
 		$res{$_} = $kenkou[$kakusu{$_}];
@@ -147,13 +147,13 @@ foreach (keys %kakusu) {
 }
 
 if ($#error >= 0) {
-	# $B%(%i!<4A;z$,0lJ8;z$G$b$"$l$P%(%i!<I=<((B
+	# エラー漢字が一文字でもあればエラー表示
 	$msg = <<"EOK";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>$B%(%i!<%a%C%;!<%8(B</TITLE>
+   <TITLE>エラーメッセージ</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=SHIFT_JIS">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF">
@@ -161,27 +161,27 @@ Content-type: text/html
 
 <HR>
 
-<FONT COLOR="#FF0000">$BF~NO$5$l$?4A;z!V(B\$error$B!W$,H=JL$G$-$^$;$s!#(B</FONT><BR>
+<FONT COLOR="#FF0000">入力された漢字「\$error」が判別できません。</FONT><BR>
 
 <HR>
 
-$B@?$K62$lF~$j$^$9$,!"2<5-$NAw?.%U%)!<%`$r$43NG'8e!"!VAw?.!W%\%?%s$r2!$7$F2<$5$$!#(B<BR>
-$B@53N$J2h?tH=Dj$r9T$$!"#D#B$r=$@5$7!"$4;XDj$N%a!<%k%"%I%l%9$^$GO"Mm:9$7>e$2$^$9!#(B</P>
+誠に恐れ入りますが、下記の送信フォームをご確認後、「送信」ボタンを押して下さい。<BR>
+正確な画数判定を行い、ＤＢを修正し、ご指定のメールアドレスまで連絡差し上げます。</P>
 
 <P><FORM ACTION="$cgipath/i-n_mail.cgi" METHOD=POST>
-   <P>$B%(%i!<$K$J$C$?4A;z!'(B<INPUT TYPE=hidden NAME=kanji VALUE="\$error" size=10 maxlength=10>\$error<BR>
-   $B$"$J$?MM$N$*L>A0!'(B<INPUT TYPE=text NAME=name2 VALUE="\$seimei" ISTYLE="1" SIZE=10 MAXLENGTH=10><BR>
-   $B%a!<%k%"%I%l%9!'(B<INPUT TYPE=text NAME=email2 VALUE="" ISTYLE="3" SIZE=16 MAXLENGTH=256><BR>
-   <INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"><BR>
-   <INPUT TYPE=reset VALUE="$B<h$j>C$7(B">
+   <P>エラーになった漢字：<INPUT TYPE=hidden NAME=kanji VALUE="\$error" size=10 maxlength=10>\$error<BR>
+   あなた様のお名前：<INPUT TYPE=text NAME=name2 VALUE="\$seimei" ISTYLE="1" SIZE=10 MAXLENGTH=10><BR>
+   メールアドレス：<INPUT TYPE=text NAME=email2 VALUE="" ISTYLE="3" SIZE=16 MAXLENGTH=256><BR>
+   <INPUT TYPE=submit NAME="送信" VALUE="送信"><BR>
+   <INPUT TYPE=reset VALUE="取り消し">
 </FORM></P>
 
 <P>
 
 <HR>
 
-<A HREF="$root/i-mode.html" accesskey=1>1$B"*$b$&0lEY4UDj$9$k!#(B</A><BR>
-<A HREF="$root/i-info.html" accesskey=3>3$B"*2'$+$i$N$*CN$i$;$rFI$`!#(B</A><BR>
+<A HREF="$root/i-mode.html" accesskey=1>1→もう一度鑑定する。</A><BR>
+<A HREF="$root/i-info.html" accesskey=3>3→翁からのお知らせを読む。</A><BR>
 </P>
 </BODY>
 </HTML>
@@ -191,13 +191,13 @@ EOK
 	$msg =~ s/\$error/@error/g;
 	print $msg;
 } else {
-	# $BH=Dj7k2LI=<((B
+	# 判定結果表示
 	$msg = <<"EOM";
 Content-type: text/html
 
 <HTML>
 <HEAD>
-   <TITLE>$B;3K\2'$N4UDj7k2L(B(3/6)</TITLE>
+   <TITLE>山本翁の鑑定結果(3/6)</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=SHIFT_JIS">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF">
@@ -205,12 +205,12 @@ Content-type: text/html
 
 <HR>
 
-\$seimei$B$5$s$X$N=u8@(B(3/6)<BR>
+\$seimeiさんへの助言(3/6)<BR>
 
 <HR>
 
-<FONT COLOR="#FF3300"><U>$B7r9/1?(B($BBND4!&@:?@(B)</U>
-$B!(Nc$(5H?tB7$$$N@+L>$G$"$C$F$b!"7r9/$K7C$^$l$J$1$l$P3h$+$5$;$^$;$s!#(B</FONT></P>
+<FONT COLOR="#FF3300"><U>健康運(体調・精神)</U>
+；例え吉数揃いの姓名であっても、健康に恵まれなければ活かさせません。</FONT></P>
 
 <P>$res{'kenkou'}</P>
 
@@ -219,7 +219,7 @@ Content-type: text/html
    <INPUT TYPE=hidden NAME=mei VALUE="\$mei" size=10 maxlength=10>
    <INPUT TYPE=hidden NAME=sex VALUE="\$sex" size=10 maxlength=10>
    <INPUT TYPE=hidden NAME=marry VALUE="\$marry" size=10 maxlength=10>
-   <INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$B@-3J$X(B"><BR>
+   <INPUT TYPE=submit NAME="送信" VALUE="性格へ"><BR>
 
 </FORM></P>
 </BODY>

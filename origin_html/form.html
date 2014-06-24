@@ -1,20 +1,20 @@
 <HTML>
 <HEAD>
-   <TITLE>$B$4CmJ8%U%)!<%`(B</TITLE>
+   <TITLE>ご注文フォーム</TITLE>
    <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=x-sjis">
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" BACKGROUND="image/wall.jpg" onload="scll()">
-<P><SCRIPT LANGUAGE=JavaScript>var cnt = -2;//$BJ8;z0LCV(B
-var speed = 500;//$BF0$+$9%9%T!<%I(B(1/1000$BICC10L(B)
-var msg = "               $BAw?.$5$l$kA0$K$b$&0lEY!"5-F~FbMF$r$43NG'2<$5$$!*!!Aw?.$5$l$k$^$G;~4V$,3]$+$k>l9g$,$"$j$^$9$N$G!"%\%?%s$r(B1$B2s%/%j%C%/$7$F$+$i;C$/$*BT$A2<$5$$!#(B"; //$B%a%C%;!<%8FbMF(B
-timeID=setTimeout('',1); //IE$BBP:v$J$K$b$7$J$$(B;$B%?%$%^!<%;%C%H(B
+<P><SCRIPT LANGUAGE=JavaScript>var cnt = -2;//文字位置
+var speed = 500;//動かすスピード(1/1000秒単位)
+var msg = "               送信される前にもう一度、記入内容をご確認下さい！　送信されるまで時間が掛かる場合がありますので、ボタンを1回クリックしてから暫くお待ち下さい。"; //メッセージ内容
+timeID=setTimeout('',1); //IE対策なにもしない;タイマーセット
 
-//$B!!J8;z$r0\F0$5$;$k(B
+//　文字を移動させる
 function scll()
 {
- status = msg.substring(cnt=cnt+2,msg.length+2);//$BF|K\8l$O(B2$BJ8;z$E$DF0$+$9(B
+ status = msg.substring(cnt=cnt+2,msg.length+2);//日本語は2文字づつ動かす
  if (cnt>msg.length){cnt=-2};
- clearTimeout(timeID);//$B%?%$%^!<$r%/%j%"(B
+ clearTimeout(timeID);//タイマーをクリア
  timeID = setTimeout('scll()',speed);
   }</SCRIPT></P>
 
@@ -24,76 +24,76 @@ function scll()
    <P><TABLE BORDER=0 WIDTH=640>
       <TR>
          <TD>
-            <CENTER><FONT SIZE="+3"><B><U>$B;3K\2'$X$N$4CmJ8%U%)!<%`(B</U></B></FONT></CENTER>
+            <CENTER><FONT SIZE="+3"><B><U>山本翁へのご注文フォーム</U></B></FONT></CENTER>
             
             <P><IMG SRC="image/line_a1.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></P>
             
-            <BLOCKQUOTE><B><U>$B$"$J$?$N$*L>A0(B</U></B>$B!JA43Q$G5-F~4j$$$^$9!#@+$HL>$O0lJ8;z6u$1$F2<$5$$!#!K(B<FONT COLOR="#FF0000"><B>($BI,?\(B</B>$B!K(B</FONT><B><U><BR>
+            <BLOCKQUOTE><B><U>あなたのお名前</U></B>（全角で記入願います。姓と名は一文字空けて下さい。）<FONT COLOR="#FF0000"><B>(必須</B>）</FONT><B><U><BR>
                </U></B><INPUT TYPE=text NAME=name VALUE="" SIZE=30>
                
-               <P><B><U>$B$"$J$?$N%a!<%k%"%I%l%9(B</U>$B"*(B</B>($B5-F~Nc!'(Bxxx@xxx.ne.jp
-               $B$4Cm0U!'I,$:H>3Q$G5-F~4j$$$^$9!#(B)<FONT COLOR="#FF0000"><B>($BI,?\(B)</B></FONT><U><BR>
+               <P><B><U>あなたのメールアドレス</U>→</B>(記入例：xxx@xxx.ne.jp
+               ご注意：必ず半角で記入願います。)<FONT COLOR="#FF0000"><B>(必須)</B></FONT><U><BR>
                </U><INPUT TYPE=text NAME=email VALUE="" SIZE=80><BR>
-               <FONT COLOR="#FF0000">$B$4Cm0U(B;<U>$B%a!<%k%"%I%l%9$N$45-:\$,$J$$>l9g$K$O!"$4CmJ8$O$*<u$1=PMh$^$;$s!#(B</U></FONT><BR>
-               <FONT SIZE="-1">($BFC$K!"!V(B.$B!W(B($BE@(B)$B$r!V(B,$B!W(B($B%+%s%^(B)$B$H8mBG$5$l$?$j!"A43QJ8;z$r;H$o$l$?$j!"!V(Bor.jp$B!W(B($B5l%"%I%l%9(B)$B$r;HMQ$5$l$?$j$7$F%(%i!<$H$J$k%1!<%9$,;68+$5$l$^$9!#Mn$A$D$$$F@5$7$/F~NO$7$F$/$@$5$$!#(B)$B!!%Q%=%3%s$N%a!<%k%=%U%H0J30$G$N<u?.!J%U%j!<%a!<%k$d(BWeb$B%a!<%k$J$I!K$G$O7k2L$r@5$7$/<u?.$G$-$J$$;v$,$"$j$^$9!#(B</FONT></P>
+               <FONT COLOR="#FF0000">ご注意;<U>メールアドレスのご記載がない場合には、ご注文はお受け出来ません。</U></FONT><BR>
+               <FONT SIZE="-1">(特に、「.」(点)を「,」(カンマ)と誤打されたり、全角文字を使われたり、「or.jp」(旧アドレス)を使用されたりしてエラーとなるケースが散見されます。落ちついて正しく入力してください。)　パソコンのメールソフト以外での受信（フリーメールやWebメールなど）では結果を正しく受信できない事があります。</FONT></P>
                
-               <P><B><U>$B$4CmJ8$NFbMF(B($BJ#?t$NA*Br2DG=(B)<BR>
-               </U></B><INPUT TYPE=checkbox NAME=order1 VALUE="$BEE;RK\$rCmJ8(B">$B!V2'$NCx=q!WEE;RK\HG!'(B<B>$B%Q%9%o!<%IBe(B500$B1_"*(B</B>$B2<5-$N(B<A HREF="#send">$BAw?.%\%?%s(B</A>$B$r2!$7$F2<$5$$!#(B<BR>
-               <INPUT TYPE=checkbox NAME=order3 VALUE="$BL?L>$r0MMj(B">$B?7@8;y$NL?L>!'(B<B>$BA*L>NA(B10,000$B1_(B</B>$B"*(B<FONT COLOR="#FF0000">$B2<5-$N(B1.$B$K$b$45-F~2<$5$$!#(B($B$*5^$.$NJ}$O(B2.$B$K$b$45-F~2<$5$$!#?69~$_3NG'$r9T$J$o$:7k2L$rAw?.$7$^$9$N$G!"DL>o$h$j(B3-5$BF|C;=L$5$l$^$9!#(B)</FONT></P>
+               <P><B><U>ご注文の内容(複数の選択可能)<BR>
+               </U></B><INPUT TYPE=checkbox NAME=order1 VALUE="電子本を注文">「翁の著書」電子本版：<B>パスワード代500円→</B>下記の<A HREF="#send">送信ボタン</A>を押して下さい。<BR>
+               <INPUT TYPE=checkbox NAME=order3 VALUE="命名を依頼">新生児の命名：<B>選名料10,000円</B>→<FONT COLOR="#FF0000">下記の1.にもご記入下さい。(お急ぎの方は2.にもご記入下さい。振込み確認を行なわず結果を送信しますので、通常より3-5日短縮されます。)</FONT></P>
                
-               <P><FONT COLOR="#000000">$B$J$*!">&IJ$N$4JVIJ$dFbMF%/%l!<%`$K$D$$$F$O$*<u$1CW$7$+$M$^$9$N$G!"$4MF<O2<$5$$$^$;!#;3K\2'$G$ONN<}=q$OH/9T$7$F$*$j$^$;$s!"M9JX?6BX$N<uNN>Z$r$4MxMQ2<$5$$!#$^$?>CHq@G$OITMW$G$9!#(B<BR>
-               </FONT><FONT COLOR="#FF0000">$B$4Cm0U!'$*?6$j9~$_$K:]$7$F$O?=9~?M(B($B$"$J$?MM(B)$B$N$*L>A0$r5-F~$7$FD:$/$h$&$K$*4j$$?=$7>e$2$^$9!#(B</FONT></P></BLOCKQUOTE>
+               <P><FONT COLOR="#000000">なお、商品のご返品や内容クレームについてはお受け致しかねますので、ご容赦下さいませ。山本翁では領収書は発行しておりません、郵便振替の受領証をご利用下さい。また消費税は不要です。<BR>
+               </FONT><FONT COLOR="#FF0000">ご注意：お振り込みに際しては申込人(あなた様)のお名前を記入して頂くようにお願い申し上げます。</FONT></P></BLOCKQUOTE>
             
             <P><FONT COLOR="#CC3333"><IMG SRC="image/line_a1.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></FONT></P>
          </TD>
       </TR>
       <TR>
          <TD>
-            <BLOCKQUOTE><B><U>1.$B!!?7@8;y$NL?L>$K$D$$$F>\:Y$r$45-F~$/$@$5$$!#(B</U></B>
+            <BLOCKQUOTE><B><U>1.　新生児の命名について詳細をご記入ください。</U></B>
                
-               <P>$B@+(B($B$_$g$&$8(B)$B"*(B($BA43Q(B<FONT COLOR="#FF0000"><B>$B4A;z(B</B></FONT>$B$G5-F~(B)<BR>
-               <INPUT TYPE=text NAME=familyname VALUE="" SIZE=15>$BMM(B</P>
+               <P>姓(みょうじ)→(全角<FONT COLOR="#FF0000"><B>漢字</B></FONT>で記入)<BR>
+               <INPUT TYPE=text NAME=familyname VALUE="" SIZE=15>様</P>
                
-               <P>$B=P;:M=DjF|(B($BCB@8F|(B)$B"*(B($B5-F~Nc!'(Bxx$B7n(Bxx$BF|(B)</P>
+               <P>出産予定日(誕生日)→(記入例：xx月xx日)</P>
                
                <P><INPUT TYPE=text NAME=brthday VALUE="" SIZE=30></P>
                
-               <P>$B!V2'$NL?L>!W$r!":#$^$G$K$4MxMQ$5$l$^$7$?$+!#(B<BR>
-               <INPUT TYPE=radio NAME=user VALUE="$B=i$a$F0MMj(B" CHECKED>$B=i$a$F(B<BR>
-               <INPUT TYPE=radio NAME=user VALUE="$B#22sL\0J9_(B">$B7;;P$NL>A0$GMxMQ$7$?$3$H$,$"$k(B</P>
+               <P>「翁の命名」を、今までにご利用されましたか。<BR>
+               <INPUT TYPE=radio NAME=user VALUE="初めて依頼" CHECKED>初めて<BR>
+               <INPUT TYPE=radio NAME=user VALUE="２回目以降">兄姉の名前で利用したことがある</P>
                
-               <P>$B$3$NEY!"@8$^$l$F$/$k$*;RMM$K$47;;P$,5o$i$l$k$N$G$7$?$i!"$*L>A0$r$*J9$+$;4j$($^$;$s$+!#(B<INPUT TYPE=text NAME=brother VALUE="" SIZE=30>$B$A$c$s(B</P>
+               <P>この度、生まれてくるお子様にご兄姉が居られるのでしたら、お名前をお聞かせ願えませんか。<INPUT TYPE=text NAME=brother VALUE="" SIZE=30>ちゃん</P>
                
-               <P><B>$B$4MWK>;v9`(B</B>$B!'<uIU$18e$G$ODI2C$G$4MWK>$r$*<u$1=PMh$J$$>l9g$,$"$j$^$9$N$G$4Cm0U2<$5$$!#(B($B1?@*:GM%@h$G$9$N$G!"$4MWK>$K$OE:$($J$$>l9g$b$"$j$^$9!#$4N;>52<$5$$!#(B)<BR>
-               $B4{$K@8$^$l$F$$$k>l9g$OI,$:(B<FONT COLOR="#FF0000"><B>$BCK=w$N6hJL(B</B></FONT>$B$r$*=q$-2<$5$$!#(B<FONT COLOR="#FF0000"><B>$B$*5^$.$N;~$O2<$N%A%'%C%/%\%C%/%9$K$b%^!<%/!#(B</B></FONT><BR>
+               <P><B>ご要望事項</B>：受付け後では追加でご要望をお受け出来ない場合がありますのでご注意下さい。(運勢最優先ですので、ご要望には添えない場合もあります。ご了承下さい。)<BR>
+               既に生まれている場合は必ず<FONT COLOR="#FF0000"><B>男女の区別</B></FONT>をお書き下さい。<FONT COLOR="#FF0000"><B>お急ぎの時は下のチェックボックスにもマーク。</B></FONT><BR>
                <TEXTAREA NAME=request ROWS=7 COLS=80 WRAP=physical></TEXTAREA></P>
                
-               <P><INPUT TYPE=checkbox NAME=exp VALUE="$B;j5^!*Be6b$O8e$G;YJ'$$$^$9!#(B">$B"+(B<B>$B;j5^!*Be6b$O8e$G;YJ'$$$^$9!#(B<BR>
-               </B><FONT COLOR="#FF3300"><B>$BFC5^NA6b$,2C;;$5$l!"NA6b$O9g7W$G(B15,000$B1_$K$J$j$^$9!#(B</B></FONT><B><BR>
-               </B>$B$3$3$K%A%'%C%/$rF~$l$i$l$kJ}$O!"I,$:2<5-(B2$B$K$b$45-F~$/$@$5$$!#(B<BR>
-               $B@h$K$*CN$i$;$9$kBP>]$O!"(B<B>$B4{$K@8$^$l$F$$$kJ}!"$*$h$S(B1$B=54V0JFb$K@8$^$l$kM=Dj$NJ}$@$1(B</B>$B$G$9!#$=$l0J30$NJ}$O@h$K$*CN$i$;=PMh$^$;$s!#(B</P>
+               <P><INPUT TYPE=checkbox NAME=exp VALUE="至急！代金は後で支払います。">←<B>至急！代金は後で支払います。<BR>
+               </B><FONT COLOR="#FF3300"><B>特急料金が加算され、料金は合計で15,000円になります。</B></FONT><B><BR>
+               </B>ここにチェックを入れられる方は、必ず下記2にもご記入ください。<BR>
+               先にお知らせする対象は、<B>既に生まれている方、および1週間以内に生まれる予定の方だけ</B>です。それ以外の方は先にお知らせ出来ません。</P>
                
                <P></P></BLOCKQUOTE>
          </TD>
       </TR>
       <TR>
          <TD>
-            <BLOCKQUOTE><B><U>2.$B!!0J2<!"$*5^$.CmJ8$NJ}$N$_5-F~$7$F$/$@$5$$!#(B</U></B>
+            <BLOCKQUOTE><B><U>2.　以下、お急ぎ注文の方のみ記入してください。</U></B>
                
-               <P><FONT SIZE="-1">$B"(M9JXHV9f!&$4=;=j!&EEOCHV9f$O@lMQ$N%Q%=%3%s%=%U%H$G3NG'$5$;$FD:$-$^$9!#$*EEOC$G$b3NG'$5$;$FD:$-$^$9!#?=$7Lu$"$j$^$;$s$,!"5-:\FbMF$K8m$j$,M-$C$?>l9g$K$O!"$*5^$.CmJ8$O%-%c%s%;%k$H$5$;$FD:$-$^$9$N$G$4N;>5$/$@$5$$!#(B</FONT></P>
+               <P><FONT SIZE="-1">※郵便番号・ご住所・電話番号は専用のパソコンソフトで確認させて頂きます。お電話でも確認させて頂きます。申し訳ありませんが、記載内容に誤りが有った場合には、お急ぎ注文はキャンセルとさせて頂きますのでご了承ください。</FONT></P>
                
-               <P>$BM9JXHV9f(B($BH>3Q?t;z$G(Bxxx-xxxx$B$H(B<FONT COLOR="#FF0000">7$B7eHV9f$r%O%$%U%)%sIU$G5-F~(B</FONT>)<BR>
+               <P>郵便番号(半角数字でxxx-xxxxと<FONT COLOR="#FF0000">7桁番号をハイフォン付で記入</FONT>)<BR>
                <INPUT TYPE=text NAME=zipcord VALUE="" SIZE=10></P>
                
-               <P>$B$4=;=j(B($B8)L>!AHVCO$^$G(B<FONT COLOR="#FF0000">$B@53N$K(B</FONT>)<BR>
+               <P>ご住所(県名〜番地まで<FONT COLOR="#FF0000">正確に</FONT>)<BR>
                <INPUT TYPE=text NAME=address VALUE="" SIZE=80></P>
                
-               <P>$B$*EEOCHV9f(B(10$B7e(B)$B"((B<BR>
+               <P>お電話番号(10桁)※<BR>
                <INPUT TYPE=text NAME=tel VALUE="" SIZE=30></P>
                
-               <P><FONT SIZE="-1">$B"(7HBSEEOC$NEEOCHV9f$OIT2D$G$9!#>e5-$4=;=j$K$4EPO?$5$l$F$$$kEEOCHV9f$r$45-F~2<$5$$!#EEOCD"$K5-:\$5$l$F$$$J$$HV9f$O$4;HMQ$K$J$l$^$;$s$N$G$4Cm0U2<$5$$!#(B</FONT></P>
+               <P><FONT SIZE="-1">※携帯電話の電話番号は不可です。上記ご住所にご登録されている電話番号をご記入下さい。電話帳に記載されていない番号はご使用になれませんのでご注意下さい。</FONT></P>
                
-               <P>$BFC5^NA6b$O!V;j5^CmJ8!W$rMpMQ$5$l$k$*5RMM$,B?$/!";_$`$J$/$NA<CV$G$"$k;v$4M}2r2<$5$$!#$I$&$7$F$bI,MW$J$*5RMM$N$_$N%5!<%S%9$G$9$N$G!"$G$-$k$@$1;~4V$KM>M5$r;}$C$F$40MMjBW$/$h$&$K=E$M$F$*4j$$?=$7>e$2$^$9!#(B</P></BLOCKQUOTE>
+               <P>特急料金は「至急注文」を乱用されるお客様が多く、止むなくの措置である事ご理解下さい。どうしても必要なお客様のみのサービスですので、できるだけ時間に余裕を持ってご依頼戴くように重ねてお願い申し上げます。</P></BLOCKQUOTE>
             
             <P></P>
          </TD>
@@ -105,12 +105,12 @@ function scll()
       </TR>
       <TR>
          <TD>
-            <CENTER><B><A NAME=send></A>$BF~NO$O0J>e$G$9!#FbMF$r$43NG'$N>e!"Aw?.%\%?%s$r(B</B><FONT COLOR="#CC0000"><B>1$B2s$@$1(B</B></FONT><B>$B%/%j%C%/$7$F2<$5$$!#(B<BR>
-            $BAw?.40N;8e!"!V$4CmJ8$N3NG'!W$N2hLL$,I=<($5$l$^$9!#(B</B>
+            <CENTER><B><A NAME=send></A>入力は以上です。内容をご確認の上、送信ボタンを</B><FONT COLOR="#CC0000"><B>1回だけ</B></FONT><B>クリックして下さい。<BR>
+            送信完了後、「ご注文の確認」の画面が表示されます。</B>
             
-            <P><B><INPUT TYPE=submit NAME="$BAw?.(B" VALUE="$BAw?.(B"></B><INPUT TYPE=reset VALUE="$B%j%;%C%H(B"></P>
+            <P><B><INPUT TYPE=submit NAME="送信" VALUE="送信"></B><INPUT TYPE=reset VALUE="リセット"></P>
             
-            <P><FONT SIZE="-1"><B>$B"(>e<j$/Aw?.$G$-$J$$>l9g$K$O!">e5-FbMF$r(B</B></FONT><A HREF="mailto:okina@e-mail.ne.jp"><FONT SIZE="-1"><B>$B%a!<%k(B</B></FONT></A><FONT SIZE="-1">(okina@e-mail.ne.jp)<B>$B$K$FAwIU2<$5$$!#(B</B></FONT></P></CENTER>
+            <P><FONT SIZE="-1"><B>※上手く送信できない場合には、上記内容を</B></FONT><A HREF="mailto:okina@e-mail.ne.jp"><FONT SIZE="-1"><B>メール</B></FONT></A><FONT SIZE="-1">(okina@e-mail.ne.jp)<B>にて送付下さい。</B></FONT></P></CENTER>
             
             <P><IMG SRC="image/line_a2.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></P>
          </TD>
@@ -122,32 +122,32 @@ function scll()
 <P><TABLE BORDER=0 WIDTH=640>
    <TR>
       <TD WIDTH=636>
-         <CENTER>$B!!(B
+         <CENTER>　
          
          <P><TABLE BORDER=1 WIDTH=632>
             <TR>
                <TD>
-                  <CENTER><A HREF="index.html" TARGET="_self">$B%H%C%W%Z!<%8(B</A></CENTER>
+                  <CENTER><A HREF="index.html" TARGET="_self">トップページ</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="input.html" TARGET="_self">$B@+L>4UDj$N%3!<%J!<(B</A></CENTER>
+                  <CENTER><A HREF="input.html" TARGET="_self">姓名鑑定のコーナー</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="book.html" TARGET="_self">$BCx=q$N%3!<%J!<(B</A></CENTER>
+                  <CENTER><A HREF="book.html" TARGET="_self">著書のコーナー</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="baby.html" TARGET="_self">$BL?L>$N%3!<%J!<(B</A></CENTER>
+                  <CENTER><A HREF="baby.html" TARGET="_self">命名のコーナー</A></CENTER>
                </TD>
             </TR>
             <TR>
                <TD>
-                  <CENTER><A HREF="consul.html">$B$4AjCL$N%3!<%J!<(B</A></CENTER>
+                  <CENTER><A HREF="consul.html">ご相談のコーナー</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="info.html">$B2'$+$i$N$*CN$i$;(B</A></CENTER>
+                  <CENTER><A HREF="info.html">翁からのお知らせ</A></CENTER>
                </TD>
                <TD>
-                  <CENTER><A HREF="link.html">$B!V@j$$D>9TJX!W(B</A></CENTER>
+                  <CENTER><A HREF="link.html">「占い直行便」</A></CENTER>
                </TD>
                <TD>
                   <P></P>
@@ -161,20 +161,20 @@ function scll()
    </TR>
    <TR>
       <TD WIDTH=636>
-         <CENTER>$B!!(B
+         <CENTER>　
          
-         <P>$B$*J9$-$N6J!V(Bstrauss$B!W$K$D$$$F$O!"(B<A HREF="info.html#midi">$B$3$A$i(B</A>$B$r$4Mw2<$5$$!#(B</P></CENTER>
+         <P>お聞きの曲「strauss」については、<A HREF="info.html#midi">こちら</A>をご覧下さい。</P></CENTER>
          
          <P><IMG SRC="image/line_a1.gif" WIDTH=640 HEIGHT=3 ALIGN=bottom></P>
       </TD>
    </TR>
    <TR>
       <TD WIDTH=636>
-         <CENTER>$B!!(B
+         <CENTER>　
          
-         <P><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B">$B$3$N%Z!<%8$r8+$F$N$40U8+$d$446A[$r$*J9$+$;2<$5$$!#!!(B<IMG SRC="image/mail_a2.gif" WIDTH=24 HEIGHT=19 ALIGN=bottom></FONT><A HREF="mailto:yamakazu@skyblue.ocn.ne.jp"><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B">okina@e-mail.ne.jp</FONT></A><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B"><I><BR>
-         </I>$B%j%s%/$O4?7^$7$^$9$,!"I,$:(B</FONT><A HREF="index.html" TARGET="_self"><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B">TOP$B%Z!<%8(B</FONT></A><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B">$B$K$*4j$$$7$^$9!#(B<BR>
-         </FONT><FONT SIZE="-2" FACE="$BCf%4%7%C%/BN(B" COLOR="#000000"><I>CopyRight
+         <P><FONT SIZE="-2" FACE="中ゴシック体">このページを見てのご意見やご感想をお聞かせ下さい。　<IMG SRC="image/mail_a2.gif" WIDTH=24 HEIGHT=19 ALIGN=bottom></FONT><A HREF="mailto:yamakazu@skyblue.ocn.ne.jp"><FONT SIZE="-2" FACE="中ゴシック体">okina@e-mail.ne.jp</FONT></A><FONT SIZE="-2" FACE="中ゴシック体"><I><BR>
+         </I>リンクは歓迎しますが、必ず</FONT><A HREF="index.html" TARGET="_self"><FONT SIZE="-2" FACE="中ゴシック体">TOPページ</FONT></A><FONT SIZE="-2" FACE="中ゴシック体">にお願いします。<BR>
+         </FONT><FONT SIZE="-2" FACE="中ゴシック体" COLOR="#000000"><I>CopyRight
          . K.yamamoto</I></FONT></P></CENTER>
       </TD>
    </TR>

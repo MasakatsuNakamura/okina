@@ -13,43 +13,43 @@ use MIME::Base64;
 $kanji = $in{'kanji'};
 $name2 = $in{'name2'};
 $email2 = $in{'email2'};
-#####$B%G!<%?$N@07A=hM}(B#####
+#####データの整形処理#####
 if ($email2 ne "") {
 	$email2 =~ s/\s*//g;
-	#$BA43Q1Q?t;z$r$9$Y$FH>3Q1Q?t;z$K$9$k!#(B
+	#全角英数字をすべて半角英数字にする。
 	$email2 = &zen2han($email2);
 } 
-#####$B4A;z%3!<%I$N@8@.(B#####
+#####漢字コードの生成#####
 $kanjicode = $kanji;
 $kanjicode =~ s/ //g;
 $kanjicode =~ s/(.)/sprintf("%02X",unpack("c",$1) >= 0 ? unpack("c",$1)
 : 256 + unpack("c",$1))/eg;
 $kanjicode =~ s/(....)/$1 /g;
-#####$B$3$3$+$i(BBase64$B%a!<%k(B#####
-##### $B%\%G%#4pK\J8;zNs$NDj5A(B######
+#####ここからBase64メール#####
+##### ボディ基本文字列の定義######
 @body = (
 	"=====================================", 
-	"$B4UDj$G$-$J$$4A;z%3!<%I(B(SJIS)$B!'(B", 
+	"鑑定できない漢字コード(SJIS)：", 
 	"", 
-	"$BO"Mm?M$N(BE$B%a!<%k%"%I%l%9!'(B", 
+	"連絡人のEメールアドレス：", 
 	"", 
-	"$BO"Mm?M$N;aL>(B($B;29M(B)$B!'(B", 
+	"連絡人の氏名(参考)：", 
 	"", 
-	"$B%(%i!<4A;z(B($B;29M(B)$B!'(B",
+	"エラー漢字(参考)：",
 	"",
-	"$B;29M!'%(%i!<$,H/@8$9$k2DG=@-$,9b$$!#(B", 
+	"参考：エラーが発生する可能性が高い。", 
 	"====================================="
 );
 foreach(@body) {
 	&jcode'convert(*_, "sjis", "euc");
 }
-#######Sub$B$N@8@.(B(Base64$B%(%s%3!<%I(B)#######
-$subject = "$BH=Dj=PMh$J$$4A;z(B(i$B%b!<%I(BVer.3)";
+#######Subの生成(Base64エンコード)#######
+$subject = "判定出来ない漢字(iモードVer.3)";
 &jcode'convert(*subject, 'jis', 'euc');
 $subject = encode_base64($subject);
 chop($subject);
 $subject = " . $subject . "?=";
-####### $B%X%C%@$NDj5A(B#########
+####### ヘッダの定義#########
 $mail_header = <<"EOM6";
 From: $email2
 To: $youraddress
@@ -59,24 +59,24 @@ Content-Type: text/plain;
 Content-Transfer-Encoding: base64
 Subject: $subject
 EOM6
-####### $B%a%C%;!<%8%\%G%#$N@8@.(B########
+####### メッセージボディの生成########
 $body[2] .= $kanjicode;
 $body[4] .= $email2;
 $body[6] .= $name2;
 $body[8] .= $kanji;
 $mailbody = join("\n", @body);
 $encoded = encode_base64($mailbody);
-######## $B%a!<%kAw?.(B#########
+######## メール送信#########
 open(MAIL, "|$sendmail $youraddress");
 print MAIL $mail_header;
 for ($i = 0; $i < length($encoded); $i += 76) {
 	print MAIL substr($encoded, $i, 76);
 }
 close(MAIL);
-#####$B0J>e$,(BBase64$B%a!<%k(B#####
-$msg1 = "$B%(%i!<Aw?.40N;(B\n";
-$msg2 = "$B$46(NO$"$j$,$H$&$4$6$$$^$7$?!#(B\n";
-$msg3 = "1$B"*$b$&0lEY4UDj$9$k!#(B\n";
+#####以上がBase64メール#####
+$msg1 = "エラー送信完了\n";
+$msg2 = "ご協力ありがとうございました。\n";
+$msg3 = "1→もう一度鑑定する。\n";
 &jcode'convert(*msg1, 'sjis', 'euc');
 &jcode'convert(*msg2, 'sjis', 'euc');
 &jcode'convert(*msg3, 'sjis', 'euc');
