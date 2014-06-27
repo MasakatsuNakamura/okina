@@ -5,7 +5,6 @@ Class Seimei {
 	public $mei;
 	public $sex;
 	public $marry;
-	public $over40;
 	
 	public $tenkaku;
 	public $jinkaku;
@@ -26,18 +25,16 @@ Class Seimei {
 	
 	function meimei ($sex) {
 		$meimei = New Meimei();
-		return($meimei->getNewName($this->sei1, $this->sei2, $sex));
+		return($meimei->getNewName($this->sei, $this->sei1, $this->sei2, $sex));
 	}
 	
 	// 画数計算
-	function shindan ($sei, $mei, $sex, $marry, $over40) {
+	function shindan () {
 		mb_regex_encoding("UTF-8");
-		$this->sei = $sei;
-		$this->mei = $mei;
-		$this->sex = $sex;
-		$this->marry = $marry;
-		$this->over40 = $over40;
 
+		$sei = $this->sei;
+		$mei = $this->mei;
+		
 		$kanji = New Kanji();
 		
 		$this->sei1 = $kanji->kakusu(mb_substr($this->sei, 0, 1, "utf-8"));
@@ -168,10 +165,10 @@ Class Seimei {
 
 			default:
 		}
-		if ($this->sex != "female") {
+		if ($this->sex != "F") {
 			$mongon = preg_replace("/\+w.*-w/u", "", $mongon);
 		}
-		if ($this->sex != "male") {
+		if ($this->sex != "M") {
 			$mongon = preg_replace("/\+m.*-m/u", "", $mongon);
 		}
 		if ($this->marry != "yes") {
