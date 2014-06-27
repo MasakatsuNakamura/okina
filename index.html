@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="UTF-8">
+	<title>山本式姓名判断　for モバイル</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+	<script type="text/javascript" src="js/okina.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" id="top" data-theme="a">
+	<div data-role="header">
+		<a href="#top" data-icon="home" class='ui-disabled'>ホーム</a>
+		<h1>山本式姓名判断　for モバイル</h1>
+	</div><!-- /header -->
+	<div data-role="content">	
+		<p>このサイトは、<a href="http://www2.mahoroba.ne.jp/~kazu-y/">山本式姓名判断</a>の共同著作者であるだいぶつが、「山本式姓名判断」をモバイル対応させ、さらに山本翁と共同で蓄えたノウハウに基づいて開発した<b>自動新生児命名エンジン</b>を追加したものです。以下、山本翁の口上です。
+		<p>世の中当たらない姓名判断が多くてお悩みではないですか？
+私の記憶によれば、姓名判断のルーツとして有名なのは明治時代の姓名学者、故熊崎健翁です。この人は現在の姓名判断の礎を築かれました。この翁の考え方を基に現在、多くの姓名判断の著書が書かれています。<br>
+しかし同じルーツにありながら、判定結果が先生によって違うのは何故でしょう。私は半世紀にもわたるの鑑定活動と研究活動の成果によって幾つかの過ちに気がつきました。それは、姓名判断の根幹である漢字の画数の数え方が間違っていること。画数の計算の仕方が誤っていること。あとは多くの経験による鑑定実績による改良です。
+私は難解な姓名判断の理屈を、ここで皆様にご説明するつもりはありません。それは、著書に任せることにします。今はインターネット時代！何時でも何処でも誰にでも、自由に正確かつ妥協のない姓名鑑定を御提供しようと考え、このホームページを開設しております。先ずは山本式姓名判断を試してみると結果は一目瞭然でありましょう。
+さあ、御存分にお試しあれ！</p>
+		<div data-role="fieldcontain">
+			<label for="sei">姓</label>
+			<input type="text" name="sei" id="sei" />
+		</div>
+		<div data-role="fieldcontain">
+			<label for="mei">名</label>
+			<input type="text" name="mei" id="mei" />
+		</div>
+		<div data-role="fieldcontain">
+			<label for="sex">性別</label>
+			<fieldset name="sex" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+				<input type="radio" name="sex" id="sex-2" value="F" checked="checked" />
+				<label for="sex-2">女性</label>
+				<input type="radio" name="sex" id="sex-1" value="M"/>
+				<label for="sex-1">男性</label>
+			</fieldset>
+		</div>
+		<div data-role="fieldcontain">
+			<label for="marry">結婚</label>
+			<fieldset name="marry" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+				<input type="radio" name="marry" id="marry-1" value="yes" />
+				<label for="marry-1">している</label>
+				<input type="radio" name="marry" id="marry-2" value="no"  checked="checked" />
+				<label for="marry-2">していない</label>
+			</fieldset>
+		</div>
+		<a href="#kantei" data-role="button">鑑定</a>
+	</div>
+	<div data-role='footer'>
+		<h4>Copyright&reg;2014 <a href="http://daibutsuda.github.io/">だいぶつ</a> & 山本翁</h4>
+	</div>
+</div>
+
+<div data-role="page" id="kantei" data-theme="a">
+	<div data-role="header">
+		<a href="#top" data-icon="home">ホーム</a>
+		<h1 id="kantei-header"></h1>
+	</div>
+	<div data-role="content">
+		<span id="kantei-content"></span>
+	</div>
+	<div data-role='footer'>
+		<h4>Copyright&reg;2014 <a href="http://daibutsuda.github.io/">だいぶつ</a> & 山本翁</h4>
+	</div>
+</div>
+
+</body>
+</html>
