@@ -17,15 +17,9 @@ $(document).on("pagebeforeshow", "#kantei", function () {
 });
 
 function kantei(sei, mei, sex, marry) {
-	$.ajax({
-		type: "POST",
-		url: "php/index.php",
-		data: 'sei=' + sei + '&mei=' + mei + '&sex=' + sex + '&marry=' + marry,
-		success: function (json) {
-			if (json) {
-				$("#kantei-content").html(json['content']);
-				$("#kantei-header").html(json['header']);
-			}
-		}
-	});
+	$("#sei").val(sei);
+	$("#mei").val(mei);
+	$("#sex").val(sex);
+	$("#marry").val(marry);
+	$.mobile.changePage('#kantei');
 }
