@@ -1,11 +1,34 @@
 <?php
 header('Content-type: text/html; charset=utf-8;');
+require 'php/seimei.php';
+require 'php/reii.php';
+require 'php/kenkou.php';
+require 'php/seikaku.php';
+require 'php/meimei.php';
+require 'php/kanji.php';
 date_default_timezone_set('UTC');
+
+$kantei = true;
+if (count($_GET) > 0) {
+	$seimei = New Seimei();
+	$seimei->sei = $_GET['sei'];
+	$seimei->mei = $_GET['mei'];
+	$seimei->sex = $_GET['sex'];
+	$seimei->marry = $_GET['marry'];
+	if (strlen($seimei->sei) > 0 && strlen($seimei->mei) > 0 && ($seimei->sex == 'M' || $seimei->sex == 'F') && ($seimei->marry == 'yes' || $seimei->marry == 'no')) {
+		$seimei->shindan();
+		$kantei = false;
+	}
+}
+
 ?>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="山本式姓名判断へようこそ。このモバイル版だけに新生児命名アドバイス機能がついています！ぜひお試しください。">
+<meta name="description" content="<?php echo $kantei ?
+	"山本式姓名判断へようこそ。このモバイル版だけに新生児命名アドバイス機能がついています！ぜひお試しください。" :
+	$seimei->sei . " " . $seimei->mei . "さんの運勢 主運" . $seimei->jinkaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('jinkaku')) .
+	"対人運・社交運:" . $seimei->gaikaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('gaikaku')) . "・・・" ?>">
 <meta name="keywords" content="翁 占い 姓名判断 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>山本式姓名判断　for モバイル</title>
@@ -36,7 +59,7 @@ date_default_timezone_set('UTC');
 	}(document, 'script', 'facebook-jssdk'));</script>
 
 <?php
-if (count($_GET) == 0) {
+if ($kantei) {
 ?>
 	<div data-role="page" id="top" data-theme="a">
 		<div data-role="header">
@@ -97,27 +120,7 @@ if (count($_GET) == 0) {
 			</form>
 <?php
 } else {
-	require 'php/seimei.php';
-	require 'php/reii.php';
-	require 'php/kenkou.php';
-	require 'php/seikaku.php';
-	require 'php/meimei.php';
-	require 'php/kanji.php';
-
-	$seimei = New Seimei();
-	$seimei->sei = $_GET['sei'];
-	$seimei->mei = $_GET['mei'];
-	$seimei->sex = $_GET['sex'];
-	$seimei->marry = $_GET['marry'];
-	$seimei->shindan();
 ?>
-		<script>
-		var doc = document;
-		var head = doc.getElementsByTagName("head")[0];
-		var meta = doc.createElement("meta");
-		meta.setAttribute("description", "<?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢");
-		head.appendChild(meta);
-		</script>
 		<div id="fb-root"></div>
 		<script>(function(d, s, id) {
 		  var js, fjs = d.getElementsByTagName(s)[0];
@@ -178,7 +181,6 @@ if (count($_GET) == 0) {
 <?php
 }
 ?>
-			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		</div>
 		<div data-role='footer'>
 			<h4>Copyright&reg;2014 <a href="http://daibutsuda.github.io/">だいぶつ</a> &amp; 山本翁</h4>
