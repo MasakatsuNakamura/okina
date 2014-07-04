@@ -124,7 +124,7 @@ if (count($_GET) == 0) {
 			<h1><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h1>
 		</div><!-- /header -->
 		<div data-role="content">
-		<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 <div class="fb-share-button" data-href="http://okina.herokuapp.com/?<?php echo urlencode($seimei->sei . "&mei=" . $seimei->mei . "&sex=" . $seimei->sex . "&marry=" . $seimei->marry) ?>" data-type="button_count"></div></h1>
+		<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 <div class="fb-share-button" data-href="http://okina.herokuapp.com/?<?php echo urlencode($seimei->sei) . "&mei=" . urlencode($seimei->mei) . "&sex=" . $seimei->sex . "&marry=" . $seimei->marry ?>" data-type="button_count"></div></h1>
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- 山本翁 -->
 			<ins class="adsbygoogle"
