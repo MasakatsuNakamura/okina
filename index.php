@@ -54,11 +54,9 @@ if (count($_GET) > 0) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
 	  if (d.getElementById(id)) return;
 	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&appId=251118258422878&version=v2.0";
+	  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&appId=482407305223650&version=v2.0";
 	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-
-<?php
+	}(document, 'script', 'facebook-jssdk'));</script><?php
 if ($kantei) {
 ?>
 	<div data-role="page" id="top" data-theme="a">
