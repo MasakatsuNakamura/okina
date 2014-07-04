@@ -5,8 +5,9 @@ date_default_timezone_set('UTC');
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="ズバリよくあたる無料の姓名判断、新生児の命名、改名、改姓、ご結婚の相談を引受ます。">
-<meta name="keywords" content="翁 占い 姓名判断 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式">
+<meta name="description" content="山本式姓名判断へようこそ。このモバイル版だけに新生児命名アドバイス機能がついています！ぜひお試しください。">
+<meta name="keywords" content="翁 占い 姓名判断 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>山本式姓名判断　for モバイル</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
@@ -110,6 +111,13 @@ if (count($_GET) == 0) {
 	$seimei->marry = $_GET['marry'];
 	$seimei->shindan();
 ?>
+		<script>
+		var doc = document;
+		var head = doc.getElementsByTagName("head")[0];
+		var meta = doc.createElement("meta");
+		meta.setAttribute("description", "<?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢");
+		head.appendChild(meta);
+		</script>
 		<div id="fb-root"></div>
 		<script>(function(d, s, id) {
 		  var js, fjs = d.getElementsByTagName(s)[0];
