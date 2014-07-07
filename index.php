@@ -127,17 +127,7 @@ if ($kantei) {
 				<h1><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h1>
 			</div><!-- /header -->
 			<div data-role="content">
-				<p><a href="#meimei" data-ajax="false">スクロール</a>させると、<?php echo $seimei->sei ?>さんのお子様に付けるとよい名前が見れます！</p>
-				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 <span class="fb-share-button" data-href="http://okina.herokuapp.com/?sei=<?php echo urlencode($seimei->sei) . "&mei=" . urlencode($seimei->mei) . "&sex=" . $seimei->sex . "&marry=" . $seimei->marry ?>" data-type="button_count"></span></h2>
-				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<!-- 山本翁 -->
-				<ins class="adsbygoogle"
-				     style="display:inline-block;width:320px;height:100px"
-				     data-ad-client="ca-pub-0413343113584981"
-				     data-ad-slot="6868632444"></ins>
-				<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
+				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h2>
 				<div class="ninja_onebutton">
 				<script type="text/javascript">
 				//<![CDATA[
@@ -150,28 +140,59 @@ if ($kantei) {
 				//]]>
 				</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
 				</div>
-				<p>結果をみんなにシェアしてみましょう！</p>
-				<h3>主運: <?php echo $seimei->jinkaku ?>画</h3>
-				<p>当人の一生の中心を司ります。結婚により姓が変わると主運も変わりますが、中年以降に強く現れます。</p>
-				<p><?php echo $seimei->mongon('jinkaku') ?></p>
-				<h3>対人運・社交運: <?php echo $seimei->gaikaku ?>画</h3>
-				<p>対人関係や家族・夫婦関係、友達関係に現れてきます。</p>
-				<p><?php echo $seimei->mongon('gaikaku') ?></p>
-				<h3>性格</h3>
-				<p>当人の外面的な性格を現します。自分が他人からどう見えているのか参考になります。</p>
-				<p><?php echo $seimei->mongon('seikaku') ?></p>
-				<h3>健康運(体調・精神)</h3>
-				<p>例え吉数揃いの姓名であっても、健康に恵まれなければ活かさせません。（△は単独での判断が難しい）</p>
-				<p><?php echo $seimei->mongon('kenkou') ?></p>
-				<h3>基礎運: <?php echo $seimei->chikaku ?>画</h3>
-				<p>幼少年期の運勢の吉凶を支配し、青年期まで最も強く作用します。(若年者の判断はこちらが有効)</p>
-				<p><?php echo $seimei->mongon('chikaku') ?></p>
-				<h3>晩年運: <?php echo $seimei->soukaku ?>画</h3>
-				<p>50歳前後から強く現れてきます。ただし、主運と基礎運に左右されますので注意して下さい。</p>
-				<p><?php echo $seimei->mongon('soukaku') ?></p>
-				<h3><a name="meimei">新生児命名アドバイス</a></h3>
-				<p><strong>男の子にオススメ！</strong><br><?php echo $seimei->meimei('M') ?></p>
-				<p><strong>女の子にオススメ！</strong><br><?php echo $seimei->meimei('F') ?></p>
+				<p>結果をみんなにシェアしましょう！ <span class="fb-share-button" data-href="http://okina.herokuapp.com/?sei=<?php echo urlencode($seimei->sei) . "&mei=" . urlencode($seimei->mei) . "&sex=" . $seimei->sex . "&marry=" . $seimei->marry ?>" data-type="button_count"></span></p>
+				<div data-role="collapsible" data-collapsed="false">
+					<h2>主運　<span class="ui-mini">当人の一生の中心を司ります。結婚により姓が変わると主運も変わりますが、中年以降に強く現れます。</span></h2>
+					<div><?php echo $seimei->jinkaku ?>画：<?php echo $seimei->mongon('jinkaku') ?></div>
+				</div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>対人運・社交運　<span class="ui-mini">対人関係や家族・夫婦関係、友達関係に現れてきます。</span></h2>
+					<div><?php echo $seimei->gaikaku ?>画：<?php echo $seimei->mongon('gaikaku') ?></div>
+				</div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>性格　<span class="ui-mini">当人の外面的な性格を現します。自分が他人からどう見えているのか参考になります。</span></h2>
+					<div><?php echo $seimei->mongon('seikaku') ?></div>
+				</div>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- 山本翁 -->
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:320px;height:100px"
+				     data-ad-client="ca-pub-0413343113584981"
+				     data-ad-slot="6868632444"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>健康運(体調・精神)　<span class="ui-mini">例え吉数揃いの姓名であっても、健康に恵まれなければ活かさせません。（△は単独での判断が難しい）</span></h2>
+					<div><?php echo $seimei->mongon('kenkou') ?></div>
+				</div>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>基礎運　<span class="ui-mini">幼少年期の運勢の吉凶を支配し、青年期まで最も強く作用します。(若年者の判断はこちらが有効)</span></h2>
+					<div><?php echo $seimei->chikaku ?>画：<?php echo $seimei->mongon('chikaku') ?></p>
+					</div>
+				</div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>晩年運　<span class="ui-mini">50歳前後から強く現れてきます。ただし、主運と基礎運に左右されますので注意して下さい。</span></h2>
+					<div><?php echo $seimei->soukaku ?>画：<?php echo $seimei->mongon('soukaku') ?></div>
+				</div>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- 山本翁 -->
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:320px;height:100px"
+				     data-ad-client="ca-pub-0413343113584981"
+				     data-ad-slot="6868632444"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>男の子にオススメ！</h2>
+					<div><?php echo $seimei->meimei('M') ?></div>
+				</div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>女の子にオススメ！</h2>
+					<div><?php echo $seimei->meimei('F') ?></div>
+				</div>
 <?php
 }
 ?>
