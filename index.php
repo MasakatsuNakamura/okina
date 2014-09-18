@@ -26,12 +26,12 @@ if (count($_GET) > 0) {
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="<?php echo $kantei ?
-	"山本式姓名判断へようこそ。このモバイル版だけに新生児命名アドバイス機能がついています！ぜひお試しください。" :
+	"あじあ姓名診断へようこそ。この姓名診断には新生児命名アドバイス機能がついています！ぜひお試しください。" :
 	$seimei->sei . " " . $seimei->mei . "さんの運勢 主運" . $seimei->jinkaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('jinkaku')) .
 	"対人運・社交運:" . $seimei->gaikaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('gaikaku')) . "・・・" ?>">
-<meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 占い 姓名判断 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ">
+<meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 占い 姓名判断 姓名診断 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>山本式姓名判断　for モバイル</title>
+<title>あじあ姓名診断</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
@@ -63,31 +63,11 @@ if ($kantei) {
 	<div data-role="page" id="top" data-theme="a">
 		<div data-role="header">
 				<a href="#top" data-icon="home" class='ui-disabled'>ホーム</a>
-				<h1>山本式姓名判断 for モバイル</h1>
+				<h1>あじあ姓名診断</h1>
 			</div>
 			<div data-role="content">
-				<h2>山本式姓名診断 <span class="fb-share-button" data-href="http://okina.herokuapp.com/" data-type="button_count"></span></h2>
+				<h2>あじあ姓名診断 <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<!-- 山本翁 -->
-				<ins class="adsbygoogle"
-				     style="display:inline-block;width:320px;height:100px"
-				     data-ad-client="ca-pub-0413343113584981"
-				     data-ad-slot="6868632444"></ins>
-				<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
-				<div class="ninja_onebutton">
-				<script type="text/javascript">
-				//<![CDATA[
-				(function(d){
-				if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6)=='undefined'){
-				    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/0f8b16741da01b4bf2d81552e11cc4d6'><\/sc"+"ript>");
-				}else{
-				    window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6.ONETAGButton_Load();}
-				})(document);
-				//]]>
-				</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
-				</div>
 				<p>山本式姓名判断へようこそ。このモバイル版だけに<b>新生児命名アドバイス機能がついています！</b>ぜひお試しください。</p>
 				<form data-ajax="false" method="GET">
 					<div data-role="fieldcontain">
@@ -117,7 +97,27 @@ if ($kantei) {
 						</fieldset>
 					</div>
 					<input type="submit" value="鑑定" data-role="button" />
-				</form>
+					<!-- あじあ姓名診断 -->
+					<ins class="adsbygoogle"
+					     style="display:inline-block;width:320px;height:100px"
+					     data-ad-client="ca-pub-0413343113584981"
+					     data-ad-slot="6868632444"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+					<div class="ninja_onebutton">
+					<script type="text/javascript">
+					//<![CDATA[
+					(function(d){
+					if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6)=='undefined'){
+					    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/0f8b16741da01b4bf2d81552e11cc4d6'><\/sc"+"ript>");
+					}else{
+					    window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6.ONETAGButton_Load();}
+					})(document);
+					//]]>
+					</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
+					</div>
+					</form>
 <?php
 } else {
 ?>
@@ -140,7 +140,7 @@ if ($kantei) {
 				//]]>
 				</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
 				</div>
-				<p>結果をみんなにシェアしましょう！ <span class="fb-share-button" data-href="http://okina.herokuapp.com/?sei=<?php echo urlencode($seimei->sei) . "&mei=" . urlencode($seimei->mei) . "&sex=" . $seimei->sex . "&marry=" . $seimei->marry ?>" data-type="button_count"></span></p>
+				<p>結果をみんなにシェアしましょう！ <span class="fb-share-button" data-href="/?sei=<?php echo urlencode($seimei->sei) . "&mei=" . urlencode($seimei->mei) . "&sex=" . $seimei->sex . "&marry=" . $seimei->marry ?>" data-type="button_count"></span></p>
 				<div data-role="collapsible" data-collapsed="false">
 					<h2>主運　<span class="ui-mini">当人の一生の中心を司ります。結婚により姓が変わると主運も変わりますが、中年以降に強く現れます。</span></h2>
 					<div><?php echo $seimei->jinkaku ?>画：<?php echo $seimei->mongon('jinkaku') ?></div>
@@ -154,7 +154,7 @@ if ($kantei) {
 					<div><?php echo $seimei->mongon('seikaku') ?></div>
 				</div>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<!-- 山本翁 -->
+				<!-- あじあ姓名診断 -->
 				<ins class="adsbygoogle"
 				     style="display:inline-block;width:320px;height:100px"
 				     data-ad-client="ca-pub-0413343113584981"
