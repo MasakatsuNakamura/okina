@@ -67,8 +67,20 @@ if ($kantei) {
 			</div>
 			<div data-role="content">
 				<h2>あじあ姓名診断 <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
+				<div class="ninja_onebutton">
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<p>山本式姓名判断へようこそ。このモバイル版だけに<b>新生児命名アドバイス機能がついています！</b>ぜひお試しください。</p>
+				<script type="text/javascript">
+				//<![CDATA[
+				(function(d){
+				if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6)=='undefined'){
+				    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/0f8b16741da01b4bf2d81552e11cc4d6'><\/sc"+"ript>");
+				}else{
+				    window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6.ONETAGButton_Load();}
+				})(document);
+				//]]>
+				</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
+				</div>
+				<p>あじあ姓名診断へようこそ。この姓名診断には<b>新生児命名アドバイス機能</b>がついています！ぜひお試しください。</p>
 				<form data-ajax="false" method="GET">
 					<div data-role="fieldcontain">
 						<label for="sei">姓</label>
@@ -105,18 +117,6 @@ if ($kantei) {
 					<script>
 					(adsbygoogle = window.adsbygoogle || []).push({});
 					</script>
-					<div class="ninja_onebutton">
-					<script type="text/javascript">
-					//<![CDATA[
-					(function(d){
-					if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6)=='undefined'){
-					    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/0f8b16741da01b4bf2d81552e11cc4d6'><\/sc"+"ript>");
-					}else{
-					    window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6.ONETAGButton_Load();}
-					})(document);
-					//]]>
-					</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
-					</div>
 					</form>
 <?php
 } else {
