@@ -124,10 +124,10 @@ if ($kantei) {
 		<div data-role="page" id="kantei" data-theme="a">
 			<div data-role="header">
 				<a href="?" data-icon="home" data-ajax="false">ホーム</a>
-				<h1><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h1>
+				<h1><?php echo $seimei->sei ?>さんの子どもに名前を付けるなら・・・</h1>
 			</div><!-- /header -->
 			<div data-role="content">
-				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h2>
+				<h2><?php echo $seimei->sei ?>さんの子どもに名前を付けるなら・・・</h2>
 				<div class="ninja_onebutton">
 				<script type="text/javascript">
 				//<![CDATA[
@@ -158,6 +158,7 @@ if ($kantei) {
 				<script>
 				(adsbygoogle = window.adsbygoogle || []).push({});
 				</script>
+				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h2>
 				<div data-role="collapsible" data-collapsed="false">
 					<h2>主運　<span class="ui-mini">当人の一生の中心を司ります。結婚により姓が変わると主運も変わりますが、中年以降に強く現れます。</span></h2>
 					<div><?php echo $seimei->jinkaku ?>画：<?php echo $seimei->mongon('jinkaku') ?></div>
