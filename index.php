@@ -68,7 +68,6 @@ if ($kantei) {
 			<div data-role="content">
 				<h2>あじあ姓名診断 <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
 				<div class="ninja_onebutton">
-				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<script type="text/javascript">
 				//<![CDATA[
 				(function(d){
@@ -109,14 +108,6 @@ if ($kantei) {
 						</fieldset>
 					</div>
 					<input type="submit" value="鑑定" data-role="button" />
-					<!-- あじあ姓名診断 -->
-					<ins class="adsbygoogle"
-					     style="display:inline-block;width:320px;height:100px"
-					     data-ad-client="ca-pub-0413343113584981"
-					     data-ad-slot="6868632444"></ins>
-					<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
 					</form>
 <?php
 } else {
@@ -149,15 +140,6 @@ if ($kantei) {
 					<h2>【命名例】女の子につけるなら・・・</h2>
 					<div><?php echo $seimei->meimei('F') ?></div>
 				</div>
-				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<!-- あじあ姓名診断 -->
-				<ins class="adsbygoogle"
-				     style="display:inline-block;width:320px;height:100px"
-				     data-ad-client="ca-pub-0413343113584981"
-				     data-ad-slot="6868632444"></ins>
-				<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
 				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h2>
 				<div data-role="collapsible" data-collapsed="false">
 					<h2>主運　<span class="ui-mini">当人の一生の中心を司ります。結婚により姓が変わると主運も変わりますが、中年以降に強く現れます。</span></h2>
@@ -189,8 +171,16 @@ if ($kantei) {
 }
 ?>
 			</div>
-			<div data-role='footer'>
-				<h4>Copyright&copy;2014 <a href="mailto:nakamura.masakatsu@gmail.com">トリゾウ</a></h4>
+			<div data-role='footer' data-position='fixed'>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- あじあ姓名診断 -->
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:320px;height:100px"
+				     data-ad-client="ca-pub-0413343113584981"
+				     data-ad-slot="6868632444"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
 			</div>
 		</div>
 	</div>
