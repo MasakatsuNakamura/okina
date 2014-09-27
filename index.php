@@ -25,6 +25,7 @@ if (count($_GET) > 0) {
 <html>
 <head>
 <meta charset="UTF-8">
+<LINK REL="SHORTCUT ICON" HREF="favicon.ico"> 
 <meta name="description" content="<?php echo $kantei ?
 	"あじあ姓名診断へようこそ。この姓名診断には新生児命名アドバイス機能がついています！ぜひお試しください。" :
 	$seimei->sei . " " . $seimei->mei . "さんの運勢 主運" . $seimei->jinkaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('jinkaku')) .
