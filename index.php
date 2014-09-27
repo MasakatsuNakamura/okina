@@ -207,8 +207,8 @@ if ($kantei) {
 			<div data-role='content'>
 				<form action="php/mail.php" method="POST">
 					メールアドレス<input type="text" name="email">
-					<label for="query">お問い合わせ内容</label>
-					<textarea name="query" id="query"></textarea>
+					<label for="query-content">お問い合わせ内容</label>
+					<textarea name="query-content" id="query-content"></textarea>
 					<input type="submit" value="投稿">
 				</form>
 			</div>
