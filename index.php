@@ -118,7 +118,12 @@ if ($kantei) {
 						</fieldset>
 					</div>
 					<input type="submit" value="鑑定" data-role="button" />
-					</form>
+				</form>
+				<p>
+					あじあ姓名診断API準備中<br>
+					あじあ姓名診断をコンピューターからご利用いただけるAPIを準備中です。Twitterアプリ・facebookアプリなど幅広くご利用いただけるよう考えております。
+					ご興味のある方は<a href="#query">お問い合わせフォーム</a>からお問い合わせください。
+				</p>
 <?php
 } else {
 ?>
@@ -181,6 +186,7 @@ if ($kantei) {
 }
 ?>
 			</div>
+			</div><!-- /header -->
 			<div data-role='footer' data-position='fixed'>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<!-- あじあ姓名診断 -->
@@ -193,6 +199,30 @@ if ($kantei) {
 				</script>
 			</div>
 		</div>
-	</div>
-</body>
+		<div data-role="page" id="query" data-theme="a">
+			<div data-role="header">
+				<a href="?" data-icon="home" data-ajax="false">ホーム</a>
+				<h1>お問い合わせフォーム</h1>
+			</div>
+			<div data-role='content'>
+				<form action="php/mail.php" method="POST">
+					メールアドレス<input type="text" name="email">
+					<label for="query">お問い合わせ内容</label>
+					<textarea name="query" id="query"></textarea>
+					<input type="submit" value="投稿">
+				</form>
+			</div>
+			<div data-role='footer' data-position='fixed'>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- あじあ姓名診断 -->
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:320px;height:100px"
+				     data-ad-client="ca-pub-0413343113584981"
+				     data-ad-slot="6868632444"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+		</div>
+	</body>
 </html>
