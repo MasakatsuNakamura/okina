@@ -68,7 +68,7 @@ if ($kantei) {
 				<h1>あじあ姓名診断</h1>
 			</div>
 			<div data-role="content">
-				<h2>あじあ姓名診断 <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
+				<h2>あじあ姓名診断へようこそ！ <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
 				<div class="ninja_onebutton">
 				<script type="text/javascript">
 				//<![CDATA[
@@ -81,15 +81,18 @@ if ($kantei) {
 				//]]>
 				</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
 				</div>
-				<p>あじあ姓名診断へようこそ。<br>
-				姓名診断とは、統計哲学です。姓名から運勢が一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測学的に明らかです。<br>
+				<p>
+				<strong>
+				<span style="color:red">姓名診断とは、統計哲学です。</span>姓名から運勢が一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測学的に明らかです。<br>
 				たとえば人の名前を聞いたときに、「雰囲気どおりの名だ」と感じることは少なくありません。<br>
 				したがって、姓名は運勢を決定付けるものではないにしろ、何らかの影響力を持っているものだと考えるのが合理的です。<br>
 				これらの関係に一定の法則を見出ため、われわれの先人（熊崎翁ら）は多くの人々の姓名を鑑定し、またその結果をフィードバック・蓄積してきました。<br>
 				この姓名診断は、これらの先人たちの知恵の結晶であり、人類共有の宝です。<br>
 				私は、この宝を多くの人に体験してもらいたいと考え、無料占いを公開することにしました。<br>
 				さらに、この姓名診断には新生児命名アドバイス機能がついています。
-				あじあ姓名診断のノウハウを利用し、お子様につける名前、また芸名などの選定にもご利用いただけます。これらの機能は無料です。ぜひお試しください。</p>
+				あじあ姓名診断のノウハウを利用し、お子様につける名前、また芸名などの選定にもご利用いただけます。これらの機能は無料です。ぜひお試しください。
+				</strong>
+				</p>
 				<form data-ajax="false" method="GET">
 					<div data-role="fieldcontain">
 						<label for="sei">姓</label>
@@ -124,6 +127,7 @@ if ($kantei) {
 					あじあ姓名診断をコンピューターからご利用いただけるAPIを準備中です。Twitterアプリ・facebookアプリなど幅広くご利用いただけるよう考えております。
 					ご興味のある方は<a href="#query">お問い合わせフォーム</a>からお問い合わせください。
 				</p>
+			</div>
 <?php
 } else {
 ?>
@@ -185,8 +189,6 @@ if ($kantei) {
 <?php
 }
 ?>
-			</div>
-			</div><!-- /header -->
 			<div data-role='footer' data-position='fixed'>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<!-- あじあ姓名診断 -->
@@ -200,28 +202,28 @@ if ($kantei) {
 			</div>
 		</div>
 		<div data-role="page" id="query" data-theme="a">
-			<div data-role="header">
-				<a href="?" data-icon="home" data-ajax="false">ホーム</a>
-				<h1>お問い合わせフォーム</h1>
-			</div>
-			<div data-role='content'>
-				<form action="php/mail.php" method="POST">
-					メールアドレス<input type="text" name="email">
-					<label for="query-content">お問い合わせ内容</label>
-					<textarea name="query-content" id="query-content"></textarea>
-					<input type="submit" value="投稿">
-				</form>
-			</div>
-			<div data-role='footer' data-position='fixed'>
-				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<!-- あじあ姓名診断 -->
-				<ins class="adsbygoogle"
-				     style="display:inline-block;width:320px;height:100px"
-				     data-ad-client="ca-pub-0413343113584981"
-				     data-ad-slot="6868632444"></ins>
-				<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
+		<div data-role="header">
+		<a href="?" data-icon="home" data-ajax="false">ホーム</a>
+		<h1>お問い合わせフォーム</h1>
+		</div>
+		<div data-role='content'>
+		<form action="php/mail.php" method="POST">
+		メールアドレス<input type="text" name="email">
+				<label for="query-content">お問い合わせ内容</label>
+				<textarea name="query-content" id="query-content"></textarea>
+				<input type="submit" value="投稿">
+						</form>
+						</div>
+						<div data-role='footer' data-position='fixed'>
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<!-- あじあ姓名診断 -->
+						<ins class="adsbygoogle"
+						     style="display:inline-block;width:320px;height:100px"
+						     data-ad-client="ca-pub-0413343113584981"
+						     data-ad-slot="6868632444"></ins>
+						<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
 			</div>
 		</div>
 	</body>
