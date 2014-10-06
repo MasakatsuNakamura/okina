@@ -190,7 +190,7 @@ if ($kantei) {
 }
 ?>
 			<div data-role='footer' data-position='fixed'>
-				<a href="#mit-lisense">Copyright &reg; 2014 だいぶつ</a><br>
+				<a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a><br>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<!-- あじあ姓名診断 -->
 				<ins class="adsbygoogle"
@@ -216,6 +216,7 @@ if ($kantei) {
 		</form>
 		</div>
 		<div data-role='footer' data-position='fixed'>
+			<a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a><br>
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- あじあ姓名診断 -->
 			<ins class="adsbygoogle"
