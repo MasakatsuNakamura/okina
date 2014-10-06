@@ -122,8 +122,8 @@ if ($kantei) {
 					</div>
 					<input type="submit" value="鑑定" data-role="button" />
 				</form>
+				<h2>あじあ姓名診断API準備中</h2>
 				<p>
-					あじあ姓名診断API準備中<br>
 					あじあ姓名診断をコンピューターからご利用いただけるAPIを準備中です。Twitterアプリ・facebookアプリなど幅広くご利用いただけるよう考えております。
 					ご興味のある方は<a href="#query">お問い合わせフォーム</a>からお問い合わせください。
 				</p>
@@ -190,6 +190,7 @@ if ($kantei) {
 }
 ?>
 			<div data-role='footer' data-position='fixed'>
+				<a href="#mit-lisense">Copyright &reg; 2014 だいぶつ</a><br>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<!-- あじあ姓名診断 -->
 				<ins class="adsbygoogle"
@@ -204,7 +205,7 @@ if ($kantei) {
 		<div data-role="page" id="query" data-theme="a">
 		<div data-role="header">
 		<a href="?" data-icon="home" data-ajax="false">ホーム</a>
-		<h1>お問い合わせフォーム</h1>
+		<h1>お問い合わせフォーム(工事中)</h1>
 		</div>
 		<div data-role='content'>
 		<form action="php/mail.php" method="POST">
@@ -212,19 +213,69 @@ if ($kantei) {
 				<label for="query-content">お問い合わせ内容</label>
 				<textarea name="query-content" id="query-content"></textarea>
 				<input type="submit" value="投稿">
-						</form>
-						</div>
-						<div data-role='footer' data-position='fixed'>
-						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-						<!-- あじあ姓名診断 -->
-						<ins class="adsbygoogle"
-						     style="display:inline-block;width:320px;height:100px"
-						     data-ad-client="ca-pub-0413343113584981"
-						     data-ad-slot="6868632444"></ins>
-						<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-						</script>
-			</div>
+		</form>
 		</div>
+		<div data-role='footer' data-position='fixed'>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- あじあ姓名診断 -->
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:320px;height:100px"
+			     data-ad-client="ca-pub-0413343113584981"
+			     data-ad-slot="6868632444"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	</div>
+	<!-- 著作権表示 -->
+	<div data-role='page' id='mit-lisense'>
+		<div data-role='header'>
+			<h1>著作権表示</h1>
+			<a href="#top" data-icon="home">ホーム</a>
+		</div>
+		<div data-role='content'>
+			<h2>著作権表示</h2>
+			<h2>jQuery MobileおよびjQueryの著作権について</h2>
+			<p>このソフトウェアは、MITライセンスに基づいて配布されているjQuery MobileおよびjQueryを含みます。これらのソフトウェアのライセンスは下記のとおりです。</p>
+			<h2>The MIT License (MIT)</h2>
+			<p>Copyright &copy; 2014 Daibutsu</p>
+			<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+			of this software and associated documentation files (the "Software"), to deal
+			in the Software without restriction, including without limitation the rights
+			to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+			copies of the Software, and to permit persons to whom the Software is
+			furnished to do so, subject to the following conditions:</p>
+			
+			<p>The above copyright notice and this permission notice shall be included in
+			all copies or substantial portions of the Software.</p>
+			
+			<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+			IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+			FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+			AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+			LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+			OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+			THE SOFTWARE.</p>
+			<h2>MITライセンス(日本語訳)</h2>
+			<p>Copyright&copy; 2014 だいぶつ</p>
+			<p>以下に定める条件に従い、本ソフトウェアおよび関連文書のファイル（以下「ソフトウェア」）の複製を取得するすべての人に対し、ソフトウェアを無制限に扱うことを無償で許可します。これには、ソフトウェアの複製を使用、複写、変更、結合、掲載、頒布、サブライセンス、および/または販売する権利、およびソフトウェアを提供する相手に同じことを許可する権利も無制限に含まれます。</p>
+			<p>上記の著作権表示および本許諾表示を、ソフトウェアのすべての複製または重要な部分に記載するものとします。</p>
+			<p>ソフトウェアは「現状のまま」で、明示であるか暗黙であるかを問わず、何らの保証もなく提供されます。ここでいう保証とは、商品性、特定の目的への適合性、および権利非侵害についての保証も含みますが、それに限定されるものではありません。 作者または著作権者は、契約行為、不法行為、またはそれ以外であろうと、ソフトウェアに起因または関連し、あるいはソフトウェアの使用またはその他の扱いによって生じる一切の請求、損害、その他の義務について何らの責任も負わないものとします。</p>
+			<h2>鑑定文言について</h2>
+			<p>鑑定文言については、古来伝わる鑑定文言を一部引用して利用しております。個々の文言については著作物の要件である創作性が無く、著作権は存在しないか、しても消滅しており利用は自由です。これらの文言は歴史的形成物であり、だいぶつを含むいかなる第三者も著作権の保有を主張できる性質のものではありません。</p>
+			<a href="#top" data-role="button">戻る</a>
+		</div>
+		<div data-role='footer' data-position='fixed'>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- あじあ姓名診断 -->
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:320px;height:100px"
+			     data-ad-client="ca-pub-0413343113584981"
+			     data-ad-slot="6868632444"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	</div>
 	</body>
 </html>
