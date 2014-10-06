@@ -65,7 +65,7 @@ if ($kantei) {
 	<div data-role="page" id="top" data-theme="a">
 		<div data-role="header">
 				<a href="#top" data-icon="home" class='ui-disabled'>ホーム</a>
-				<h1>あじあ姓名診断</h1>
+				<h1><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
 			</div>
 			<div data-role="content">
 				<h2>あじあ姓名診断へようこそ！ <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
@@ -134,8 +134,8 @@ if ($kantei) {
 ?>
 		<div data-role="page" id="kantei" data-theme="a">
 			<div data-role="header">
+				<h1><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
 				<a href="?" data-icon="home" data-ajax="false">ホーム</a>
-				<h1><?php echo $seimei->sei ?>さんの子どもに名前を付けるなら・・・</h1>
 			</div><!-- /header -->
 			<div data-role="content">
 				<h2><?php echo $seimei->sei ?>さんの子どもに名前を付けるなら・・・</h2>
@@ -191,7 +191,6 @@ if ($kantei) {
 }
 ?>
 			<div data-role='footer' data-position='fixed'>
-				<a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a><br>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<!-- あじあ姓名診断 -->
 				<ins class="adsbygoogle"
@@ -217,7 +216,6 @@ if ($kantei) {
 		</form>
 		</div>
 		<div data-role='footer' data-position='fixed'>
-			<a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a><br>
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- あじあ姓名診断 -->
 			<ins class="adsbygoogle"
@@ -234,6 +232,7 @@ if ($kantei) {
 		<div data-role='header'>
 			<h1>著作権表示</h1>
 			<a href="#top" data-icon="home">ホーム</a>
+			<a href="#top" data-icon="back">戻る</a>
 		</div>
 		<div data-role='content'>
 			<h2>著作権表示</h2>
@@ -265,7 +264,6 @@ if ($kantei) {
 			<p>ソフトウェアは「現状のまま」で、明示であるか暗黙であるかを問わず、何らの保証もなく提供されます。ここでいう保証とは、商品性、特定の目的への適合性、および権利非侵害についての保証も含みますが、それに限定されるものではありません。 作者または著作権者は、契約行為、不法行為、またはそれ以外であろうと、ソフトウェアに起因または関連し、あるいはソフトウェアの使用またはその他の扱いによって生じる一切の請求、損害、その他の義務について何らの責任も負わないものとします。</p>
 			<h2>鑑定文言について</h2>
 			<p>鑑定文言については、古来伝わる鑑定文言を一部引用して利用しております。個々の文言については著作物の要件である創作性が無く、著作権は存在しないか、しても消滅しており利用は自由です。これらの文言は歴史的形成物であり、だいぶつを含むいかなる第三者も著作権の保有を主張できる性質のものではありません。</p>
-			<a href="#top" data-role="button">戻る</a>
 		</div>
 		<div data-role='footer' data-position='fixed'>
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
