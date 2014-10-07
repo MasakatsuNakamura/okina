@@ -6,6 +6,7 @@ if ($_SERVER["SERVER_NAME"] == "okina.herokuapp.com") {
 	header('Content-type: text/html; charset=utf-8;');
 }
 
+require 'vendor/autoload.php';
 require 'php/seimei.php';
 require 'php/reii.php';
 require 'php/kenkou.php';
@@ -25,6 +26,15 @@ if (count($_GET) > 0) {
 		$seimei->shindan();
 		$kantei = false;
 	}
+} elseif (count($_POST) > 0) {
+	$sendgrid = new SendGrid(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+	$message = new SendGrid\Email();
+	$message->
+	addTo('nakamuramasakatsu+heroku@gmail.com')->
+	setFrom($_POST['email'])->
+	setSubject('Query from seimei.asia')->
+	setText($_POST['email'] . "\n" . $_POST['query-content']);
+	$response = $sendgrid->send($message);
 }
 
 ?>
@@ -33,7 +43,7 @@ if (count($_GET) > 0) {
 <meta charset="UTF-8">
 <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> 
 <meta name="description" content="<?php echo $kantei ?
-	"あじあ姓名診断へようこそ。<br>姓名診断とは、統計哲学です。姓名から運勢が、一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測額的に明らかです。人の名前を聞いたときに、「雰囲気どおりの名だ」と感じることは少なくありません。これらの関係に一定の法則を見出ため、われわれの先人（熊崎翁ら）は多くの人々の姓名を鑑定し、またその結果をフィードバック・蓄積してきました。この姓名診断は、これらの先人たちの知恵の結晶であり、人類共有の宝です。私は、この宝を多くの人に体験してもらいたいと考え、無料占いを公開することにしました。さらに、この姓名診断には新生児命名アドバイス機能がついています。あじあ式姓名診断のノウハウを利用し、お子様につける名前、また芸名などの選定にもご利用いただけます。これらの機能は無料です。ぜひお試しください。" :
+	"あじあ姓名診断へようこそ。姓名診断とは、統計哲学です。姓名から運勢が、一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測額的に明らかです。人の名前を聞いたときに、「雰囲気どおりの名だ」と感じることは少なくありません。これらの関係に一定の法則を見出ため、われわれの先人（熊崎翁ら）は多くの人々の姓名を鑑定し、またその結果をフィードバック・蓄積してきました。この姓名診断は、これらの先人たちの知恵の結晶であり、人類共有の宝です。私は、この宝を多くの人に体験してもらいたいと考え、無料占いを公開することにしました。さらに、この姓名診断には新生児命名アドバイス機能がついています。あじあ式姓名診断のノウハウを利用し、お子様につける名前、また芸名などの選定にもご利用いただけます。これらの機能は無料です。ぜひお試しください。" :
 	$seimei->sei . " " . $seimei->mei . "さんの運勢 主運" . $seimei->jinkaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('jinkaku')) .
 	"対人運・社交運:" . $seimei->gaikaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('gaikaku')) . "・・・" ?>">
 <meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 占い 姓名判断 姓名診断 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ">
@@ -70,78 +80,80 @@ if ($kantei) {
 ?>
 	<div data-role="page" id="top" data-theme="a">
 		<div data-role="header">
-				<a href="#top" data-icon="home" class='ui-disabled'>ホーム</a>
-				<h1><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
+			<a href="#top" data-icon="home" class='ui-disabled'>ホーム</a>
+			<a href="#query" data-icon="mail">問い合わせ</a>
+			<h1><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
+		</div>
+		<div data-role="content">
+			<h2>あじあ姓名診断へようこそ！ <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
+			<div class="ninja_onebutton">
+			<script type="text/javascript">
+			//<![CDATA[
+			(function(d){
+			if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6)=='undefined'){
+			    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/0f8b16741da01b4bf2d81552e11cc4d6'><\/sc"+"ript>");
+			}else{
+			    window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6.ONETAGButton_Load();}
+			})(document);
+			//]]>
+			</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
 			</div>
-			<div data-role="content">
-				<h2>あじあ姓名診断へようこそ！ <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
-				<div class="ninja_onebutton">
-				<script type="text/javascript">
-				//<![CDATA[
-				(function(d){
-				if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6)=='undefined'){
-				    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/0f8b16741da01b4bf2d81552e11cc4d6'><\/sc"+"ript>");
-				}else{
-				    window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6.ONETAGButton_Load();}
-				})(document);
-				//]]>
-				</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
+			<p>
+			<strong>
+			<span style="color:red">姓名診断とは、統計哲学です。</span>姓名から運勢が一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測学的に明らかです。<br>
+			たとえば人の名前を聞いたときに、「雰囲気どおりの名だ」と感じることは少なくありません。<br>
+			したがって、姓名は運勢を決定付けるものではないにしろ、何らかの影響力を持っているものだと考えるのが合理的です。<br>
+			これらの関係に一定の法則を見出すため、われわれの先人（<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>ら）は多くの人々の姓名を鑑定し、またその結果をフィードバック・蓄積してきました。<br>
+			この姓名診断は、これらの先人たちの知恵の結晶であり、人類共有の宝です。<br>
+			本サイトは、<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>の弟子、山本哲生氏が熊崎式姓名学に基づいて編纂した著書を参考に、鑑定結果を表示しています。<br>
+			私は、この宝を多くの人に体験してもらいたいと考え、無料占いを公開することにしました。<br>
+			さらに、この姓名診断では、苗字に基づき、適切な命名を行うことの出来る<span style="color:red">新生児命名アドバイス機能</span>がついています。
+			あじあ姓名診断のノウハウを利用し、お子様につける名前、また芸名などの選定にも広くご利用いただけます。これらの機能は無料です。ぜひお試しください。
+			</strong>
+			</p>
+			<form data-ajax="false" method="GET">
+				<div data-role="fieldcontain">
+					<label for="sei">姓</label>
+					<input type="text" name="sei" id="sei" />
 				</div>
-				<p>
-				<strong>
-				<span style="color:red">姓名診断とは、統計哲学です。</span>姓名から運勢が一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測学的に明らかです。<br>
-				たとえば人の名前を聞いたときに、「雰囲気どおりの名だ」と感じることは少なくありません。<br>
-				したがって、姓名は運勢を決定付けるものではないにしろ、何らかの影響力を持っているものだと考えるのが合理的です。<br>
-				これらの関係に一定の法則を見出すため、われわれの先人（<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>ら）は多くの人々の姓名を鑑定し、またその結果をフィードバック・蓄積してきました。<br>
-				この姓名診断は、これらの先人たちの知恵の結晶であり、人類共有の宝です。<br>
-				本サイトは、<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>の弟子、山本哲生氏が熊崎式姓名学に基づいて編纂した著書を参考に、鑑定結果を表示しています。<br>
-				私は、この宝を多くの人に体験してもらいたいと考え、無料占いを公開することにしました。<br>
-				さらに、この姓名診断では、苗字に基づき、適切な命名を行うことの出来る<span style="color:red">新生児命名アドバイス機能</span>がついています。
-				あじあ姓名診断のノウハウを利用し、お子様につける名前、また芸名などの選定にも広くご利用いただけます。これらの機能は無料です。ぜひお試しください。
-				</strong>
-				</p>
-				<form data-ajax="false" method="GET">
-					<div data-role="fieldcontain">
-						<label for="sei">姓</label>
-						<input type="text" name="sei" id="sei" />
-					</div>
-					<div data-role="fieldcontain">
-						<label for="mei">名</label>
-						<input type="text" name="mei" id="mei" />
-					</div>
-					<div data-role="fieldcontain">
-						<label for="sex">性別</label>
-						<fieldset name="sex" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-							<input type="radio" name="sex" id="sex-2" value="F" checked="checked" />
-							<label for="sex-2">女性</label>
-							<input type="radio" name="sex" id="sex-1" value="M"/>
-							<label for="sex-1">男性</label>
-						</fieldset>
-					</div>
-					<div data-role="fieldcontain">
-						<label for="marry">結婚</label>
-						<fieldset name="marry" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-							<input type="radio" name="marry" id="marry-1" value="yes" />
-							<label for="marry-1">している</label>
-							<input type="radio" name="marry" id="marry-2" value="no"  checked="checked" />
-							<label for="marry-2">していない</label>
-						</fieldset>
-					</div>
-					<input type="submit" value="鑑定" data-role="button" />
-				</form>
-				<h2>あじあ姓名診断API準備中</h2>
-				<p>
-					あじあ姓名診断をコンピューターからご利用いただけるAPIを準備中です。Twitterアプリ・facebookアプリなど幅広くご利用いただけるよう考えております。
-					ご興味のある方は<a href="#query">お問い合わせフォーム</a>からお問い合わせください。
-				</p>
-			</div>
+				<div data-role="fieldcontain">
+					<label for="mei">名</label>
+					<input type="text" name="mei" id="mei" />
+				</div>
+				<div data-role="fieldcontain">
+					<label for="sex">性別</label>
+					<fieldset name="sex" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+						<input type="radio" name="sex" id="sex-2" value="F" checked="checked" />
+						<label for="sex-2">女性</label>
+						<input type="radio" name="sex" id="sex-1" value="M"/>
+						<label for="sex-1">男性</label>
+					</fieldset>
+				</div>
+				<div data-role="fieldcontain">
+					<label for="marry">結婚</label>
+					<fieldset name="marry" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+						<input type="radio" name="marry" id="marry-1" value="yes" />
+						<label for="marry-1">している</label>
+						<input type="radio" name="marry" id="marry-2" value="no"  checked="checked" />
+						<label for="marry-2">していない</label>
+					</fieldset>
+				</div>
+				<input type="submit" value="鑑定" data-role="button" />
+			</form>
+			<h2>あじあ姓名診断API準備中</h2>
+			<p>
+				あじあ姓名診断をコンピューターからご利用いただけるAPIを準備中です。Twitterアプリ・facebookアプリなど幅広くご利用いただけるよう考えております。
+				ご興味のある方は<a href="#query">お問い合わせフォーム</a>からお問い合わせください。
+			</p>
+		</div>
 <?php
 } else {
 ?>
 		<div data-role="page" id="kantei" data-theme="a">
 			<div data-role="header">
-				<h1><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
-				<a href="?" data-icon="home" data-ajax="false">ホーム</a>
+				<h1><a href="./#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
+				<a href="./#top" data-icon="home" data-ajax="false">ホーム</a>
+				<a href="./#query" data-icon="mail">問い合わせ</a>
 			</div><!-- /header -->
 			<div data-role="content">
 				<h2><?php echo $seimei->sei ?>さんの子どもに名前を付けるなら・・・</h2>
@@ -208,18 +220,24 @@ if ($kantei) {
 				</script>
 			</div>
 		</div>
-		<div data-role="page" id="query" data-theme="a">
+	</div>
+	<div data-role="page" id="query" data-theme="a">
 		<div data-role="header">
-		<a href="?" data-icon="home" data-ajax="false">ホーム</a>
-		<h1>お問い合わせフォーム(工事中)</h1>
+			<a href="#top" data-icon="home">ホーム</a>
+			<a href="#query" data-icon="mail" class="ui-disabled">問い合わせ</a>
+			<h1><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
 		</div>
 		<div data-role='content'>
-		<form action="php/mail.php" method="POST">
-		メールアドレス<input type="text" name="email">
-				<label for="query-content">お問い合わせ内容</label>
-				<textarea name="query-content" id="query-content"></textarea>
-				<input type="submit" value="投稿">
-		</form>
+			<h2>お問い合わせフォーム</h2>
+			<div data-role="fieldcontain">
+				<form data-ajax="false" method="POST">
+					<label for="email">メールアドレス</label>
+					<input type="text" name="email">
+					<label for="query-content">お問い合わせ内容</label>
+					<textarea name="query-content" id="query-content"></textarea>
+					<input type="submit" value="投稿">
+				</form>
+			</div>
 		</div>
 		<div data-role='footer' data-position='fixed'>
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
