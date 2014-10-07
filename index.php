@@ -7,7 +7,7 @@ if ($_SERVER["SERVER_NAME"] == "okina.herokuapp.com") {
 }
 
 require 'vendor/autoload.php';
-$sendgrid = new SendGrid(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+#$sendgrid = new SendGrid(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
 
 require 'php/seimei.php';
 require 'php/reii.php';
