@@ -1,5 +1,11 @@
 <?php
-header('Content-type: text/html; charset=utf-8;');
+if ($_SERVER["SERVER_NAME"] == "okina.herokuapp.com") {
+	header("HTTP/1.1 301 Moved Permanently");
+	header("Location: http://www.seimei.asia" . $_SERVER[REQUEST_URI]);
+} else {
+	header('Content-type: text/html; charset=utf-8;');
+}
+
 require 'php/seimei.php';
 require 'php/reii.php';
 require 'php/kenkou.php';
