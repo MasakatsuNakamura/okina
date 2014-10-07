@@ -7,7 +7,7 @@ if ($_SERVER["SERVER_NAME"] == "okina.herokuapp.com") {
 }
 
 require 'vendor/autoload.php';
-#$sendgrid = new SendGrid(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+Dotenv::load(__DIR__);
 
 require 'php/seimei.php';
 require 'php/reii.php';
@@ -29,6 +29,7 @@ if (count($_GET) > 0) {
 		$kantei = false;
 	}
 } elseif (count($_POST) > 0) {
+	$sendgrid = new SendGrid(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
 	$message = new SendGrid\Email();
 	$message->
 		addTo('nakamuramasakatsu+heroku@gmail.com')->
