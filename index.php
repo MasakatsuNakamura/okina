@@ -35,7 +35,7 @@ if (count($_GET) > 0) {
 		addTo('nakamuramasakatsu+heroku@gmail.com')->
 		setFrom($_POST['email'])->
 		setSubject('Query from www.seimei.asia')->
-		setText($_POST['query-content']);
+		setText('IP Address' . $$_POST['query-content']);
 	$response = $sendgrid->send($message);
 	$kantei=false;
 }
