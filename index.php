@@ -183,29 +183,29 @@ if ($kantei) {
 				</div>
 				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h2>
 				<div data-role="collapsible" data-collapsed="false">
-					<h2>主運　<span class="ui-mini">当人の一生の中心を司ります。結婚により姓が変わると主運も変わりますが、中年以降に強く現れます。</span></h2>
+					<h2>基礎運(人画）　<span class="ui-mini">一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</span></h2>
 					<div><?php echo $seimei->jinkaku ?>画：<?php echo $seimei->mongon('jinkaku') ?></div>
 				</div>
 				<div data-role="collapsible" data-collapsed="false">
-					<h2>対人運・社交運　<span class="ui-mini">対人関係や家族・夫婦関係、友達関係に現れてきます。</span></h2>
+					<h2>対人運（外画）　<span class="ui-mini">対人関係および、家族・夫婦関係、友達関係など、外交面に現れてきます。</span></h2>
 					<div><?php echo $seimei->gaikaku ?>画：<?php echo $seimei->mongon('gaikaku') ?></div>
 				</div>
 				<div data-role="collapsible" data-collapsed="false">
-					<h2>性格　<span class="ui-mini">当人の外面的な性格を現します。自分が他人からどう見えているのか参考になります。</span></h2>
-					<div><?php echo $seimei->mongon('seikaku') ?></div>
+					<h2>性格(人画の下一桁）　<span class="ui-mini">外面から見た性格を現しています。他人から自分がどう見えているのかの参考にしてください。</span></h2>
+					<div><?php echo $seimei->jinshimo . "画:" . $seimei->mongon('seikaku') ?></div>
 				</div>
 				<div data-role="collapsible" data-collapsed="false">
-					<h2>健康運(体調・精神)　<span class="ui-mini">例え吉数揃いの姓名であっても、健康に恵まれなければ活かさせません。（△は単独での判断が難しい）</span></h2>
+					<h2>健康運（陰陽５行３才の組み合わせにより算出）<span class="ui-mini">吉数揃いの姓名も、健康に恵まれなければ活かされません。他の画数の参考にしてください。</span></h2>
 					<div><?php echo $seimei->mongon('kenkou') ?></div>
 				</div>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<div data-role="collapsible" data-collapsed="false">
-					<h2>基礎運　<span class="ui-mini">幼少年期の運勢の吉凶を支配し、青年期まで最も強く作用します。(若年者の判断はこちらが有効)</span></h2>
+					<h2>基礎運（天画）<span class="ui-mini">幼少年期の運勢を支配し、青年期まで強く作用します。</span></h2>
 					<div><?php echo $seimei->chikaku ?>画：<?php echo $seimei->mongon('chikaku') ?></p>
 					</div>
 				</div>
 				<div data-role="collapsible" data-collapsed="false">
-					<h2>晩年運　<span class="ui-mini">50歳前後から強く現れてきます。ただし、主運と基礎運に左右されますので注意して下さい。</span></h2>
+					<h2>晩年運（総画）<span class="ui-mini">50歳前後からの運勢を支配します。ただし、基礎運の影響も残ります。</span></h2>
 					<div><?php echo $seimei->soukaku ?>画：<?php echo $seimei->mongon('soukaku') ?></div>
 				</div>
 <?php

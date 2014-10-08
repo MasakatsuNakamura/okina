@@ -20,7 +20,7 @@ Class Seimei {
 	private $sei1;
 	private $sei2;
 	private $tenshimo;
-	private $jinshimo;
+	public $jinshimo;
 	private $chishimo;
 	
 	function meimei ($sex) {
@@ -157,6 +157,27 @@ Class Seimei {
 			
 			case 'seikaku':
 				$mongon = $seikaku->mongon[$this->seikaku];
+				if ($this->jinkaku != 6) {
+					$mongon = preg_replace("/\+6.*-6/u", "", $mongon);
+				}
+				if ($this->jinkaku != 16) {
+					$mongon = preg_replace("/\+16.*-16/u", "", $mongon);
+				}
+				if ($this->jinkaku != 26) {
+					$mongon = preg_replace("/\+26.*-26/u", "", $mongon);
+				}
+				if ($this->jinkaku != 36) {
+					$mongon = preg_replace("/\+36.*-36/u", "", $mongon);
+				}
+				if ($this->jinkaku != 46) {
+					$mongon = preg_replace("/\+46.*-46/u", "", $mongon);
+				}
+				if ($this->jinkaku != 24) {
+					$mongon = preg_replace("/\+24.*-24/u", "", $mongon);
+				}
+				if ($this->jinkaku != 32) {
+					$mongon = preg_replace("/\+32.*-32/u", "", $mongon);
+				}
 				break;
 			
 			case 'kenkou':
@@ -195,7 +216,7 @@ Class Seimei {
 		if ($this->jinkaku != 10 && $this->jinkaku != 20) {
 			$mongon = preg_replace("/\+g.*-g/u", "", $mongon);
 		}
-		$mongon = preg_replace("/[\-\+][a-z]/u", "", $mongon);
+		$mongon = preg_replace("/[\-\+][0-9a-z]+/u", "", $mongon);
 		
 		return($mongon);
 	}
