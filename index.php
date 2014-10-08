@@ -49,7 +49,7 @@ if (count($_GET) > 0) {
 	"あじあ姓名診断へようこそ。姓名診断とは、統計哲学です。姓名から運勢が、一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測額的に明らかです。人の名前を聞いたときに、「雰囲気どおりの名だ」と感じることは少なくありません。これらの関係に一定の法則を見出ため、われわれの先人（熊崎翁ら）は多くの人々の姓名を鑑定し、またその結果をフィードバック・蓄積してきました。この姓名診断は、これらの先人たちの知恵の結晶であり、人類共有の宝です。私は、この宝を多くの人に体験してもらいたいと考え、無料占いを公開することにしました。さらに、この姓名診断には新生児命名アドバイス機能がついています。あじあ式姓名診断のノウハウを利用し、お子様につける名前、また芸名などの選定にもご利用いただけます。これらの機能は無料です。ぜひお試しください。" :
 	$seimei->sei . " " . $seimei->mei . "さんの運勢 主運" . $seimei->jinkaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('jinkaku')) .
 	"対人運・社交運:" . $seimei->gaikaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('gaikaku')) . "・・・" ?>">
-<meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 占い 姓名判断 姓名診断 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ">
+<meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 占い 姓名判断 姓名診断 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>あじあ姓名診断</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,8 +85,8 @@ if ($kantei) {
 		<div data-role="header">
 			<a href="#top" data-icon="home" class='ui-disabled'>ホーム</a>
 			<a href="#query" data-icon="mail">問い合わせ</a>
-			<h1><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
-		</div>
+			<h1>あじあ姓名診断 <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+					</div>
 		<div data-role="content">
 			<h2>あじあ姓名診断へようこそ！ <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
 			<div class="ninja_onebutton">
@@ -103,9 +103,10 @@ if ($kantei) {
 			</div>
 			<p>
 			<strong>
-			<span style="color:red">姓名診断とは、統計哲学です。</span>姓名から運勢が一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測学的に明らかです。<br>
+			<span style="color:red">姓名診断とは、統計哲学です。</span>もちろん、姓名から運勢が一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測学的に明らかです。<br>
 			たとえば人の名前を聞いたときに、「雰囲気どおりの名だ」と感じることは少なくありません。<br>
-			したがって、姓名は運勢を決定付けるものではないにしろ、何らかの影響力を持っているものだと考えるのが合理的です。<br>
+			したがって、姓名は運勢を決定付けるものではないにしろ、何らかの影響力を持っているものだと考えるのが合理的ではないでしょうか。<br>
+			また、これらの姓名が持つ運勢の傾向を事前に知っておけば、対策を立てることも容易になります。山にハイキングに出かけ、何も知らずにスズメバチの巣に出会うのと、<br>
 			これらの関係に一定の法則を見出すため、われわれの先人（<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>ら）は多くの人々の姓名を鑑定し、またその結果をフィードバック・蓄積してきました。<br>
 			この姓名診断は、これらの先人たちの知恵の結晶であり、人類共有の宝です。<br>
 			本サイトは、<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>の弟子、山本哲生氏が熊崎式姓名学に基づいて編纂した著書を参考に、鑑定結果を表示しています。<br>
@@ -154,7 +155,7 @@ if ($kantei) {
 ?>
 		<div data-role="page" id="kantei" data-theme="a">
 			<div data-role="header">
-				<h1><a href="./#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
+				<h1>あじあ姓名診断<a href="./#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
 				<a href="./#top" data-icon="home" data-ajax="false">ホーム</a>
 				<a href="./#query" data-icon="mail">問い合わせ</a>
 			</div><!-- /header -->
@@ -182,13 +183,14 @@ if ($kantei) {
 					<div><?php echo $seimei->meimei('F') ?></div>
 				</div>
 				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h2>
+				<p>※ 鑑定文言について、一部を山本哲生氏（故人：生没年不明）の編著「（名前で読める自己の運命A・B・C）」（ISDN不明）から引用しています。</p>
 				<div data-role="collapsible" data-collapsed="false">
 					<h2>基礎運(人画）　<span class="ui-mini">一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</span></h2>
-					<div><?php echo $seimei->jinkaku ?>画：<?php echo $seimei->mongon('jinkaku') ?></div>
+					<div><?php echo $seimei->jinkaku ?>画<br><?php echo $seimei->mongon('jinkaku') ?></div>
 				</div>
 				<div data-role="collapsible" data-collapsed="false">
 					<h2>対人運（外画）　<span class="ui-mini">対人関係および、家族・夫婦関係、友達関係など、外交面に現れてきます。</span></h2>
-					<div><?php echo $seimei->gaikaku ?>画：<?php echo $seimei->mongon('gaikaku') ?></div>
+					<div><?php echo $seimei->gaikaku ?>画<br><?php echo $seimei->mongon('gaikaku') ?></div>
 				</div>
 				<div data-role="collapsible" data-collapsed="false">
 					<h2>性格(人画の下一桁）　<span class="ui-mini">外面から見た性格を現しています。他人から自分がどう見えているのかの参考にしてください。</span></h2>
@@ -228,7 +230,7 @@ if ($kantei) {
 		<div data-role="header">
 			<a href="#top" data-icon="home">ホーム</a>
 			<a href="#query" data-icon="mail" class="ui-disabled">問い合わせ</a>
-			<h1><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
+			<h1><a href="#mit-lisense" class="ui-mini">Copyright &copy; 2014 だいぶつ</a></h1>
 		</div>
 		<div data-role='content'>
 			<h2>お問い合わせフォーム</h2>
@@ -263,6 +265,7 @@ if ($kantei) {
 		</div>
 		<div data-role='content'>
 			<h2>著作権表示</h2>
+			<p>このソフトウェアの、下記MITライセンスにかかる以外の部分については、「だいぶつ」が著作権を保持しています。転載・剽窃等は法律で禁じられています。</p>
 			<h2>jQuery MobileおよびjQueryの著作権について</h2>
 			<p>このソフトウェアは、MITライセンスに基づいて配布されているjQuery MobileおよびjQueryを含みます。これらのソフトウェアのライセンスは下記のとおりです。</p>
 			<h2>The MIT License (MIT)</h2>
@@ -290,8 +293,8 @@ if ($kantei) {
 			<p>上記の著作権表示および本許諾表示を、ソフトウェアのすべての複製または重要な部分に記載するものとします。</p>
 			<p>ソフトウェアは「現状のまま」で、明示であるか暗黙であるかを問わず、何らの保証もなく提供されます。ここでいう保証とは、商品性、特定の目的への適合性、および権利非侵害についての保証も含みますが、それに限定されるものではありません。 作者または著作権者は、契約行為、不法行為、またはそれ以外であろうと、ソフトウェアに起因または関連し、あるいはソフトウェアの使用またはその他の扱いによって生じる一切の請求、損害、その他の義務について何らの責任も負わないものとします。</p>
 			<h2>鑑定文言について</h2>
-			<p>鑑定文言については、古来伝わる鑑定文言を一部引用して利用しております。個々の文言については著作物の要件である創作性が無く、著作権は存在しないか、しても消滅しており利用は自由です。これらの文言は歴史的形成物であり、だいぶつを含むいかなる第三者も著作権の保有を主張できる性質のものではありません。</p>
-		</div>
+			<p>※ 鑑定文言について、一部を山本哲生氏（故人：生没年不明）の編著「（名前で読める自己の運命A・B・C）」（ISDN不明）から引用しています。</p>
+			</div>
 		<div data-role='footer' data-position='fixed'>
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- あじあ姓名診断 -->
