@@ -46,12 +46,12 @@ if (count($_GET) > 0) {
 <meta charset="UTF-8">
 <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> 
 <meta name="description" content="<?php echo $kantei ?
-	"あじあ姓名診断へようこそ。姓名診断とは、統計哲学です。姓名から運勢が、一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測額的に明らかです。人の名前を聞いたときに、「雰囲気どおりの名だ」と感じることは少なくありません。これらの関係に一定の法則を見出ため、われわれの先人（熊崎翁ら）は多くの人々の姓名を鑑定し、またその結果をフィードバック・蓄積してきました。この姓名診断は、これらの先人たちの知恵の結晶であり、人類共有の宝です。私は、この宝を多くの人に体験してもらいたいと考え、無料占いを公開することにしました。さらに、この姓名診断には新生児命名アドバイス機能がついています。あじあ式姓名診断のノウハウを利用し、お子様につける名前、また芸名などの選定にもご利用いただけます。これらの機能は無料です。ぜひお試しください。" :
+	"あじあ姓名うらないへようこそ！赤ちゃんの名まえをつけたり（選名）、じぶんの運勢をうらなったり、どしどし使ってね！" :
 	$seimei->sei . " " . $seimei->mei . "さんの運勢 主運" . $seimei->jinkaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('jinkaku')) .
 	"対人運・社交運:" . $seimei->gaikaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('gaikaku')) . "・・・" ?>">
-<meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 占い 姓名判断 姓名診断 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
+<meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 占い 姓名判断 姓名うらない 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>あじあ姓名診断</title>
+<title>あじあ姓名うらない</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
 	<link rel="stylesheet" href="css/default.css" />
@@ -83,12 +83,12 @@ if ($kantei) {
 ?>
 	<div data-role="page" id="top" data-theme="a">
 		<div data-role="header">
-			<h1>あじあ姓名診断 <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+			<h1>あじあ姓名うらない<span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
 			<a href="#top" data-icon="home" class='ui-disabled'>ホーム</a>
 			<a href="#query" data-icon="mail">問い合わせ</a>
 		</div>
 		<div data-role="content">
-			<h2>あじあ姓名診断へようこそ！ <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
+			<h2>あじあ姓名うらないへようこそ！ <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
 			<div class="ninja_onebutton">
 			<script type="text/javascript">
 			//<![CDATA[
@@ -134,21 +134,21 @@ if ($kantei) {
 			<p>
 			<strong>
 			<h2>説明</h2>
-			<span style="color:red">姓名診断とは、統計哲学です。</span>もちろん、姓名から運勢が一意に導き出されるわけではありませんが、姓名が運勢に影響を与えるという事実は、観測学的に明らかです。<br>
-			たとえば人の名前を聞いたときに、「雰囲気どおりの名だ」と感じることは少なくありません。<br>
-			したがって、姓名は運勢を決定付けるものではないにしろ、何らかの影響力を持っているものだと考えるのが合理的ではないでしょうか。<br>
-			また、これらの姓名が持つ運勢の傾向を事前に知っておけば、対策を立てることも容易になります。山にハイキングに出かけ、何も知らずに突然スズメバチの巣に出くわすのと、向こうから来た人に「もうすぐスズメバチの巣があるよ」と教えてもらうのと、どちらが良いでしょうか？<br>
-			これらの関係に一定の法則を見出すため、われわれの先人（<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>ら）は多くの人々の姓名を鑑定し、またその結果をフィードバック・蓄積してきました。<br>
-			この姓名診断は、これらの先人たちの知恵の結晶であり、人類共有の宝です。<br>
-			本サイトは、<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>の弟子、山本哲生氏が熊崎式姓名学に基づいて編纂した著書を参考に、鑑定結果を表示しています。<br>
+			<span style="color:red">姓名（名まえ）から運勢なんてわかるものなんでしょうか？同姓同名で違う人生をたどる人がいっぱいいるのだから、もちろんそんなことはありえません。だけど、運命が完全に導き出されるわけではないにしろ、名まえが運勢に影響を与えると言う現象はしばしば見られます。<br>
+			たとえば人の名前を聞いたときに「雰囲気どおりの名まえだ」と感じることはありませんか？<br>
+			つまり、名まえは運命を決定付けるものではないにしろ、何らかの影響力を持っているものだと考えてもいいんじゃないでしょうか？<br>
+			そして、運勢の傾向を事前に知っておけば、対策を立てることも容易になります。山にハイキングに出かけ、何も知らずに突然スズメバチの巣に出くわすのと、向こうから来た人に「もうすぐスズメバチの巣があるよ」と教えてもらうのと、どちらが良いでしょうか？<br>
+			<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>らは多くの人々の名まえを調べ、その人の運命との関連を体系づけました。<br>
+			この姓名うらないは、これらの先人たちの知恵の結晶であり、人類共有の宝です。<br>
+			このサイトでは<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>の弟子、山本哲生氏が熊崎式姓名学に基づいて編纂した本を参考にして、結果を表示しています。<br>
 			私は、この宝を多くの人に体験してもらいたいと考え、無料占いを公開することにしました。<br>
-			さらに、この姓名診断では、苗字に基づき、適切な命名を行うことの出来る<span style="color:red">新生児命名アドバイス機能</span>がついています。
-			あじあ姓名診断のノウハウを利用し、お子様につける名前、また芸名などの選定にも広くご利用いただけます。これらの機能は無料です。ぜひお試しください。
+			さらに、この姓名うらないでは、苗字に基づき、優れた名まえを自動で選ぶうことの出来る<span style="color:red">新生児命名アドバイス機能</span>までついています。
+			あじあ姓名うらないのノウハウを利用し、赤ちゃんにつける名前、また芸名などの選定、DQNネームの解明など、ご活用ください。これらの機能は無料です。ぜひお試しください。
 			</strong>
 			</p>
-			<h2>あじあ姓名診断API準備中</h2>
+			<h2>あじあ姓名うらないAPI準備中</h2>
 			<p>
-				あじあ姓名診断をコンピューターからご利用いただけるAPIを準備中です。Twitterアプリ・facebookアプリなど幅広くご利用いただけるよう考えております。
+				あじあ姓名うらないをコンピューターからご利用いただけるAPIを準備中です。Twitterアプリ・facebookアプリなど幅広くご利用いただけるよう考えております。
 				ご興味のある方は<a href="#query">お問い合わせフォーム</a>からお問い合わせください。
 			</p>
 		</div>
@@ -157,7 +157,7 @@ if ($kantei) {
 ?>
 		<div data-role="page" id="kantei" data-theme="a">
 			<div data-role="header">
-				<h1>あじあ姓名診断 <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+				<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
 				<a href="./#top" data-icon="home" data-ajax="false">ホーム</a>
 				<a href="./#query" data-icon="mail">問い合わせ</a>
 			</div><!-- /header -->
@@ -217,7 +217,7 @@ if ($kantei) {
 ?>
 			<div data-role='footer' data-position='fixed'>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<!-- あじあ姓名診断 -->
+				<!-- あじあ姓名うらない -->
 				<ins class="adsbygoogle"
 				     style="display:inline-block;width:320px;height:100px"
 				     data-ad-client="ca-pub-0413343113584981"
@@ -230,7 +230,7 @@ if ($kantei) {
 	</div>
 	<div data-role="page" id="query" data-theme="a">
 		<div data-role="header">
-			<h1>あじあ姓名診断 <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+			<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
 			<a href="#top" data-icon="home">ホーム</a>
 			<a href="#query" data-icon="mail" class="ui-disabled">問い合わせ</a>
 		</div>
@@ -248,7 +248,7 @@ if ($kantei) {
 		</div>
 		<div data-role='footer' data-position='fixed'>
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- あじあ姓名診断 -->
+			<!-- あじあ姓名うらない -->
 			<ins class="adsbygoogle"
 			     style="display:inline-block;width:320px;height:100px"
 			     data-ad-client="ca-pub-0413343113584981"
@@ -299,7 +299,7 @@ if ($kantei) {
 			</div>
 		<div data-role='footer' data-position='fixed'>
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- あじあ姓名診断 -->
+			<!-- あじあ姓名うらない -->
 			<ins class="adsbygoogle"
 			     style="display:inline-block;width:320px;height:100px"
 			     data-ad-client="ca-pub-0413343113584981"
