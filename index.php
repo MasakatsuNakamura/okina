@@ -101,35 +101,37 @@ if ($kantei) {
 			//]]>
 			</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
 			</div>
-			<h2>鑑定入力</h2>
+			<h2>名まえと性別を入力してね！</h2>
 			<form data-ajax="false" method="GET">
 				<div data-role="fieldcontain">
-					<label for="sei">姓</label>
+					<label for="sei">みょう字</label>
 					<input type="text" name="sei" id="sei" />
 				</div>
 				<div data-role="fieldcontain">
-					<label for="mei">名</label>
+					<label for="mei">名まえ</label>
 					<input type="text" name="mei" id="mei" />
 				</div>
 				<div data-role="fieldcontain">
 					<label for="sex">性別</label>
 					<fieldset name="sex" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
 						<input type="radio" name="sex" id="sex-2" value="F" checked="checked" />
-						<label for="sex-2">女性</label>
-						<input type="radio" name="sex" id="sex-1" value="M"/>
-						<label for="sex-1">男性</label>
-					</fieldset>
+						<label for="sex-2">おんな</label>
+						<input type="radio" name="sex" id="sex-1" value="M" />
+						<label for="sex-1">おとこ</label>
+						<input type="radio" name="sex" id="sex-3" value="M" />
+						<label for="sex-3">それいがい</label>
+						</fieldset>
 				</div>
-				<div data-role="fieldcontain">
+<!--			<div data-role="fieldcontain">
 					<label for="marry">結婚</label>
 					<fieldset name="marry" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
 						<input type="radio" name="marry" id="marry-1" value="yes" />
 						<label for="marry-1">している</label>
-						<input type="radio" name="marry" id="marry-2" value="no"  checked="checked" />
+					<input type="radio" name="marry" id="marry-2" value="no"  checked="checked" />
 						<label for="marry-2">していない</label>
 					</fieldset>
-				</div>
-				<input type="submit" value="鑑定" data-role="button" />
+				</div>  -->
+				<input type="submit" value="うらなう！" data-role="button" />
 			</form>
 			<p>
 			<strong>
