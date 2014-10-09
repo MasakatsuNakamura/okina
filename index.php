@@ -83,10 +83,10 @@ if ($kantei) {
 ?>
 	<div data-role="page" id="top" data-theme="a">
 		<div data-role="header">
+			<h1>あじあ姓名診断 <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
 			<a href="#top" data-icon="home" class='ui-disabled'>ホーム</a>
 			<a href="#query" data-icon="mail">問い合わせ</a>
-			<h1>あじあ姓名診断 <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
-					</div>
+		</div>
 		<div data-role="content">
 			<h2>あじあ姓名診断へようこそ！ <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
 			<div class="ninja_onebutton">
@@ -157,7 +157,7 @@ if ($kantei) {
 ?>
 		<div data-role="page" id="kantei" data-theme="a">
 			<div data-role="header">
-				<h1>あじあ姓名診断<a href="./#mit-lisense">Copyright &copy; 2014 だいぶつ</a></h1>
+				<h1>あじあ姓名診断 <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
 				<a href="./#top" data-icon="home" data-ajax="false">ホーム</a>
 				<a href="./#query" data-icon="mail">問い合わせ</a>
 			</div><!-- /header -->
@@ -191,7 +191,7 @@ if ($kantei) {
 					<div><?php echo $seimei->jinkaku ?>画<br><?php echo $seimei->mongon('jinkaku') ?></div>
 				</div>
 				<div data-role="collapsible" data-collapsed="false">
-					<h2>対人運（外画）　<span class="ui-mini">対人関係および、家族・夫婦関係、友達関係など、外交面に現れてきます。</span></h2>
+					<h2>対人運（外画）　<span class="ui-mini">対人関係および、家族・夫婦関係、友達関係など、外交面をあらわします。</span></h2>
 					<div><?php echo $seimei->gaikaku ?>画<br><?php echo $seimei->mongon('gaikaku') ?></div>
 				</div>
 				<div data-role="collapsible" data-collapsed="false">
@@ -199,12 +199,12 @@ if ($kantei) {
 					<div><?php echo $seimei->jinshimo . "画:" . $seimei->mongon('seikaku') ?></div>
 				</div>
 				<div data-role="collapsible" data-collapsed="false">
-					<h2>健康運（陰陽５行３才の組み合わせにより算出）<span class="ui-mini">吉数揃いの姓名も、健康に恵まれなければ活かされません。他の画数の参考にしてください。</span></h2>
+					<h2>健康運（陰陽５行３才の組み合わせにより算出）<span class="ui-mini">吉数揃いの姓名も、健康に恵まれなければ活かされません。他の画数と合わせて判断してください。</span></h2>
 					<div><?php echo $seimei->mongon('kenkou') ?></div>
 				</div>
 				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<div data-role="collapsible" data-collapsed="false">
-					<h2>基礎運（天画）<span class="ui-mini">幼少年期の運勢を支配し、青年期まで強く作用します。</span></h2>
+					<h2>基礎運（天画）<span class="ui-mini">幼少年期の運勢を支配し、青年期まで強くあらわれます。</span></h2>
 					<div><?php echo $seimei->chikaku ?>画：<?php echo $seimei->mongon('chikaku') ?></p>
 					</div>
 				</div>
@@ -230,9 +230,9 @@ if ($kantei) {
 	</div>
 	<div data-role="page" id="query" data-theme="a">
 		<div data-role="header">
+			<h1>あじあ姓名診断 <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
 			<a href="#top" data-icon="home">ホーム</a>
 			<a href="#query" data-icon="mail" class="ui-disabled">問い合わせ</a>
-			<h1><a href="#mit-lisense" class="ui-mini">Copyright &copy; 2014 だいぶつ</a></h1>
 		</div>
 		<div data-role='content'>
 			<h2>お問い合わせフォーム</h2>
