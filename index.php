@@ -22,8 +22,7 @@ if (count($_GET) > 0) {
 	$seimei->sei = $_GET['sei'];
 	$seimei->mei = $_GET['mei'];
 	$seimei->sex = $_GET['sex'];
-	$seimei->marry = $_GET['marry'];
-	if (strlen($seimei->sei) > 0 && strlen($seimei->mei) > 0 && ($seimei->sex == 'M' || $seimei->sex == 'F') && ($seimei->marry == 'yes' || $seimei->marry == 'no')) {
+	if (strlen($seimei->sei) > 0 && strlen($seimei->mei) > 0 && ($seimei->sex == 'M' || $seimei->sex == 'F')) {
 		$seimei->shindan();
 		$kantei = false;
 	}
@@ -175,7 +174,7 @@ if ($kantei) {
 				//]]>
 				</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
 				</div>
-				<p>結果をみんなにシェアしましょう！ <span class="fb-share-button" data-href="/?sei=<?php echo urlencode($seimei->sei) . "&mei=" . urlencode($seimei->mei) . "&sex=" . $seimei->sex . "&marry=" . $seimei->marry ?>" data-type="button_count"></span></p>
+				<p>結果をみんなにシェアしましょう！ <span class="fb-share-button" data-href="/?sei=<?php echo urlencode($seimei->sei) . "&mei=" . urlencode($seimei->mei) . "&sex=" . $seimei->sex ?>" data-type="button_count"></span></p>
 				<div data-role="collapsible" data-collapsed="false">
 					<h2>【命名例】男の子につけるなら・・・</h2>
 					<div><?php echo $seimei->meimei('M') ?></div>
