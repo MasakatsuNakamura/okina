@@ -16,6 +16,10 @@ $(document).on("pagebeforeshow", "#kantei", function () {
 	});
 });
 
+function chk_email(email) {
+	return(email.match(/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+/));
+}
+
 function kantei(sei, mei, sex, marry) {
 	$.ajax({
 		type: "POST",

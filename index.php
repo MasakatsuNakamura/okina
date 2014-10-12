@@ -37,7 +37,7 @@ if (count($_GET) > 0) {
 				'E-mail:' . $_POST['email'] . PHP_EOL .
 				'Query:' . PHP_EOL . $_POST['query-content']);
 	$response = $sendgrid->send($message);
-	$kantei=false;
+	header('Location: #top');
 }
 
 ?>
