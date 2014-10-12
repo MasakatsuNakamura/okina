@@ -27,8 +27,7 @@ if (count($_GET) > 0) {
 		$kantei = false;
 	}
 } elseif (count($_POST) > 0) {
-	Dotenv::load(__DIR__);
-	$sendgrid = new SendGrid(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+	$sendgrid = new SendGrid('app26677709@heroku.com', 'xec1eqoo');
 	$message = new SendGrid\Email();
 	$message->
 		addTo('nakamuramasakatsu+heroku@gmail.com')->
