@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Facebook Login JavaScript Example</title>
+<title>あじあ姓名うらない</title>
 <meta charset="UTF-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 </head>
 <body>
 <script>
@@ -80,8 +81,16 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+		$.ajax({
+			type: "POST",
+			url: "api.php",
+			data: 'sei=' + response.last_name + '&mei=' + response.first_name + '&sex=' + response.gendar,
+			success: function (json) {
+				if (json) {
+					$("#status").html(json['jinkaku-mongon']);
+				}
+			}
+		});
     });
   }
 </script>
