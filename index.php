@@ -6,6 +6,31 @@ if ($_SERVER["SERVER_NAME"] == "okina.herokuapp.com") {
 	header('Content-type: text/html; charset=utf-8;');
 }
 
+// 指定されたサーバー環境変数を取得する
+function getServer($key, $default = null)
+{
+	return (isset($_SERVER[$key])) ? $_SERVER[$key] : $default;
+}
+
+// クライアントのIPアドレスを取得する
+function getClientIp($checkProxy = true)
+{
+	/*
+	 *  プロキシサーバ経由の場合は、プロキシサーバではなく
+	*  接続もとのIPアドレスを取得するために、サーバ変数
+	*  HTTP_CLIENT_IP および HTTP_X_FORWARDED_FOR を取得する。
+	*/
+	if ($checkProxy && getServer('HTTP_CLIENT_IP') != null) {
+		$ip = getServer('HTTP_CLIENT_IP');
+	} else if ($checkProxy && getServer('HTTP_X_FORWARDED_FOR') != null) {
+		$ip = getServer('HTTP_X_FORWARDED_FOR');
+	} else {
+		// プロキシサーバ経由でない場合は、REMOTE_ADDR から取得する
+		$ip = getServer('REMOTE_ADDR');
+	}
+	return $ip;
+}
+
 require 'vendor/autoload.php';
 
 require 'php/seimei.php';
@@ -34,7 +59,7 @@ if (count($_GET) > 0) {
 		setFrom($_POST['email'])->
 		setSubject('[あじあ姓名しんだん]' . $_POST['subject'])->
 		setText('あじあ姓名しんだんに問い合わせがありました。' . PHP_EOL . PHP_EOL . 
-				'IPアドレス:' . $_SERVER["REMOTE_ADDR"] . PHP_EOL . 
+				'IPアドレス:' . getClientIp() . '(' . gethostbyaddr(getClientIp()) . ')' . PHP_EOL . 
 				'サーバー時刻:' . date('c') . PHP_EOL . 
 				'E-mail:' . $_POST['email'] . PHP_EOL .
 				'問い合わせ内容:' . PHP_EOL . $_POST['query-content']);
