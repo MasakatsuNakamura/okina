@@ -234,7 +234,7 @@ if ($kantei) {
 					<label for="email">メールアドレス</label>
 					<input type="text" name="email">
 					<label for="subject">タイトル</label>
-					<input type="text" name="email">
+					<input type="text" name="subject">
 					<label for="query-content">お問い合わせ内容</label>
 					<textarea name="query-content" id="query-content"></textarea>
 					<input type="submit" value="投稿">
