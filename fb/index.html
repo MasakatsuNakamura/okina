@@ -46,7 +46,8 @@
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.1' // use version 2.1
+    version    : 'v2.1', // use version 2.1
+    fb_locale  : 'ja_JP'
   });
 
   // Now that we've initialized the JavaScript SDK, we call 
@@ -80,7 +81,7 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me&fb_locale=ja_JP', function(response) {
+    FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
           '<span id="sei">' + response.last_name + '</span> <span id="mei">' + response.first_name + '</span>さん(<span id="sex">' + (response.gender == 'female' ? 'F' : 'M') + '</span>)';
@@ -109,12 +110,12 @@
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
-
+<h1>あじあ姓名うらない</h1>
 <div id="status">
 </div>
 <input type="button" value="鑑定" onClick="kantei()" />
 <div id="kantei">
 </div>
-
+Copyright &copy;だいぶつ
 </body>
 </html>
