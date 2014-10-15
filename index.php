@@ -32,10 +32,12 @@ if (count($_GET) > 0) {
 	$message->
 		addTo('nakamuramasakatsu+heroku@gmail.com')->
 		setFrom($_POST['email'])->
-		setSubject('Query from www.seimei.asia')->
-		setText('IP Address:' . $_SERVER["REMOTE_ADDR"] . PHP_EOL . 
+		setSubject('[あじあ姓名しんだん]' . $_POST['subject'])->
+		setText('あじあ姓名しんだんに問い合わせがありました。' . PHP_EOL . PHP_EOL . 
+				'IPアドレス:' . $_SERVER["REMOTE_ADDR"] . PHP_EOL . 
+				'サーバー時刻:' . date('c') . PHP_EOL . 
 				'E-mail:' . $_POST['email'] . PHP_EOL .
-				'Query:' . PHP_EOL . $_POST['query-content']);
+				'問い合わせ内容:' . PHP_EOL . $_POST['query-content']);
 	$response = $sendgrid->send($message);
 	header('Location: #top');
 }
@@ -49,7 +51,7 @@ if (count($_GET) > 0) {
 	"あじあ姓名うらないへようこそ！赤ちゃんの名まえをつけたり（選名）、じぶんの運勢をうらなったり、どしどし使ってね！" :
 	$seimei->sei . " " . $seimei->mei . "さんの運勢 主運" . $seimei->jinkaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('jinkaku')) .
 	"対人運・社交運:" . $seimei->gaikaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('gaikaku')) . "・・・" ?>">
-<meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 占い 姓名判断 姓名うらない 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
+<meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 占い 姓名判断 姓名うらない 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 DQNネーム 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>あじあ姓名うらない</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -120,17 +122,8 @@ if ($kantei) {
 						<label for="sex-1">おとこ</label>
 						<input type="radio" name="sex" id="sex-3" value="M" />
 						<label for="sex-3">それいがい</label>
-						</fieldset>
-				</div>
-<!--			<div data-role="fieldcontain">
-					<label for="marry">結婚</label>
-					<fieldset name="marry" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-						<input type="radio" name="marry" id="marry-1" value="yes" />
-						<label for="marry-1">している</label>
-					<input type="radio" name="marry" id="marry-2" value="no"  checked="checked" />
-						<label for="marry-2">していない</label>
 					</fieldset>
-				</div>  -->
+				</div>
 				<input type="submit" value="うらなう！" data-role="button" />
 			</form>
 			<p>
@@ -143,7 +136,7 @@ if ($kantei) {
 			<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>らは多くの人々の名まえを調べ、その人の運命との関連を体系づけました。<br>
 			このサイトでは<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>の弟子、山本哲生氏が熊崎式姓名学に基づいて編纂した本を参考にして、結果を表示しています。<br>
 			さらに、この姓名うらないでは、苗字にあわせて優れた名まえを自動で選ぶうことの出来る<span style="color:red">新生児命名アドバイス機能</span>までついています。
-			あじあ姓名うらないのノウハウを利用し、赤ちゃんにつける名前、また芸名などの選定、DQNネームの解明など、ご活用ください。これらの機能は無料です。ぜひお試しください。
+			あじあ姓名うらないのノウハウを利用し、赤ちゃんにつける名前、また芸名などの選定、DQNネームの改名など、ご活用ください。これらの機能は無料です。ぜひお試しください。
 			</strong>
 			</p>
 			<h2>あじあ姓名うらないAPI準備中</h2>
@@ -239,6 +232,8 @@ if ($kantei) {
 			<div data-role="fieldcontain">
 				<form data-ajax="false" method="POST">
 					<label for="email">メールアドレス</label>
+					<input type="text" name="email">
+					<label for="subject">タイトル</label>
 					<input type="text" name="email">
 					<label for="query-content">お問い合わせ内容</label>
 					<textarea name="query-content" id="query-content"></textarea>
