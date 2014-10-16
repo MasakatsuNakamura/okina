@@ -53,14 +53,10 @@ if (hash("haval160,4", $_POST["authcode"]) == $_POST["authcode-hash"]) {
 				'サブジェクト: ' . $_POST['subject'] . PHP_EOL . PHP_EOL .
 				'問い合わせ内容:' . PHP_EOL . $_POST['query-content']);
 	$response = $sendgrid->send($message);
-?>
-問い合わせを送信しました。
-</body>
-</html>
-<?php
+	echo '問い合わせを送信しました。';
 } else {
+	echo '認証コードが違います。';
+}
 ?>
-<body>
-認証コードが違います。
 </body>
 </html>
