@@ -84,7 +84,7 @@ if (count($_GET) > 0) {
 	</script>
 </head>
 
-<body> 
+<body data-ajax="false">
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
@@ -232,6 +232,38 @@ if ($kantei) {
 				(adsbygoogle = window.adsbygoogle || []).push({});
 				</script>
 			</div>
+		</div>
+	</div>
+	<div data-role="page" id="query" data-theme="a">
+		<div data-role="header">
+			<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+			<a href="#top" data-icon="home">ホーム</a>
+			<a href="#query" data-icon="mail" class="ui-disabled">問い合わせ</a>
+		</div>
+		<div data-role='content'>
+			<h2>お問い合わせフォーム</h2>
+			<div data-role="fieldcontain">
+				<form action="mail-confirm.php" data-ajax="false" method="POST">
+					<label for="email">メールアドレス</label>
+					<input type="text" name="email">
+					<label for="subject">タイトル</label>
+					<input type="text" name="subject">
+					<label for="query-content">お問い合わせ内容</label>
+					<textarea name="query-content" id="query-content"></textarea>
+					<input type="submit" value="投稿">
+				</form>
+			</div>
+		</div>
+		<div data-role='footer' data-position='fixed'>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- あじあ姓名うらない -->
+			<ins class="adsbygoogle"
+			     style="display:inline-block;width:320px;height:100px"
+			     data-ad-client="ca-pub-0413343113584981"
+			     data-ad-slot="6868632444"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
 		</div>
 	</div>
 	<!-- 著作権表示 -->
