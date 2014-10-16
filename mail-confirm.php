@@ -6,6 +6,8 @@ if ($_SERVER["SERVER_NAME"] == "okina.herokuapp.com") {
 	header('Content-type: text/html; charset=utf-8;');
 }
 
+date_default_timezone_set('Asia/Tokyo');
+
 require 'vendor/autoload.php';
 
 $authcode = rand(10000, 99999);

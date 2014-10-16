@@ -31,8 +31,9 @@ function getClientIp($checkProxy = true)
 	return $ip;
 }
 
+date_default_timezone_set('Asia/Tokyo');
+
 require 'vendor/autoload.php';
-date_default_timezone_set('JST');
 ?>
 <html>
 <head>
