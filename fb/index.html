@@ -81,10 +81,10 @@
 		  // successful.  See statusChangeCallback() for when this call is made.
 		  function testAPI() {
 		    console.log('Welcome!  Fetching your information.... ');
-		    FB.api('/me', function(response) {
+		    FB.api('/fql?q=SELECT last_name, first_name, gender FROM user WHERE uid = me()&locale=ja_JP', function(response) {
 		      console.log('Successful login for: ' + response.name);
 		      document.getElementById('status').innerHTML =
-		          '<span id="sei">' + response.last_name + '</span> <span id="mei">' + response.first_name + '</span>さん(<span id="sex">' + (response.gender == 'female' ? 'F' : 'M') + ' ' + response.locale + '</span>)';
+		          '<span id="sei">' + response.last_name + '</span> <span id="mei">' + response.first_name + '</span>さん(<span id="sex">' + response.gender + '</span> ' + response.locale';
 		    });
 		  }
 		  
