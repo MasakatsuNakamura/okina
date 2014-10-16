@@ -42,9 +42,10 @@ if (hash("haval160,4", $_POST["authcode"]) == $_POST["authcode-hash"]) {
 		setFrom($_POST['email'])->
 		setSubject('[あじあ姓名うらない]' . $_POST['subject'])->
 		setText('あじあ姓名うらないに問い合わせがありました。' . PHP_EOL . PHP_EOL . 
-				'IPアドレス:' . getClientIp() . PHP_EOL . 
-				'サーバー時刻:' . date('c') . PHP_EOL . 
-				'E-mail:' . $_POST['email'] . PHP_EOL .
+				'IPアドレス: ' . getClientIp() . PHP_EOL . 
+				'サーバー時刻: ' . date('c') . PHP_EOL . PHP_EOL .
+				'メールアドレス: ' . $_POST['email'] . PHP_EOL .
+				'サブジェクト: ' . $_POST['subject'] . PHP_EOL . PHP_EOL .
 				'問い合わせ内容:' . PHP_EOL . $_POST['query-content']);
 	$response = $sendgrid->send($message);
 }
