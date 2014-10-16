@@ -47,22 +47,23 @@ $seimei->mei = $_POST['mei'];
 $seimei->sex = $_POST['sex'];
 $seimei->shindan();
 
-echo json_encode(Array(
-	'tenkaku' => $seimei->tenkaku,
-	'jinkaku' => $seimei->jinkaku,
-	'chikaku' => $seimei->chikaku,
-	'gaikaku' => $seimei->gaikaku,
-	'soukaku' => $seimei->soukaku,
-	'seikaku' => $seimei->seikaku,
-	'kenkou' => $seimei->kenkou,
-	'error' => $seimei->error,
-	'jinshimo' => $seimei->jinshimo,
-	'tenkaku-mongon' => $seimei->mongon('tenkaku'),
-	'chikaku-mongon' => $seimei->mongon('chikaku'),
-	'gaikaku-mongon' => $seimei->mongon('gaikaku'),
-	'soukaku-mongon' => $seimei->mongon('soukaku'),
-	'jinkaku-mongon' => $seimei->mongon('jinkaku'),
-	'seikaku-mongon' => $seimei->mongon('seikaku'),
-	'ip' => getClientIp()
-), JSON_PRETTY_PRINT);
-
+echo json_encode(
+	Array(
+		'tenkaku' => $seimei->tenkaku,
+		'jinkaku' => $seimei->jinkaku,
+		'chikaku' => $seimei->chikaku,
+		'gaikaku' => $seimei->gaikaku,
+		'soukaku' => $seimei->soukaku,
+		'seikaku' => $seimei->seikaku,
+		'kenkou' => $seimei->kenkou,
+		'error' => $seimei->error,
+		'jinshimo' => $seimei->jinshimo,
+		'tenkaku-mongon' => $seimei->mongon('tenkaku'),
+		'chikaku-mongon' => $seimei->mongon('chikaku'),
+		'gaikaku-mongon' => $seimei->mongon('gaikaku'),
+		'soukaku-mongon' => $seimei->mongon('soukaku'),
+		'jinkaku-mongon' => $seimei->mongon('jinkaku'),
+		'seikaku-mongon' => $seimei->mongon('seikaku'),
+		'ip' => getClientIp()
+	)
+);

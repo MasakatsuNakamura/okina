@@ -91,7 +91,7 @@
 		  function kantei() {
 			$.ajax({
 				type: "POST",
-				url: "api.php",
+				url: "/fb/api.php",
 				data: 'sei=' + $("#sei") + '&mei=' + $("#mei") + '&sex=' + ($("#sex") == '女性' ? 'F' : 'M'),
 				success: function (json) {
 					if (json) {
@@ -112,9 +112,6 @@
 		</fb:login-button>
 		<h1>あじあ姓名うらない</h1>
 		<div id="status">
-		</div>
-		<input type="button" value="鑑定" onClick="kantei()" />
-		<div id="kantei">
 		</div>
 		Copyright &copy;だいぶつ
 	</body>
