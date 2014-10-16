@@ -33,7 +33,12 @@ function getClientIp($checkProxy = true)
 
 require 'vendor/autoload.php';
 date_default_timezone_set('JST');
-
+?>
+<html>
+<head>
+<meta http-equiv="refresh" content="5;URL=/"></head>
+<body>
+<?php
 if (hash("haval160,4", $_POST["authcode"]) == $_POST["authcode-hash"]) {
 	$sendgrid = new SendGrid('app26677709@heroku.com', 'xec1eqoo');
 	$message = new SendGrid\Email();
@@ -48,6 +53,14 @@ if (hash("haval160,4", $_POST["authcode"]) == $_POST["authcode-hash"]) {
 				'サブジェクト: ' . $_POST['subject'] . PHP_EOL . PHP_EOL .
 				'問い合わせ内容:' . PHP_EOL . $_POST['query-content']);
 	$response = $sendgrid->send($message);
-}
-header('Location: /');
 ?>
+問い合わせを送信しました。
+</body>
+</html>
+<?php
+} else {
+?>
+<body>
+認証コードが違います。
+</body>
+</html>

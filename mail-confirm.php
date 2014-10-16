@@ -35,11 +35,11 @@ $authcode = rand(10000, 99999);
 	
 	</script>
 </head>
-<body data-ajax="false">
+<body>
 	<div data-role="page" id="top" data-theme="a">
 		<div data-role="header">
 			<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
-			<a href="/#top" data-icon="home">ホーム</a>
+			<a href="/#top" data-icon="home" data-ajax="false">ホーム</a>
 			<a href="" data-icon="mail" class="ui-disabled">問い合わせ</a>
 		</div>
 		<div data-role='content'>
