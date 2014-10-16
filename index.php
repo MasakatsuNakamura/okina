@@ -8,31 +8,6 @@ if ($_SERVER["SERVER_NAME"] == "okina.herokuapp.com") {
 
 date_default_timezone_set('JST');
 
-// 指定されたサーバー環境変数を取得する
-function getServer($key, $default = null)
-{
-	return (isset($_SERVER[$key])) ? $_SERVER[$key] : $default;
-}
-
-// クライアントのIPアドレスを取得する
-function getClientIp($checkProxy = true)
-{
-	/*
-	 *  プロキシサーバ経由の場合は、プロキシサーバではなく
-	*  接続もとのIPアドレスを取得するために、サーバ変数
-	*  HTTP_CLIENT_IP および HTTP_X_FORWARDED_FOR を取得する。
-	*/
-	if ($checkProxy && getServer('HTTP_CLIENT_IP') != null) {
-		$ip = getServer('HTTP_CLIENT_IP');
-	} else if ($checkProxy && getServer('HTTP_X_FORWARDED_FOR') != null) {
-		$ip = getServer('HTTP_X_FORWARDED_FOR');
-	} else {
-		// プロキシサーバ経由でない場合は、REMOTE_ADDR から取得する
-		$ip = getServer('REMOTE_ADDR');
-	}
-	return $ip;
-}
-
 require 'vendor/autoload.php';
 
 require 'php/seimei.php';

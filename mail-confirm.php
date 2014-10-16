@@ -14,7 +14,7 @@ $message = new SendGrid\Email();
 $message->
 	addTo($_POST['email'])->
 	setFrom('info@seimei.asia')->
-	setSubject('[あじあ姓名うらない]認証コード' . $_POST['subject'])->
+	setSubject('[あじあ姓名うらない]認証コード')->
 	setText('下記の認証コードをWeb画面に入力してください。' . PHP_EOL . PHP_EOL . 
 			'　認証コード: ' . $authcode . PHP_EOL . PHP_EOL . 
 			'このメールアドレスは送信専用です。このメールに返信しても届きませんのでご注意ください。' . PHP_EOL . PHP_EOL .
@@ -23,6 +23,7 @@ $message->
 			'http://www.seimei.asia/'
 	);
 $response = $sendgrid->send($message);
+header('Location: #top');
 ?>
 <html>
 <head>
@@ -53,7 +54,7 @@ $response = $sendgrid->send($message);
 	</script>
 </head>
 <body data-ajax="false">
-	<div data-role="page" id="query-confirm" data-theme="a">
+	<div data-role="page" id="top" data-theme="a">
 		<div data-role="header">
 			<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
 			<a href="/#top" data-icon="home">ホーム</a>
