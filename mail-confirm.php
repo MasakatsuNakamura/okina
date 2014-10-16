@@ -8,22 +8,7 @@ if ($_SERVER["SERVER_NAME"] == "okina.herokuapp.com") {
 
 require 'vendor/autoload.php';
 
-$sendgrid = new SendGrid('app26677709@heroku.com', 'xec1eqoo');
 $authcode = rand(10000, 99999);
-$message = new SendGrid\Email();
-$message->
-	addTo($_POST['email'])->
-	setFrom('info@seimei.asia')->
-	setSubject('[あじあ姓名うらない]認証コード')->
-	setText('下記の認証コードをWeb画面に入力してください。' . PHP_EOL . PHP_EOL . 
-			'　認証コード: ' . $authcode . PHP_EOL . PHP_EOL . 
-			'このメールアドレスは送信専用です。このメールに返信しても届きませんのでご注意ください。' . PHP_EOL . PHP_EOL .
-			'--' . PHP_EOL .
-			'あじあ姓名うらない' . PHP_EOL .
-			'http://www.seimei.asia/'
-	);
-$response = $sendgrid->send($message);
-header('Location: #top');
 ?>
 <html>
 <head>
@@ -62,6 +47,7 @@ header('Location: #top');
 		</div>
 		<div data-role='content'>
 			<h2>お問い合わせフォーム(確認)</h2>
+			<p>なりすましを防ぐため、認証コードの入力をお願いします。認証コードはメールで送信されます。</p>
 			<div data-role="fieldcontain">
 				<form action="mail.php" data-ajax="false" method="POST">
 					<label for="email">メールアドレス</label>
@@ -92,3 +78,19 @@ header('Location: #top');
 </body>
 
 </html>
+<?php
+$sendgrid = new SendGrid('app26677709@heroku.com', 'xec1eqoo');
+$message = new SendGrid\Email();
+$message->
+	addTo($_POST['email'])->
+	setFrom('info@seimei.asia')->
+	setSubject('[あじあ姓名うらない]認証コード')->
+	setText('下記の認証コードをWeb画面に入力してください。' . PHP_EOL . PHP_EOL . 
+			'　認証コード: ' . $authcode . PHP_EOL . PHP_EOL . 
+			'このメールアドレスは送信専用です。このメールに返信しても届きませんのでご注意ください。' . PHP_EOL . PHP_EOL .
+			'--' . PHP_EOL .
+			'あじあ姓名うらない' . PHP_EOL .
+			'http://www.seimei.asia/'
+	);
+$response = $sendgrid->send($message);
+?>
