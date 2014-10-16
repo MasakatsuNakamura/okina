@@ -84,7 +84,10 @@
 		    FB.api('/me', { locale : 'ja_JP'}, function(response) {
 		      console.log('Successful login for: ' + response.name);
 		      document.getElementById('status').innerHTML =
-		          '<span id="sei">' + response.last_name + '</span> <span id="mei">' + response.first_name + '</span>さん(<span id="sex">' + response.gender + '</span> ' + response.locale;
+					'<span id="sei">' + response.last_name + '</span> ' +
+					'<span id="mei">' + response.first_name + '</span> さん ' +
+					'(<span id="sex">' + response.gender + '</span>)' +
+					'<input type="button" value="鑑定" onClick="kantei()" />';
 		    });
 		  }
 		  
@@ -95,7 +98,7 @@
 				data: 'sei=' + $("#sei") + '&mei=' + $("#mei") + '&sex=' + ($("#sex") == '女性' ? 'F' : 'M'),
 				success: function (json) {
 					if (json) {
-						$("#kantei").html(JSON.stringify(json));
+						$("#status").append('<h2>鑑定結果<h2><p>' + JSON.stringify(json) + '</p>');
 					}
 				}
 			});
@@ -108,11 +111,10 @@
 		  the FB.login() function when clicked.
 		-->
 		
+		<h1>あじあ姓名うらない</h1>
 		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 		</fb:login-button>
-		<h1>あじあ姓名うらない</h1>
-		<div id="status">
-		</div>
+		<div id="status"></div>
 		Copyright &copy;だいぶつ
 	</body>
 </html>
