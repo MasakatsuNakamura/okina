@@ -2,6 +2,9 @@
 if ($_SERVER["SERVER_NAME"] == "okina.herokuapp.com") {
 	header("HTTP/1.1 301 Moved Permanently");
 	header("Location: http://www.seimei.asia" . $_SERVER[REQUEST_URI]);
+} elseif ($_SERVER["SERVER_NAME"] != "www.seimei.asia") {
+	header("HTTP/1.1 400 Bad Request");
+	header("Location: http://www.seimei.asia/");
 } else {
 	header('Content-type: application/json; charset=utf-8;');
 }
