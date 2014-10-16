@@ -84,7 +84,7 @@
 		    FB.api('/me', { locale : 'ja_JP'}, function(response) {
 		      console.log('Successful login for: ' + response.name);
 		      document.getElementById('status').innerHTML =
-		          '<span id="sei">' + response.last_name + '</span> <span id="mei">' + response.first_name + '</span>さん(<span id="sex">' + response.sex + '</span> ' + response.locale;
+		          '<span id="sei">' + response.last_name + '</span> <span id="mei">' + response.first_name + '</span>さん(<span id="sex">' + response.gender + '</span> ' + response.locale;
 		    });
 		  }
 		  
@@ -92,10 +92,10 @@
 			$.ajax({
 				type: "POST",
 				url: "api.php",
-				data: 'sei=' + $("#sei") + '&mei=' + $("#mei") + '&sex=' + $("#sex"),
+				data: 'sei=' + $("#sei") + '&mei=' + $("#mei") + '&sex=' + ($("#sex") == '女性' ? 'F' : 'M'),
 				success: function (json) {
 					if (json) {
-						$("#kantei").html(json['jinkaku-mongon']);
+						$("#kantei").html(JSON.stringify(json));
 					}
 				}
 			});
