@@ -4,7 +4,6 @@ Class Seimei {
 	public $sei;
 	public $mei;
 	public $sex;
-	public $marry;
 	
 	public $tenkaku;
 	public $jinkaku;
@@ -16,11 +15,12 @@ Class Seimei {
 	public $kenkou;
 	
 	public $error;
+
+	public $jinshimo;
 	
 	private $sei1;
 	private $sei2;
 	private $tenshimo;
-	public $jinshimo;
 	private $chishimo;
 	
 	function meimei ($sex) {
@@ -191,12 +191,6 @@ Class Seimei {
 		}
 		if ($this->sex != "M") {
 			$mongon = preg_replace("/\+m.*-m/u", "", $mongon);
-		}
-		if ($this->marry != "yes") {
-			$mongon = preg_replace("/\+k.*-k/u", "", $mongon);
-		}
-		if ($this->marry != "no") {
-			$mongon = preg_replace("/\+u.*-u/u", "", $mongon);
 		}
 		if ($category != "jinkaku") {
 			$mongon = preg_replace("/\+j.*-j/u", "", $mongon);
