@@ -124,7 +124,7 @@ if ($kantei) {
 			<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>らは多くの人々の名まえを調べ、その人の運命との関連を体系づけました。<br>
 			このサイトでは<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>の弟子、山本哲生氏が熊崎式姓名学に基づいて編纂した本を参考にして、結果を表示しています。<br>
 			さらに、この姓名うらないでは、苗字にあわせて優れた名まえを自動で選ぶうことの出来る<span style="color:red">新生児命名アドバイス機能</span>までついています。
-			あじあ姓名うらないのノウハウを利用し、赤ちゃんにつける名前、また芸名などの選定、DQNネームの改名など、ご活用ください。これらの機能は無料です。ぜひお試しください。
+			あじあ姓名うらないのノウハウを利用し、赤ちゃんにつける名前、また芸名などの選定、キラキラネームの改名など、ご活用ください。これらの機能は無料です。ぜひお試しください。
 			</strong>
 			</p>
 			<h2>あじあ姓名うらないAPI準備中</h2>
@@ -158,11 +158,11 @@ if ($kantei) {
 				</div>
 				<p>結果をみんなにシェアしましょう！ <span class="fb-share-button" data-href="/?sei=<?php echo urlencode($seimei->sei) . "&mei=" . urlencode($seimei->mei) . "&sex=" . $seimei->sex ?>" data-type="button_count"></span></p>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>【命名例】男の子につけるなら・・・</h2>
+					<h2>【命名・改名例】男の子につけるなら・・・</h2>
 					<div><?php echo $seimei->meimei('M') ?></div>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>【命名例】女の子につけるなら・・・</h2>
+					<h2>【命名改名例】女の子につけるなら・・・</h2>
 					<div><?php echo $seimei->meimei('F') ?></div>
 				</div>
 				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 (<?php echo $seimei->grand_score() ?>点)</h2>
