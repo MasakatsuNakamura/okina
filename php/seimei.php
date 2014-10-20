@@ -123,6 +123,21 @@ Class Seimei {
 		$this->kenkou = $this->f($this->tenshimo) * 25 + $this->f($this->jinshimo) * 5 + $this->f($this->chishimo);
 	}
 	
+	public function reii_description ($kakusu) {
+		$reii = New Reii();
+		return $reii->mongon[$kakusu][0];
+	}
+
+	public function seikaku_description () {
+		$seikaku = New Seikaku();
+		return $seikaku->mongon[$this->jinshimo][0];
+	}
+
+	public function kenkou_description () {
+		$kenkou = New Kenkou();
+		return $kenkou->mongon[$this->kenkou][0];
+	}
+	
 	// 占い結果(文言)の出力
 	public function mongon ($category) {
 		mb_regex_encoding("UTF-8");
@@ -136,27 +151,27 @@ Class Seimei {
 		switch ($category) {
 
 			case 'tenkaku':
-				$mongon = $reii->mongon[$this->tenkaku];
+				$mongon = $reii->mongon[$this->tenkaku][1];
 				break;
 			
 			case 'chikaku':
-				$mongon = $reii->mongon[$this->chikaku];
+				$mongon = $reii->mongon[$this->chikaku][1];
 				break;
 			
 			case 'gaikaku':
-				$mongon = $reii->mongon[$this->gaikaku];
+				$mongon = $reii->mongon[$this->gaikaku][1];
 				break;
 			
 			case 'soukaku':
-				$mongon = $reii->mongon[$this->soukaku];
+				$mongon = $reii->mongon[$this->soukaku][1];
 				break;
 			
 			case 'jinkaku':
-				$mongon = $reii->mongon[$this->jinkaku];
+				$mongon = $reii->mongon[$this->jinkaku][1];
 				break;
 			
 			case 'seikaku':
-				$mongon = $seikaku->mongon[$this->seikaku];
+				$mongon = $seikaku->mongon[$this->seikaku][1];
 				if ($this->jinkaku != 6) {
 					$mongon = preg_replace("/\+6.*-6/u", "", $mongon);
 				}
@@ -181,7 +196,7 @@ Class Seimei {
 				break;
 			
 			case 'kenkou':
-				$mongon = $kenkou->mongon[$this->kenkou];
+				$mongon = $kenkou->mongon[$this->kenkou][1];
 				break;
 
 			default:

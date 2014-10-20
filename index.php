@@ -157,41 +157,49 @@ if ($kantei) {
 				</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
 				</div>
 				<p>結果をみんなにシェアしましょう！ <span class="fb-share-button" data-href="/?sei=<?php echo urlencode($seimei->sei) . "&mei=" . urlencode($seimei->mei) . "&sex=" . $seimei->sex ?>" data-type="button_count"></span></p>
-				<div data-role="collapsible" data-collapsed="false">
+				<div data-role="collapsible" data-collapsed="true">
 					<h2>【命名例】男の子につけるなら・・・</h2>
 					<div><?php echo $seimei->meimei('M') ?></div>
 				</div>
-				<div data-role="collapsible" data-collapsed="false">
+				<div data-role="collapsible" data-collapsed="true">
 					<h2>【命名例】女の子につけるなら・・・</h2>
 					<div><?php echo $seimei->meimei('F') ?></div>
 				</div>
 				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h2>
-				<p>※ 鑑定文言について、一部を山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
-				<div data-role="collapsible" data-collapsed="false">
-					<h2>人画　<span class="ui-mini">基礎運。一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</span></h2>
-					<div><?php echo $seimei->jinkaku ?>画：<?php echo $seimei->mongon('jinkaku') ?></div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>人画 <?php echo $seimei->jinkaku . "画：" . $seimei->reii_description($seimei->jinkaku) ?></h2>
+					<p style="color:blue;font-weight:bold;">基礎運。一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</p>
+					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('jinkaku') ?></p>
+					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
-				<div data-role="collapsible" data-collapsed="false">
-					<h2>外画　<span class="ui-mini">対人運。対人関係および、家族・夫婦関係、友達関係など、外交面をあらわします。</span></h2>
-					<div><?php echo $seimei->gaikaku ?>画：<?php echo $seimei->mongon('gaikaku') ?></div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>外画 <?php echo $seimei->gaikaku . "画：" . $seimei->reii_description($seimei->gaikaku) ?></h2>
+					<p style="color:blue;font-weight:bold;">対人運。対人関係および、家族・夫婦関係、友達関係など、外交面をあらわします。</p>
+					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('gaikaku') ?></p>
+					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
-				<div data-role="collapsible" data-collapsed="false">
-					<h2>人画の下一桁　<span class="ui-mini">性格。外面から見た性格を現しています。他人から自分がどう見えているのかの参考にしてください。</span></h2>
-					<div><?php echo $seimei->jinshimo . "画:" . $seimei->mongon('seikaku') ?></div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>人画の下一桁 <?php echo $seimei->jinshimo . "画：" . $seimei->seikaku_description() ?></h2>
+					<p style="color:blue;font-weight:bold;">性格。外面から見た性格を現しています。他人から自分がどう見えているのかの参考にしてください。</p>
+					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('seikaku') ?></p>
 				</div>
-				<div data-role="collapsible" data-collapsed="false">
-					<h2>健康運（陰陽５行３才の組み合わせにより算出）<span class="ui-mini">吉数揃いの姓名も、健康に恵まれなければ活かされません。他の画数と合わせて判断してください。</span></h2>
-					<div><?php echo $seimei->mongon('kenkou') ?></div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>健康運 <?php echo $seimei->kenkou_description() ?></h2>
+					<p style="color:blue;font-weight:bold;">陰陽５行３才の組み合わせにより算出します。吉数揃いの姓名も、健康に恵まれなければ活かされません。他の画数と合わせて判断してください。</p>
+					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('kenkou') ?></p>
+					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
-				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<div data-role="collapsible" data-collapsed="false">
-					<h2>天画　<span class="ui-mini">基礎運。幼少年期の運勢を支配し、青年期まで強くあらわれます。</span></h2>
-					<div><?php echo $seimei->chikaku ?>画：<?php echo $seimei->mongon('chikaku') ?></p>
-					</div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>天画 <?php echo $seimei->tenkaku . "画：" . $seimei->reii_description($seimei->tenkaku) ?></h2>
+					<p style="color:blue;font-weight:bold;">基礎運。幼少年期の運勢を支配し、青年期まで強くあらわれます。</p>
+					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('tenkaku') ?></p>
+					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
-				<div data-role="collapsible" data-collapsed="false">
-					<h2>総画　<span class="ui-mini">晩年運。50歳前後からの運勢を支配します。ただし、基礎運の影響も残ります。</span></h2>
-					<div><?php echo $seimei->soukaku ?>画：<?php echo $seimei->mongon('soukaku') ?></div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h2>総画 <?php echo $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) ?></h2>
+					<p style="color:blue;font-weight:bold;">晩年運。50歳前後からの運勢を支配します。ただし、基礎運の影響も残ります。</span><br>
+					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('soukaku') ?></p>
+					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
 <?php
 }
