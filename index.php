@@ -150,39 +150,45 @@ if ($kantei) {
 					<h2>【命名・改名例】女の子につけるなら・・・</h2>
 					<div><?php echo $seimei->meimei('F') ?></div>
 				</div>
-				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 (<?php echo $seimei->grand_score() ?>点)</h2>
+				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 (総合得点：<?php echo $seimei->grand_score() ?>点)</h2>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>人画 <?php echo $seimei->jinkaku . "画:" . $seimei->reii_description($seimei->jinkaku) . " (" . $seimei->score($seimei->jinkaku) . "点)" ?></h2>
+					<h2>人画 <?php echo $seimei->jinkaku . "画 (" . $seimei->score($seimei->jinkaku) . "点)" ?></h2>
 					<p style="color:blue;font-weight:bold;">基礎運。一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</p>
+					<p><?php echo $seimei->jinkaku . "画:" . $seimei->reii_description($seimei->jinkaku) . " (" . $seimei->score($seimei->jinkaku) . "点)" ?></p>
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('jinkaku') ?></p>
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>外画 <?php echo $seimei->gaikaku . "画：" . $seimei->reii_description($seimei->gaikaku) . " (" . $seimei->score($seimei->gaikaku) . "点)" ?></h2>
+					<h2>外画 <?php echo $seimei->gaikaku . "画 (" . $seimei->score($seimei->gaikaku) . "点)" ?></h2>
 					<p style="color:blue;font-weight:bold;">対人運。対人関係および、家族・夫婦関係、友達関係など、外交面をあらわします。</p>
+					<p><?php echo $seimei->gaikaku . "画：" . $seimei->reii_description($seimei->gaikaku) . " (" . $seimei->score($seimei->gaikaku) . "点)" ?></p>
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('gaikaku') ?></p>
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>人画の下一桁 <?php echo $seimei->jinshimo . "画：" . $seimei->seikaku_description() ?></h2>
+					<h2>人画の下一桁 <?php echo $seimei->jinshimo . "画" ?></h2>
 					<p style="color:blue;font-weight:bold;">性格。外面から見た性格を現しています。他人から自分がどう見えているのかの参考にしてください。</p>
+					<p><?php echo $seimei->jinshimo . "画：" . $seimei->seikaku_description() ?></p>
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('seikaku') ?></p>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>健康運 <?php echo $seimei->kenkou_description() ?></h2>
-					<p style="color:blue;font-weight:bold;">陰陽５行３才の組み合わせにより算出します。吉数揃いの姓名も、健康に恵まれなければ活かされません。他の画数と合わせて判断してください。</p>
+					<h2>健康運 (<?php echo ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)] ?>)</h2>
+					<p style="color:blue;font-weight:bold;">健康運は三才の配置により決定します。吉数揃いの姓名も、健康に恵まれなければ活かされません。他の画数と合わせて判断してください。</p>
+					<p>三才の配置：<?php echo mb_substr($seimei->kenkou_description(), 0, 5) ?></p>
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('kenkou') ?></p>
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>天画 <?php echo $seimei->tenkaku . "画：" . $seimei->reii_description($seimei->tenkaku) . " (" . $seimei->score($seimei->tenkaku) . "点)" ?></h2>
+					<h2>天画 <?php echo $seimei->tenkaku . "画 (" . $seimei->score($seimei->tenkaku) . "点)" ?></h2>
 					<p style="color:blue;font-weight:bold;">基礎運。幼少年期の運勢を支配し、青年期まで強くあらわれます。</p>
+					<p><?php echo $seimei->tenkaku . "画：" . $seimei->reii_description($seimei->tenkaku) . " (" . $seimei->score($seimei->tenkaku) . "点)" ?></p>
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('tenkaku') ?></p>
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>総画 <?php echo $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) . " (" . $seimei->score($seimei->soukaku) . "点)" ?></h2>
+					<h2>総画 <?php echo $seimei->soukaku . "画 (" . $seimei->score($seimei->soukaku) . "点)" ?></h2>
 					<p style="color:blue;font-weight:bold;">晩年運。50歳前後からの運勢を支配します。ただし、基礎運の影響も残ります。</span><br>
+					<p><?php echo $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) . " (" . $seimei->score($seimei->soukaku) . "点)" ?></p>
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('soukaku') ?></p>
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
@@ -208,7 +214,7 @@ if ($kantei) {
 		<div data-role="header">
 			<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
 			<a href="#top" data-icon="home">ホーム</a>
-			<a href="#query" data-icon="mail" class="ui-disabled">改名について</a>
+			<a href="#query" data-icon="mail">改名について</a>
 		</div>
 		<div data-role='content'>
 			<h2>改名について</h2>
@@ -217,7 +223,8 @@ if ($kantei) {
 				その名前は改名できます。<br>
 				名前の変更には、家庭裁判所に対して「名の変更許可の申し立て」を行います。<br>
 				これには「正当な事由」が必要とされていますが、「珍奇な名、外国人に紛らわしい名又は難解、難読の文字を用いた名で社会生活上甚だしく支障のあること」という要件を満たせば「正当な事由」にあたるという、最高裁事務局の見解があります。<br>
-				さあ、「あじあ姓名うらない」で改名にチャレンジしてみてください。
+				さあ、「<a href="#top">あじあ姓名うらない</a>」で改名にチャレンジしてみてください。
+				もしいい名前が見つからなかった場合、「<a href="#query">問い合わせフォーム</a>」からお問い合わせください。
 			</p>
 		</div>
 		<div data-role='footer' data-position='fixed'>
@@ -237,7 +244,7 @@ if ($kantei) {
 		<div data-role="header">
 			<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
 			<a href="#top" data-icon="home">ホーム</a>
-			<a href="#query" data-icon="mail" class="ui-disabled">あじあ姓名うらないについて</a>
+			<a href="#query" data-icon="mail">あじあ姓名うらないについて</a>
 		</div>
 		<div data-role='content'>
 			<h2>あじあ姓名うらないについて</h2>
