@@ -37,7 +37,7 @@ require 'vendor/autoload.php';
 ?>
 <html>
 <head>
-<meta http-equiv="refresh" content="5;URL=/"></head>
+<meta http-equiv="refresh" content="3;URL=/"></head>
 <body>
 <?php
 if (hash("haval160,4", $_POST["authcode"]) == $_POST["authcode-hash"]) {

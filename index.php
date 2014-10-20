@@ -36,8 +36,8 @@ if (count($_GET) > 0) {
 <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> 
 <meta name="description" content="<?php echo $kantei ?
 	"あじあ姓名うらないへようこそ！赤ちゃんの名まえをつけたり（選名）、キラキラネームの改名案を探したり、じぶんの運勢をうらなうなど、どしどし使ってね！" :
-	$seimei->sei . " " . $seimei->mei . "さんの運勢 主運" . $seimei->jinkaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('jinkaku')) .
-	"対人運・社交運:" . $seimei->gaikaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('gaikaku')) . "・・・" ?>">
+	$seimei->sei . " " . $seimei->mei . "さんの運勢 人画" . $seimei->jinkaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('jinkaku')) .
+	"外画:" . $seimei->gaikaku . "画 " . preg_replace("/<[^>]*>/","", $seimei->mongon('gaikaku')) . "…" ?>">
 <meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 占い 姓名判断 姓名うらない 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 DQNネーム キラキラネーム 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>あじあ姓名うらない</title>
@@ -52,10 +52,9 @@ if (count($_GET) > 0) {
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-	
 	  ga('create', 'UA-26314420-4', 'auto');
+	  ga('require', 'displayfeatures');
 	  ga('send', 'pageview');
-	
 	</script>
 </head>
 
@@ -125,24 +124,12 @@ if ($kantei) {
 ?>
 		<div data-role="page" id="kantei" data-theme="a">
 			<div data-role="header">
-				<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+				<h1>あじあ姓名うらない</h1>
 				<a href="./#top" data-icon="home" data-ajax="false">ホーム</a>
 				<a href="./#query" data-icon="mail">問い合わせ</a>
 			</div><!-- /header -->
 			<div data-role="content">
 				<h2><?php echo $seimei->sei ?>さんの子どもに名前を付けるなら・・・</h2>
-				<div class="ninja_onebutton">
-				<script type="text/javascript">
-				//<![CDATA[
-				(function(d){
-				if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6)=='undefined'){
-				    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/0f8b16741da01b4bf2d81552e11cc4d6'><\/sc"+"ript>");
-				}else{
-				    window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6.ONETAGButton_Load();}
-				})(document);
-				//]]>
-				</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
-				</div>
 				<p>結果をみんなにシェアしましょう！ <span class="fb-share-button" data-href="/?sei=<?php echo urlencode($seimei->sei) . "&mei=" . urlencode($seimei->mei) . "&sex=" . $seimei->sex ?>" data-type="button_count"></span></p>
 				<div data-role="collapsible" data-collapsed="true">
 					<h2>【命名・改名例】男の子につけるなら・・・</h2>
@@ -194,6 +181,18 @@ if ($kantei) {
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('soukaku') ?></p>
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
+			</div>
+			<div class="ninja_onebutton">
+			<script type="text/javascript">
+			//<![CDATA[
+			(function(d){
+			if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6)=='undefined'){
+			    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/0f8b16741da01b4bf2d81552e11cc4d6'><\/sc"+"ript>");
+			}else{
+			    window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6.ONETAGButton_Load();}
+			})(document);
+			//]]>
+			</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
 			</div>
 <?php
 }
