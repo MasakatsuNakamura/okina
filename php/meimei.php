@@ -13,7 +13,7 @@ Class Meimei
 				if (array_key_exists($newname[$sex][$i] . '-' . $sex, $this->meimei)) {
 					$name = $this->meimei[$newname[$sex][$i] . '-' . $sex];
 					foreach ($name as $myname) {
-						array_push($ret, "<a href='?sei=" . $sei . "&mei=" . $myname[0] . "&sex=" . $sex . "&marry=no' data-ajax='false'>" . $myname[0] . "</a>(" . $myname[1] . ")");
+						array_push($ret, "<a href='?sei=" . $sei . "&mei=" . $myname[0] . "&sex=" . $sex . "' data-ajax='false'>" . $myname[0] . "</a>(" . $myname[1] . ")");
 					}
 				}
 			}
