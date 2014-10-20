@@ -73,25 +73,12 @@ if ($kantei) {
 ?>
 	<div data-role="page" id="top" data-theme="a">
 		<div data-role="header">
-			<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+			<h1>あじあ姓名うらない <span class="ui-mini"></h1>
 			<a href="#top" data-icon="home" class='ui-disabled'>ホーム</a>
 			<a href="#query" data-icon="mail">問い合わせ</a>
 		</div>
 		<div data-role="content">
-			<h2>あじあ姓名うらないへようこそ！ <span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
-			<div class="ninja_onebutton">
-			<script type="text/javascript">
-			//<![CDATA[
-			(function(d){
-			if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6)=='undefined'){
-			    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/0f8b16741da01b4bf2d81552e11cc4d6'><\/sc"+"ript>");
-			}else{
-			    window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6.ONETAGButton_Load();}
-			})(document);
-			//]]>
-			</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
-			</div>
-			<h2>名まえと性別を入力してね！</h2>
+			<h2>うらなうには、名まえと性別を入力してね！</h2>
 			<form data-ajax="false" method="GET">
 				<div data-role="fieldcontain">
 					<label for="sei">みょう字</label>
@@ -104,19 +91,34 @@ if ($kantei) {
 				<div data-role="fieldcontain">
 					<label for="sex">性別</label>
 					<fieldset name="sex" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-						<input type="radio" name="sex" id="sex-2" value="F" checked="checked" />
-						<label for="sex-2">おんな</label>
 						<input type="radio" name="sex" id="sex-1" value="M" />
 						<label for="sex-1">おとこ</label>
+						<input type="radio" name="sex" id="sex-2" value="F" checked="checked" />
+						<label for="sex-2">おんな</label>
 						<input type="radio" name="sex" id="sex-3" value="M" />
 						<label for="sex-3">それいがい</label>
 					</fieldset>
 				</div>
 				<input type="submit" value="うらなう！" data-role="button" />
 			</form>
-			<p></p>
-			<a href="#kaimei" data-role="button">改名について</a>
+			<p><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></p>
+			<div class="ninja_onebutton">
+			<h2>気に入ったらシェアしてください<span class="fb-share-button" data-href="/" data-type="button_count"></span></h2>
+			<script type="text/javascript">
+			//<![CDATA[
+			(function(d){
+			if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6)=='undefined'){
+			    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/0f8b16741da01b4bf2d81552e11cc4d6'><\/sc"+"ript>");
+			}else{
+			    window.NINJA_CO_JP_ONETAG_BUTTON_0f8b16741da01b4bf2d81552e11cc4d6.ONETAGButton_Load();}
+			})(document);
+			//]]>
+			</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
+			</div>
 			<a href="#setsumei" data-role="button">あじあ姓名うらないについて</a>
+			<a href="#kaimei" data-role="button">改名について</a>
+			<a href="http://daibutsuda.github.io/" data-role="button">だいぶつのホームページ</a>
+			<a href="http://tsume.hateblo.jp/" data-role="button">(ブログ)隠すほどの爪なら無い</a>
 		</div>
 <?php
 } else {
