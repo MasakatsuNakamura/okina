@@ -125,14 +125,14 @@ Class Seimei {
 	
 	public function score ($kakusu) {
 		$reii = New Reii();
-		return $reii->score[$kakusu][$this->sex = 'M' ? 0 : 1];
+		return $reii->score[$kakusu][$this->sex == 'M' ? 0 : 1];
 	}
 	
 	public function grand_score () {
 		$reii = New Reii();
 		$kenkou_map = ['◎' => 1, '○' => 0.9, '△' => 0.7, '×' => 0.5];
 		$kenkou = $kenkou_map[mb_substr($this->kenkou_description(), 6, 1, "utf-8")];
-		if ($this->sex = 'M') {
+		if ($this->sex == 'M') {
 			return
 				($reii->score[$this->tenkaku][0] +
 				$reii->score[$this->jinkaku][0] +
