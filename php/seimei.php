@@ -123,6 +123,29 @@ Class Seimei {
 		$this->kenkou = $this->f($this->tenshimo) * 25 + $this->f($this->jinshimo) * 5 + $this->f($this->chishimo);
 	}
 	
+	public function score ($kakusu) {
+		$reii = New Reii();
+		return $reii->score[$kakusu][$this->sex = 'M' ? 0 : 1];
+	}
+	
+	public function grand_score () {
+		$reii = New Reii();
+		$kenkou_map = ['◎' => 1, '○' => 0.9, '△' => 0.7, '×' => 0.5];
+		$kenkou = $kenkou_map[mb_substr($this->kenkou_description(), 6, 1, "utf-8")];
+		if ($this->sex = 'M') {
+			return
+				($reii->score[$this->tenkaku][0] +
+				$reii->score[$this->jinkaku][0] +
+				$reii->score[$this->gaikaku][0] +
+				$reii->score[$this->soukaku][0]) / 4 * $kenkou;
+		} else {
+			return
+				($reii->score[$this->tenkaku][1] +
+				$reii->score[$this->jinkaku][1] +
+				$reii->score[$this->gaikaku][1]) / 3 * $kenkou;
+		}
+	}
+	
 	public function reii_description ($kakusu) {
 		$reii = New Reii();
 		return $reii->mongon[$kakusu][0];

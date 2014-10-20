@@ -165,15 +165,15 @@ if ($kantei) {
 					<h2>【命名例】女の子につけるなら・・・</h2>
 					<div><?php echo $seimei->meimei('F') ?></div>
 				</div>
-				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h2>
+				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 (<?php echo $seimei->grand_score() ?>点)</h2>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>人画 <?php echo $seimei->jinkaku . "画：" . $seimei->reii_description($seimei->jinkaku) ?></h2>
+					<h2>人画 <?php echo $seimei->jinkaku . "画:" . $seimei->reii_description($seimei->jinkaku) . " (" . $seimei->score($seimei->jinkaku) . "点)" ?></h2>
 					<p style="color:blue;font-weight:bold;">基礎運。一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</p>
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('jinkaku') ?></p>
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>外画 <?php echo $seimei->gaikaku . "画：" . $seimei->reii_description($seimei->gaikaku) ?></h2>
+					<h2>外画 <?php echo $seimei->gaikaku . "画：" . $seimei->reii_description($seimei->gaikaku) . " (" . $seimei->score($seimei->gaikaku) . "点)" ?></h2>
 					<p style="color:blue;font-weight:bold;">対人運。対人関係および、家族・夫婦関係、友達関係など、外交面をあらわします。</p>
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('gaikaku') ?></p>
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
@@ -190,13 +190,13 @@ if ($kantei) {
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>天画 <?php echo $seimei->tenkaku . "画：" . $seimei->reii_description($seimei->tenkaku) ?></h2>
+					<h2>天画 <?php echo $seimei->tenkaku . "画：" . $seimei->reii_description($seimei->tenkaku) . " (" . $seimei->score($seimei->tenkaku) . "点)" ?></h2>
 					<p style="color:blue;font-weight:bold;">基礎運。幼少年期の運勢を支配し、青年期まで強くあらわれます。</p>
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('tenkaku') ?></p>
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>総画 <?php echo $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) ?></h2>
+					<h2>総画 <?php echo $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) . " (" . $seimei->score($seimei->soukaku) . "点)" ?></h2>
 					<p style="color:blue;font-weight:bold;">晩年運。50歳前後からの運勢を支配します。ただし、基礎運の影響も残ります。</span><br>
 					<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('soukaku') ?></p>
 					<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
