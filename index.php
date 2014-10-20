@@ -162,7 +162,7 @@ if ($kantei) {
 					<div><?php echo $seimei->meimei('M') ?></div>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
-					<h2>【命名改名例】女の子につけるなら・・・</h2>
+					<h2>【命名・改名例】女の子につけるなら・・・</h2>
 					<div><?php echo $seimei->meimei('F') ?></div>
 				</div>
 				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 (<?php echo $seimei->grand_score() ?>点)</h2>
