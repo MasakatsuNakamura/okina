@@ -83,7 +83,7 @@
 		    console.log('Welcome!  Fetching your information.... ');
 		    FB.api('/me', { locale : 'ja_JP'}, function(response) {
 		      console.log('Successful login for: ' + response.name);
-		      document.location.href = '/index.php?sei=' + response.last_name + '&mei=' + response.first_name + '&sex=' + response.gender == '男性' ? 'M' : 'F';
+		      document.location.href = 'http://www.seimei.asia/?sei=' + response.last_name + '&mei=' + response.first_name + '&sex=' + response.gender == '男性' ? 'M' : 'F';
 		    });
 		  }
 		</script>
