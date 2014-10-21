@@ -17,10 +17,22 @@ use Facebook\FacebookRequest;
 use Facebook\GraphUser;
 use Facebook\FacebookRequestException;
 
+FacebookSession::setDefaultApplication('302472033280532', '88fd5d418dee3d04721f1ca97cd1bcea');
+$helper = new FacebookRedirectLoginHelper();
+
+try {
+	$session = $helper->getSessionFromRedirect();
+} catch(FacebookRequestException $ex) {
+	echo 'ログインエラー';
+	return;
+} catch(\Exception $ex) {
+	echo 'ログインエラー';
+	return;
+}
+
 if ($session) {
 
 	try {
-
 		$user_profile = (new FacebookRequest(
 				$session, 'GET', '/me', ['locale' => 'ja_JP']
 		))->execute()->getGraphObject(GraphUser::className());
