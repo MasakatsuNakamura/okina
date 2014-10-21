@@ -14,40 +14,55 @@ require 'php/kanji.php';
 require 'php/snipets.php';
 
 use Facebook\FacebookSession;
-use Facebook\FacebookRequest;
-use Facebook\GraphUser;
-use Facebook\FacebookRequestException;
+use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookCanvasLoginHelper;
+use Facebook\FacebookRequest;
+use Facebook\FacebookResponse;
+use Facebook\FacebookSDKException;
+use Facebook\FacebookRequestException;
+use Facebook\FacebookOtherException;
+use Facebook\FacebookAuthorizationException;
+use Facebook\GraphObject;
+use Facebook\GraphSessionInfo;
+use Facebook\GraphUser;
+use Facebook\GraphLocation;
+// start session
+session_start();
 
+// init app with app id and secret
 FacebookSession::setDefaultApplication('302472033280532', '88fd5d418dee3d04721f1ca97cd1bcea');
+
 $helper = new FacebookCanvasLoginHelper();
 try {
-  $session = $helper->getSession();
-} catch(FacebookRequestException $ex) {
+
+	$session = $helper->getSession();
+
+} catch(Exception $ex) {
+
 	echo "Exception occured, code: " . $ex->getCode();
 	echo " with message: " . $ex->getMessage();
-	return;
-} catch(\Exception $ex) {
-	echo "Exception occured, code: " . $ex->getCode();
-	echo " with message: " . $ex->getMessage();
-	return;
+
 }
 
 if ($session) {
 
 	try {
-		$user_profile = (new FacebookRequest(
-				$session, 'GET', '/me'
-		))->execute()->getGraphObject(GraphUser::className());
 
-		$seimei = New Seimei();
-		$seimei->sei = $user_profile['last_name'];
-		$seimei->mei = $user_profile['first_name'];
-		$seimei->sex = ($user_profile['gender'] == '女性' ? 'F' : 'M');
-		
-		$seimei->shindan();
+		$request = new FacebookRequest($session, 'GET', '/me');
 
-		if (count($seimei->error) == 0) {
+		try {
+			
+			$response = $request->execute();
+			$graphObject = $response->getGraphObject();
+			
+			$seimei = New Seimei();
+			$seimei->sei = $graphObject->getProperty('last_name');
+			$seimei->mei = $graphObject->getProperty('first_name');
+			$seimei->sex = ($graphObject->getProperty('gender') == '女性' ? 'F' : 'M');
+			
+			$seimei->shindan();
+	
+			if (count($seimei->error) == 0) {
 ?>
 <html>
 <head>
@@ -135,15 +150,21 @@ if ($session) {
 	</body>
 </html>
 <?php
+			} else {
+				echo '判定できない文字が名前に含まれます：' . implode(', ', $seimei->error);
+			}
 
-		} else {
-			echo '判定できない文字が名前に含まれます：' . implode(', ', $seimei->error);
+		} catch (Exception $ex) {
+			
+			echo "Exception occured, code: " . $ex->getCode();
+			echo " with message: " . $ex->getMessage();
+
 		}
 
-	} catch(FacebookRequestException $e) {
+	} catch(FacebookRequestException $ex) {
 
-		echo "Exception occured, code: " . $e->getCode();
-		echo " with message: " . $e->getMessage();
+		echo "Exception occured, code: " . $ex->getCode();
+		echo " with message: " . $ex->getMessage();
 
 	}
 }
