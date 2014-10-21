@@ -13,6 +13,7 @@ require '../php/meimei.php';
 require '../php/kanji.php';
 require '../php/snipets.php';
 
+use Facebook\FacebookSession;
 use Facebook\FacebookRequest;
 use Facebook\GraphUser;
 use Facebook\FacebookRequestException;
