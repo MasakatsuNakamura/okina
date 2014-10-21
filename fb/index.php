@@ -35,15 +35,17 @@ if ($session) {
 
 	try {
 		$user_profile = (new FacebookRequest(
-				$session, 'GET', '/me&locale=ja_JP'
+				$session, 'GET', '/me'
 		))->execute()->getGraphObject(GraphUser::className());
-		echo "Name: " . $user_profile->getName();
 
 		$seimei = New Seimei();
 		$seimei->sei = $user_profile['last_name'];
 		$seimei->mei = $user_profile['first_name'];
-		$seimei->sex = $user_profile['gender'] == '女性' ? 'F' : 'M';
+		$seimei->sex = ($user_profile['gender'] == '女性' ? 'F' : 'M');
+		
 		$seimei->shindan();
+
+		if (count($seimei->error) == 0) {
 ?>
 <html>
 <head>
@@ -130,6 +132,10 @@ if ($session) {
 	</body>
 </html>
 <?php
+
+		} else {
+			echo '判定できない文字が名前に含まれます：' . implode(', ', $seimei->error);
+		}
 
 	} catch(FacebookRequestException $e) {
 
