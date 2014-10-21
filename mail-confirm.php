@@ -9,6 +9,7 @@ if ($_SERVER["SERVER_NAME"] == "okina.herokuapp.com") {
 date_default_timezone_set('Asia/Tokyo');
 
 require 'vendor/autoload.php';
+require 'php/snipets.php';
 
 $authcode = rand(10000, 99999);
 ?>
@@ -26,15 +27,7 @@ $authcode = rand(10000, 99999);
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 	<script type="text/javascript" src="js/okina.js"></script>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-	  ga('create', 'UA-26314420-4', 'auto');
-	  ga('require', 'displayfeatures');
-	  ga('send', 'pageview');
-	</script>
+	<?php googleAnalytics() ?>
 	</head>
 <body>
 	<div data-role="page" id="top" data-theme="a">
@@ -62,15 +55,7 @@ $authcode = rand(10000, 99999);
 			</div>
 		</div>
 		<div data-role='footer' data-position='fixed'>
-			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- あじあ姓名うらない -->
-			<ins class="adsbygoogle"
-			     style="display:inline-block;width:320px;height:100px"
-			     data-ad-client="ca-pub-0413343113584981"
-			     data-ad-slot="6868632444"></ins>
-			<script>
-			(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
+			<?php googleAdsense() ?>
 		</div>
 	</div>
 </body>
