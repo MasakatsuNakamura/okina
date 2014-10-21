@@ -22,10 +22,12 @@ $helper = new FacebookCanvasLoginHelper();
 try {
   $session = $helper->getSession();
 } catch(FacebookRequestException $ex) {
-	echo 'Login error.';
+	echo "Exception occured, code: " . $ex->getCode();
+	echo " with message: " . $ex->getMessage();
 	return;
 } catch(\Exception $ex) {
-	echo 'Login error.';
+	echo "Exception occured, code: " . $ex->getCode();
+	echo " with message: " . $ex->getMessage();
 	return;
 }
 
@@ -33,7 +35,7 @@ if ($session) {
 
 	try {
 		$user_profile = (new FacebookRequest(
-				$session, 'GET', '/me', ['locale' => 'ja_JP']
+				$session, 'GET', '/me&locale=ja_JP'
 		))->execute()->getGraphObject(GraphUser::className());
 		echo "Name: " . $user_profile->getName();
 
@@ -41,7 +43,7 @@ if ($session) {
 		$seimei->sei = $user_profile['last_name'];
 		$seimei->mei = $user_profile['first_name'];
 		$seimei->sex = $user_profile['gender'] == '女性' ? 'F' : 'M';
-		
+		$seimei->shindan();
 ?>
 <html>
 <head>
