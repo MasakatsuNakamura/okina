@@ -48,7 +48,7 @@ if ($session) {
 
 	try {
 
-		$request = new FacebookRequest($session, 'GET', '/me');
+		$request = new FacebookRequest($session, 'GET', '/me?locale=ja_JP');
 
 		try {
 			
