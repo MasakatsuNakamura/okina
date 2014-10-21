@@ -18,15 +18,14 @@ use Facebook\GraphUser;
 use Facebook\FacebookRequestException;
 
 FacebookSession::setDefaultApplication('302472033280532', '88fd5d418dee3d04721f1ca97cd1bcea');
-$helper = new FacebookRedirectLoginHelper();
-
+$helper = new FacebookCanvasLoginHelper();
 try {
-	$session = $helper->getSessionFromRedirect();
+  $session = $helper->getSession();
 } catch(FacebookRequestException $ex) {
-	echo 'ログインエラー';
+	echo 'Login error.';
 	return;
 } catch(\Exception $ex) {
-	echo 'ログインエラー';
+	echo 'Login error.';
 	return;
 }
 
