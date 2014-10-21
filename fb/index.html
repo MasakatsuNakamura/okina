@@ -83,7 +83,7 @@
 		    console.log('Welcome!  Fetching your information.... ');
 		    FB.api('/me', { locale : 'ja_JP'}, function(response) {
 		      console.log('Successful login for: ' + response.name);
-		      document.location.href = '/?sei=' + response.last_name + '&mei=' + response.first_name + '&sex=' + (response.gender == '男性' ? 'M' : 'F');
+		      document.location.href = '/?sei=' + response.last_name + '&mei=' + response.first_name + '&sex=' + (response.gender == '女性' ? 'F' : 'M');
 		    });
 		  }
 		</script>
@@ -94,9 +94,9 @@
 		  the FB.login() function when clicked.
 		-->
 		
-		<h1>あじあ姓名うらない</h1>
+		<h1>あじあ姓名うらない for Facebook</h1>
 		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 		</fb:login-button>
-		<div id="status"></div>
+		<p>ログインしてうらないます。</p>
 	</body>
 </html>

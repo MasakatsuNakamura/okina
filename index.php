@@ -72,6 +72,12 @@ if ($kantei) {
 			<a href="#query" data-icon="mail">問い合わせ</a>
 		</div>
 		<div data-role="content">
+			<div
+			  class="fb-like"
+			  data-share="true"
+			  data-width="450"
+			  data-show-faces="true">
+			</div>
 			<h2>うらなうには、名まえと性別を入力してね！</h2>
 			<form data-ajax="false" method="GET">
 				<div data-role="fieldcontain">
@@ -115,6 +121,12 @@ if ($kantei) {
 			</div><!-- /header -->
 			<div data-role="content">
 				<h2><?php echo $seimei->sei ?>さんの命名・改名例</h2>
+				<div
+				  class="fb-like"
+				  data-share="true"
+				  data-width="450"
+				  data-show-faces="true">
+				</div>
 				<?php ninjaTools(); ?>
 				<div data-role="collapsible" data-collapsed="true">
 					<h2>男子（男性）の場合</h2>
