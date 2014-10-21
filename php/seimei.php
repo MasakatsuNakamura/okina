@@ -25,6 +25,7 @@ Class Seimei {
 	
 	function meimei ($sex) {
 		$meimei = New Meimei();
+		$this->error = [];
 		return($meimei->getNewName($this->sei, $this->sei1, $this->sei2, $sex));
 	}
 	
@@ -55,7 +56,7 @@ Class Seimei {
 			$c = mb_substr($sei, $i, 1, "utf-8");
 			$k = $kanji->kakusu($c);
 			if ($k == 0) {
-				push($this->error, $c);
+				array_push($this->error, $c);
 			} else {
 				$this->tenkaku += $k;
 			}
