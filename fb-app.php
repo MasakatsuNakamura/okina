@@ -32,59 +32,37 @@ session_start();
 // init app with app id and secret
 FacebookSession::setDefaultApplication('302472033280532', '88fd5d418dee3d04721f1ca97cd1bcea');
 
+echo '<html>';
+
 $helper = new FacebookCanvasLoginHelper();
 try {
-
 	$session = $helper->getSession();
-
 } catch(Exception $ex) {
-
 	echo "Exception occured, code: " . $ex->getCode();
 	echo " with message: " . $ex->getMessage();
-
 }
 
 if ($session) {
-
 	try {
-
-		$request = new FacebookRequest($session, 'GET', '/me?locale=ja_JP');
-
-		try {
+		$graphObject = (new FacebookRequest($session, 'GET', '/me?locale=ja_JP'))->execute()->getGraphObject();
 			
-			$response = $request->execute();
-			$graphObject = $response->getGraphObject();
-			
-			$seimei = New Seimei();
-			$seimei->sei = $graphObject->getProperty('last_name');
-			$seimei->mei = $graphObject->getProperty('first_name');
-			$seimei->sex = ($graphObject->getProperty('gender') == '女性' ? 'F' : 'M');
-			
-			$seimei->shindan();
-	
-			if (count($seimei->error) == 0) {
-				
-#				seimeiHeader($seimei);
-				seimeiBody($seimei);
+		$seimei = New Seimei();
+		$seimei->sei = $graphObject->getProperty('last_name');
+		$seimei->mei = $graphObject->getProperty('first_name');
+		$seimei->sex = ($graphObject->getProperty('gender') == '女性' ? 'F' : 'M');
+		
+		$seimei->shindan();
 
-			} else {
-
-				echo '判定できない文字が名前に含まれます：' . implode(', ', $seimei->error);
-
-			}
-
-		} catch (Exception $ex) {
-			
-			echo "Exception occured, code: " . $ex->getCode();
-			echo " with message: " . $ex->getMessage();
-
+		if (count($seimei->error) == 0) {
+			seimeiHeader($seimei);
+			seimeiBody($seimei);
+		} else {
+			echo '<body>判定できない文字が名前に含まれます：' . implode(', ', $seimei->error) . "</body>";
 		}
-
-	} catch(FacebookRequestException $ex) {
-
+	} catch (Exception $ex) {
 		echo "Exception occured, code: " . $ex->getCode();
 		echo " with message: " . $ex->getMessage();
-
 	}
 }
+echo '</html>';
 ?>
