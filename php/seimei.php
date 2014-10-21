@@ -78,7 +78,7 @@ Class Seimei {
 			$c = mb_substr($mei, $i, 1, "utf-8");
 			$k = $kanji->kakusu($c);
 			if ($k == 0) {
-				push($this->error, $c);
+				array_push($this->error, $c);
 			} else {
 				$this->chikaku += $k;
 			}
