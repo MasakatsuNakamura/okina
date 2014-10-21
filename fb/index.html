@@ -83,25 +83,8 @@
 		    console.log('Welcome!  Fetching your information.... ');
 		    FB.api('/me', { locale : 'ja_JP'}, function(response) {
 		      console.log('Successful login for: ' + response.name);
-		      document.getElementById('status').innerHTML =
-					'<span id="sei">' + response.last_name + '</span> ' +
-					'<span id="mei">' + response.first_name + '</span> さん ' +
-					'(<span id="sex">' + response.gender + '</span>)' +
-					'<input type="button" value="鑑定" onClick="kantei()" />';
+		      document.href = 'index.php?sei=' + response.last_name + '&mei=' + response.first_name + '&sex=' + response.gender;
 		    });
-		  }
-		  
-		  function kantei() {
-			$.ajax({
-				type: "POST",
-				url: "/fb/api.php",
-				data: 'sei=' + $("#sei") + '&mei=' + $("#mei") + '&sex=' + ($("#sex") == '女性' ? 'F' : 'M'),
-				success: function (json) {
-					if (json) {
-						$("#status").append('<h2>鑑定結果<h2><p>' + JSON.stringify(json) + '</p>');
-					}
-				}
-			});
 		  }
 		</script>
 		
@@ -115,6 +98,5 @@
 		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 		</fb:login-button>
 		<div id="status"></div>
-		Copyright &copy;だいぶつ
 	</body>
 </html>
