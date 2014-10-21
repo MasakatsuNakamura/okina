@@ -26,15 +26,11 @@ if ($session) {
 		))->execute()->getGraphObject(GraphUser::className());
 		echo "Name: " . $user_profile->getName();
 
-	} catch(FacebookRequestException $e) {
-
-		echo "Exception occured, code: " . $e->getCode();
-		echo " with message: " . $e->getMessage();
-
 		$seimei = New Seimei();
-		$seimei->sei = $e['last_name'];
-		$seimei->mei = $e['first_name'];
-		$seimei->sex = $e['gender'] == '女性' ? 'F' : 'M';
+		$seimei->sei = $user_profile['last_name'];
+		$seimei->mei = $user_profile['first_name'];
+		$seimei->sex = $user_profile['gender'] == '女性' ? 'F' : 'M';
+		
 ?>
 <html>
 <head>
@@ -120,6 +116,13 @@ if ($session) {
 		</div>
 	</body>
 </html>
-?>
+<?php
+
+	} catch(FacebookRequestException $e) {
+
+		echo "Exception occured, code: " . $e->getCode();
+		echo " with message: " . $e->getMessage();
+
 	}
 }
+?>
