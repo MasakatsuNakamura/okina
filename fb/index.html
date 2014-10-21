@@ -83,7 +83,7 @@
 		    console.log('Welcome!  Fetching your information.... ');
 		    FB.api('/me', { locale : 'ja_JP'}, function(response) {
 		      console.log('Successful login for: ' + response.name);
-		      document.href = 'index.php?sei=' + response.last_name + '&mei=' + response.first_name + '&sex=' + response.gender;
+		      document.location.href = 'index.php?sei=' + response.last_name + '&mei=' + response.first_name + '&sex=' + response.gender;
 		    });
 		  }
 		</script>
