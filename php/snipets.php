@@ -1,10 +1,10 @@
 <?php
-require 'php/seimei.php';
-require 'php/reii.php';
-require 'php/kenkou.php';
-require 'php/seikaku.php';
-require 'php/meimei.php';
-require 'php/kanji.php';
+require 'seimei.php';
+require 'reii.php';
+require 'kenkou.php';
+require 'seikaku.php';
+require 'meimei.php';
+require 'kanji.php';
 
 function googleAnalytics() {
 ?>
