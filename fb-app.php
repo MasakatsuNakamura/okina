@@ -44,7 +44,7 @@ try {
 
 if ($session) {
 	try {
-		$graphObject = (new FacebookRequest($session, 'GET', '/me&locale=ja_JP'))->execute()->getGraphObject();
+		$graphObject = (new FacebookRequest($session, 'GET', '/me?locale=ja_JP'))->execute()->getGraphObject();
 		
 		$seimei = New Seimei();
 		$seimei->sei = $graphObject->getProperty('last_name');
@@ -57,7 +57,7 @@ if ($session) {
 			array_push($seimei_list, $seimei);
 		}
 
-		$graphObject = (new FacebookRequest($session, 'GET', '/me/friends&locale=ja_JP'))->execute()->getGraphObject();
+		$graphObject = (new FacebookRequest($session, 'GET', '/me/friends?locale=ja_JP'))->execute()->getGraphObject();
 		
 		foreach ($graphObject as $friend) {
 			$seimei->sei = $friend->getProperty('last_name');
@@ -85,7 +85,8 @@ if ($session) {
 			echo "<td>" . $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) . " (" . $seimei->score($seimei->soukaku) . "点)</td></tr>";
 			$count++;
 		}
-				
+		echo "</table>";
+		
 	} catch (Exception $ex) {
 		echo "Exception occured, code: " . $ex->getCode();
 		echo " with message: " . $ex->getMessage();
