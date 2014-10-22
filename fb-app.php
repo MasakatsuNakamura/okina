@@ -116,13 +116,13 @@ if ($session) {
 		$count = 1;
 		foreach ($seimei_list as $name) {
 			echo "<tr><td><a style='font-size:large;text-decoration:none;color:" . ($name['sex'] == 'M' ? "blue" : "red"). ";' href='http://www.seimei.asia/?sei=" . $name['sei'] . "&mei=" . $name['mei'] . "sex=" . $name['sex'] . "'>" . $name['name'] . "</a></td>";
-			echo "<td>" . $name['gender'] . "</td>";
+			echo "<td style='font-size:x-large;'>" . $name['gender'] . "</td>";
 			echo "<td style='text-align:center;'>" . $name['grand_score'] . "点</td>";
-			echo "<td><p style='font-size:x-large;'>" . $name['jinkaku'] . "画：" . $name['jinkaku_score'] . "点</p><p style='font-size:small;'" . $name['jinkaku_disc'] . "</p></td>";
-			echo "<td><p style='font-size:x-large;'>" . $name['gaikaku'] . "画：" . $name['gaikaku_score'] . "点</p><p style='font-size:small;'" . $name['gaikaku_disc'] . "</p></td>";
+			echo "<td><p style='font-size:x-large;'>" . $name['jinkaku'] . "画：" . $name['jinkaku_score'] . "点</p><p style='font-size:small;'>" . $name['jinkaku_disc'] . "</p></td>";
+			echo "<td><p style='font-size:x-large;'>" . $name['gaikaku'] . "画：" . $name['gaikaku_score'] . "点</p><p style='font-size:small;'>" . $name['gaikaku_disc'] . "</p></td>";
 			echo "<td style='text-align:center;font-size:x-large;'>" . $name['kenkou'] . "</td>";
-			echo "<td><p style='font-size:x-large;'>" . $name['tenkaku'] . "画：" . $name['tenkaku_score'] . "点</p><p style='font-size:small;'" . $name['tenkaku_disc'] . "</p></td>";
-			echo "<td><p style='font-size:x-large;'>" . $name['soukaku'] . "画：" . $name['soukaku_score'] . "点</p><p style='font-size:small;'" . $name['soukaku_disc'] . "</p></td>";
+			echo "<td><p style='font-size:x-large;'>" . $name['tenkaku'] . "画：" . $name['tenkaku_score'] . "点</p><p style='font-size:small;'>" . $name['tenkaku_disc'] . "</p></td>";
+			echo "<td><p style='font-size:x-large;'>" . $name['soukaku'] . "画：" . $name['soukaku_score'] . "点</p><p style='font-size:small;'>" . $name['soukaku_disc'] . "</p></td>";
 			$count++;
 		}
 		echo "</table>";
