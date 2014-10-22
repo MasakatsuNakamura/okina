@@ -13,6 +13,20 @@ ga('send', 'pageview');
 <?php
 }
 
+function googleAdsense() {
+?>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- あじあ姓名うらない -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:100px"
+     data-ad-client="ca-pub-0413343113584981"
+     data-ad-slot="6868632444"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<?php
+}
+
 function fbRoot() {
 ?>
 <div id="fb-root"></div>
@@ -54,20 +68,6 @@ if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_971b6531abd1b36d9c48f0245802d633)=='u
 <?php
 }
 
-function googleAdsense() {
-?>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- あじあ姓名うらない -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:320px;height:100px"
-     data-ad-client="ca-pub-0413343113584981"
-     data-ad-slot="6868632444"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<?php
-}
-
 function seimeiHeader(Seimei $seimei) {
 ?>
 <head>
@@ -94,13 +94,13 @@ function seimeiBody(Seimei $seimei) {
 ?>
 <body>
 <?php fbRoot() ?>
-<img src="images/CoverImage.png" alt="あじあ姓名うらない バックグラウンドイメージはハウステンボス">
+<div><img src="images/CoverImage.png" alt="あじあ姓名うらない バックグラウンドイメージはハウステンボス"></div>
 <?php fbLike() ?>
 	<h2>あなた(<?php echo $seimei->sei . "さん:" . ($seimei->sex == 'M' ? '男性' : '女性'); ?>)の改名例</h2>
 	<p><a href="http://www.seimei.asia/" target="blank">結果が表示されない場合や、もっと占いたい場合は「あじあ姓名うらない（本家サイト）」までどうぞ！赤ちゃんの命名にも使えます</a></p>
-	<div><?php echo $seimei->meimei($seimei->sex) ?></div>
+	<p><?php echo $seimei->meimei($seimei->sex) ?></p>
 	<hr />
-	
+
 	<h2>あなた(<?php echo $seimei->sei . " " . $seimei->mei . "さん:" . ($seimei->sex == 'M' ? '男性' : '女性'); ?>)の運勢 (総合得点：<?php echo $seimei->grand_score() ?>点)</h2>
 	<h3>人画 <?php echo $seimei->jinkaku . "画 (" . $seimei->score($seimei->jinkaku) . "点)" ?></h3>
 	<p style="color:blue;font-weight:bold;">基礎運。一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</p>

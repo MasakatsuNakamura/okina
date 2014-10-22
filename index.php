@@ -180,6 +180,7 @@ if ($kantei) {
 }
 ?>
 			<div data-role='footer' data-position='fixed'>
+				<?php googleAdsense() ?>
 			</div>
 		</div>
 	</div>
