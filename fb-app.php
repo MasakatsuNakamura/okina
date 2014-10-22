@@ -6,7 +6,7 @@ function cmp(Seimei $a, Seimei $b)
 	if ($a->grand_score() == $b->grand_score()) {
 		return 0;
 	}
-	return ($a->grand_score() < $b->grand_score()) ? -1 : 1;
+	return ($a->grand_score() < $b->grand_score()) ? 1 : -1;
 }
 
 date_default_timezone_set('Asia/Tokyo');
@@ -65,40 +65,72 @@ if ($session) {
 		
 		$seimei_list = [];
 		if (count($seimei->error) == 0) {
-			array_push($seimei_list, clone $seimei);
+			array_push($seimei_list, [
+				'name'         => $seimei->sei . " " . $seimei->mei . " (あなたの名前)",
+				'sex'          => ($seimei->sex == 'M' ? '男性' : '女性'),
+				'jinkaku'      => $seimei->jinkaku,
+				'jinkaku_disc' => $seimei->rii_description($seimei->jinkaku),
+				'jinkaku_score' => $seimei->score($seimei->jinkaku),
+				'gaikaku'      => $seimei->gaikaku,
+				'gaikaku_disc' => $seimei->rii_description($seimei->gaikaku),
+				'gaikaku_score' => $seimei->score($seimei->gaikaku),
+				'tenkaku'      => $seimei->tenkaku,
+				'tenkaku_disc' => $seimei->rii_description($seimei->tenkaku),
+				'tenkaku_score' => $seimei->score($seimei->tenkaku),
+				'soukaku'      => $seimei->soukaku,
+				'soukaku_disc' => $seimei->rii_description($seimei->soukaku),
+				'soukaku_score' => $seimei->score($seimei->soukaku),
+				'kenkou'       => ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)]
+			]);
 		}
 		
 		foreach ($meimei[$seimei->sex] as $name) {
 			$seimei->mei = $name[0];
 			$seimei->shindan();
-			array_push($seimei_list, clone $seimei);
+			array_push($seimei_list, [
+				'name'         => $seimei->sei . " " . $seimei->mei . " " . $name[1],
+				'sex'          => ($seimei->sex == 'M' ? '男性' : '女性'),
+				'jinkaku'      => $seimei->jinkaku,
+				'jinkaku_disc' => $seimei->rii_description($seimei->jinkaku),
+				'jinkaku_score' => $seimei->score($seimei->jinkaku),
+				'gaikaku'      => $seimei->gaikaku,
+				'gaikaku_disc' => $seimei->rii_description($seimei->gaikaku),
+				'gaikaku_score' => $seimei->score($seimei->gaikaku),
+				'tenkaku'      => $seimei->tenkaku,
+				'tenkaku_disc' => $seimei->rii_description($seimei->tenkaku),
+				'tenkaku_score' => $seimei->score($seimei->tenkaku),
+				'soukaku'      => $seimei->soukaku,
+				'soukaku_disc' => $seimei->rii_description($seimei->soukaku),
+				'soukaku_score' => $seimei->score($seimei->soukaku),
+				'kenkou'       => ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)]
+			]);
 		}
 		usort($seimei_list, "cmp");
 
+		echo "<body>";
+		fbRoot();
 ?>
-<body>
-<?php fbRoot(); ?>
 <div><img src="images/CoverImage.png" alt="あじあ姓名うらない バックグラウンドイメージはハウステンボス"></div>
 <?php
 		fbLike();
-		echo "<h2>運勢ランキング</2>";
+		echo "<h2>改名アドバイザー あじあ姓名うらないオススメの、あなたにピッタリのお名前です(お子様につけてもかまいません)。</2>";
 		echo "<table>";
 		echo "<tr><th>" . implode("</th><th>", ["No.", "氏名", "性別", "総合得点", "人画(基礎運)", "外画(外交運)", "健康運", "天画(若年期運)", "総画(晩年運)"]) . "</th></tr>";
 
 		$count = 1;
-		foreach ($seimei_list as $seimei) {
-			echo "<tr><td>" . $count . "</td>";
-			echo "<td>" . $seimei->sei . " " . $seimei->mei . "</td>";
-			echo "<td>" . ($seimei->sex == 'M' ? '男性' : '女性') . "</td>";
-			echo "<td>" . $seimei->grand_score() . "点</td>";
-			echo "<td>" . $seimei->jinkaku . "画:" . $seimei->score($seimei->jinkaku) . "点<br>" . $seimei->reii_description($seimei->jinkaku) . "</td>";
-			echo "<td>" . $seimei->gaikaku . "画：" . $seimei->score($seimei->gaikaku) . "点<br>" . $seimei->reii_description($seimei->gaikaku) . "</td>";
-			echo "<td>" . ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)] . "</td>";
-			echo "<td>" . $seimei->tenkaku . "画：" . $seimei->score($seimei->tenkaku) . "点<br>" . $seimei->reii_description($seimei->tenkaku) . "</td>";
-			echo "<td>" . $seimei->soukaku . "画：" . $seimei->score($seimei->soukaku) . "点<br>" . $seimei->reii_description($seimei->soukaku) . "</td></tr>";
+		foreach ($seimei_list as $name) {
+			echo "<tr><td>" . $name['name'] . "</td>";
+			echo "<td>" . $name['sex'] . "</td>";
+			echo "<td>" . $name['grand_score'] . "点</td>";
+			echo "<td>" . $name['jinkaku'] . "画:" . $name['jinkaku_score'] . "点<br>" . $name['jinkaku_disc'] . "</td>";
+			echo "<td>" . $name['gaikaku'] . "画:" . $name['gaikaku_score'] . "点<br>" . $name['gaikaku_disc'] . "</td>";
+			echo "<td>" . $name['kenkou'] . "</td>";
+			echo "<td>" . $name['tenkaku'] . "画:" . $name['tenkaku_score'] . "点<br>" . $name['tenkaku_disc'] . "</td>";
+			echo "<td>" . $name['soukaku'] . "画:" . $name['soukaku_score'] . "点<br>" . $name['soukaku_disc'] . "</td>";
 			$count++;
 		}
 		echo "</table>";
+		echo "</body>";
 		
 	} catch (Exception $ex) {
 		echo "Exception occured, code: " . $ex->getCode();
@@ -106,5 +138,4 @@ if ($session) {
 	}
 }
 ?>
-</body>
 </html>

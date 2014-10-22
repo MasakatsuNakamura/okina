@@ -3,6 +3,7 @@
     background: transparent url(image/pattern8-pattern-76c.png);
 }
 table {
+	margin:5px 0  0 5px;
 	border-right: solid 1px black;
 	border-bottom: solid 1px black;
 }
