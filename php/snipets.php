@@ -94,6 +94,7 @@ function seimeiBody(Seimei $seimei) {
 ?>
 <body>
 <?php fbRoot() ?>
+<h1>あじあ姓名うらない</h1>
 <?php fbLike() ?>
 	<h2>あなた(<?php echo $seimei->sei . "さん:" . ($seimei->sex == 'M' ? '男性' : '女性'); ?>)の改名例</h2>
 	<p><a href="http://www.seimei.asia/" target="blank">結果が表示されない場合や、もっと占いたい場合は「あじあ姓名うらない（本家サイト）」までどうぞ！赤ちゃんの命名にも使えます</a></p>
