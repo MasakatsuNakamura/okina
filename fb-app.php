@@ -67,7 +67,15 @@ if ($session) {
 			array_push($seimei_list, $seimei);
 		}
 		usort($seimei_list, "cmp");
-		echo "<p>運勢ランキング</p>";
+		seimeiHeader();
+?>
+fbRoot();
+<?php fbRoot() ?>
+<div><img src="images/CoverImage.png" alt="あじあ姓名うらない バックグラウンドイメージはハウステンボス"></div>
+<?php
+		fbLike();
+
+		echo "<h2>運勢ランキング</2>";
 		echo "<table>";
 		echo "<tr><th>" . implode("</th><th>", ["No.", "氏名", "性別", "総合得点", "人画(基礎運)", "外画(外交運)", "健康運", "天画(若年期運)", "総画(晩年運)"]) . "</th></tr>";
 
@@ -77,9 +85,8 @@ if ($session) {
 			echo "<td>" . $count . "</td>";
 			echo "<td>" . ($seimei->sex == 'M' ? '男性' : '女性') . "</td>";
 			echo "<td>" . $seimei->grand_score() . "点</td>";
-			echo "<td>" . $seimei->jinkaku . "画:" . $seimei->reii_description($seimei->jinkaku) . " (" . $seimei->score($seimei->jinkaku) . "点)</td>";
+			echo "<td>" . $seimei->jinkaku . "画:" . $seimei->score($seimei->jinkaku) . "点<br>" . $seimei->reii_description($seimei->jinkaku) . "</td>";
 			echo "<td>" . $seimei->gaikaku . "画：" . $seimei->reii_description($seimei->gaikaku) . " (" . $seimei->score($seimei->gaikaku) . "点)</td>";
-			echo "<td>" . $seimei->jinshimo . "画：" . $seimei->seikaku_description() . "</td>";
 			echo "<td>" . ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)] . "</td>";
 			echo "<td>" . $seimei->tenkaku . "画：" . $seimei->reii_description($seimei->tenkaku) . " (" . $seimei->score($seimei->tenkaku) . "点)</td>";
 			echo "<td>" . $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) . " (" . $seimei->score($seimei->soukaku) . "点)</td></tr>";
