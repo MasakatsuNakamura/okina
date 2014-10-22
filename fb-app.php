@@ -114,7 +114,7 @@ if ($session) {
 		echo "<table>";
 		echo "<tr><th>" . implode("</th><th>", ["氏名", "性別", "総合得点", "人画 (基礎運)", "外画 (外交運)", "健康運", "天画 (若年期運)", "総画 (晩年運)"]) . "</th></tr>";
 		foreach ($seimei_list as $name) {
-			echo "<tr><td><a style='font-size:large;text-decoration:none;color:" . ($name['sex'] == 'M' ? "blue" : "red"). ";' href='http://www.seimei.asia/?sei=" . $name['sei'] . "&mei=" . $name['mei'] . "sex=" . $name['sex'] . "'>" . $name['name'] . "</a></td>";
+			echo "<tr><td style='font-size:large;color:" . ($name['sex'] == 'M' ? "blue" : "red"). ";'>" . $name['name'] . "</td>";
 			echo "<td style='font-size:x-large;'>" . $name['gender'] . "</td>";
 			echo "<td style='font-size:x-large;text-align:center;'>" . $name['grand_score'] . "点</td>";
 			echo "<td><span style='font-size:x-large;'>" . $name['jinkaku'] . "画：" . $name['jinkaku_score'] . "点</span><br>" . $name['jinkaku_disc'] . "</td>";
