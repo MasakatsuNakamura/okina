@@ -29,7 +29,7 @@ function seimei_translate (Seimei $seimei, $gender, $desc) {
 		'soukaku_disc'  => $seimei->reii_description($seimei->soukaku),
 		'soukaku_score' => $seimei->score($seimei->soukaku),
 		'kenkou'        => ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)],
-		'grand_score'   => $seimei->grand_score()
+		'grand_score'   => round($seimei->grand_score())
 	];
 }
 
@@ -115,7 +115,7 @@ if ($session) {
 
 		$count = 1;
 		foreach ($seimei_list as $name) {
-			echo "<tr><td><a style='font-size:x-large;color:" . ($name['sex'] == 'M' ? "blue" : "red"). ";' href='http://www.seimei.asia/?sei=" . $name['sei'] . "&mei=" . $name['mei'] . "sex=" . $name['sex'] . "'>" . $name['name'] . "</a></td>";
+			echo "<tr><td><a style='font-size:large;text-decoration:none;color:" . ($name['sex'] == 'M' ? "blue" : "red"). ";' href='http://www.seimei.asia/?sei=" . $name['sei'] . "&mei=" . $name['mei'] . "sex=" . $name['sex'] . "'>" . $name['name'] . "</a></td>";
 			echo "<td>" . $name['gender'] . "</td>";
 			echo "<td style='text-align:center;'>" . $name['grand_score'] . "点</td>";
 			echo "<td><span style='font-size:x-large;'>" . $name['jinkaku'] . "画：" . $name['jinkaku_score'] . "点</span><br>" . $name['jinkaku_disc'] . "</td>";
