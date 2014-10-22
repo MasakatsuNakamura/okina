@@ -95,9 +95,9 @@ function seimeiBody(Seimei $seimei) {
 <body>
 <?php fbRoot() ?>
 <?php fbLike() ?>
-	<h2>あなた(<?php echo $seimei->sei . "さん (" . ($seimei->sex == 'M' ? '男性' : '女性'); ?>)の改名例</h2>
-	<a href="http://www.seimei.asia/" target="blank">結果が表示されない場合や、もっと占いたい場合は「あじあ姓名うらない（本家サイト）」までどうぞ！赤ちゃんの命名にも使えます</a>
-	<div><?php echo $seimei->meimei($seimei->sei) ?></div>
+	<h2>あなた(<?php echo $seimei->sei . "さん:" . ($seimei->sex == 'M' ? '男性' : '女性'); ?>)の改名例</h2>
+	<p><a href="http://www.seimei.asia/" target="blank">結果が表示されない場合や、もっと占いたい場合は「あじあ姓名うらない（本家サイト）」までどうぞ！赤ちゃんの命名にも使えます</a></p>
+	<div><?php echo $seimei->meimei($seimei->sex) ?></div>
 	<hr />
 	
 	<h2>あなた(<?php echo $seimei->sei . " " . $seimei->mei . "さん:" . ($seimei->sex == 'M' ? '男性' : '女性'); ?>)の運勢 (総合得点：<?php echo $seimei->grand_score() ?>点)</h2>
