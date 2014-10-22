@@ -1,6 +1,14 @@
 <?php
 header('Content-type: text/html; charset=utf-8;');
 
+function cmp(Seimei $a, Seimei $b)
+{
+	if ($a->grand_score() == $b->grand_score()) {
+		return 0;
+	}
+	return ($a->grand_score() < $b->grand_score()) ? -1 : 1;
+}
+
 date_default_timezone_set('Asia/Tokyo');
 
 require 'vendor/autoload.php';
@@ -67,14 +75,14 @@ if ($session) {
 			array_push($seimei_list, $seimei);
 		}
 		usort($seimei_list, "cmp");
+
 		seimeiHeader();
 ?>
-fbRoot();
-<?php fbRoot() ?>
+<body>
+<?php fbRoot(); ?>
 <div><img src="images/CoverImage.png" alt="あじあ姓名うらない バックグラウンドイメージはハウステンボス"></div>
 <?php
 		fbLike();
-
 		echo "<h2>運勢ランキング</2>";
 		echo "<table>";
 		echo "<tr><th>" . implode("</th><th>", ["No.", "氏名", "性別", "総合得点", "人画(基礎運)", "外画(外交運)", "健康運", "天画(若年期運)", "総画(晩年運)"]) . "</th></tr>";
@@ -99,12 +107,6 @@ fbRoot();
 		echo " with message: " . $ex->getMessage();
 	}
 }
-echo '</html>';
-
-function cmp(Seimei $a, Seimei $b)
-{
-    if ($a->grand_score() == $b->grand_score()) {
-        return 0;
-    }
-    return ($a->grand_score() < $b->grand_score()) ? -1 : 1;
-}?>
+?>
+</body>
+</html>
