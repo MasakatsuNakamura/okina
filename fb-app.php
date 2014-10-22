@@ -44,26 +44,59 @@ try {
 
 if ($session) {
 	try {
-		$graphObject = (new FacebookRequest($session, 'GET', '/me?locale=ja_JP'))->execute()->getGraphObject();
-#		$graphObject = (new FacebookRequest($session, 'GET', '/me/friends?locale=ja_JP'))->execute()->getGraphObject();
+		$graphObject = (new FacebookRequest($session, 'GET', '/me&locale=ja_JP'))->execute()->getGraphObject();
 		
 		$seimei = New Seimei();
 		$seimei->sei = $graphObject->getProperty('last_name');
 		$seimei->mei = $graphObject->getProperty('first_name');
 		$seimei->sex = ($graphObject->getProperty('gender') == '女性' ? 'F' : 'M');
-		
 		$seimei->shindan();
-
+		
+		$seimei_list = [];
 		if (count($seimei->error) == 0) {
-			seimeiHeader($seimei);
-			seimeiBody($seimei);
-		} else {
-			echo '<body>判定できない文字が名前に含まれます：' . implode(', ', $seimei->error) . "</body>";
+			array_push($seimei_list, $seimei);
 		}
+
+		$graphObject = (new FacebookRequest($session, 'GET', '/me/friends&locale=ja_JP'))->execute()->getGraphObject();
+		
+		foreach ($graphObject as $friend) {
+			$seimei->sei = $friend->getProperty('last_name');
+			$seimei->mei = $friend->getProperty('first_name');
+			$seimei->sex = ($friend->getProperty('gender') == '女性' ? 'F' : 'M');
+			$seimei->shindan();
+			array_push($seimei_list, $seimei);
+		}
+		usort($seimei_list, "cmp");
+		echo "<p>運勢ランキング</p>";
+		echo "<table>";
+		echo "<tr><th>" . implode("</th><th>", ["No.", "氏名", "性別", "総合得点", "人画(基礎運)", "外画(外交運)", "健康運", "天画(若年期運)", "総画(晩年運)"]) . "</th></tr>";
+
+		$count = 1;
+		foreach ($seimei_list as $seimei) {
+			echo "<tr><td>" . $seimei->sei . " " . $seimei->mei . "</td>";
+			echo "<td>" . $count . "</td>";
+			echo "<td>" . ($seimei->sex == 'M' ? '男性' : '女性') . "</td>";
+			echo "<td>" . $seimei->grand_score() . "点</td>";
+			echo "<td>" . $seimei->jinkaku . "画:" . $seimei->reii_description($seimei->jinkaku) . " (" . $seimei->score($seimei->jinkaku) . "点)</td>";
+			echo "<td>" . $seimei->gaikaku . "画：" . $seimei->reii_description($seimei->gaikaku) . " (" . $seimei->score($seimei->gaikaku) . "点)</td>";
+			echo "<td>" . $seimei->jinshimo . "画：" . $seimei->seikaku_description() . "</td>";
+			echo "<td>" . ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)] . "</td>";
+			echo "<td>" . $seimei->tenkaku . "画：" . $seimei->reii_description($seimei->tenkaku) . " (" . $seimei->score($seimei->tenkaku) . "点)</td>";
+			echo "<td>" . $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) . " (" . $seimei->score($seimei->soukaku) . "点)</td></tr>";
+			$count++;
+		}
+				
 	} catch (Exception $ex) {
 		echo "Exception occured, code: " . $ex->getCode();
 		echo " with message: " . $ex->getMessage();
 	}
 }
 echo '</html>';
-?>
+
+function cmp(Seimei $a, Seimei $b)
+{
+    if ($a->grand_score() == $b->grand_score()) {
+        return 0;
+    }
+    return ($a->grand_score() < $b->grand_score()) ? -1 : 1;
+}?>
