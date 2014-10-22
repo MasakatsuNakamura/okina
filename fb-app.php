@@ -59,6 +59,8 @@ if ($session) {
 		$seimei->mei = $graphObject->getProperty('first_name');
 		$seimei->sex = ($graphObject->getProperty('gender') == '女性' ? 'F' : 'M');
 		$seimei->shindan();
+
+		seimeiHeader($seimei);
 		
 		$seimei_list = [];
 		if (count($seimei->error) == 0) {
@@ -76,7 +78,6 @@ if ($session) {
 		}
 		usort($seimei_list, "cmp");
 
-		seimeiHeader();
 ?>
 <body>
 <?php fbRoot(); ?>
