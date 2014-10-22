@@ -1,38 +1,6 @@
 <?php
 header('Content-type: text/html; charset=utf-8;');
 
-function cmp($a, $b)
-{
-	if ($a['grand_score'] == $b['grand_score']) {
-		return 0;
-	}
-	return ($a['grand_score'] < $b['grand_score']) ? 1 : -1;
-}
-
-function seimei_translate (Seimei $seimei, $gender, $desc) {
-	return [
-		'name'          => $seimei->sei . " " . $seimei->mei . " (". $desc . ")",
-		'sei'           => $seimei->sei,
-		'mei'           => $seimei->mei,
-		'sex'			=> $seimei->sex,
-		'gender'        => $gender,
-		'jinkaku'       => $seimei->jinkaku,
-		'jinkaku_disc'  => $seimei->reii_description($seimei->jinkaku),
-		'jinkaku_score' => $seimei->score($seimei->jinkaku),
-		'gaikaku'       => $seimei->gaikaku,
-		'gaikaku_disc'  => $seimei->reii_description($seimei->gaikaku),
-		'gaikaku_score' => $seimei->score($seimei->gaikaku),
-		'tenkaku'       => $seimei->tenkaku,
-		'tenkaku_disc'  => $seimei->reii_description($seimei->tenkaku),
-		'tenkaku_score' => $seimei->score($seimei->tenkaku),
-		'soukaku'       => $seimei->soukaku,
-		'soukaku_disc'  => $seimei->reii_description($seimei->soukaku),
-		'soukaku_score' => $seimei->score($seimei->soukaku),
-		'kenkou'        => mb_substr($seimei->kenkou_description(), 6, 1),
-		'grand_score'   => round($seimei->grand_score())
-	];
-}
-
 date_default_timezone_set('Asia/Tokyo');
 
 require 'vendor/autoload.php';
