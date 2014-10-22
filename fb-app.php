@@ -45,7 +45,7 @@ try {
 if ($session) {
 	try {
 		$graphObject = (new FacebookRequest($session, 'GET', '/me?locale=ja_JP'))->execute()->getGraphObject();
-		$graphObject = (new FacebookRequest($session, 'GET', '/me/friends?locale=ja_JP'))->execute()->getGraphObject();
+#		$graphObject = (new FacebookRequest($session, 'GET', '/me/friends?locale=ja_JP'))->execute()->getGraphObject();
 		
 		$seimei = New Seimei();
 		$seimei->sei = $graphObject->getProperty('last_name');
