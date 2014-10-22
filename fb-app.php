@@ -111,19 +111,16 @@ if ($session) {
 		fbLike();
 		echo "<h2>命名・改名アドバイザー</h2><p>あじあ姓名うらないオススメの、あなたのいまの姓にピッタリのお名前です。お子様につけていただいてもかまいませんが、その場合は戸籍上の姓で占う必要があります(配偶者の姓を名乗られている場合は、配偶者に占ってもらってください)。</p>";
 		echo "<table>";
-		echo "<tr><th>" . implode("</th><th>", ["氏名", "性別", "総合得点", "人画(基礎運)", "外画(外交運)", "健康運", "天画(若年期運)", "総画(晩年運)"]) . "</th></tr>";
-
-		$count = 1;
+		echo "<tr><th>" . implode("</th><th>", ["氏名", "性別", "総合得点", "人画 (基礎運)", "外画 (外交運)", "健康運", "天画 (若年期運)", "総画 (晩年運)"]) . "</th></tr>";
 		foreach ($seimei_list as $name) {
 			echo "<tr><td><a style='font-size:large;text-decoration:none;color:" . ($name['sex'] == 'M' ? "blue" : "red"). ";' href='http://www.seimei.asia/?sei=" . $name['sei'] . "&mei=" . $name['mei'] . "sex=" . $name['sex'] . "'>" . $name['name'] . "</a></td>";
 			echo "<td style='font-size:x-large;'>" . $name['gender'] . "</td>";
 			echo "<td style='font-size:x-large;text-align:center;'>" . $name['grand_score'] . "点</td>";
-			echo "<td><p style='font-size:x-large;'>" . $name['jinkaku'] . "画：" . $name['jinkaku_score'] . "点</p><p style='font-size:small;'>" . $name['jinkaku_disc'] . "</p></td>";
-			echo "<td><p style='font-size:x-large;'>" . $name['gaikaku'] . "画：" . $name['gaikaku_score'] . "点</p><p style='font-size:small;'>" . $name['gaikaku_disc'] . "</p></td>";
+			echo "<td><span style='font-size:x-large;'>" . $name['jinkaku'] . "画：" . $name['jinkaku_score'] . "点</span><br>" . $name['jinkaku_disc'] . "</td>";
+			echo "<td><span style='font-size:x-large;'>" . $name['gaikaku'] . "画：" . $name['gaikaku_score'] . "点</span><br>" . $name['gaikaku_disc'] . "</td>";
 			echo "<td style='text-align:center;font-size:x-large;'>" . $name['kenkou'] . "</td>";
-			echo "<td><p style='font-size:x-large;'>" . $name['tenkaku'] . "画：" . $name['tenkaku_score'] . "点</p><p style='font-size:small;'>" . $name['tenkaku_disc'] . "</p></td>";
-			echo "<td><p style='font-size:x-large;'>" . $name['soukaku'] . "画：" . $name['soukaku_score'] . "点</p><p style='font-size:small;'>" . $name['soukaku_disc'] . "</p></td>";
-			$count++;
+			echo "<td><span style='font-size:x-large;'>" . $name['tenkaku'] . "画：" . $name['tenkaku_score'] . "点</span><br>" . $name['tenkaku_disc'] . "</td>";
+			echo "<td><span style='font-size:x-large;'>" . $name['soukaku'] . "画：" . $name['soukaku_score'] . "点</span><br>" . $name['soukaku_disc'] . "</td>";
 		}
 		echo "</table>";
 		echo "</body>";
