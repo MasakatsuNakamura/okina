@@ -23,10 +23,10 @@ Class Seimei {
 	private $tenshimo;
 	private $chishimo;
 	
-	function meimei ($sex) {
+	function meimei () {
 		$meimei = New Meimei();
 		$this->error = [];
-		return($meimei->getNewName($this->sei, $this->sei1, $this->sei2, $sex));
+		return($meimei->getNewName($this->sei, $this->sei1, $this->sei2));
 	}
 	
 	// 画数計算

@@ -26,10 +26,9 @@ if (count($_GET) > 0) {
 	$seimei->sex = $_GET['sex'];
 	if (strlen($seimei->sei) > 0 && strlen($seimei->mei) > 0 && ($seimei->sex == 'M' || $seimei->sex == 'F')) {
 		$seimei->shindan();
+		$meimei = $seimei->meimei();
 		if (count($seimei->error) == 0) {
 			$kantei = false;
-		} else {
-			
 		}
 	}
 }
@@ -127,11 +126,27 @@ if ($kantei) {
 				<?php ninjaTools(); ?>
 				<div data-role="collapsible" data-collapsed="true">
 					<h2>男子（男性）の場合</h2>
-					<div><?php echo $seimei->meimei('M') ?></div>
+					<div>
+<?php
+$newnames = [];
+foreach ($meimei['M'] as $name) {
+	array_push($newnames, "<span style='font-weight:bold;font-size:x-large;color:blue;'>" . $name[0] . "</span> (" . $name[1] . ")");
+}
+echo implode("、", $newnames);
+?>
+					</div>
 				</div>
 				<div data-role="collapsible" data-collapsed="true">
 					<h2>女子（女性）の場合</h2>
-					<div><?php echo $seimei->meimei('F') ?></div>
+					<div>
+<?php
+$newnames = [];
+foreach ($meimei['F'] as $name) {
+	array_push($newnames, "<span style='font-weight:bold;font-size:x-large;color:red;'>" . $name[0] . "</span> (" . $name[1] . ")");
+}
+echo implode("、", $newnames);
+?>
+					</div>
 				</div>
 				
 				<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 (総合得点：<?php echo $seimei->grand_score() ?>点)</h2>

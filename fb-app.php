@@ -59,6 +59,7 @@ if ($session) {
 		$seimei->mei = $graphObject->getProperty('first_name');
 		$seimei->sex = ($graphObject->getProperty('gender') == '女性' ? 'F' : 'M');
 		$seimei->shindan();
+		$meimei = $seimei->meimei();
 
 		seimeiHeader($seimei);
 		
@@ -66,13 +67,9 @@ if ($session) {
 		if (count($seimei->error) == 0) {
 			array_push($seimei_list, $seimei);
 		}
-
-		$graphObject = (new FacebookRequest($session, 'GET', '/me/friends?locale=ja_JP'))->execute()->getGraphObject();
 		
-		foreach ($graphObject as $friend) {
-			$seimei->sei = $friend->getProperty('last_name');
-			$seimei->mei = $friend->getProperty('first_name');
-			$seimei->sex = ($friend->getProperty('gender') == '女性' ? 'F' : 'M');
+		foreach ($meimei[$seimei->sex] as $name) {
+			$seimei->mei = $name[0];
 			$seimei->shindan();
 			array_push($seimei_list, $seimei);
 		}

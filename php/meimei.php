@@ -5,23 +5,25 @@ Class Meimei
 	private $kakusu;
 	private $choise;
 	
-	public function getNewName($sei, $sei1, $sei2, $sex) {
+	public function getNewName($sei, $sei1, $sei2) {
 		$newname = $this->choise[$sei1 . "-" . $sei2];
-		$ret = [];
-		for ($i = 0; $i < 4; $i++) {
-			if ($newname[$sex][$i]) {
-				if (array_key_exists($newname[$sex][$i] . '-' . $sex, $this->meimei)) {
-					$name = $this->meimei[$newname[$sex][$i] . '-' . $sex];
-					foreach ($name as $myname) {
-						array_push($ret, "<span style='font-size:x-large;'>" . $myname[0] . "</span> (" . $myname[1] . ")");
+		foreach(['M', 'F'] as $sex) {
+			$ret[$sex] = [];
+			for ($i = 0; $i < 4; $i++) {
+				if ($newname[$sex][$i]) {
+					if (array_key_exists($newname[$sex][$i] . '-' . $sex, $this->meimei)) {
+						$name = $this->meimei[$newname[$sex][$i] . '-' . $sex];
+						foreach ($name as $myname) {
+							array_push($ret[$sex], [$myname[0], $myname[1]]);
+						}
 					}
 				}
 			}
 		}
 		if (count($ret) == 0) {
-			$ret = ["ごめんなさい、あなたの苗字にピッタリの名前がデータベースにありません。<a href='http://www.seimei.asia/#query'>問い合わせフォーム</a>からお問い合わせください。"];
+			$ret = "ごめんなさい、あなたの苗字にピッタリの名前がデータベースにありません。<a href='http://www.seimei.asia/#query'>問い合わせフォーム</a>からお問い合わせください。";
 		}
-		return (implode("、", $ret));
+		return ($ret);
 	}
 
 	public function Meimei() {
