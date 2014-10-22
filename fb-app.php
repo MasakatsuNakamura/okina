@@ -86,10 +86,10 @@ fbRoot();
 			echo "<td>" . ($seimei->sex == 'M' ? '男性' : '女性') . "</td>";
 			echo "<td>" . $seimei->grand_score() . "点</td>";
 			echo "<td>" . $seimei->jinkaku . "画:" . $seimei->score($seimei->jinkaku) . "点<br>" . $seimei->reii_description($seimei->jinkaku) . "</td>";
-			echo "<td>" . $seimei->gaikaku . "画：" . $seimei->reii_description($seimei->gaikaku) . " (" . $seimei->score($seimei->gaikaku) . "点)</td>";
+			echo "<td>" . $seimei->gaikaku . "画：" . $seimei->score($seimei->gaikaku) . "点<br>" . $seimei->reii_description($seimei->gaikaku) . "</td>";
 			echo "<td>" . ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)] . "</td>";
-			echo "<td>" . $seimei->tenkaku . "画：" . $seimei->reii_description($seimei->tenkaku) . " (" . $seimei->score($seimei->tenkaku) . "点)</td>";
-			echo "<td>" . $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) . " (" . $seimei->score($seimei->soukaku) . "点)</td></tr>";
+			echo "<td>" . $seimei->tenkaku . "画：" . $seimei->score($seimei->tenkaku) . "点<br>" . $seimei->reii_description($seimei->tenkaku) . "</td>";
+			echo "<td>" . $seimei->soukaku . "画：" . $seimei->score($seimei->soukaku) . "点<br>" . $seimei->reii_description($seimei->soukaku) . "</td></tr>";
 			$count++;
 		}
 		echo "</table>";
