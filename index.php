@@ -21,35 +21,31 @@ require 'php/snipets.php';
 ?>
 <html>
 <?php
-if (count($_POST) > 0) {
+if (strlen($_POST['sei']) > 0 && strlen($_POST['mei']) > 0 && ($_POST['sex'] == 'M' || $_POST['sex'] == 'F')) {
 	$seimei = New Seimei();
 	$seimei->sei = $_POST['sei'];
-	$seimei->mei = $_POST['mei'];
-	$seimei->sex = $_POST['sex'];
-	if (strlen($seimei->sei) > 0 && strlen($seimei->mei) > 0 && ($seimei->sex == 'M' || $seimei->sex == 'F')) {
-		$seimei->shindan();
-		if (count($seimei->error) == 0) {
-			$meimei = $seimei->meimei();
-			seimeiWebHeader($seimei);
-			seimeiBody($seimei);
-			seimeiWebForm();
-		} else {
-			echo '<body>判定できない漢字が含まれます。<br>' . implode ('、', $seimei->error) . "</body>";
-		}
-	} else {
+	$seimei->sei = $_POST['mei'];
+	$seimei->sei = $_POST['sex'];
+	$seimei->shindan();
+	if (count($seimei->error) == 0) {
 		seimeiWebHeader($seimei);
-		seimeiWebForm();
+		echo '<body>';
+		seimeiBody($seimei);
+	} else {
+		seimeiWebHeader(null);
+		echo '<body>';
+		fbRoot();
+		echo '<div>';
+		fbLike();
+		echo '判定できない漢字が含まれます。<br>' . implode ('、', $seimei->error) . '</div>';
 	}
 } else {
 	seimeiWebHeader(null);
-	seimeiWebForm();
+	echo '<body>';
+	fbRoot();
 }
+seimeiWebForm();
 ?>
-			<div data-role='footer' data-position='fixed'>
-				<?php googleAdsense() ?>
-			</div>
-		</div>
-	</div>
 	<!-- 改名について -->
 	<div data-role="page" id="kaimei" data-theme="a">
 		<div data-role="header">

@@ -126,16 +126,16 @@ function seimeiWebHeader($seimei) {
 <head>
 <meta charset="UTF-8">
 <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> 
-<meta name="description" content="<?php echo $seimei ?
+<meta name="description" content="<?php echo $seimei == null ?
+	"あじあ姓名うらないへようこそ！赤ちゃんの名まえをつけたり（選名）、キラキラネームの改名案を探したり、じぶんの運勢をうらなうなど、どしどし使ってね！" :
 	$seimei->sei . " " . $seimei->mei . "さんの運勢 総合得点：" . $seimei->grand_score() . "点/" .
 	"人画（基礎運）" . $seimei->jinkaku . "画 " . $seimei->score($seimei->jinkaku) . "点/" .
 	"外画（外交運）" . $seimei->gaikaku . "画 " . $seimei->score($seimei->gaikaku) . "点/" .
 	"性格" . $seimei->seikaku_description() . "/" .
 	"健康運" . ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)] . "/" .
 	"天画（若年期運）" . $seimei->tenkaku . "画 " . $seimei->score($seimei->tenkaku) . "点/" .
-	"総画（晩年期運）" . $seimei->soukaku . "画 " . $seimei->score($seimei->soukaku) . "点" :
-	"あじあ姓名うらないへようこそ！赤ちゃんの名まえをつけたり（選名）、キラキラネームの改名案を探したり、じぶんの運勢をうらなうなど、どしどし使ってね！"?>">
-<meta name="keywords" content="<?php echo $seimei->sei ?> <?php echo $seimei->mei ?> 翁 山本翁 山本式 山本式姓名判断 占い 姓名判断 姓名うらない 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 DQNネーム キラキラネーム 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
+	"総画（晩年期運）" . $seimei->soukaku . "画 " . $seimei->score($seimei->soukaku) . "点"?>">
+<meta name="keywords" content="翁 山本翁 山本式 山本式姓名判断 占い 姓名判断 姓名うらない 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 DQNネーム キラキラネーム 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>あじあ姓名うらない</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -149,6 +149,7 @@ function seimeiWebHeader($seimei) {
 }
 
 function seimeiBody($seimei) {
+	$meimei = $seimei->meimei();
 ?>
 <div data-role="page" id="kantei" data-theme="a">
 	<div data-role="header">
@@ -168,11 +169,11 @@ foreach ($meimei['M'] as $name) {
 }
 echo implode("、", $newnames);
 ?>
-			</div>
 		</div>
-		<div data-role="collapsible" data-collapsed="true">
-			<h2>女子（女性）の場合</h2>
-			<div>
+	</div>
+	<div data-role="collapsible" data-collapsed="true">
+		<h2>女子（女性）の場合</h2>
+		<div>
 <?php
 $newnames = [];
 foreach ($meimei['F'] as $name) {
@@ -228,6 +229,9 @@ echo implode("、", $newnames);
 		<?php ninjaTools(); ?>
 		</p>
 	</div>
+	<div data-role='footer' data-position='fixed'>
+		<?php googleAdsense() ?>
+	</div>
 </div>
 <?php
 }
@@ -277,6 +281,9 @@ function seimeiWebForm() {
 		<a href="#kaimei" data-role="button">改名について</a>
 		<a href="http://daibutsuda.github.io/" data-role="button">だいぶつのホームページ</a>
 		<a href="http://tsume.hateblo.jp/" data-role="button">(ブログ)隠すほどの爪なら無い</a>
+	</div>
+	<div data-role='footer' data-position='fixed'>
+		<?php googleAdsense() ?>
 	</div>
 </div>
 <?php
