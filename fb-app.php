@@ -65,13 +65,13 @@ if ($session) {
 		
 		$seimei_list = [];
 		if (count($seimei->error) == 0) {
-			array_push($seimei_list, $seimei);
+			array_push($seimei_list, clone $seimei);
 		}
 		
 		foreach ($meimei[$seimei->sex] as $name) {
 			$seimei->mei = $name[0];
 			$seimei->shindan();
-			array_push($seimei_list, $seimei);
+			array_push($seimei_list, clone $seimei);
 		}
 		usort($seimei_list, "cmp");
 
