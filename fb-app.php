@@ -96,8 +96,9 @@ if ($session) {
 		foreach (['M', 'F'] as $sex) {
 			foreach ($meimei[$sex] as $name) {
 				$seimei->mei = $name[0];
+				$seimei->sex = $sex;
 				$seimei->shindan();
-				array_push($seimei_list, seimei_translate($seimei, $gender, $name[1]));
+				array_push($seimei_list, seimei_translate($seimei, $sex == 'M' ? '男性' : '女性', $name[1]));
 			}
 		}
 		usort($seimei_list, "cmp");
