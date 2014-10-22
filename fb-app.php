@@ -3,7 +3,7 @@ header('Content-type: text/html; charset=utf-8;');
 
 function cmp($a, $b)
 {
-	if ($a->grand_score() == $b->grand_score()) {
+	if ($a['grand_score'] == $b['grand_score']) {
 		return 0;
 	}
 	return ($a['grand_score'] < $b['grand_score']) ? 1 : -1;
