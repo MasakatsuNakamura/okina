@@ -26,6 +26,17 @@ function fbRoot() {
 <?php
 }
 
+function fbLike() {
+?>
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+<?php
+}
+
 function ninjaTools() {
 ?>
 <div class="ninja_onebutton">
@@ -82,6 +93,8 @@ function seimeiHeader(Seimei $seimei) {
 function seimeiBody(Seimei $seimei) {
 ?>
 <body>
+<?php fbRoot() ?>
+<?php fbLike() ?>
 	<h2>あなた(<?php echo $seimei-sei . "さん (" . ($seimei->sei == 'M' ? '男性' : '女性'); ?>)の改名例</h2>
 	<a href="http://www.seimei.asia/" target="blank">結果が表示されない場合や、もっと占いたい場合は「あじあ姓名うらない（本家サイト）」までどうぞ！赤ちゃんの命名にも使えます</a>
 	<div><?php echo $seimei->meimei($seimei->sei) ?></div>

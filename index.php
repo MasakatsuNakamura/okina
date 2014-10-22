@@ -72,12 +72,7 @@ if ($kantei) {
 			<a href="#query" data-icon="mail">問い合わせ</a>
 		</div>
 		<div data-role="content">
-			<div
-			  class="fb-like"
-			  data-share="true"
-			  data-width="450"
-			  data-show-faces="true">
-			</div>
+			<?php fbLike() ?>
 			<h2>うらなうには、名まえと性別を入力してね！</h2>
 			<form data-ajax="false" method="GET">
 				<div data-role="fieldcontain">
