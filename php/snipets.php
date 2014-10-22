@@ -95,12 +95,12 @@ function seimeiBody(Seimei $seimei) {
 <body>
 <?php fbRoot() ?>
 <?php fbLike() ?>
-	<h2>あなた(<?php echo $seimei-sei . "さん (" . ($seimei->sei == 'M' ? '男性' : '女性'); ?>)の改名例</h2>
+	<h2>あなた(<?php echo $seimei->sei . "さん (" . ($seimei->sex == 'M' ? '男性' : '女性'); ?>)の改名例</h2>
 	<a href="http://www.seimei.asia/" target="blank">結果が表示されない場合や、もっと占いたい場合は「あじあ姓名うらない（本家サイト）」までどうぞ！赤ちゃんの命名にも使えます</a>
 	<div><?php echo $seimei->meimei($seimei->sei) ?></div>
 	<hr />
 	
-	<h2>あなた(<?php echo $seimei->sei . " " . $seimei->mei . "さん (" . ($seimei->sei == 'M' ? '男性' : '女性'); ?>の運勢 (総合得点：<?php echo $seimei->grand_score() ?>点)</h2>
+	<h2>あなた(<?php echo $seimei->sei . " " . $seimei->mei . "さん:" . ($seimei->sex == 'M' ? '男性' : '女性'); ?>)の運勢 (総合得点：<?php echo $seimei->grand_score() ?>点)</h2>
 	<h3>人画 <?php echo $seimei->jinkaku . "画 (" . $seimei->score($seimei->jinkaku) . "点)" ?></h3>
 	<p style="color:blue;font-weight:bold;">基礎運。一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</p>
 	<p><?php echo $seimei->jinkaku . "画:" . $seimei->reii_description($seimei->jinkaku) . " (" . $seimei->score($seimei->jinkaku) . "点)" ?></p>
