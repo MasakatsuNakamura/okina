@@ -81,7 +81,7 @@ if ($session) {
 				'soukaku_disc'  => $seimei->reii_description($seimei->soukaku),
 				'soukaku_score' => $seimei->score($seimei->soukaku),
 				'kenkou'        => ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)],
-				'grand_score'   => $seimei->grandscore()
+				'grand_score'   => $seimei->grand_score()
 			]);
 		}
 		
@@ -89,7 +89,7 @@ if ($session) {
 			$seimei->mei = $name[0];
 			$seimei->shindan();
 			array_push($seimei_list, [
-				'name'          => $seimei->sei . " " . $seimei->mei . " " . $name[1],
+				'name'          => $seimei->sei . " " . $seimei->mei . " (" . $name[1] . ")",
 				'sex'           => ($seimei->sex == 'M' ? '男性' : '女性'),
 				'jinkaku'       => $seimei->jinkaku,
 				'jinkaku_disc'  => $seimei->reii_description($seimei->jinkaku),
@@ -104,7 +104,7 @@ if ($session) {
 				'soukaku_disc'  => $seimei->reii_description($seimei->soukaku),
 				'soukaku_score' => $seimei->score($seimei->soukaku),
 				'kenkou'        => ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)],
-				'grand_score'   => $seimei->grandscore()
+				'grand_score'   => $seimei->grand_score()
 			]);
 		}
 		usort($seimei_list, "cmp");
