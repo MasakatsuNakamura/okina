@@ -66,21 +66,22 @@ if ($session) {
 		$seimei_list = [];
 		if (count($seimei->error) == 0) {
 			array_push($seimei_list, [
-				'name'         => $seimei->sei . " " . $seimei->mei . " (あなたの名前)",
-				'sex'          => ($seimei->sex == 'M' ? '男性' : '女性'),
-				'jinkaku'      => $seimei->jinkaku,
-				'jinkaku_disc' => $seimei->reii_description($seimei->jinkaku),
+				'name'          => $seimei->sei . " " . $seimei->mei . " (あなたの名前)",
+				'sex'           => ($seimei->sex == 'M' ? '男性' : '女性'),
+				'jinkaku'       => $seimei->jinkaku,
+				'jinkaku_disc'  => $seimei->reii_description($seimei->jinkaku),
 				'jinkaku_score' => $seimei->score($seimei->jinkaku),
-				'gaikaku'      => $seimei->gaikaku,
-				'gaikaku_disc' => $seimei->reii_description($seimei->gaikaku),
+				'gaikaku'       => $seimei->gaikaku,
+				'gaikaku_disc'  => $seimei->reii_description($seimei->gaikaku),
 				'gaikaku_score' => $seimei->score($seimei->gaikaku),
-				'tenkaku'      => $seimei->tenkaku,
-				'tenkaku_disc' => $seimei->reii_description($seimei->tenkaku),
+				'tenkaku'       => $seimei->tenkaku,
+				'tenkaku_disc'  => $seimei->reii_description($seimei->tenkaku),
 				'tenkaku_score' => $seimei->score($seimei->tenkaku),
-				'soukaku'      => $seimei->soukaku,
-				'soukaku_disc' => $seimei->reii_description($seimei->soukaku),
+				'soukaku'       => $seimei->soukaku,
+				'soukaku_disc'  => $seimei->reii_description($seimei->soukaku),
 				'soukaku_score' => $seimei->score($seimei->soukaku),
-				'kenkou'       => ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)]
+				'kenkou'        => ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)],
+				'grand_score'   => $seimei->grandscore()
 			]);
 		}
 		
@@ -88,21 +89,22 @@ if ($session) {
 			$seimei->mei = $name[0];
 			$seimei->shindan();
 			array_push($seimei_list, [
-				'name'         => $seimei->sei . " " . $seimei->mei . " " . $name[1],
-				'sex'          => ($seimei->sex == 'M' ? '男性' : '女性'),
-				'jinkaku'      => $seimei->jinkaku,
-				'jinkaku_disc' => $seimei->reii_description($seimei->jinkaku),
+				'name'          => $seimei->sei . " " . $seimei->mei . " " . $name[1],
+				'sex'           => ($seimei->sex == 'M' ? '男性' : '女性'),
+				'jinkaku'       => $seimei->jinkaku,
+				'jinkaku_disc'  => $seimei->reii_description($seimei->jinkaku),
 				'jinkaku_score' => $seimei->score($seimei->jinkaku),
-				'gaikaku'      => $seimei->gaikaku,
-				'gaikaku_disc' => $seimei->reii_description($seimei->gaikaku),
+				'gaikaku'       => $seimei->gaikaku,
+				'gaikaku_disc'  => $seimei->reii_description($seimei->gaikaku),
 				'gaikaku_score' => $seimei->score($seimei->gaikaku),
-				'tenkaku'      => $seimei->tenkaku,
-				'tenkaku_disc' => $seimei->reii_description($seimei->tenkaku),
+				'tenkaku'       => $seimei->tenkaku,
+				'tenkaku_disc'  => $seimei->reii_description($seimei->tenkaku),
 				'tenkaku_score' => $seimei->score($seimei->tenkaku),
-				'soukaku'      => $seimei->soukaku,
-				'soukaku_disc' => $seimei->reii_description($seimei->soukaku),
+				'soukaku'       => $seimei->soukaku,
+				'soukaku_disc'  => $seimei->reii_description($seimei->soukaku),
 				'soukaku_score' => $seimei->score($seimei->soukaku),
-				'kenkou'       => ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)]
+				'kenkou'        => ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)],
+				'grand_score'   => $seimei->grandscore()
 			]);
 		}
 		usort($seimei_list, "cmp");
@@ -113,7 +115,7 @@ if ($session) {
 <div><img src="images/CoverImage.png" alt="あじあ姓名うらない バックグラウンドイメージはハウステンボス"></div>
 <?php
 		fbLike();
-		echo "<h2>改名アドバイザー あじあ姓名うらないオススメの、あなたにピッタリのお名前です(お子様につけてもかまいません)。</2>";
+		echo "<h2>改名アドバイザー</h2><p>あじあ姓名うらないオススメの、あなたにピッタリのお名前です(お子様につけてもかまいません)。</p>";
 		echo "<table>";
 		echo "<tr><th>" . implode("</th><th>", ["氏名", "性別", "総合得点", "人画(基礎運)", "外画(外交運)", "健康運", "天画(若年期運)", "総画(晩年運)"]) . "</th></tr>";
 
