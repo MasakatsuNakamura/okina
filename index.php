@@ -98,6 +98,8 @@ if ($kantei) {
 			</form>
 			<p><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></p>
 			<div class="ninja_onebutton">
+			<h2>Facebookアプリ公開中！</h2>
+			<p><a href="https://apps.facebook.com/seimei-asia/">Facebookアプリはこちら</a>。ランキング形式で運勢の強さを比較できます。ぜひお試しください。</p>
 			<h2>気に入ったらシェアをお願いします！</h2>
 			<?php ninjaTools() ?>
 			<a href="#setsumei" data-role="button">あじあ姓名うらないについて</a>
