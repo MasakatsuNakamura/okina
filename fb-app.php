@@ -1,12 +1,12 @@
 <?php
 header('Content-type: text/html; charset=utf-8;');
 
-function cmp(Seimei $a, Seimei $b)
+function cmp($a, $b)
 {
 	if ($a->grand_score() == $b->grand_score()) {
 		return 0;
 	}
-	return ($a->grand_score() < $b->grand_score()) ? 1 : -1;
+	return ($a['grand_score'] < $b['grand_score']) ? 1 : -1;
 }
 
 date_default_timezone_set('Asia/Tokyo');
