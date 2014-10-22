@@ -44,9 +44,9 @@ $authcode = rand(10000, 99999);
 					<label for="email">メールアドレス</label>
 					<input type="text" name="email" value="<?php echo $_POST['email'];?>" readonly="readonly">
 					<label for="subject">タイトル</label>
-					<input type="text" name="subject" value="<?php echo $_POST['subject'];?>" readonly="readonly">
+					<input type="text" name="subject" value="<?php echo $_POST['subject'];?>">
 					<label for="query-content">お問い合わせ内容</label>
-					<textarea name="query-content" id="query-content" readonly="readonly"><?php echo $_POST['query-content'];?></textarea>
+					<textarea name="query-content" id="query-content"><?php echo $_POST['query-content'];?></textarea>
 					<label for="query-content">認証コード</label>
 					<input type="text" name="authcode">
 					<input type="hidden" name="authcode-hash" value="<?php echo hash("haval160,4", $authcode);?>">
