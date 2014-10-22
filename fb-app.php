@@ -90,8 +90,8 @@ if ($session) {
 
 		$count = 1;
 		foreach ($seimei_list as $seimei) {
-			echo "<tr><td>" . $seimei->sei . " " . $seimei->mei . "</td>";
-			echo "<td>" . $count . "</td>";
+			echo "<tr><td>" . $count . "</td>";
+			echo "<td>" . $seimei->sei . " " . $seimei->mei . "</td>";
 			echo "<td>" . ($seimei->sex == 'M' ? '男性' : '女性') . "</td>";
 			echo "<td>" . $seimei->grand_score() . "点</td>";
 			echo "<td>" . $seimei->jinkaku . "画:" . $seimei->score($seimei->jinkaku) . "点<br>" . $seimei->reii_description($seimei->jinkaku) . "</td>";

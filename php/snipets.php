@@ -84,7 +84,6 @@ function seimeiHeader(Seimei $seimei) {
 	<title><?php echo $seimei->sei ?> <?php echo $seimei->mei ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/default.css" />
-	<script type="text/javascript" src="js/okina.js"></script>
 	<?php googleAnalytics() ?>
 </head>
 <?php
@@ -94,7 +93,7 @@ function seimeiBody(Seimei $seimei) {
 ?>
 <body>
 <?php fbRoot() ?>
-<div><img src="images/CoverImage.png" alt="あじあ姓名うらない バックグラウンドイメージはハウステンボス"></div>
+<p><img src="images/CoverImage.png" alt="あじあ姓名うらない バックグラウンドイメージはハウステンボス"></p>
 <?php fbLike() ?>
 	<h2>あなた(<?php echo $seimei->sei . "さん:" . ($seimei->sex == 'M' ? '男性' : '女性'); ?>)の改名例</h2>
 	<p><a href="http://www.seimei.asia/" target="blank">結果が表示されない場合や、もっと占いたい場合は「あじあ姓名うらない（本家サイト）」までどうぞ！赤ちゃんの命名にも使えます</a></p>
