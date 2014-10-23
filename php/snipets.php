@@ -170,7 +170,7 @@ function seimeiBody($seimei) {
 			<img src="bar_graph.php?<?php echo 
 			"a=" . ($seimei->score($seimei->gaikaku) * 0.25 + $seimei->score($seimei->tenkaku) * 0.5 + $seimei->score($seimei->jinkaku) * 0.25) . 
 			"&b=" . ($seimei->score($seimei->gaikaku) * 0.25 + $seimei->score($seimei->tenkaku) * 0.25 + $seimei->score($seimei->jinkaku) * 0.5) . 
-			"&c=" . ($seimei->score($seimei->gaikaku) * 0.25 + $seimei->score($seimei->soukaku) * 0.5 + $seimei->score($seimei->jinkaku) * 0.5) . 
+			"&c=" . ($seimei->score($seimei->gaikaku) * 0.25 + $seimei->score($seimei->soukaku) * 0.25 + $seimei->score($seimei->jinkaku) * 0.5) . 
 			"&d=" . ($seimei->score($seimei->soukaku) * 0.5 + $seimei->score($seimei->jinkaku) * 0.5) . 
 			"&e=" . $seimei->grand_score(); ?>">
 		</div>
