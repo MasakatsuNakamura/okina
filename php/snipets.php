@@ -280,25 +280,25 @@ function seimeiWebForm() {
 		<p>苗字と名前、性別を入力してね！</p>
 		<form method="POST" data-ajax="false" action="./">
 			<div data-role="fieldcontain">
-				<label for="sei">苗字</label>
+				<label for="sei">苗字 (Last Name)</label>
 				<input type="text" name="sei" id="sei" />
 			</div>
 			<div data-role="fieldcontain">
-				<label for="mei">名前</label>
+				<label for="mei">名前 (First Name)</label>
 				<input type="text" name="mei" id="mei" />
 			</div>
 			<div data-role="fieldcontain">
-				<label for="sex">性別</label>
+				<label for="sex">性別 (Gender)</label>
 				<fieldset name="sex" data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-					<input type="radio" name="sex" id="sex-1" value="M" />
-					<label for="sex-1">おとこ</label>
-					<input type="radio" name="sex" id="sex-2" value="F" checked="checked" />
-					<label for="sex-2">おんな</label>
+					<input type="radio" name="sex" id="sex-1" value="M" checked="checked" />
+					<label for="sex-1">男 (Male)</label>
+					<input type="radio" name="sex" id="sex-2" value="F" />
+					<label for="sex-2">女 (Female)</label>
 					<input type="radio" name="sex" id="sex-3" value="M" />
-					<label for="sex-3">それいがい</label>
+					<label for="sex-3">それ以外 (Others)</label>
 				</fieldset>
 			</div>
-			<input type="submit" value="命名・改名アドバイスを見る" data-role="button" />
+			<input type="submit" value="運勢をうらなう" data-role="button" />
 		</form>
 		<p><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></p>
 		<h2>Facebookアプリ公開中！</h2>
