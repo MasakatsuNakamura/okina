@@ -25,7 +25,6 @@ Class Seimei {
 	
 	function meimei () {
 		$meimei = New Meimei();
-		$this->error = [];
 		return($meimei->getNewName($this->sei, $this->sei1, $this->sei2));
 	}
 	
@@ -35,6 +34,8 @@ Class Seimei {
 
 		$sei = $this->sei;
 		$mei = $this->mei;
+
+		$this->error = [];
 		
 		$kanji = New Kanji();
 		

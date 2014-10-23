@@ -121,23 +121,15 @@ function seimeiHeader(Seimei $seimei) {
 <?php
 }
 
-function seimeiWebHeader($seimei) {
+function seimeiWebHeader() {
 ?>
 <head>
-<meta charset="UTF-8">
-<LINK REL="SHORTCUT ICON" HREF="favicon.ico"> 
-<meta name="description" content="<?php echo $seimei == null ?
-	"あじあ姓名うらないへようこそ！赤ちゃんの名まえをつけたり（選名）、キラキラネームの改名案を探したり、じぶんの運勢をうらなうなど、どしどし使ってね！" :
-	$seimei->sei . " " . $seimei->mei . "さんの運勢 総合得点：" . $seimei->grand_score() . "点/" .
-	"人画（基礎運）" . $seimei->jinkaku . "画 " . $seimei->score($seimei->jinkaku) . "点/" .
-	"外画（外交運）" . $seimei->gaikaku . "画 " . $seimei->score($seimei->gaikaku) . "点/" .
-	"性格" . $seimei->seikaku_description() . "/" .
-	"健康運" . ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)] . "/" .
-	"天画（若年期運）" . $seimei->tenkaku . "画 " . $seimei->score($seimei->tenkaku) . "点/" .
-	"総画（晩年期運）" . $seimei->soukaku . "画 " . $seimei->score($seimei->soukaku) . "点"?>">
-<meta name="keywords" content="翁 山本翁 山本式 山本式姓名判断 占い 姓名判断 姓名うらない 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 DQNネーム キラキラネーム 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>あじあ姓名うらない</title>
+	<meta charset="UTF-8">
+	<LINK REL="SHORTCUT ICON" HREF="favicon.ico"> 
+	<meta name="description" content="あじあ姓名うらないへようこそ！赤ちゃんの名まえをつけたり（選名）、キラキラネームの改名案を探したり、じぶんの運勢をうらなうなど、どしどし使ってね！">
+	<meta name="keywords" content="翁 山本翁 山本式 山本式姓名判断 占い 姓名判断 姓名うらない 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 DQNネーム キラキラネーム 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>あじあ姓名うらない</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
 	<link rel="stylesheet" href="css/default.css" />
@@ -175,17 +167,19 @@ function seimeiBody($seimei) {
 			"&e=" . $seimei->grand_score(); ?>">
 		</div>
 		<h2><?php echo $seimei->sei ?>さんへの改名のご提案</h2>
-<?php
-if ($seimei->grand_score() >= 90) {
-	echo '<p>すばらしいお名前をお持ちですね！ご両親に感謝するべきです。お子様の選名には、下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。</p>';
-} elseif ($seimei->grand_score() >= 75) {
-	echo '<p>現在かなり良い名前を持っておられますので、改名の必要はありません。お子様の選名には、下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。</p>';
-} elseif ($seimei->grand_score() >= 50) {
-	echo '<p>現在のお名前もそれほど悪くはありませんので、今すぐ改名の必要はありませんが、可能性としてご考慮いただいてもかまわないレベルです。お子様の選名には、下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。</p>';
-} else {
-	echo '<p>あなたのお名前は、あじあ姓名うらないの基準では改名の必要があるほど、運勢が弱い画数になっています。下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。</p>';
-}
-?>
+		<p>
+			<?php
+			if ($seimei->grand_score() >= 90) {
+				echo 'すばらしいお名前をお持ちですね！ご両親に感謝するべきです。お子様の選名には、下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。';
+			} elseif ($seimei->grand_score() >= 75) {
+				echo '現在かなり良い名前を持っておられますので、改名の必要はありません。お子様の選名には、下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。';
+			} elseif ($seimei->grand_score() >= 50) {
+				echo '現在のお名前もそれほど悪くはありませんので、今すぐ改名の必要はありませんが、可能性としてご考慮いただいてもかまわないレベルです。お子様の選名には、下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。';
+			} else {
+				echo 'あなたのお名前は、あじあ姓名うらないの基準では改名の必要があるほど、運勢が弱い画数になっています。下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。';
+			}
+			?>
+		</p>
 		<div data-role="collapsible" data-collapsed="true">
 		<h2>男子（男性）の場合</h2>
 			<div>
@@ -240,7 +234,9 @@ if ($seimei->grand_score() >= 90) {
 			<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('seikaku') ?></p>
 		</div>
 		<div data-role="collapsible" data-collapsed="true">
-			<h2>健康運 (<?php echo ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)] ?>)</h2>
+			<h2>健康運 (<?php 
+			$kenkou_map = ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"];
+			echo $kenkou_map[mb_substr($seimei->kenkou_description(), 6, 1)] ?>)</h2>
 			<p style="color:blue;font-weight:bold;">健康運は三才の配置により決定します。吉数揃いの姓名も、健康に恵まれなければ活かされません。他の画数と合わせて判断してください。</p>
 			<p>三才の配置：<?php echo mb_substr($seimei->kenkou_description(), 0, 5) ?></p>
 			<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('kenkou') ?></p>
@@ -261,9 +257,7 @@ if ($seimei->grand_score() >= 90) {
 			<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 		</div>
 		<h2>シェア</h2>
-		<p>
-		<?php ninjaTools(); ?>
-		</p>
+		<p><?php ninjaTools(); ?></p>
 	</div>
 	<div data-role='footer' data-position='fixed'>
 		<?php googleAdsense() ?>
@@ -307,7 +301,6 @@ function seimeiWebForm() {
 			<input type="submit" value="命名・改名アドバイスを見る" data-role="button" />
 		</form>
 		<p><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></p>
-		<div class="ninja_onebutton">
 		<h2>Facebookアプリ公開中！</h2>
 		<p><a href="https://apps.facebook.com/seimei-asia/">Facebookアプリはこちら</a>。</p>
 		<h2>気に入ったらシェアをお願いします！</h2>
@@ -336,8 +329,8 @@ function seimeiWebForm() {
 			その名前は改名できます。<br>
 			名前の変更には、家庭裁判所に対して「名の変更許可の申し立て」を行います。<br>
 			これには「正当な事由」が必要とされていますが、「珍奇な名、外国人に紛らわしい名又は難解、難読の文字を用いた名で社会生活上甚だしく支障のあること」という要件を満たせば「正当な事由」にあたるという、最高裁事務局の見解があります。<br>
-			さあ、「<a href="#top">あじあ姓名うらない</a>」で改名にチャレンジしてみてください。
-			もしいい名前が見つからなかった場合、「<a href="#query">問い合わせフォーム</a>」からお問い合わせください。
+			さあ、<a href="#top">あじあ姓名うらない</a>で改名にチャレンジしてみてください。
+			もしいい名前が見つからなかった場合<a href="#query">問い合わせフォーム</a>からお問い合わせください。
 		</p>
 	</div>
 	<div data-role='footer' data-position='fixed'>
@@ -379,7 +372,7 @@ function seimeiWebForm() {
 	</div>
 	<div data-role='content'>
 		<h2>お問い合わせフォーム</h2>
-		<p>メールアドレスのなりすまし防止のため、セキュリティコードを下記のメールアドレスに送ります。次の画面でそのコードを入力してください。
+		<p>メールアドレスのなりすまし防止のため、セキュリティコードを下記のメールアドレスに送ります。次の画面でそのコードを入力してください。</p>
 		<div data-role="fieldcontain">
 			<form action="mail-confirm.php" data-ajax="false" method="POST">
 				<label for="email">メールアドレス</label>
@@ -393,5 +386,29 @@ function seimeiWebForm() {
 	</div>
 </div>
 <?php
+}
+
+function errorKanji($kanji) {
+?>
+<!-- エラー漢字 -->
+<div data-role="page" id="query" data-theme="a">
+	<div data-role="header">
+		<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+		<a href="#top" data-icon="home">ホーム</a>
+		<a href="#query" data-icon="mail" class="ui-disabled">問い合わせ</a>
+	</div>
+	<div data-role='content'>
+		<h2>画数データベースにない文字が入力されました</h2>
+		<p>次の文字はデータベースに画数が登録されていません：<?php echo implode("、", $kanji)?></p>
+		<ul>
+		<li>このアプリは漢字以外の文字には対応していません。</li>
+		<li>もし、漢字を入力してこの画面が表示された場合、<a href="#query">問い合わせフォーム</a>よりお問い合わせいただければ、データベースへの登録を検討いたします。</li>
+		</ul>
+	</div>
+	<div data-role='footer' data-position='fixed'>
+		<?php googleAdsense(); ?>
+	</div>
+</div>
+<?php 
 }
 ?>

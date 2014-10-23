@@ -44,8 +44,11 @@ Class Kanji {
 	}
 	
 	public function kakusu($moji) {
-		$k = $this->kakusu[$moji];
-		return(is_numeric($k) ? $k : 0);
+		if (array_key_exists($moji, $this->kakusu)) {
+			return $this->kakusu[$moji];
+		} else {
+			return 0;
+		}
 	}
 }
 ?>
