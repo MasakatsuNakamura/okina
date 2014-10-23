@@ -158,33 +158,8 @@ function seimeiBody($seimei) {
 		<a href="#query" data-icon="mail">問い合わせ</a>
 	</div>
 	<div data-role="content">
-		<h2><?php echo $seimei->sei ?>さんの命名・改名例</h2>
+		<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h2>
 		<?php fbLike(); ?>
-		<div data-role="collapsible" data-collapsed="false">
-			<h2>男子（男性）の場合</h2>
-			<div>
-			<?php
-			$newnames = [];
-			foreach ($meimei['M'] as $name) {
-				array_push($newnames, "<span style='font-weight:bold;font-size:x-large;color:blue;'>" . $name[0] . "</span> (" . $name[1] . ")");
-			}
-			echo implode("、", $newnames);
-			?>
-			</div>
-		</div>
-		<div data-role="collapsible" data-collapsed="false">
-			<h2>女子（女性）の場合</h2>
-			<div>
-			<?php
-			$newnames = [];
-			foreach ($meimei['F'] as $name) {
-				array_push($newnames, "<span style='font-weight:bold;font-size:x-large;color:red;'>" . $name[0] . "</span> (" . $name[1] . ")");
-			}
-			echo implode("、", $newnames);
-			?>
-			</div>
-		</div>
-		<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 (総合得点：<?php echo $seimei->grand_score() ?>点)</h2>
 		<div style="text-align:center;">
 			<img src="radar_chart.php?<?php echo 
 			"jinkaku=" . ($seimei->score($seimei->jinkaku) / 20) . 
@@ -192,7 +167,58 @@ function seimeiBody($seimei) {
 			"&tenkaku=" . ($seimei->score($seimei->tenkaku) /20) . 
 			"&soukaku=" . ($seimei->score($seimei->soukaku) /20) . 
 			"&kenkou=" . ["◎" => 5, "○" => 4.5, "△" => 3.5, "×" => 2.5][mb_substr($seimei->kenkou_description(), 6, 1)]?>">
+			<img src="bar_graph.php?<?php echo 
+			"a=" . ($seimei->score($seimei->gaikaku) * 0.25 + $seimei->score($seimei->tenkaku) * 0.5 + $seimei->score($seimei->jinkaku) * 0.25) . 
+			"&b=" . ($seimei->score($seimei->gaikaku) * 0.25 + $seimei->score($seimei->tenkaku) * 0.25 + $seimei->score($seimei->jinkaku) * 0.5) . 
+			"&c=" . ($seimei->score($seimei->gaikaku) * 0.25 + $seimei->score($seimei->soukaku) * 0.5 + $seimei->score($seimei->jinkaku) * 0.5) . 
+			"&d=" . ($seimei->score($seimei->soukaku) * 0.5 + $seimei->score($seimei->jinkaku) * 0.5) . 
+			"&e=" . $seimei->grand_score(); ?>">
 		</div>
+		<h2><?php echo $seimei->sei ?>さんへの改名のご提案</h2>
+<?php
+if ($seimei->grand_score() >= 90) {
+	echo '<p>すばらしいお名前をお持ちですね！ご両親に感謝するべきです。お子様の選名には、下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。</p>';
+} elseif ($seimei->grand_score() >= 75) {
+	echo '<p>現在かなり良い名前を持っておられますので、改名の必要はありません。お子様の選名には、下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。</p>';
+} elseif ($seimei->grand_score() >= 50) {
+	echo '<p>現在のお名前もそれほど悪くはありませんので、今すぐ改名の必要はありませんが、可能性としてご考慮いただいてもかまわないレベルです。お子様の選名には、下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。</p>';
+} else {
+	echo '<p>あなたのお名前は、あじあ姓名うらないの基準では改名の必要があるほど、運勢が弱い画数になっています。下記の名前を参考にしてください。もし気に入った名前がない場合、問い合わせフォームより選名依頼も受け付けております。</p>';
+}
+?>
+		<div data-role="collapsible" data-collapsed="true">
+		<h2>男子（男性）の場合</h2>
+			<div>
+			<?php
+			$newnames = [];
+			foreach ($meimei['M'] as $name) {
+				array_push($newnames, "<span style='font-weight:bold;font-size:x-large;color:blue;'>" . $name[0] . "</span> (" . $name[1] . ")");
+			}
+			if (count($newnames) == 0) {
+				echo '申し訳ありません、データベースに名前の候補がありません。問い合わせフォームからお問い合わせください。';
+			} else {
+				echo implode("、", $newnames);
+			}
+			?>
+			</div>
+		</div>
+		<div data-role="collapsible" data-collapsed="true">
+			<h2>女子（女性）の場合</h2>
+			<div>
+			<?php
+			$newnames = [];
+			foreach ($meimei['F'] as $name) {
+				array_push($newnames, "<span style='font-weight:bold;font-size:x-large;color:red;'>" . $name[0] . "</span> (" . $name[1] . ")");
+			}
+			if (count($newnames) == 0) {
+				echo '申し訳ありません、データベースに名前の候補がありません。問い合わせフォームからお問い合わせください。';
+			} else {
+				echo implode("、", $newnames);
+			}
+			?>
+			</div>
+		</div>
+		<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢(詳細)</h2>
 		<div data-role="collapsible" data-collapsed="true">
 			<h2>人画 <?php echo $seimei->jinkaku . "画 (" . $seimei->score($seimei->jinkaku) . "点)" ?></h2>
 			<p style="color:blue;font-weight:bold;">基礎運。一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</p>
@@ -255,10 +281,9 @@ function seimeiWebForm() {
 		<a href="#query" data-icon="mail">問い合わせ</a>
 	</div>
 	<div data-role="content">
-		<?php fbLike() ?>
-		<h2>命名・改名アドバイザー</h2>
-		<p>いまの苗字と名前、性別を入力してね！</p>
-		<p>結婚して苗字が代わる予定の人は、結婚後の苗字を入力してください。</p>
+		<?php fbLike(); ?>
+		<h2>姓名から運勢を判定します！</h2>
+		<p>苗字と名前、性別を入力してね！</p>
 		<form method="POST" data-ajax="false" action="./">
 			<div data-role="fieldcontain">
 				<label for="sei">苗字</label>
@@ -286,14 +311,14 @@ function seimeiWebForm() {
 		<h2>Facebookアプリ公開中！</h2>
 		<p><a href="https://apps.facebook.com/seimei-asia/">Facebookアプリはこちら</a>。</p>
 		<h2>気に入ったらシェアをお願いします！</h2>
-		<?php ninjaTools() ?>
+		<?php ninjaTools(); ?>
 		<a href="#setsumei" data-role="button">あじあ姓名うらないについて</a>
 		<a href="#kaimei" data-role="button">改名について</a>
 		<a href="http://daibutsuda.github.io/" data-role="button">だいぶつのホームページ</a>
 		<a href="http://tsume.hateblo.jp/" data-role="button">(ブログ)隠すほどの爪なら無い</a>
 	</div>
 	<div data-role='footer' data-position='fixed'>
-		<?php googleAdsense() ?>
+		<?php googleAdsense(); ?>
 	</div>
 </div>
 
@@ -316,7 +341,7 @@ function seimeiWebForm() {
 		</p>
 	</div>
 	<div data-role='footer' data-position='fixed'>
-		<?php googleAdsense() ?>
+		<?php googleAdsense(); ?>
 	</div>
 </div>
 
@@ -341,7 +366,7 @@ function seimeiWebForm() {
 		</p>
 	</div>
 	<div data-role='footer' data-position='fixed'>
-		<?php googleAdsense() ?>
+		<?php googleAdsense(); ?>
 	</div>
 </div>
 
@@ -364,7 +389,7 @@ function seimeiWebForm() {
 		</div>
 	</div>
 	<div data-role='footer' data-position='fixed'>
-		<?php googleAdsense() ?>
+		<?php googleAdsense(); ?>
 	</div>
 </div>
 <?php

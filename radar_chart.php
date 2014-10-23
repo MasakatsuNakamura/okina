@@ -17,17 +17,17 @@ $DataSet->AddSerie("Serie");
 $DataSet->SetAbsciseLabelSerie("Label");
 
 // 初期設定
-$Test = new pChart(420,420);
+$Test = new pChart(320,320);
 $Test->drawBackground(255,255,255);
-$Test->setFontProperties(DRAW_FONT, 10);
+$Test->setFontProperties(DRAW_FONT, 8);
 // 外枠
-$Test->drawFilledRoundedRectangle(7,7,400,400,5,240,240,240);
-$Test->drawRoundedRectangle(5,5,400,400,5,230,230,230);
+$Test->drawFilledRoundedRectangle(7,7,313,313,5,240,240,240);
+$Test->drawRoundedRectangle(5,5,315,315,5,230,230,230);
 // レーダー描画エリア
-$Test->setGraphArea(55,55,340,340);
+$Test->setGraphArea(30,50,280,280);
 // 内枠
-$Test->drawFilledRoundedRectangle(30,30,370,370,5,254,254,254);
-$Test->drawRoundedRectangle(30,30,370,370,5,220,220,220);
+$Test->drawFilledRoundedRectangle(15,30,295,292,5,254,254,254);
+$Test->drawRoundedRectangle(15,30,295,295,5,220,220,220);
 
 // レーダー設定
 $Test->drawRadarAxis($DataSet->GetData(),$DataSet->GetDataDescription(),TRUE,
@@ -38,7 +38,7 @@ $Test->drawFilledRadar($DataSet->GetData(),$DataSet->GetDataDescription(),
 
 // タイトル
 $Test->setFontProperties(DRAW_FONT,10);
-$Test->drawTitle(0,22,"各運勢のバランス(5段階評価)",50,50,50,400);
+$Test->drawTitle(0,22,"各運勢のバランス(5段階評価)",50,50,50,300);
 
 // 描画
 $Test->Stroke();
