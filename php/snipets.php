@@ -160,29 +160,39 @@ function seimeiBody($seimei) {
 	<div data-role="content">
 		<h2><?php echo $seimei->sei ?>さんの命名・改名例</h2>
 		<?php fbLike(); ?>
-		<h2>男子（男性）の場合</h2>
-		<div>
-<?php
-$newnames = [];
-foreach ($meimei['M'] as $name) {
-	array_push($newnames, "<span style='font-weight:bold;font-size:x-large;color:blue;'>" . $name[0] . "</span> (" . $name[1] . ")");
-}
-echo implode("、", $newnames);
-?>
+		<div data-role="collapsible" data-collapsed="false">
+			<h2>男子（男性）の場合</h2>
+			<div>
+			<?php
+			$newnames = [];
+			foreach ($meimei['M'] as $name) {
+				array_push($newnames, "<span style='font-weight:bold;font-size:x-large;color:blue;'>" . $name[0] . "</span> (" . $name[1] . ")");
+			}
+			echo implode("、", $newnames);
+			?>
+			</div>
 		</div>
-	</div>
-	<div data-role="collapsible" data-collapsed="true">
-		<h2>女子（女性）の場合</h2>
-		<div>
-<?php
-$newnames = [];
-foreach ($meimei['F'] as $name) {
-	array_push($newnames, "<span style='font-weight:bold;font-size:x-large;color:red;'>" . $name[0] . "</span> (" . $name[1] . ")");
-}
-echo implode("、", $newnames);
-?>
+		<div data-role="collapsible" data-collapsed="false">
+			<h2>女子（女性）の場合</h2>
+			<div>
+			<?php
+			$newnames = [];
+			foreach ($meimei['F'] as $name) {
+				array_push($newnames, "<span style='font-weight:bold;font-size:x-large;color:red;'>" . $name[0] . "</span> (" . $name[1] . ")");
+			}
+			echo implode("、", $newnames);
+			?>
+			</div>
 		</div>
 		<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢 (総合得点：<?php echo $seimei->grand_score() ?>点)</h2>
+		<div style="text-align:center;">
+			<img src="radar_chart.php?<?php echo 
+			"jinkaku=" . ($seimei->score($seimei->jinkaku) / 20) . 
+			"&gaikaku=" . ($seimei->score($seimei->gaikaku) / 20) . 
+			"&tenkaku=" . ($seimei->score($seimei->tenkaku) /20) . 
+			"&soukaku=" . ($seimei->score($seimei->soukaku) /20) . 
+			"&kenkou=" . ["◎" => 5, "○" => 4.5, "△" => 3.5, "×" => 2.5][mb_substr($seimei->kenkou_description(), 6, 1)]?>">
+		</div>
 		<div data-role="collapsible" data-collapsed="true">
 			<h2>人画 <?php echo $seimei->jinkaku . "画 (" . $seimei->score($seimei->jinkaku) . "点)" ?></h2>
 			<p style="color:blue;font-weight:bold;">基礎運。一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</p>
@@ -284,6 +294,74 @@ function seimeiWebForm() {
 	</div>
 	<div data-role='footer' data-position='fixed'>
 		<?php googleAdsense() ?>
+	</div>
+	<!-- 改名について -->
+	<div data-role="page" id="kaimei" data-theme="a">
+		<div data-role="header">
+			<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+			<a href="#top" data-icon="home">ホーム</a>
+			<a href="#query" data-icon="mail">改名について</a>
+		</div>
+		<div data-role='content'>
+			<h2>改名について</h2>
+			<p style="font-weight:bold;line-height:180%;">
+				親に変な名前を付けられたせいで困っている、そんな方はいらっしゃいませんか。<br>
+				その名前は改名できます。<br>
+				名前の変更には、家庭裁判所に対して「名の変更許可の申し立て」を行います。<br>
+				これには「正当な事由」が必要とされていますが、「珍奇な名、外国人に紛らわしい名又は難解、難読の文字を用いた名で社会生活上甚だしく支障のあること」という要件を満たせば「正当な事由」にあたるという、最高裁事務局の見解があります。<br>
+				さあ、「<a href="#top">あじあ姓名うらない</a>」で改名にチャレンジしてみてください。
+				もしいい名前が見つからなかった場合、「<a href="#query">問い合わせフォーム</a>」からお問い合わせください。
+			</p>
+		</div>
+		<div data-role='footer' data-position='fixed'>
+			<?php googleAdsense() ?>
+		</div>
+	</div>
+	<!-- 説明 -->
+	<div data-role="page" id="setsumei" data-theme="a">
+		<div data-role="header">
+			<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+			<a href="#top" data-icon="home">ホーム</a>
+			<a href="#query" data-icon="mail">あじあ姓名うらないについて</a>
+		</div>
+		<div data-role='content'>
+			<h2>あじあ姓名うらないについて</h2>
+			<p style="font-weight:bold;line-height:180%;">
+				<span style="color:red">姓名（名まえ）から運勢なんてわかるものなんでしょうか？</span>同姓同名で違う人生をたどる人がいっぱいいるのだから、もちろんそんなことはありえません。だけど、運命が完全に導き出されるわけではないにしろ、名まえが運勢に影響を与えると言う現象はしばしば見られます。<br>
+				たとえば人の名前を聞いたときに「雰囲気どおりの名まえだ」と感じることはありませんか？<br>
+				つまり、名まえは運命を決定付けるものではないにしろ、何らかの影響力を持っているものだと考えてもいいんじゃないでしょうか？<br>
+				そして、運勢の傾向を事前に知っておけば、対策を立てることも容易になります。山にハイキングに出かけ、何も知らずに突然スズメバチの巣に出くわすのと、向こうから来た人に「もうすぐスズメバチの巣があるよ」と教えてもらうのと、どちらが良いでしょうか？<br>
+				<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>らは多くの人々の名まえを調べ、その人の運命との関連を体系づけました。<br>
+				このサイトでは<a href="http://ja.wikipedia.org/wiki/%E7%86%8A%E5%B4%8E%E5%81%A5%E7%BF%81" target="_blank">熊崎健翁</a>の弟子、山本哲生氏が熊崎式姓名学に基づいて編纂した本を参考にして、結果を表示しています。<br>
+				さらに、この姓名うらないでは、苗字にあわせて優れた名まえを自動で選ぶうことの出来る<span style="color:red">新生児命名アドバイス機能</span>までついています。<br>
+				あじあ姓名うらないのノウハウを利用し、赤ちゃんにつける名前、また芸名などの選定、キラキラネームの改名など、ご活用ください。これらの機能は無料です。ぜひお試しください。
+			</p>
+		</div>
+		<div data-role='footer' data-position='fixed'>
+			<?php googleAdsense() ?>
+		</div>
+	</div>
+	<!-- 問い合わせフォーム -->
+	<div data-role="page" id="query" data-theme="a">
+		<div data-role="header">
+			<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+			<a href="#top" data-icon="home">ホーム</a>
+			<a href="#query" data-icon="mail" class="ui-disabled">問い合わせ</a>
+		</div>
+		<div data-role='content'>
+			<h2>お問い合わせフォーム</h2>
+			<p>メールアドレスのなりすまし防止のため、セキュリティコードを下記のメールアドレスに送ります。次の画面でそのコードを入力してください。
+			<div data-role="fieldcontain">
+				<form action="mail-confirm.php" data-ajax="false" method="POST">
+					<label for="email">メールアドレス</label>
+					<input type="text" name="email">
+					<input type="submit" value="次へ">
+				</form>
+			</div>
+		</div>
+		<div data-role='footer' data-position='fixed'>
+			<?php googleAdsense() ?>
+		</div>
 	</div>
 </div>
 <?php
