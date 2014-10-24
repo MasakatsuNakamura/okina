@@ -75,12 +75,12 @@ function seimeiHeader(Seimei $seimei) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta property="og:locale" content="ja_JP" />
 	<meta name="description" content="<?php echo $seimei->sei . " " . $seimei->mei . "さんの運勢 総合得点：" . $seimei->grand_score() . "点/" .
-		"人画（基礎運）" . $seimei->jinkaku . "画 " . $seimei->score($seimei->jinkaku) . "点/" .
-		"外画（外交運）" . $seimei->gaikaku . "画 " . $seimei->score($seimei->gaikaku) . "点/" .
+		"人画（基礎運）" . $seimei->jinkaku . "画 " . $seimei->jinkaku_score . "点/" .
+		"外画（外交運）" . $seimei->gaikaku . "画 " . $seimei->gaikaku_score . "点/" .
 		"性格" . $seimei->seikaku_description() . "/" .
 		"健康運" . $seimei->kenkou_score(1) . "/" .
-		"天画（若年期運）" . $seimei->tenkaku . "画 " . $seimei->score($seimei->tenkaku) . "点/" .
-		"総画（晩年期運）" . $seimei->soukaku . "画 " . $seimei->score($seimei->soukaku) . "点" ?>">
+		"天画（若年期運）" . $seimei->tenkaku . "画 " . $seimei->tenkaku_score . "点/" .
+		"総画（晩年期運）" . $seimei->soukaku . "画 " . $seimei->soukaku_score . "点" ?>">
 	<title><?php echo $seimei->sei ?> <?php echo $seimei->mei ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/default.css" />
