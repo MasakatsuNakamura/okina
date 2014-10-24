@@ -300,7 +300,7 @@ Class Seimei {
 			'soukaku'       => $this->soukaku,
 			'soukaku_disc'  => $this->reii_description($this->soukaku),
 			'soukaku_score' => $this->soukaku_score,
-			'kenkou'        => $this->kenkou_score(1),
+			'kenkou'        => $this->kenkou_score(2),
 			'grand_score'   => round($this->grand_score())
 		];
 	}

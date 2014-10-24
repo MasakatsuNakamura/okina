@@ -35,6 +35,6 @@ $Test->drawBarGraph($DataSet->GetData(),$DataSet->GetDataDescription(),TRUE);
 
 // Finish the graph
 $Test->setFontProperties(DRAW_FONT,10);
-$Test->drawTitle(0,22,"あなたの年齢別運勢",50,50,50,320);
+$Test->drawTitle(0,22,"年齢別運勢",50,50,50,320);
 $Test->Stroke();
 ?>

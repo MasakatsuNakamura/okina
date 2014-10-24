@@ -63,10 +63,10 @@ if ($session) {
 		$meimei = $seimei->meimei();
 
 		seimeiHeader($seimei);
-		
+
 		$seimei_list = [];
 		if (count($seimei->error) == 0) {
-			array_push($seimei_list, $seimei->toarray("あなたの名前"));
+			$myname = $seimei->toarray("あなたの名前");
 		}
 		
 		foreach (['M', 'F'] as $sex) {
@@ -78,6 +78,7 @@ if ($session) {
 			}
 		}
 		usort($seimei_list, "cmp");
+		array_unshift($seimei_list, $myname);
 
 		echo "<body>";
 		fbRoot();
@@ -92,7 +93,6 @@ if ($session) {
 		foreach ($seimei_list as $name) {
 			echo "<tr><td style='font-size:large;color:" . ($name['sex'] == 'M' ? "blue" : "red"). ";'>" . $name['name'] . "</td>";
 			echo "<td style='font-size:x-large;'>" . $name['gender'] . "</td>";
-			echo "<td style='font-size:x-large;text-align:center;'>" . $name['grand_score'] . "点</td>";
 			echo "<td style='text-align:center;'><img src='radar_chart.php?" . 
 				"jinkaku=" . ($name['jinkaku_score'] / 20) . 
 				"&gaikaku=" . ($name['gaikaku_score'] / 20) . 
