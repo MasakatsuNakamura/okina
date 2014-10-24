@@ -13,6 +13,12 @@ Class Seimei {
 	
 	public $seikaku;
 	public $kenkou;
+
+	public $tenkaku_score;
+	public $jinkaku_score;
+	public $gaikaku_score;
+	public $soukaku_score;
+	public $kenkou_score;
 	
 	public $error;
 
@@ -123,28 +129,24 @@ Class Seimei {
 
 		// 陰陽五行のシリアル番号の算出(詳しくはkenkou.phpを参照)
 		$this->kenkou = $this->f($this->tenshimo) * 25 + $this->f($this->jinshimo) * 5 + $this->f($this->chishimo);
-	}
-	
-	public function score ($kakusu) {
+		
 		$reii = New Reii();
-		return $reii->score[$kakusu][$this->sex == 'M' ? 0 : 1];
+		
+		$s = $this->sex == 'F' ? 1 : 0;
+		
+		$this->tenkaku_score = $reii->score[$this->tenkaku][$s];
+		$this->jinkaku_score = $reii->score[$this->jinkaku][$s];
+		$this->gaikaku_score = $reii->score[$this->gaikaku][$s];
+		$this->soukaku_score = $reii->score[$this->soukaku][$s];
+		$this->kenkou_score = $this->kenkou_score(2);
+		
 	}
 	
 	public function grand_score () {
-		$reii = New Reii();
-		$kenkou_map = ['◎' => 1, '○' => 0.9, '△' => 0.7, '×' => 0.5];
-		$kenkou = $kenkou_map[mb_substr($this->kenkou_description(), 6, 1, "utf-8")];
-		if ($this->sex == 'M') {
-			return
-				($reii->score[$this->tenkaku][0] +
-				$reii->score[$this->jinkaku][0] +
-				$reii->score[$this->gaikaku][0] +
-				$reii->score[$this->soukaku][0]) / 4 * $kenkou;
+		if ($this->sex == 'F') {
+			return ($this->tenkaku_score + $this->jinkaku_score + $this->gaikaku_score) / 3 * $this->kenkou_score;
 		} else {
-			return
-				($reii->score[$this->tenkaku][1] +
-				$reii->score[$this->jinkaku][1] +
-				$reii->score[$this->gaikaku][1]) / 3 * $kenkou;
+			return ($this->tenkaku_score + $this->jinkaku_score + $this->gaikaku_score + $this->soukaku_score) / 4 * $this->kenkou_score;
 		}
 	}
 	
@@ -161,6 +163,20 @@ Class Seimei {
 	public function kenkou_description () {
 		$kenkou = New Kenkou();
 		return $kenkou->mongon[$this->kenkou][0];
+	}
+
+	public function kenkou_score ($param) {
+		$kenkou = New Kenkou();
+		$c = $kenkou->mongon[$this->kenkou][1];
+		if ($param == 0) {
+			return $c;
+		} elseif ($param == 1) {
+			$array = ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"];
+			return $array[$c];
+		} else {
+			$array = ['◎' => 1, '○' => 0.9, '△' => 0.7, '×' => 0.5];
+			return $array[$c];
+		}
 	}
 	
 	// 占い結果(文言)の出力
@@ -221,7 +237,7 @@ Class Seimei {
 				break;
 			
 			case 'kenkou':
-				$mongon = $kenkou->mongon[$this->kenkou][1];
+				$mongon = $kenkou->mongon[$this->kenkou][2];
 				break;
 
 			default:
@@ -263,6 +279,38 @@ Class Seimei {
 		}
 		$i -= 1;
 		return($i);
+	}
+
+	public function cmp($a, $b)
+	{
+		if ($a->grand_score() == $b->grand_score()) {
+			return 0;
+		}
+		return ($a->grand_score() < $b->grand_score()) ? 1 : -1;
+	}
+	
+	function toarray ($desc) {
+		return [
+			'name'          => $this->sei . " " . $this->mei . " (". $desc . ")",
+			'sei'           => $this->sei,
+			'mei'           => $this->mei,
+			'sex'			=> $this->sex,
+			'gender'        => $this->sex == 'F' ? '女性' : '男性',
+			'jinkaku'       => $this->jinkaku,
+			'jinkaku_disc'  => $this->reii_description($this->jinkaku),
+			'jinkaku_score' => $this->jinkaku_score,
+			'gaikaku'       => $this->gaikaku,
+			'gaikaku_disc'  => $this->reii_description($this->gaikaku),
+			'gaikaku_score' => $this->gaikaku_score,
+			'tenkaku'       => $this->tenkaku,
+			'tenkaku_disc'  => $this->reii_description($this->tenkaku),
+			'tenkaku_score' => $this->tenkaku_score,
+			'soukaku'       => $this->soukaku,
+			'soukaku_disc'  => $this->reii_description($this->soukaku),
+			'soukaku_score' => $this->soukaku_score,
+			'kenkou'        => $this->kenkou_score(1),
+			'grand_score'   => round($this->grand_score())
+		];
 	}
 }
 ?>

@@ -1,36 +1,4 @@
 <?php
-function cmp($a, $b)
-{
-	if ($a['grand_score'] == $b['grand_score']) {
-		return 0;
-	}
-	return ($a['grand_score'] < $b['grand_score']) ? 1 : -1;
-}
-
-function seimei_translate (Seimei $seimei, $gender, $desc) {
-	return [
-		'name'          => $seimei->sei . " " . $seimei->mei . " (". $desc . ")",
-		'sei'           => $seimei->sei,
-		'mei'           => $seimei->mei,
-		'sex'			=> $seimei->sex,
-		'gender'        => $gender,
-		'jinkaku'       => $seimei->jinkaku,
-		'jinkaku_disc'  => $seimei->reii_description($seimei->jinkaku),
-		'jinkaku_score' => $seimei->score($seimei->jinkaku),
-		'gaikaku'       => $seimei->gaikaku,
-		'gaikaku_disc'  => $seimei->reii_description($seimei->gaikaku),
-		'gaikaku_score' => $seimei->score($seimei->gaikaku),
-		'tenkaku'       => $seimei->tenkaku,
-		'tenkaku_disc'  => $seimei->reii_description($seimei->tenkaku),
-		'tenkaku_score' => $seimei->score($seimei->tenkaku),
-		'soukaku'       => $seimei->soukaku,
-		'soukaku_disc'  => $seimei->reii_description($seimei->soukaku),
-		'soukaku_score' => $seimei->score($seimei->soukaku),
-		'kenkou'        => mb_substr($seimei->kenkou_description(), 6, 1),
-		'grand_score'   => round($seimei->grand_score())
-	];
-}
-
 function googleAnalytics() {
 ?>
 <script>
@@ -110,7 +78,7 @@ function seimeiHeader(Seimei $seimei) {
 		"人画（基礎運）" . $seimei->jinkaku . "画 " . $seimei->score($seimei->jinkaku) . "点/" .
 		"外画（外交運）" . $seimei->gaikaku . "画 " . $seimei->score($seimei->gaikaku) . "点/" .
 		"性格" . $seimei->seikaku_description() . "/" .
-		"健康運" . ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"][mb_substr($seimei->kenkou_description(), 6, 1)] . "/" .
+		"健康運" . $seimei->kenkou_score(1) . "/" .
 		"天画（若年期運）" . $seimei->tenkaku . "画 " . $seimei->score($seimei->tenkaku) . "点/" .
 		"総画（晩年期運）" . $seimei->soukaku . "画 " . $seimei->score($seimei->soukaku) . "点" ?>">
 	<title><?php echo $seimei->sei ?> <?php echo $seimei->mei ?></title>
@@ -154,16 +122,16 @@ function seimeiBody($seimei) {
 		<?php fbLike(); ?>
 		<div style="text-align:center;">
 			<img src="radar_chart.php?<?php echo 
-			"jinkaku=" . ($seimei->score($seimei->jinkaku) / 20) . 
-			"&gaikaku=" . ($seimei->score($seimei->gaikaku) / 20) . 
-			"&tenkaku=" . ($seimei->score($seimei->tenkaku) /20) . 
-			"&soukaku=" . ($seimei->score($seimei->soukaku) /20) . 
-			"&kenkou=" . ["◎" => 5, "○" => 4.5, "△" => 3.5, "×" => 2.5][mb_substr($seimei->kenkou_description(), 6, 1)]?>">
-			<img src="bar_graph.php?<?php echo 
-			"a=" . ($seimei->score($seimei->gaikaku) * 0.25 + $seimei->score($seimei->tenkaku) * 0.5 + $seimei->score($seimei->jinkaku) * 0.25) . 
-			"&b=" . ($seimei->score($seimei->gaikaku) * 0.25 + $seimei->score($seimei->tenkaku) * 0.25 + $seimei->score($seimei->jinkaku) * 0.5) . 
-			"&c=" . ($seimei->score($seimei->gaikaku) * 0.25 + $seimei->score($seimei->soukaku) * 0.25 + $seimei->score($seimei->jinkaku) * 0.5) . 
-			"&d=" . ($seimei->score($seimei->soukaku) * 0.5 + $seimei->score($seimei->jinkaku) * 0.5) . 
+			"jinkaku=" . ($seimei->jinkaku_score / 20) . 
+			"&gaikaku=" . ($seimei->gaikaku_score / 20) . 
+			"&tenkaku=" . ($seimei->tenkaku_score /20) . 
+			"&soukaku=" . ($seimei->soukaku_score /20) . 
+			"&kenkou=" . ($seimei->kenkou_score(2) * 5); ?>">
+ 		<img src="bar_graph.php?<?php echo 
+			"a=" . ($seimei->gaikaku_score * 0.25 + $seimei->tenkaku_score * 0.5 + $seimei->jinkaku_score * 0.25) . 
+			"&b=" . ($seimei->gaikaku_score * 0.25 + $seimei->tenkaku_score * 0.25 + $seimei->jinkaku_score * 0.5) . 
+			"&c=" . ($seimei->gaikaku_score * 0.25 + $seimei->soukaku_score * 0.25 + $seimei->jinkaku_score * 0.5) . 
+			"&d=" . ($seimei->soukaku_score * 0.5 + $seimei->jinkaku_score * 0.5) . 
 			"&e=" . $seimei->grand_score(); ?>">
 		</div>
 		<h2><?php echo $seimei->sei ?>さんへの改名のご提案</h2>
@@ -214,16 +182,16 @@ function seimeiBody($seimei) {
 		</div>
 		<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢(詳細)</h2>
 		<div data-role="collapsible" data-collapsed="true">
-			<h2>人画 <?php echo $seimei->jinkaku . "画 (" . $seimei->score($seimei->jinkaku) . "点)" ?></h2>
+			<h2>人画 <?php echo $seimei->jinkaku . "画 (" . $seimei->jinkaku_score . "点)" ?></h2>
 			<p style="color:blue;font-weight:bold;">基礎運。一生の運勢を司ります。結婚により姓が変わると基礎運も変化しますが、この場合中年以降に強く現れます。</p>
-			<p><?php echo $seimei->jinkaku . "画:" . $seimei->reii_description($seimei->jinkaku) . " (" . $seimei->score($seimei->jinkaku) . "点)" ?></p>
+			<p><?php echo $seimei->jinkaku . "画:" . $seimei->reii_description($seimei->jinkaku) . " (" . $seimei->jinkaku_score . "点)" ?></p>
 			<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('jinkaku') ?></p>
 			<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 		</div>
 		<div data-role="collapsible" data-collapsed="true">
-			<h2>外画 <?php echo $seimei->gaikaku . "画 (" . $seimei->score($seimei->gaikaku) . "点)" ?></h2>
+			<h2>外画 <?php echo $seimei->gaikaku . "画 (" . $seimei->gaikaku_score . "点)" ?></h2>
 			<p style="color:blue;font-weight:bold;">対人運。対人関係および、家族・夫婦関係、友達関係など、外交面をあらわします。</p>
-			<p><?php echo $seimei->gaikaku . "画：" . $seimei->reii_description($seimei->gaikaku) . " (" . $seimei->score($seimei->gaikaku) . "点)" ?></p>
+			<p><?php echo $seimei->gaikaku . "画：" . $seimei->reii_description($seimei->gaikaku) . " (" . $seimei->gaikaku_score . "点)" ?></p>
 			<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('gaikaku') ?></p>
 			<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 		</div>
@@ -234,25 +202,23 @@ function seimeiBody($seimei) {
 			<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('seikaku') ?></p>
 		</div>
 		<div data-role="collapsible" data-collapsed="true">
-			<h2>健康運 (<?php 
-			$kenkou_map = ["◎" => "すごく良い", "○" => "良い", "△" => "ふつう", "×" => "悪い"];
-			echo $kenkou_map[mb_substr($seimei->kenkou_description(), 6, 1)] ?>)</h2>
+			<h2>健康運 (<?php echo $seimei->kenkou_score(1); ?>)</h2>
 			<p style="color:blue;font-weight:bold;">健康運は三才の配置により決定します。吉数揃いの姓名も、健康に恵まれなければ活かされません。他の画数と合わせて判断してください。</p>
-			<p>三才の配置：<?php echo mb_substr($seimei->kenkou_description(), 0, 5) ?></p>
+			<p>三才の配置：<?php echo $seimei->kenkou_description(); ?></p>
 			<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('kenkou') ?></p>
 			<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 		</div>
 		<div data-role="collapsible" data-collapsed="true">
-			<h2>天画 <?php echo $seimei->tenkaku . "画 (" . $seimei->score($seimei->tenkaku) . "点)" ?></h2>
+			<h2>天画 <?php echo $seimei->tenkaku . "画 (" . $seimei->tenkaku_score . "点)" ?></h2>
 			<p style="color:blue;font-weight:bold;">若年期の基礎運。幼少年期の運勢を支配し、青年期まで強くあらわれます。</p>
-			<p><?php echo $seimei->tenkaku . "画：" . $seimei->reii_description($seimei->tenkaku) . " (" . $seimei->score($seimei->tenkaku) . "点)" ?></p>
+			<p><?php echo $seimei->tenkaku . "画：" . $seimei->reii_description($seimei->tenkaku) . " (" . $seimei->tenkaku_score . "点)" ?></p>
 			<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('tenkaku') ?></p>
 			<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 		</div>
 		<div data-role="collapsible" data-collapsed="true">
-			<h2>総画 <?php echo $seimei->soukaku . "画 (" . $seimei->score($seimei->soukaku) . "点)" ?></h2>
+			<h2>総画 <?php echo $seimei->soukaku . "画 (" . $seimei->soukaku_score . "点)" ?></h2>
 			<p style="color:blue;font-weight:bold;">晩年運。50歳前後からの運勢を支配します。ただし、基礎運の影響も残ります。</span><br>
-			<p><?php echo $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) . " (" . $seimei->score($seimei->soukaku) . "点)" ?></p>
+			<p><?php echo $seimei->soukaku . "画：" . $seimei->reii_description($seimei->soukaku) . " (" . $seimei->soukaku_score . "点)" ?></p>
 			<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('soukaku') ?></p>
 			<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 		</div>
