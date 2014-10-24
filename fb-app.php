@@ -96,7 +96,7 @@ if ($session) {
 				"&b=" . ($name['gaikaku_score'] * 0.25 + $name['tenkaku_score'] * 0.25 + $name['jinkaku_score'] * 0.5) . 
 				"&c=" . ($name['gaikaku_score'] * 0.25 + $name['soukaku_score'] * 0.25 + $name['jinkaku_score'] * 0.5) . 
 				"&d=" . ($name['soukaku_score'] * 0.5 + $name['jinkaku_score'] * 0.5) . 
-				"&e=" . $name->grand_score() . "'></td></tr>";
+				"&e=" . $name['grand_score'] . "'></td></tr>";
 		}
 		echo "</table>";
 		echo "</body>";
