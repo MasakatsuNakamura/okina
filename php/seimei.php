@@ -18,7 +18,6 @@ Class Seimei {
 	public $jinkaku_score;
 	public $gaikaku_score;
 	public $soukaku_score;
-	public $kenkou_score;
 	
 	public $error;
 
@@ -138,15 +137,14 @@ Class Seimei {
 		$this->jinkaku_score = $reii->score[$this->jinkaku][$s];
 		$this->gaikaku_score = $reii->score[$this->gaikaku][$s];
 		$this->soukaku_score = $reii->score[$this->soukaku][$s];
-		$this->kenkou_score = $this->kenkou_score(2);
 		
 	}
 	
 	public function grand_score () {
 		if ($this->sex == 'F') {
-			return ($this->tenkaku_score + $this->jinkaku_score + $this->gaikaku_score) / 3 * $this->kenkou_score;
+			return ($this->tenkaku_score + $this->jinkaku_score + $this->gaikaku_score) / 3 * $this->kenkou_score(2);
 		} else {
-			return ($this->tenkaku_score + $this->jinkaku_score + $this->gaikaku_score + $this->soukaku_score) / 4 * $this->kenkou_score;
+			return ($this->tenkaku_score + $this->jinkaku_score + $this->gaikaku_score + $this->soukaku_score) / 4 * $this->kenkou_score(2);
 		}
 	}
 	

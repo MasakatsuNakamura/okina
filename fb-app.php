@@ -98,7 +98,7 @@ if ($session) {
 				"&gaikaku=" . ($name['gaikaku_score'] / 20) . 
 				"&tenkaku=" . ($name['tenkaku_score'] /20) . 
 				"&soukaku=" . ($name['soukaku_score'] /20) . 
-				"&kenkou=" . ($name['kenkou_score'] * 5) . "'></td>";
+				"&kenkou=" . ($name['kenkou'] * 5) . "'></td>";
  			echo "<td style='text-align:center;'><img src='bar_graph.php?" . 
 				"a=" . ($name['gaikaku_score'] * 0.25 + $name['tenkaku_score'] * 0.5 + $name['jinkaku_score'] * 0.25) . 
 				"&b=" . ($name['gaikaku_score'] * 0.25 + $name['tenkaku_score'] * 0.25 + $name['jinkaku_score'] * 0.5) . 
@@ -108,7 +108,7 @@ if ($session) {
 		}
 		echo "</table>";
 		echo "</body>";
-		
+
 	} catch (Exception $ex) {
 		echo "Exception occured, code: " . $ex->getCode();
 		echo " with message: " . $ex->getMessage();
