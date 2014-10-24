@@ -1,6 +1,14 @@
 <?php
 header('Content-type: text/html; charset=utf-8;');
 
+function cmp($a, $b)
+{
+	if ($a['grand_score'] == $b['grand_score']) {
+		return 0;
+	}
+	return $a['grand_score'] < $b['grand_score'] ? 1 : -1;
+}
+
 date_default_timezone_set('Asia/Tokyo');
 
 require 'vendor/autoload.php';
@@ -69,7 +77,7 @@ if ($session) {
 				array_push($seimei_list, $seimei->toarray($name[1]));
 			}
 		}
-		usort($seimei_list, $seimei->cmp());
+		usort($seimei_list, "cmp");
 
 		echo "<body>";
 		fbRoot();
