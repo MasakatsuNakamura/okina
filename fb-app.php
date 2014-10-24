@@ -69,7 +69,7 @@ if ($session) {
 				array_push($seimei_list, $seimei->toarray($name[1]));
 			}
 		}
-		usort($seimei_list, "cmp");
+		usort($seimei_list, $seimei->cmp());
 
 		echo "<body>";
 		fbRoot();
@@ -80,16 +80,23 @@ if ($session) {
 		fbLike();
 		echo "<h2>命名・改名アドバイザー</h2><p>あじあ姓名うらないオススメの、あなたのいまの姓にピッタリのお名前です。お子様につけていただいてもかまいませんが、その場合は戸籍上の姓で占う必要があります(配偶者の姓を名乗られている場合は、配偶者に占ってもらってください)。</p>";
 		echo "<table>";
-		echo "<tr><th>" . implode("</th><th>", ["氏名", "性別", "総合得点", "人画 (基礎運)", "外画 (外交運)", "健康運", "天画 (若年期運)", "総画 (晩年運)"]) . "</th></tr>";
+		echo "<tr><th>氏名</th><th>性別</th><th>運勢のバランス</th><th>年代別運勢</th></tr>";
 		foreach ($seimei_list as $name) {
 			echo "<tr><td style='font-size:large;color:" . ($name['sex'] == 'M' ? "blue" : "red"). ";'>" . $name['name'] . "</td>";
 			echo "<td style='font-size:x-large;'>" . $name['gender'] . "</td>";
 			echo "<td style='font-size:x-large;text-align:center;'>" . $name['grand_score'] . "点</td>";
-			echo "<td><span style='font-size:x-large;'>" . $name['jinkaku'] . "画：" . $name['jinkaku_score'] . "点</span><br>" . $name['jinkaku_disc'] . "</td>";
-			echo "<td><span style='font-size:x-large;'>" . $name['gaikaku'] . "画：" . $name['gaikaku_score'] . "点</span><br>" . $name['gaikaku_disc'] . "</td>";
-			echo "<td style='text-align:center;font-size:x-large;'>" . $name['kenkou'] . "</td>";
-			echo "<td><span style='font-size:x-large;'>" . $name['tenkaku'] . "画：" . $name['tenkaku_score'] . "点</span><br>" . $name['tenkaku_disc'] . "</td>";
-			echo "<td><span style='font-size:x-large;'>" . $name['soukaku'] . "画：" . $name['soukaku_score'] . "点</span><br>" . $name['soukaku_disc'] . "</td>";
+			echo "<td style='text-align:center;'><img src='radar_chart.php?" . 
+				"jinkaku=" . ($name['jinkaku_score'] / 20) . 
+				"&gaikaku=" . ($name['gaikaku_score'] / 20) . 
+				"&tenkaku=" . ($name['tenkaku_score'] /20) . 
+				"&soukaku=" . ($name['soukaku_score'] /20) . 
+				"&kenkou=" . ($name['kenkou_score'] * 5) . "'></td>";
+ 			echo "<td style='text-align:center;'><img src='bar_graph.php?" . 
+				"a=" . ($name['gaikaku_score'] * 0.25 + $name['tenkaku_score'] * 0.5 + $name['jinkaku_score'] * 0.25) . 
+				"&b=" . ($name['gaikaku_score'] * 0.25 + $name['tenkaku_score'] * 0.25 + $name['jinkaku_score'] * 0.5) . 
+				"&c=" . ($name['gaikaku_score'] * 0.25 + $name['soukaku_score'] * 0.25 + $name['jinkaku_score'] * 0.5) . 
+				"&d=" . ($name['soukaku_score'] * 0.5 + $name['jinkaku_score'] * 0.5) . 
+				"&e=" . $name->grand_score() . "'></td></tr>";
 		}
 		echo "</table>";
 		echo "</body>";
