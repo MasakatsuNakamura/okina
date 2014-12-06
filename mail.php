@@ -40,7 +40,7 @@ require 'vendor/autoload.php';
 <meta http-equiv="refresh" content="3;URL=/"></head>
 <body>
 <?php
-if (preg_match("/@(sute.jp|hiru-dea.com|temp15qm.com|sayawaka-dea.info|yopmail.com|trbvm.com|nybella.com|rtrtr.com|incognitomail.org|guerrillamailblock.com|mailmetrash.com|trashmail.com|xxx@sd.renraku.in|getairmail.com|7tags.com)$/",$_POST['email']) != 0) {
+if (preg_match("/@(supermailer.jp|sute.jp|hiru-dea.com|temp15qm.com|sayawaka-dea.info|yopmail.com|trbvm.com|nybella.com|rtrtr.com|incognitomail.org|guerrillamailblock.com|mailmetrash.com|trashmail.com|xxx@sd.renraku.in|getairmail.com|7tags.com)$/",$_POST['email']) != 0) {
 	echo '捨てアカ専用メールアドレスからの問い合わせは受け付けておりません。';
 } else if (hash("haval160,4", $_POST["authcode"]) == $_POST["authcode-hash"]) {
 	$sendgrid = new SendGrid('app26677709@heroku.com', 'xec1eqoo');
