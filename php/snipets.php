@@ -15,7 +15,7 @@ ga('send', 'pageview');
 
 function googleAdsense() {
 ?>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
 <!-- あじあ姓名うらない -->
 <ins class="adsbygoogle"
      style="display:inline-block;width:320px;height:100px"
