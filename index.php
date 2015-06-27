@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["SERVER_NAME"] == "www.seimei.asia" || $_SERVER["SERVER_NAME"] = "seimei.kurashi.asia") {
+if ($_SERVER["SERVER_NAME"] == "www.seimei.asia" || $_SERVER["SERVER_NAME"] == "seimei.kurashi.asia") {
 	header("HTTP/1.1 301 Moved Permanently");
 	header("Location: https://okina.herokuapp.com" . $_SERVER[REQUEST_URI]);
 } else {
