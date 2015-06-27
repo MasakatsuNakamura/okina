@@ -15,12 +15,13 @@ ga('send', 'pageview');
 
 function googleAdsense() {
 ?>
-<script async src="//pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-<!-- あじあ姓名うらない -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- レスポンシブ広告 -->
 <ins class="adsbygoogle"
-     style="display:inline-block;width:320px;height:100px"
+     style="display:block"
      data-ad-client="ca-pub-0413343113584981"
-     data-ad-slot="6868632444"></ins>
+     data-ad-slot="9449456848"
+     data-ad-format="auto"></ins>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -47,23 +48,6 @@ function fbLike() {
   data-share="true"
   data-width="450"
   data-show-faces="true">
-</div>
-<?php
-}
-
-function ninjaTools() {
-?>
-<div class="ninja_onebutton">
-<script type="text/javascript">
-//<![CDATA[
-(function(d){
-if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_971b6531abd1b36d9c48f0245802d633)=='undefined'){
-    document.write("<sc"+"ript type='text\/javascript' src='\/\/omt.shinobi.jp\/b\/971b6531abd1b36d9c48f0245802d633'><\/sc"+"ript>");
-}else{
-    window.NINJA_CO_JP_ONETAG_BUTTON_971b6531abd1b36d9c48f0245802d633.ONETAGButton_Load();}
-})(document);
-//]]>
-</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
 </div>
 <?php
 }
@@ -222,8 +206,6 @@ function seimeiBody($seimei) {
 			<p style="font-size:x-large;font-weight:bold;"><?php echo $seimei->mongon('soukaku') ?></p>
 			<p style="font-size:small;">※ 鑑定文言について、山本哲生氏（故人：生没年不明）の編著「名前で読める自己の運命A・B・C」（ISBN不明）から引用しています。</p>
 		</div>
-		<h2>シェア</h2>
-		<p><?php ninjaTools(); ?></p>
 	</div>
 	<div data-role='footer' data-position='fixed'>
 		<?php googleAdsense() ?>
@@ -269,8 +251,6 @@ function seimeiWebForm() {
 		<p><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></p>
 		<h2>Facebookアプリ公開中！</h2>
 		<p><a href="https://apps.facebook.com/seimei-asia/">Facebookアプリはこちら</a>。</p>
-		<h2>気に入ったらシェアをお願いします！</h2>
-		<?php ninjaTools(); ?>
 		<a href="#setsumei" data-role="button">あじあ姓名うらないについて</a>
 		<a href="#kaimei" data-role="button">改名について</a>
 		<a href="http://daibutsuda.github.io/" data-role="button">だいぶつのホームページ</a>
