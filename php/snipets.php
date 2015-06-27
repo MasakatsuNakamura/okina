@@ -93,16 +93,16 @@ function seimeiWebHeader() {
 ?>
 <head>
 	<meta charset="UTF-8">
-	<LINK REL="SHORTCUT ICON" HREF="favicon.ico"> 
+	<LINK REL="SHORTCUT ICON" HREF="favicon.ico">
 	<meta name="description" content="あじあ姓名うらないへようこそ！赤ちゃんの名まえをつけたり（選名）、キラキラネームの改名案を探したり、じぶんの運勢をうらなうなど、どしどし使ってね！">
 	<meta name="keywords" content="翁 山本翁 山本式 山本式姓名判断 占い 姓名判断 姓名うらない 姓名占い 命名 選名 名前 新生児 赤ちゃん 出産準備 改名 DQNネーム キラキラネーム 改名 改姓 結婚相談 芸名 雅号 会社名 人事相談 熊崎式 だいぶつ あじあ">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>あじあ姓名うらない</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+	<link rel="stylesheet" href="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
 	<link rel="stylesheet" href="css/default.css" />
-	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-	<script type="text/javascript" src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 	<?php googleAnalytics() ?>
 </head>
 <?php
@@ -121,17 +121,17 @@ function seimeiBody($seimei) {
 		<h2><?php echo $seimei->sei . " " . $seimei->mei ?>さんの運勢</h2>
 		<?php fbLike(); ?>
 		<div style="text-align:center;">
-			<img src="radar_chart.php?<?php echo 
-			"jinkaku=" . ($seimei->jinkaku_score / 20) . 
-			"&gaikaku=" . ($seimei->gaikaku_score / 20) . 
-			"&tenkaku=" . ($seimei->tenkaku_score /20) . 
-			"&soukaku=" . ($seimei->soukaku_score /20) . 
+			<img src="radar_chart.php?<?php echo
+			"jinkaku=" . ($seimei->jinkaku_score / 20) .
+			"&gaikaku=" . ($seimei->gaikaku_score / 20) .
+			"&tenkaku=" . ($seimei->tenkaku_score /20) .
+			"&soukaku=" . ($seimei->soukaku_score /20) .
 			"&kenkou=" . ($seimei->kenkou_score(2) * 5); ?>">
- 		<img src="bar_graph.php?<?php echo 
-			"a=" . ($seimei->gaikaku_score * 0.25 + $seimei->tenkaku_score * 0.5 + $seimei->jinkaku_score * 0.25) . 
-			"&b=" . ($seimei->gaikaku_score * 0.25 + $seimei->tenkaku_score * 0.25 + $seimei->jinkaku_score * 0.5) . 
-			"&c=" . ($seimei->gaikaku_score * 0.25 + $seimei->soukaku_score * 0.25 + $seimei->jinkaku_score * 0.5) . 
-			"&d=" . ($seimei->soukaku_score * 0.5 + $seimei->jinkaku_score * 0.5) . 
+ 		<img src="bar_graph.php?<?php echo
+			"a=" . ($seimei->gaikaku_score * 0.25 + $seimei->tenkaku_score * 0.5 + $seimei->jinkaku_score * 0.25) .
+			"&b=" . ($seimei->gaikaku_score * 0.25 + $seimei->tenkaku_score * 0.25 + $seimei->jinkaku_score * 0.5) .
+			"&c=" . ($seimei->gaikaku_score * 0.25 + $seimei->soukaku_score * 0.25 + $seimei->jinkaku_score * 0.5) .
+			"&d=" . ($seimei->soukaku_score * 0.5 + $seimei->jinkaku_score * 0.5) .
 			"&e=" . $seimei->grand_score(); ?>">
 		</div>
 		<h2><?php echo $seimei->sei ?>さんへの改名のご提案</h2>
@@ -375,6 +375,6 @@ function errorKanji($kanji) {
 		<?php googleAdsense(); ?>
 	</div>
 </div>
-<?php 
+<?php
 }
 ?>
