@@ -253,8 +253,7 @@ function seimeiWebForm() {
 		<p><a href="https://apps.facebook.com/seimei-asia/">Facebookアプリはこちら</a>。</p>
 		<a href="#setsumei" data-role="button">あじあ姓名うらないについて</a>
 		<a href="#kaimei" data-role="button">改名について</a>
-		<a href="http://daibutsuda.github.io/" data-role="button">だいぶつのホームページ</a>
-		<a href="http://tsume.hateblo.jp/" data-role="button">(ブログ)隠すほどの爪なら無い</a>
+		<a href="http://blog.seimei.asia/" data-role="button">ブログ「隠すほどの爪なら無い」</a>
 	</div>
 	<div data-role='footer' data-position='fixed'>
 		<?php googleAdsense(); ?>
@@ -264,7 +263,7 @@ function seimeiWebForm() {
 <!-- 改名について -->
 <div data-role="page" id="kaimei" data-theme="a">
 	<div data-role="header">
-		<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+		<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014-2015 だいぶつ</a></span></h1>
 		<a href="#top" data-icon="home">ホーム</a>
 		<a href="#query" data-icon="mail">問い合わせ</a>
 	</div>
@@ -287,7 +286,7 @@ function seimeiWebForm() {
 <!-- 説明 -->
 <div data-role="page" id="setsumei" data-theme="a">
 	<div data-role="header">
-		<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014 だいぶつ</a></span></h1>
+		<h1>あじあ姓名うらない <span class="ui-mini"><a href="#mit-lisense">Copyright &copy; 2014-2015 だいぶつ</a></span></h1>
 		<a href="#top" data-icon="home">ホーム</a>
 		<a href="#query" data-icon="mail">問い合わせ</a>
 	</div>
