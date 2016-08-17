@@ -19,6 +19,7 @@ require 'php/snipets.php';
 	<body>
 	<?php
 	fbRoot();
+
 	if (array_key_exists('sei', $_POST) && array_key_exists('mei', $_POST) && array_key_exists('sex', $_POST)) {
 		$seimei = New Seimei();
 		$seimei->sei = $_POST['sei'];
