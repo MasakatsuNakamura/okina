@@ -43,7 +43,7 @@ require 'vendor/autoload.php';
 if (preg_match("/@(supermailer.jp|sute.jp|hiru-dea.com|temp15qm.com|sayawaka-dea.info|yopmail.com|trbvm.com|nybella.com|rtrtr.com|incognitomail.org|guerrillamailblock.com|mailmetrash.com|trashmail.com|xxx@sd.renraku.in|getairmail.com|7tags.com)$/",$_POST['email']) != 0) {
 	echo '捨てアカ専用メールアドレスからの問い合わせは受け付けておりません。';
 } else if (hash("haval160,4", $_POST["authcode"]) == $_POST["authcode-hash"]) {
-	$sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
+	$sendgrid = new SendGrid('app26677709@heroku.com', '6angkvnt9926');
 	$message = new SendGrid\Email();
 	$message->
 		addTo('nakamuramasakatsu+heroku@gmail.com')->

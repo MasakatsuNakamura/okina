@@ -3,6 +3,7 @@
 	    "facebook/php-sdk-v4" : "4.0.*",
 		"sendgrid/sendgrid": "2.1.1",
 		"ext-mbstring": "*",
-		"ext-gd": "*"
+		"ext-gd": "*",
+		"aws/aws-sdk-php": "^3.67"
 	}
 }
