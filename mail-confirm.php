@@ -62,7 +62,7 @@ $authcode = rand(10000, 99999);
 
 </html>
 <?php
-$sendgrid = new SendGrid('app26677709@heroku.com', '6angkvnt9926');
+$sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
 $message = new SendGrid\Email();
 $message->
 	addTo($_POST['email'])->
